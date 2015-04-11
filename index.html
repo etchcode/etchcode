@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Project Editor | Etch</title>
+		
+		<link rel="stylesheet" type="text/css" href="base.css">
+		<link rel="stylesheet" type="text/css" href="darkTheme.css">
+		
+	</head>
+	<body>
+		<div id="content">
+			<div id="editor">
+				<div id="textarea" contenteditable="true" spellcheck="false" autofocus="autofocus">
+				
+				</div>
+				<script type="text/javascript">
+					// The code is inline here because we want it to run as soon as #textarea is loaded so that the user isn't already somewhere else on the page
+					document.getElementById("textarea").focus();
+				</script>
+				
+				<!-- below is the template used to create the autocomplete popup -->
+				<ul id="autocomplete">
+					
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
