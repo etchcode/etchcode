@@ -4,11 +4,14 @@ function browserOldError(){
 }
 
 function getCaretXY(elem){
-	var id = (new Date().getTime()+(Math.random()*10000) ) + "";
+	var id = (new Date().getTime()+(Math.random()*10000) ) + ""; // generate a unique id
 	
-	var toFind = document.createElement("span");
-	toFind.setAttribute("id", id);
+	var toFind = document.createElement("span"); // create a span
+	toFind.setAttribute("id", id); // set the span's id to our unique id
 	
+	window.getSelection().getRangeAt(0).insertNode(toFind); // insert our span at the cursor position
+	
+	window.getSelection().getRangeAt(0).insertNode(span);
 if(!!window.Worker){ // the user supports web workers
 	
 	// autocomplete section
