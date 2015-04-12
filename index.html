@@ -10,19 +10,45 @@
 	<body>
 		<div id="content">
 			<div id="editor">
-				<div id="textarea" contenteditable="true" spellcheck="false" autofocus="autofocus">
-				
+				<div id="textarea" class="whiteCursor" contenteditable="true" spellcheck="false" autofocus="autofocus">
+# Hello, and welcome.<br># This is a comment, and is ignored by the computer. Add a # and everything after it will be ignored.<br># For details on what etch is and how to use it, check out the documentation at etchcode.appengine.com/docs<br><br>&nbsp;
 				</div>
 				<script type="text/javascript">
 					// The code is inline here because we want it to run as soon as #textarea is loaded so that the user isn't already somewhere else on the page
-					document.getElementById("textarea").focus();
+					
+					// Code in this script tag from http://stackoverflow.com/questions/2871081/jquery-setting-cursor-position-in-contenteditable-div#2948573 and copyright it's origional writer.
+					var textarea = document.getElementById("textarea");
+
+					window.setTimeout(function() {
+							var sel, range;
+							if (window.getSelection && document.createRange) {
+								range = document.createRange();
+								range.selectNodeContents(textarea);
+								range.collapse(false);
+								sel = window.getSelection();
+								sel.removeAllRanges();
+								sel.addRange(range);
+							} else if (document.body.createTextRange) {
+								range = document.body.createTextRange();
+								range.moveToElementText(textarea);
+								range.collapse(false);
+								range.select();
+							}
+						}, 1);
+
+					textarea.focus();
 				</script>
 				
-				<!-- below is the template used to create the autocomplete popup -->
-				<ul id="autocomplete">
-					
-				</ul>
+				<div id="autocomplete"> <!--suggestions go here --> </div>
+			</div>
+			<div id="header" unselectable="on">Etch Code</div>
+			<div id="sidebar">
+				<div id="sprites">
+				
+				</div>
 			</div>
 		</div>
+		
+		<script src="main.js"></script>
 	</body>
 </html>
