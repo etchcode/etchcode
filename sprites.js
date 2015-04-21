@@ -7,12 +7,6 @@
 			templateUrl: "templates/sprite.html"
 		}
 	})
-	.directive("spriteControls", function(){
-		return {
-			restrict: "E",
-			templateUrl: "templates/spriteControls.html"
-		}
-	})
 	
 	.service("spriteData", [function(){
 		this.list = [ // this will be dynamicly generated and saved in the future
@@ -55,7 +49,7 @@
 		}
 		
 		this.setDefault = function(id){
-			spriteData.setCurrent(id);
+			return spriteData.setCurrent(id);
 		}
 		this.getDefault = function(){
 			return spriteData.getCurrent();

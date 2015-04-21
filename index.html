@@ -18,17 +18,33 @@
 
 	</head>
 	<body ng-controller="spritesController as sprites">
-		<div id="content">
-			<div id="editors">
+		<div id="content" unselectable="on">
+			<div id="editors" ng-controller="editorsController as editors" selectable>
 				
-				<div id="code">
-					<editor ng-repeat="sprite in sprites.getSprites()" ng-show="sprite.current"></editor>	
+				<div id="code" ng-show="editors.getView() === 'code'">
+					<editor ng-repeat="sprite in sprites.getSprites()" ng-hide="sprite.current === false"></editor>	
 				</div>
+				
+				<div id="settings" ng-show="editors.getView() === 'settings'">
+					<h2>Settings</h2>
+					<pre>
+{...
+<br>
+
+<br>
+...}
+					</pre>
+				</div>
+				
+				<span id="codeOrSettings">
+					<input type="button" value="Settings" ng-show="editors.getView() === 'code'" ng-click="editors.setView('settings')">
+					<input type="button" value="Code" ng-show="editors.getView() === 'settings'" ng-click="editors.setView('code')">
+				</span>
+				
 			</div>
 				
-			<div id="header" unselectable="on">Etch Code</div>
+			<div id="header">Etch Code</div>
 			<div id="sidebar">
-				<sprite-controls></sprite-controls>
 				<ul id="sprites">
 					<sprite ng-repeat="sprite in sprites.getSprites()" ng-click="sprites.setDefault(sprite.id)"></sprite>
 				</ul>

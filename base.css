@@ -7,6 +7,7 @@
 html, body{
 	height: 100%; /* this line and the line below it disable bouncy scrolling on OSX */
 	overflow: hidden;
+	cursor: default;
 }
 
 [unselectable] {
@@ -15,6 +16,13 @@ html, body{
 	-moz-user-select: -moz-none;
 	-o-user-select: none;
 	user-select: none;
+}
+[selectable] {
+	-webkit-user-select: all;
+	-khtml-user-select: all;
+	-moz-user-select: -moz-all;
+	-o-user-select: all;
+	user-select: all;
 }
 
 #content {
@@ -28,6 +36,8 @@ body {
 	
 	padding: 0;
 	margin: 0;
+	
+	background-color: hsla(229, 8%, 53%, 1);
 }
 
 #editors {
@@ -143,4 +153,28 @@ sprite-controls {
 #code {
 	height: 100%;
 	width: 100%;
+}
+
+#codeOrSettings {
+	position: fixed;
+	bottom: 15px;
+	left: 15px;
+	
+	padding: 8px;
+	border-radius: 3px;
+	color: hsla(229, 8%, 67%, 1);
+	
+	opacity: .4;
+}
+#codeOrSettings:hover {
+	opacity: 1;
+}
+
+#settings {
+	padding: 30px;
+	padding-top: 10px;
+}
+
+pre {
+	font-family: anonymousPro;
 }
