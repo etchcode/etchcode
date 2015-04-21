@@ -1,5 +1,5 @@
 
-#textarea {
+.textarea {
 	background-color: hsla(229, 8%, 53%, 1);
 	color: hsla(229, 8%, 74%, 1);
 }
@@ -24,5 +24,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 #sidebar {
+	background-color: hsla(229, 8%, 67%, 1);
+}
+
+#autocomplete {
 	background-color: hsla(229, 8%, 67%, 1);
 }

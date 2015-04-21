@@ -1,54 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="webapp">
 	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		
 		<title>Project Editor | Etch</title>
 		
 		<link rel="stylesheet" type="text/css" href="base.css">
 		<link rel="stylesheet" type="text/css" href="darkTheme.css">
 		
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
+</script>
+		<script type="text/javascript" src="libs/localforage.min.js"></script>
+		
+		<script type="text/javascript" src="controllers.js"></script>
+		<script type="text/javascript" src="sprites.js"></script>
+		<script type="text/javascript" src="editor.js"></script>
+
 	</head>
-	<body>
+	<body ng-controller="spritesController as sprites">
 		<div id="content">
-			<div id="editor">
-				<div id="textarea" class="whiteCursor" contenteditable="true" spellcheck="false" autofocus="autofocus">
-# Hello, and welcome.<br># This is a comment, and is ignored by the computer. Add a # and everything after it will be ignored.<br># For details on what etch is and how to use it, check out the documentation at etchcode.appengine.com/docs<br><br>&nbsp;
-				</div>
-				<script type="text/javascript">
-					// The code is inline here because we want it to run as soon as #textarea is loaded so that the user isn't already somewhere else on the page
-					
-					// Code in this script tag from http://stackoverflow.com/questions/2871081/jquery-setting-cursor-position-in-contenteditable-div#2948573 and copyright it's origional writer.
-					var textarea = document.getElementById("textarea");
-
-					window.setTimeout(function() {
-							var sel, range;
-							if (window.getSelection && document.createRange) {
-								range = document.createRange();
-								range.selectNodeContents(textarea);
-								range.collapse(false);
-								sel = window.getSelection();
-								sel.removeAllRanges();
-								sel.addRange(range);
-							} else if (document.body.createTextRange) {
-								range = document.body.createTextRange();
-								range.moveToElementText(textarea);
-								range.collapse(false);
-								range.select();
-							}
-						}, 1);
-
-					textarea.focus();
-				</script>
+			<div id="editors">
 				
-				<div id="autocomplete"> <!--suggestions go here --> </div>
+				<div id="code">
+					<editor ng-repeat="sprite in sprites.getSprites()" ng-show="sprite.current"></editor>	
+				</div>
 			</div>
+				
 			<div id="header" unselectable="on">Etch Code</div>
 			<div id="sidebar">
-				<div id="sprites">
-				
-				</div>
+				<sprite-controls></sprite-controls>
+				<ul id="sprites">
+					<sprite ng-repeat="sprite in sprites.getSprites()" ng-click="sprites.setDefault(sprite.id)"></sprite>
+				</ul>
 			</div>
 		</div>
 		
-		<script src="main.js"></script>
 	</body>
 </html>

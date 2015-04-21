@@ -11,13 +11,19 @@ function getCaretXY(elem){
 	
 	window.getSelection().getRangeAt(0).insertNode(toFind); // insert our span at the cursor position
 	
-	window.getSelection().getRangeAt(0).insertNode(span);
+	var position = document.getElementById(id).getBoundingClientRect();
+	
+	document.getElementById(id).remove();
+	
+	return position;
+}
+
 if(!!window.Worker){ // the user supports web workers
 	
 	// autocomplete section
 	var autocomplete = document.getElementById("autocomplete");
 
-	var resets = [8, 13];
+	var resets = [8, 13, 57, 48]; // keyCodes that reset the current tokens
 	
 	var autocompleteWorker = new Worker("autocomplete.js");
 	textarea.onkeypress = function(key){ // watch for letters typed
@@ -27,19 +33,26 @@ if(!!window.Worker){ // the user supports web workers
 	textarea.onkeydown = function(key){ // also look for stuff like backspace
 		if(resets.indexOf(key.keyCode) !== -1){
 			autocompleteWorker.postMessage({"type": "clear"});
-			autocomplete.innerHTML = "";
+			autocomplete.style.display = "none";
 		}
 	}
 	
 	autocompleteWorker.onmessage = function(message){		
 		autocomplete.innerHTML = "";
-		
+				
 		for(var i = 0; i < message.data.length; i++){
 			
 			var elem = document.createElement("li");
 			elem.innerText = message.data[i];
 			autocomplete.appendChild(elem);
 		}
+		
+		var currentPosition = getCaretXY();
+		
+		autocomplete.style.top = (currentPosition.top + 17) + "px";
+		autocomplete.style.left = currentPosition.left + "px";
+		
+		autocomplete.style.display = "block";
 	}
 }
 else{
