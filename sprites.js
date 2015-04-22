@@ -48,10 +48,10 @@
 			return spriteData.list;
 		}
 		
-		this.setDefault = function(id){
+		this.setCurrent = function(id){
 			return spriteData.setCurrent(id);
 		}
-		this.getDefault = function(){
+		this.getCurrent = function(){
 			return spriteData.getCurrent();
 		}
 	}]);
