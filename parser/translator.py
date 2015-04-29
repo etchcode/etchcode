@@ -2,6 +2,8 @@ import tokenize
 import StringIO
 import re
 
+import blocks # our own python file with the blocks in it
+
 tokenTypes = {
     0: 'ENDMARKER',
     1: 'NAME',
@@ -72,173 +74,6 @@ closeBlockStrings = [
     ")"
 ]
 
-startChunkBlocks = [  # blocks that start a chunk of connected blocks
-                      "receiveGo",
-]
-abriviations = {  # these reference other blocks form abriviation:block name that it is referenceing
-                  "m": "motion",
-                  "s": "sensing",
-                  "d": "data",
-                  "l": "looks",
-                  "p": "pen",
-                  "e": "events",
-                  "c": "control",
-                  "o": "operators",
-                  "goy": "changey",
-                  "gox": "changex",
-                  "clearEffects": "cleargraphiceffects",
-                  "whenflagclicked":"flaglicked"
-}
-snapNames = {
-
-    "motion": {
-        # setRotationStyle is not in Snap!, so I can't support it
-        "move": "forward",
-        "turnright": "turn",
-        "turnleft": "turnLeft",
-        "pointdirection": "setHeading",
-        "pointtowards": "doFaceTowards",
-        "gotoxy": "gotoXY",
-        "gotoobject": "doGotoObject",
-        "glide": "doGlide",
-        "changex": "changeXPosition",
-        "setx": "setXPosition",
-        "changey": "changeYPosition",
-        "sety": "setYPosition",
-        "ifedgebounce": "bounceOffEdge",
-        "xpos": "xPosition",
-        "ypos": "yPosition",
-        "direction": "direction"
-    },
-
-    "looks": {
-        # backdropName and switchBackdropTo are not in Snap!, so we can't support them
-        "timedsay": "doSayFor",
-        "say": "bubble",
-        "timedthink": "doThinkFor",
-        "think": "doThink",
-        "show": "show",
-        "hide": "hide",
-        "switchcostumeto": "doSwitchToCostume",
-        "nextcostume": "doWearNextCostume",
-        "changeeffect": "changeEffect",
-        "seteffect": "setEffect",
-        "cleargraphiceffects": "clearEffects",
-        "changesizeby": "changeScale",
-        "setsizeto": "setScale",
-        "gotofront": "comeToFront",
-        "gobacklayers": "goBack",
-        "costumenumber": "getCostumeIdx",
-        "size": "getScale"
-    },
-    """
-    "sound": {
-        "playSound": "",
-        "playSoundUntilDone": "",
-        "stopAllSounds": "",
-        "playDrum": "",
-        "restFor": "",
-        "playNote": "",
-        "setInstrumentTo": "",
-        "changeVolumeBy": "",
-        "setVolumeTo": "",
-        "volume": "",
-        "changeTempoBy": "",
-        "setTempoTo": "",
-        "tempo": ""
-    },"""
-
-    "pen": {
-        "clear": "",
-        "stamp": "",
-        "penDown": "",
-        "penUp": "",
-        "setPenColorTo": "",
-        "changePenColorBy": "",
-        "setPenColorToNumber": "",
-        "changePenShadeBy": "",
-        "changePenSizeBy": "",
-        "setPenSizeTo": ""
-    },
-
-    "data": {
-        "set": "doSetVar",
-        "changeBy": "",
-        "showvariable": "",
-        "hidevariable": ""
-    },
-
-    "events": {
-        "flagclicked": "receiveGo",
-        "keypressed": "",
-        "thisspriteclicked": "",
-        "backdropswitchesTo": "",
-        "greaterthan": "",
-        "ireceivemessage": "",
-        "broadcast": "",
-        "broadcastAndWait": ""
-    },
-
-    "control": {
-        "waitSeconds": "",
-        "repeat": "",
-        "forever": "",
-        "ifThen": "doIf",
-        "ifThenElse": "",
-        "waitUntil": "",
-        "repeatUntil": "",
-        "stop": "",
-        "whenIStartAsAClone": "",
-        "createCloneOf": "",
-        "deleteThisClone": "",
-    },
-
-    "sensing": {
-        "touchingItem": "",
-        "touchingcolor": "reportTouchingColor",
-        "colorsTouching": "",
-        "distanceTo": "",
-        "askAndWait": "",
-        "answer": "",
-        "isKeyPressed": "",
-        "isMouseDown": "",
-        "mouseX": "",
-        "mouseY": "",
-        "loudness": "",
-        "videoOn": "",
-        "turnVideo": "",
-        "setVideoTransparencyTo": "",
-        "timer": "",
-        "resetTimer": "",
-        "xPositionOf": "",
-        "current": "",
-        "daysSince2000": "",
-        "username": ""
-    },
-
-    "operators": {
-        "plus": "",
-        "minus": "",
-        "times": "",
-        "divide": "",
-        "pickRandomBetween": "",
-        "lessThan": "",
-        "equal": "",
-        "greaterThan": "",
-        "and": "",
-        "or": "",
-        "not": "",
-        "join": "",
-        "letterNumber": "",
-        "lengthOf": "",
-        "mod": "",
-        "round": "",
-        "operationOfNumber": ""
-    },
-
-}
-
-closeSelf = ["receiveGo", "xPosition", "yPosition", "direction"]  # tags that should self-close
 ScriptTag = "<script x=\"5\" y=\"5\">"  # this tag is for importing into snap
 # BEGIN VARIABLES THAT CHANGE EVERY PARSING OF A STRING
 currentParent = False
@@ -259,11 +94,11 @@ result = ""  # This is the XML that snap processes
 def isParentTag(tag):
     """Return: True if a tag is a parent tag else false"""
     try:
-        snapNames[tag]
+        blocks.snapNames[tag]
         return 1
     except KeyError:
         try:
-            abriviations[tag]
+            blocks.abriviations[tag]
             return 2
         except KeyError:
             return 0
@@ -271,12 +106,12 @@ def isParentTag(tag):
 def isFunction(parent, string):
     global currentFunction, word
     try:
-        snapNames[parent][string]
+        blocks.snapNames[parent][string]
         return 3
     except KeyError:
         1*1
     try:
-        snapNames[parent][word+string]
+        blocks.snapNames[parent][word+string]
         word += string
         return 2
     except KeyError:
@@ -284,7 +119,7 @@ def isFunction(parent, string):
     try:
 
 
-        for func in snapNames[parent]:
+        for func in blocks.snapNames[parent]:
             if func.find(word+string) != -1:
                 word += string
                 print word
@@ -296,7 +131,7 @@ def isFunction(parent, string):
 def doCloseSelf(snapName):
     """ returns / if a block should close itself and an empty string otherwise """
 
-    if snapName in closeSelf:
+    if snapName in blocks.closeSelf:
         return "/"
     else:
         return ""
@@ -322,9 +157,9 @@ def buildBlock(type=False, name=False):
 
         else:
             print type, name
-            snapName = snapNames[type][name]
+            snapName = blocks.snapNames[type][name]
 
-            if snapName in startChunkBlocks: # if this starts a chunk of connected blocks
+            if snapName in blocks.startChunkBlocks: # if this starts a chunk of connected blocks
                 result += ScriptTag
 
             result += "<block s=\""+snapName+"\""+doCloseSelf(snapName)+">"
@@ -356,7 +191,7 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print "parent"
         print currentParent
     elif type == "NAME" and isParentTag(string) == 2 and currentParent == False:  # this defines a parent, so the next thing after the dot is a function
-        currentParent = abriviations[string]
+        currentParent = blocks.abriviations[string]
         print "parent abrv"
         print currentParent
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
