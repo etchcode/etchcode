@@ -1,0 +1,6 @@
+events.fl a g Cl  ic k ed :
+    Data.Set("foo", 1)
+    Motion.tu rnRi ght (90)
+    M. g lide(5, 50, 50)
+    Motion.goT oX Y(foo,0)
+    
