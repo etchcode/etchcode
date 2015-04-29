@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response
 
 import json
 
@@ -9,9 +9,9 @@ app.config.from_pyfile("config.py")
 def blocks():
     import parser.blocks
 
-    return json.dumps({
+    return Response(json.dumps({
         "closeSelf": parser.blocks.closeSelf,
         "snapNames": parser.blocks.snapNames,
         "startChunkBlocks": parser.blocks.startChunkBlocks,
         "abbreviations": parser.blocks.abriviations
-    })
+    }), content_type="application/json")
