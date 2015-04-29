@@ -12,27 +12,15 @@
 		this.list = [ // this will be dynamicly generated and saved in the future
 			{
 				"id": "spriteID1", 
-				"current": true,
-				
-				config: {
-					
-				}
+				"current": true
 			},
 			{
 				"id": "spriteID2",
-				"current": false,
-				
-				config: {
-					
-				}
+				"current": false
 			},
 			{
 				id: "background",
-				current: false,
-				
-				config: {
-					
-				}
+				current: false
 			}
 		];
 	}])

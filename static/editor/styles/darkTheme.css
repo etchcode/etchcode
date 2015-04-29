@@ -1,26 +1,26 @@
 @charset "UTF-8";
-/* line 5, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 6, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 body {
   background-color: #5c6070; }
 
-/* line 9, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 10, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .enabled[type=button], .enabled li {
   background-color: #5c6070 !important;
-  color: #abaeba; }
+  color: #dbdce1; }
 
-/* line 14, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 15, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #editors {
-  color: #abaeba; }
+  color: #dbdce1; }
 
-/* line 17, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 18, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #editors textarea {
   color: inherit; }
 
-/* line 21, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 22, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 textarea {
   background: transparent; }
 
-/* line 25, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .whiteCursor {
   /* The below copyright notice only applies to the data-url below (data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=). The "Software" refers only to the data-url data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII= .
 	
@@ -34,16 +34,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	*/
   cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=), auto; }
 
-/* line 40, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 41, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .parent.header {
   background-color: #85868a; }
 
-/* line 44, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 45, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #sidebar {
   background-color: #abaeba; }
 
-/* line 48, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/darkTheme.scss */
+/* line 49, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #sprites .background {
   border-top: 2px solid #85868a; }
+
+/* line 54, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+#settings input {
+  color: #dbdce1; }
 
 /*# sourceMappingURL=darkTheme.css.map */

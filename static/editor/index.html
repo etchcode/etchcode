@@ -44,14 +44,38 @@
 			</div>
 
 			<div id="settings" ng-show="editors.service.view === 'settings'">
-				<h2>Settings</h2>
-				<pre>
-{{ sprites.current }}: {
-<br>
+				<div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
+					<h2>Settings</h2>
+					<form novalidate>
+						<pre ng-show="sprite.id !== 'background'"> <!-- if this is a normal sprite -->
+<input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" required>: {
 
-<br>
+	costumes: [
+	
+	],
+	
+	variables: [
+	
+	],
+
 }
-				</pre>
+						</pre>
+						<pre ng-show="sprite.id === 'background'"> <!-- this is the background -->
+background: {
+
+	backdrops: [
+	
+	],
+	
+	variables: [
+	
+	]
+
+}
+						</pre>
+					
+					</form>
+				</div>
 			</div>
 
 		</div>

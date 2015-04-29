@@ -1,18 +1,19 @@
 $darkest: hsla(229, 10%, 40%, 1);
 $medium: hsla(230, 2%, 53%, 1);
 $light: hsla(229, 10%, 70%, 1);
-
+$lightest: hsla(229, 10%, 87%, 1);
+   
 body{
 	background-color: $darkest;
 }
 
 .enabled[type=button], .enabled li{
 	background-color: $darkest !important;
-	color: $light;
+	color: $lightest;
 }
 
 #editors{
-	color: $light;
+	color: $lightest;
 }
 #editors textarea{
 	color: inherit;
@@ -47,4 +48,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #sprites .background{
 	border-top: 2px solid $medium;
+}
+
+// config
+#settings input{
+	color: $lightest;
 }

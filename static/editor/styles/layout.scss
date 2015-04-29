@@ -11,7 +11,6 @@
 html, body{
 	height: 100%; 
 	width: 100%;
-	overflow: hidden;
 }
 
 body {
@@ -80,7 +79,7 @@ hr{
 	width: 40%;
 	padding: 20px;
 	
-	height: 100%;
+	height: calc(100% - 80px); // total - header hight
 }
 
 #sprites .background{
@@ -98,7 +97,7 @@ hr{
 	float: left;
 	clear: both;
 	width: 60%;
-	height: calc(100% - 86px); //total minus headers
+	height: calc(100% - 80px); //total minus headers
 }
 
 editor {
@@ -116,12 +115,13 @@ editor {
 	border: 0;
 }
 
-// config view
-
+// code view
 #code {
 	height: 100%;
 	width: 100%;
 }
+
+//config view
 #settings {
 	padding: 30px;
 	padding-top: 10px;
