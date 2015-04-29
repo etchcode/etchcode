@@ -1,0 +1,106 @@
+/* line 11, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; }
+
+/* line 17, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+body {
+  padding: 0;
+  margin: 0; }
+
+/* line 22, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+/* line 28, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+.parent.header {
+  height: 80px; }
+
+/* line 32, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+.right.header {
+  display: inline-block;
+  width: 40%;
+  height: inherit;
+  float: right; }
+
+/* line 41, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+.right.header h1 {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+/* line 45, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+.left.header {
+  position: relative;
+  display: inline-block;
+  width: 60%;
+  height: inherit;
+  text-align: right;
+  vertical-align: bottom; }
+  /* line 56, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+  .left.header .tabs {
+    position: absolute;
+    bottom: 0;
+    right: 0; }
+    /* line 61, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+    .left.header .tabs input[type=button] {
+      padding-left: 20px;
+      padding-right: 20px;
+      border-radius: 3px 3px 0 0; }
+
+/* line 72, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#content {
+  width: 100%;
+  height: 100%; }
+
+/* line 78, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#sidebar {
+  float: right;
+  width: 40%;
+  padding: 20px;
+  height: 100%; }
+
+/* line 86, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#sprites .background {
+  display: block;
+  margin-top: 25px; }
+
+/* line 92, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#sidebar hr {
+  margin: 14px; }
+
+/* line 97, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#editors {
+  float: left;
+  clear: both;
+  width: 60%;
+  height: calc(100% - 86px); }
+
+/* line 104, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+editor {
+  float: inherit;
+  width: 100%;
+  height: 100%; }
+
+/* line 110, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+.textarea {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border: 0; }
+
+/* line 121, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#code {
+  height: 100%;
+  width: 100%; }
+
+/* line 125, /Users/daniel/Desktop/etch/etch-frontend/editor/styles/layout.scss */
+#settings {
+  padding: 30px;
+  padding-top: 10px; }
+
+/*# sourceMappingURL=layout.css.map */

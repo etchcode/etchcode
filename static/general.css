@@ -1,0 +1,33 @@
+@font-face {
+  font-family: anonymousPro;
+  src: url(/libs/anonymousPro.ttf); }
+
+/* line 7, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+h1, h2, h3 {
+  text-align: center; }
+
+/* line 13, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+[unselectable] {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none; }
+
+/* line 20, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+[selectable] {
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: -moz-all;
+  -o-user-select: all;
+  user-select: all; }
+
+/* line 28, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+/* line 30, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+* {
+  box-sizing: border-box; }
+
+/*# sourceMappingURL=general.css.map */

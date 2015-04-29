@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="webapp">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Project Editor | Etch</title>
+				
+		<link rel="stylesheet" type="text/css" href="/general.css"> 
+		
+		<link rel="stylesheet" type="text/css" href="styles/base.css">
+		<link rel="stylesheet" type="text/css" href="styles/darkTheme.css">
+		
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
+</script>
+		
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="sprites.js"></script>
+		<script type="text/javascript" src="editor.js"></script>
+		<script type="text/javascript" src="buildButton.js"></script>
+
+	</head>
+	<body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
+		
+		<div class="parent header">
+			<div class="left header">
+				
+				<span class="tabs" ng-controller="editorsController as editors">
+					<input type="button" value="Code" ng-class="{enabled:editors.service.view === 'code'}" ng-click="editors.service.view = 'code'">
+					<input type="button" value="Settings" ng-class="{enabled:editors.service.view === 'settings'}" ng-click="editors.service.view = 'settings'">
+				</span>
+				
+			</div>
+			<div class="right header">
+				
+				<h1>Etch Code</h1>
+			
+			</div>
+		</div>
+		
+		<div id="editors" ng-controller="editorsController as editors">
+			<div id="code" ng-show="editors.service.view === 'code'" selectable>
+				<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id"></editor>	
+			</div>
+
+			<div id="settings" ng-show="editors.service.view === 'settings'">
+				<h2>Settings</h2>
+				<pre>
+{{ sprites.current }}: {
+<br>
+
+<br>
+}
+				</pre>
+			</div>
+
+		</div>
+
+		<div id="sidebar">
+			<h2>Sprites</h2>
+			<ul id="sprites">
+				<sprite ng-repeat="sprite in sprites.list" ng-click="sprites.current = sprite.id" ng-class="{enabled: sprites.current === sprite.id, background: sprite.id === 'background'}"></sprite>
+				
+			</ul>
+			
+			<div class="build" ng-controller="buildButtonController as buildButton">
+				<input type="button" value="Run">
+				<input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
+				
+				<ul class="dropdown" ng-show="buildButton.dropdown">
+					<input type="button" value="Save">
+					<input type="button" value="Share">
+			   </ul>
+			</div>
+		</div>
+		
+	</body>
+</html>

@@ -18,18 +18,11 @@
 		};
 	})
 	
-	.service("editors", function(){
+	.service("editorsService", function(){
 		this.view = "code"; // code || settings, what view the user is in
 	})
-	.controller("editorsController", ["editors", function(editorsService){ // a controller of the editors view
-		this.setView = function(view){
-			// set the current view ( code || settings)
-			editorsService.view = view;
-		}
-		this.getView = function(){
-			// get the current view ( code || settings)
-			return editorsService.view;
-		}
+	.controller("editorsController", ["editorsService", function(editorsService){ // a controller of the editors view
+		this.service = editorsService;
 	}])
 	
 	.directive("editor", ["spriteData", function(spriteData){ // a directive for inserting editor elements
@@ -38,12 +31,9 @@
 			templateUrl: "templates/editor.html",
 			controller: function($scope, $element){	// this controller is for individual editor elements
 				$scope.value = "";
-				
-				$scope.$watch("value", function(){ // this changes when the value of the textarea changes
-					console.log(spriteData.getCurrent().id);
-				});
 			},
 			controllerAs: "editor"
 		}
 	}]);
+	
 }());

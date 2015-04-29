@@ -1,0 +1,93 @@
+@mixin reset-button{
+	box-shadow: 0 0 0 0;
+	border: none;
+	outline: none;
+	
+	font-size: 1em;
+	
+	padding: 7px;
+	
+	cursor: pointer;
+}
+
+html, body{
+	cursor: default;
+}
+
+.textarea{
+	outline: none;
+	
+	line-height: 20px;
+	font-size: 14px;
+	
+	overflow: auto;
+	
+	font-family: anonymousPro;
+	resize: none;
+}
+
+//header
+.header h1{
+	padding: 0;
+	margin: 0;
+	
+	font-size: 40px;
+	font-weight: bold;
+	text-shadow: 2px 1px hsla(229, 8%, 55%, 0.89);
+	text-align: center;
+}
+
+
+.left.header {
+	.tabs{
+		input[type=button]{
+			@include reset-button;
+		}
+	}
+}
+
+//sprites
+#sprites li{
+	list-style: none;
+	display: inline-block;
+	
+	cursor: pointer;
+	
+	margin: 10px;
+	
+	padding: 15px;
+	background-color: hsla(229, 6%, 76%, 1);
+}
+
+#sprites {
+	padding: 15px;
+	padding-top: 7px;
+	margin: 0;
+}
+
+sprite-controls ul {
+	margin: 0;
+	padding: 0;
+	
+	text-align: right;
+}
+
+sprite-controls li{
+	display: inline;
+	list-style: none;
+
+	padding: 7px;
+	border-radius: 3px;
+
+	background-color: hsla(229, 8%, 67%, 1);
+}
+
+sprite-controls {
+	display: block;
+}
+
+pre {
+	font-family: anonymousPro;
+}
+
+@import "layout.scss";

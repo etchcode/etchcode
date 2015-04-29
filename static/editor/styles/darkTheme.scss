@@ -1,5 +1,21 @@
+$darkest: hsla(229, 10%, 40%, 1);
+$medium: hsla(230, 2%, 53%, 1);
+$light: hsla(229, 10%, 70%, 1);
+
+body{
+	background-color: $darkest;
+}
+
+.enabled[type=button], .enabled li{
+	background-color: $darkest !important;
+	color: $light;
+}
+
 #editors{
-	color: hsla(229, 18%, 10%, 1);
+	color: $light;
+}
+#editors textarea{
+	color: inherit;
 }
 
 textarea{
@@ -21,14 +37,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=), auto;
 }
 
-#header {
-	background-color: hsla(229, 8%, 60%, 1);
+.parent.header {
+	background-color: $medium;
 }
 
 #sidebar {
-	background-color: hsla(229, 8%, 67%, 1);
+	background-color: $light;
 }
 
-#autocomplete {
-	background-color: hsla(229, 8%, 67%, 1);
+#sprites .background{
+	border-top: 2px solid $medium;
 }
