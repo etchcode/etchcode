@@ -1,3 +1,0 @@
-"""
-Make parser a Class
-"""
