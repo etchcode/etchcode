@@ -57,7 +57,7 @@ snapNames = {
         "costumenumber": "getCostumeIdx",
         "size": "getScale"
     },
-    """
+
     "sound": {
         "playSound": "",
         "playSoundUntilDone": "",
@@ -72,7 +72,7 @@ snapNames = {
         "changeTempoBy": "",
         "setTempoTo": "",
         "tempo": ""
-    },"""
+    },
 
     "pen": {
         "clear": "",
