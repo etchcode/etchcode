@@ -1,12 +1,12 @@
 @font-face {
   font-family: anonymousPro;
-  src: url(/libs/anonymousPro.ttf); }
+  src: url(/static/libs/anonymousPro.ttf); }
 
-/* line 7, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+/* line 7, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 h1, h2, h3 {
   text-align: center; }
 
-/* line 13, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+/* line 13, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [unselectable] {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -14,7 +14,7 @@ h1, h2, h3 {
   -o-user-select: none;
   user-select: none; }
 
-/* line 20, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+/* line 20, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [selectable] {
   -webkit-user-select: all;
   -khtml-user-select: all;
@@ -22,11 +22,11 @@ h1, h2, h3 {
   -o-user-select: all;
   user-select: all; }
 
-/* line 28, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+/* line 28, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
 
-/* line 30, /Users/daniel/Desktop/etch/etch-frontend/general.scss */
+/* line 30, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 * {
   box-sizing: border-box; }
 

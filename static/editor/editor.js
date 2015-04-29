@@ -28,7 +28,7 @@
 	.directive("editor", ["spriteData", function(spriteData){ // a directive for inserting editor elements
 		return {
 			restrict: "E",
-			templateUrl: "templates/editor.html",
+			templateUrl: "/static/editor/templates/editor.html",
 			controller: function($scope, $element){	// this controller is for individual editor elements
 				$scope.value = "";
 			},

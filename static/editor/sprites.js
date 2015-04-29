@@ -4,7 +4,7 @@
 	.directive("sprite", function(){
 		return {
 			restrict: "E",
-			templateUrl: "templates/sprite.html",
+			templateUrl: "/static/editor/templates/sprite.html",
 		}
 	})
 	
