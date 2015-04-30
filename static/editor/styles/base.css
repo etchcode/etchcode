@@ -20,7 +20,24 @@ html, body {
   padding: 4px;
   outline: 0; }
 
-/* line 42, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 41, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+#settings .costume {
+  white-space: normal;
+  margin-left: 142px;
+  padding: 20px;
+  width: 140px;
+  overflow: hidden;
+  text-align: center; }
+
+/* line 50, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+#settings .costume p {
+  margin-bottom: 0; }
+
+/* line 53, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+#settings .costume img {
+  width: 100px; }
+
+/* line 58, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 .header h1 {
   padding: 0;
   margin: 0;
@@ -29,7 +46,7 @@ html, body {
   text-shadow: 2px 1px rgba(131, 134, 149, 0.89);
   text-align: center; }
 
-/* line 55, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 71, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 .left.header .tabs input[type=button] {
   box-shadow: 0 0 0 0;
   border: none;
@@ -38,7 +55,7 @@ html, body {
   padding: 7px;
   cursor: pointer; }
 
-/* line 62, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 78, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 #sprites li {
   list-style: none;
   display: inline-block;
@@ -47,19 +64,19 @@ html, body {
   padding: 15px;
   background-color: #bebfc5; }
 
-/* line 74, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 90, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 #sprites {
   padding: 15px;
   padding-top: 7px;
   margin: 0; }
 
-/* line 80, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 96, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 sprite-controls ul {
   margin: 0;
   padding: 0;
   text-align: right; }
 
-/* line 87, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 103, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 sprite-controls li {
   display: inline;
   list-style: none;
@@ -67,15 +84,15 @@ sprite-controls li {
   border-radius: 3px;
   background-color: #a4a7b2; }
 
-/* line 97, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 113, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 sprite-controls {
   display: block; }
 
-/* line 101, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 117, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 sprite li:empty::after {
   content: "undefined"; }
 
-/* line 105, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 121, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 pre {
   font-family: anonymousPro; }
 

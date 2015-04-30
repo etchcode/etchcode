@@ -52,10 +52,17 @@
 
 	costumes: [
 	
+		<div class="costume" ng-repeat="costume in sprite.costumes">
+			<img ng-src="data:image/png;base64,{{ costume.data }}"> <!-- the image is stored as base64 data -->
+			<p class="name">{{ costume.name }}</p>
+		</div>	
+
 	],
 	
 	variables: [
-	
+	<ul>
+		<li ng-repeat="variable in sprite.variables"></li>
+	</ul>
 	],
 
 }
