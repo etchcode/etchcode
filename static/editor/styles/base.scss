@@ -28,6 +28,11 @@ html, body{
 }
 
 //settings
+#settings{
+	overflow: auto;
+	height: 100%;
+}
+
 #settings input{
 	background-color: hsla(0, 0%, 0%, .1);
 	outline-color: transparent;
@@ -43,15 +48,21 @@ html, body{
 	margin-left: 142px; // indent this
 	padding: 20px;
 	
-	width: 140px;
 	overflow: hidden;
-	text-align: center;
+	text-align: left;
 }
 #settings .costume p{
 	margin-bottom: 0;
 }
 #settings .costume img{
 	width: 100px;
+}
+
+#settings .new[type=button]{
+	// this is the add new costume button
+	padding: 3px 20px 3px 20px;
+	margin-left: 20px; // offset the left padding so that the padded edge ligns up with the images and other text 
+	cursor: pointer;
 }
 
 //header

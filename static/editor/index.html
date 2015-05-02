@@ -51,11 +51,14 @@
 <input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" required>: {
 
 	costumes: [
-	
 		<div class="costume" ng-repeat="costume in sprite.costumes">
-			<img ng-src="data:image/png;base64,{{ costume.data }}"> <!-- the image is stored as base64 data -->
-			<p class="name">{{ costume.name }}</p>
+		{
+			<p>image: <img ng-src="data:image/png;base64,{{ costume.data }}">,</p> <!-- the image is stored as base64 data -->
+			<p class="name">name: <input type="text" ng-model="costume.name">,</p>
+		}
 		</div>	
+		
+		<input class="new" type="button" value="New" ng-click="editors.newImage()">
 
 	],
 	

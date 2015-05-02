@@ -23,6 +23,10 @@
 	})
 	.controller("editorsController", ["editorsService", function(editorsService){ // a controller of the editors view
 		this.service = editorsService;
+		
+		this.newImage = function(){
+			alert("Making new image");
+		}
 	}])
 	
 	.directive("editor", ["spriteData", function(spriteData){ // a directive for inserting editor elements
