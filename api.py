@@ -35,7 +35,7 @@ def parse():
         parsed = {}
         for script in scripts:
             parsed[script] = translator.translate(scripts[script]) # translate it
-            
+
         return Response(json.dumps(parsed), content_type="application/json")
-    except:
-        return Response(json.dumps({"error": "failed"}), content_type="application/json", status="500")
+    except Exception as error:
+        return Response(json.dumps({"error": str(error)}), content_type="application/json", status="500")

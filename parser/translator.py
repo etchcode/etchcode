@@ -283,7 +283,7 @@ def translate(string):
 
     closeBlockWithScript = False  # should, when closing a script (mainly because of an indent), we also put in a closing block tag
 
-    result = ""
+    return result
 
 
 
