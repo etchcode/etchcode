@@ -208,40 +208,44 @@ hr {
   margin-top: 25px; }
 
 /* line 93, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+#sidebar li {
+  min-width: 150px; }
+
+/* line 97, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 #sidebar hr {
   margin: 14px; }
 
-/* line 98, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 102, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 #editors {
   float: left;
   clear: both;
   width: 60%;
   height: calc(100% - 80px); }
 
-/* line 105, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 109, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 editor {
   float: inherit;
   width: 100%;
   height: 100%; }
 
-/* line 111, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 115, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 .textarea {
   width: 100%;
   height: 100%;
   padding: 15px;
   border: 0; }
 
-/* line 121, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 125, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 #code {
   height: 100%;
   width: 100%; }
 
-/* line 127, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 131, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 #settings {
   padding: 30px;
   padding-top: 10px; }
 
-/* line 132, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 136, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
 .variables {
   padding: 0;
   margin: 0;

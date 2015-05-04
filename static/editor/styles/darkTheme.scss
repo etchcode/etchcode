@@ -7,7 +7,7 @@ body{
 	background-color: $darkest;
 }
 
-.enabled[type=button], .enabled li{
+.enabled[type=button], .enabled li, li.enabled{
 	background-color: $darkest !important;
 	color: $lightest;
 }

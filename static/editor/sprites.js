@@ -65,7 +65,7 @@
 		}
 	}])
 	
-	.controller("spritesController", ["spriteData", "toaster", function(spriteData, toaster){
+	.controller("spritesController", ["spriteData", "toaster", "editorsService", function(spriteData, toaster, editors){
 		var that = this; //cache this for the children
 		
 		that.list = spriteData.list; // all sprites
@@ -100,6 +100,10 @@
 			this.creating = ""; //the content of the add variable text box
 			
 			this.create = function(sprite, text){
+				if(sprite == "global"){//this is telling us it wants to be the globals sprite
+					sprite = that.globals; //so do what it wants
+				}
+				
 				if(text === ""){
 					//the variable is empty
 					toaster.pop({
@@ -110,9 +114,15 @@
 				}
 				else if(sprite.variables.indexOf(text) == -1 && that.globals.variables.indexOf(text) == -1){
 					//it is not a duplicate
-					var spriteNum = that.list.indexOf(sprite)
+					
+					if(sprite === that.globals){
+						that.globals.variables.push(text);
+					}
+					else{
+						var spriteNum = that.list.indexOf(sprite)
 
-					that.list[spriteNum].variables.push(text);
+						that.list[spriteNum].variables.push(text);
+					}
 					
 					this.creating = "";
 				}
@@ -126,11 +136,23 @@
 			}
 			
 			this.remove = function(sprite, text){
-				var spriteNum = that.list.indexOf(sprite)
-				var variableNum = that.list[spriteNum].variables.indexOf(text);
+				if(sprite === "globals"){//this is telling us it is the globals sprite
+					var variableNum = that.globals.variables.indexOf(text);
+					
+					that.globals.variables.splice(variableNum, 1); //remove the element
+				}
+				else{ //this is a normal sprite, get rid of the variable
+					var spriteNum = that.list.indexOf(sprite)
+					var variableNum = that.list[spriteNum].variables.indexOf(text);
 
-				that.list[spriteNum].variables.splice(variableNum, 1); //remove the element
+					that.list[spriteNum].variables.splice(variableNum, 1); //remove the element
+				}
 			}
+		}
+		
+		that.globalsView = function(){
+			that.current = "globals";
+			editors.view = "settings"
 		}
 	}]);
 }());

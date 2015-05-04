@@ -35,7 +35,7 @@
 			<div class="left header">
 				
 				<span class="tabs" ng-controller="editorsController as editors">
-					<input type="button" value="Code" ng-class="{enabled:editors.service.view === 'code'}" ng-click="editors.service.view = 'code'">
+					<input type="button" value="Code" ng-class="{enabled:editors.service.view === 'code'}" ng-click="editors.service.view = 'code'" ng-hide="sprites.current=='globals'"> <!--the globals view can only modify config stuff-->
 					<input type="button" value="Settings" ng-class="{enabled:editors.service.view === 'settings'}" ng-click="editors.service.view = 'settings'">
 				</span>
 				
@@ -56,7 +56,7 @@
 				<div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
 					<h2>Settings</h2>
 					<form novalidate>
-						<pre>
+						<pre ng-hide="sprites.current==='globals'">
 <!-- show a span with the value of background if it is the background, otherwise the linked input box -->
 <span ng-show="sprite.id==='background'">background</span><input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" ng-show="sprite.id!=='background'" required>: {
 
@@ -82,9 +82,27 @@
 	],
 
 }
-						</pre>
+</pre>
 					</form>
 				</div>
+				
+				<div ng-show="sprites.current==='globals'">
+					<h2>Settings</h2>
+					<pre>
+forAllSprites: {
+
+	variables: [
+	<ul class="variables">
+		<li ng-repeat="variable in sprites.globals.variables"><img ng-click="sprites.variable.remove('globals',variable)" src="/static/icons/close.svg" class="close icon"> {{ variable }},</li>
+	</ul>
+
+		<input type="text" ng-model="sprites.variable.creating"> <input type="button" value="Create"  ng-click="sprites.variable.create('global', sprites.variable.creating)">		
+	]
+
+}
+					</pre>
+				</div>
+				
 			</div>
 
 		</div>
@@ -93,6 +111,8 @@
 			<h2>Sprites</h2>
 			<ul id="sprites">
 				<sprite ng-repeat="sprite in sprites.list" ng-click="sprites.current = sprite.id" ng-class="{enabled: sprites.current === sprite.id, background: sprite.id === 'background'}"></sprite>
+				
+				<li ng-click="sprites.globalsView();" ng-class="{enabled: sprites.current === 'globals'}">For all sprites</li>
 				
 			</ul>
 			
