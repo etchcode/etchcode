@@ -204,6 +204,7 @@ def parListMaker(lists):
     return finalList
 def parenParser(lists): #this function builds the block out of the parsed list
     #input parsed list output:xml for the list
+    lists = parListMaker(lists)
     print "start of paren parser"
     global snapNames
     parenResult = "\n"
@@ -272,20 +273,7 @@ Might be used in future updates
 def closeBlock():
     global result
     result += "</block>\n"""""
-def parenParser(lists):
-    global snapName
-    parenResult = ""
-    parenResult += "<block s=\""+snapName["operators"][lists[2]]+"\""+">"
 
-
-    for j in lists:
-        if j is list:
-             d = parenParser(j)
-        if j is str:
-            parenResult += "<l>"+j+"</l>"
-
-    parenResult += "</block>"
-    return parenResult
 
 
 
@@ -316,8 +304,11 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     elif type == "OP" and string == ")":
         print ")"
         parenCounter -= 1
-        if parenCounter == 0:
-            parenParser()
+        if parenCounter == 1:
+            result += parenParser(parenList)
+
+    elif parenCounter > 1:
+        parenList.append(string)
     elif type == "NAME" and currentParent != False:  # this is a function
         isfunc = isFunction(currentParent,string)
         print isfunc
