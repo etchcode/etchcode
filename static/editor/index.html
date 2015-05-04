@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="webapp">
+<html ng-app="webapp" lang="en">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<title>Project Editor | Etch</title>
-				
+		
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" rel="stylesheet">
+		
 		<link rel="stylesheet" type="text/css" href="/static/general.css"> 
 		
 		<link rel="stylesheet" type="text/css" href="/static/editor/styles/base.css">
@@ -13,14 +16,19 @@
 		
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
 </script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
 		
 		<script type="text/javascript" src="/static/editor/main.js"></script>
 		<script type="text/javascript" src="/static/editor/sprites.js"></script>
 		<script type="text/javascript" src="/static/editor/editor.js"></script>
 		<script type="text/javascript" src="/static/editor/buildButton.js"></script>
 
+		<script type="text/javascript" src="/static/name/random.js" onload="Random.load()"></script>
 	</head>
 	<body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
+		
+		<toaster-container></toaster-container> <!-- This is where the notifications go -->
 		
 		<div class="parent header">
 			<div class="left header">
@@ -47,43 +55,33 @@
 				<div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
 					<h2>Settings</h2>
 					<form novalidate>
-						<pre ng-show="sprite.id !== 'background'"> <!-- if this is a normal sprite -->
-<input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" required>: {
+						<pre>
+<!-- show a span with the value of background if it is the background, otherwise the linked input box -->
+<span ng-show="sprite.id==='background'">background</span><input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" ng-show="sprite.id!=='background'" required>: {
 
-	costumes: [
+	<span ng-show="sprite.id==='background'">backgrops</span><span ng-show="sprite.id!=='background'">costumes</span>: [
 		<div class="costume" ng-repeat="costume in sprite.costumes">
-		{
-			<p>image: <img ng-src="data:image/png;base64,{{ costume.data }}">,</p> <!-- the image is stored as base64 data -->
+		{<img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/close.svg" class="close icon">
+			<p>image: <img ng-src="{{ costume.data }}">,</p> <!-- the image is stored as base64 data -->
 			<p class="name">name: <input type="text" ng-model="costume.name">,</p>
 		}
 		</div>	
 		
-		<input class="new" type="button" value="New" ng-click="editors.newImage()">
+		<input class="new" type="button" value="New" ng-click="sprites.costume.create(sprite)">
 
 	],
 	
 	variables: [
-	<ul>
-		<li ng-repeat="variable in sprite.variables"></li>
+	<ul class="variables">
+		<li ng-repeat="variable in sprite.variables"><img ng-click="sprites.variable.remove(sprite,variable)" src="/static/icons/close.svg" class="close icon"> {{ variable }},</li>
 	</ul>
+	
+		<input type="text" ng-model="sprites.variable.creating"> <input type="button" value="Create"  ng-click="sprites.variable.create(sprite, sprites.variable.creating)">
+	
 	],
 
 }
 						</pre>
-						<pre ng-show="sprite.id === 'background'"> <!-- this is the background -->
-background: {
-
-	backdrops: [
-	
-	],
-	
-	variables: [
-	
-	]
-
-}
-						</pre>
-					
 					</form>
 				</div>
 			</div>

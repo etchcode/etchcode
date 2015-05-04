@@ -14,3 +14,8 @@
 
 1. Lee Dohm's white cursor graphic. License info and more at (https://github.com/lee-dohm/white-cursor).
 2. Sabine Wollender with the noun project for their edit icon. License info and more at (https://thenounproject.com/term/pencil/19250/).
+3. P.J. Onori with the Noun Project for their close icon. License info and more at (https://thenounproject.com/term/delete/2910/).
+
+** Etch default images include **
+
+1. The default sprite image is “Gamecock on a Farm near Leakey, Texas, and San Antonio, 12/1973”. Details and license at (https://www.flickr.com/photos/usnationalarchives/3704388280/)

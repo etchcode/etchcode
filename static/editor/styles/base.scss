@@ -14,6 +14,15 @@ html, body{
 	cursor: default;
 }
 
+img.icon{
+	height: 20px;
+	width: auto !important;
+	
+	margin-left: 6px;
+	
+	cursor: pointer;
+}
+
 // editor
 .textarea{
 	outline: none;
@@ -41,6 +50,14 @@ html, body{
 	padding: 4px;
 	
 	outline: 0; // disable chrome+'s blue annoying thingy around it
+}
+
+#settings input[type='text']{
+	width: 250px;
+}
+
+#settings input[type="button"]{
+	cursor: pointer;
 }
 
 #settings .costume{
@@ -125,8 +142,23 @@ sprite-controls {
 	display: block;
 }
 
-sprite li:empty::after {
+sprite li p:empty::after {
   content: "undefined";
+}
+
+sprite p{
+	text-align: center;
+	margin: 5px;
+}
+sprite img{
+	width: 100px;
+	max-height: 100px;
+}
+
+//variables section
+.variables{
+	list-style: none;
+	white-space: normal;
 }
 
 pre {
