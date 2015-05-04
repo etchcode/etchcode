@@ -1,6 +1,4 @@
-startChunkBlocks = [  # blocks that start a chunk of connected blocks
-                      "receiveGo",
-]
+__author__ = 'samschickler'
 abriviations = {  # these reference other blocks form abriviation:block name that it is referenceing
                   "m": "motion",
                   "s": "sensing",
@@ -153,5 +151,120 @@ snapNames = {
     },
 
 }
+def isParentTag(tag):
+    """Return: True if a tag is a parent tag else false"""
+    try:
+        snapNames[tag]
+        return 1
+    except KeyError:
+        try:
+            abriviations[tag]
+            return 2
+        except KeyError:
+            return 0
+def parListMaker(lists):
+    finalList = []
+    inList = []
+    nameList =""
+    par = False
+    parin = 0
+    parent = False
+    for j in lists:
+        print j
+        print parin
+        print parent
+        if type(j) != list:
+            if isParentTag(j.lower()) == 1:   # checks if parent tag
+                print "parent"
+                parent = j.lower()
+            elif isParentTag(j.lower()) == 2:
+                print "parent abv"
+                parent = abriviations[j.lower()]
+            elif parent and not (j in snapNames["operators"]):
+                print "not op"
+                nameList += j.lower()
+            elif parent != False and j in snapNames["operators"] and len(nameList)>0:
+                print "op"
+                if parin > 0:
+                    inList.append([parent, nameList])
+                else:
+                    finalList.append([parent, nameList])
+                parent = False
+                nameList = ""
+            elif parent != False and j == "(" or j == ")" and len(nameList)>0:
+                print "paren"
+                print nameList
+                if parin > 0:
+                    inList.append([parent, nameList])
+                else:
+                    finalList.append([parent, nameList])
+                parent = False
+                nameList = ""
+        if not parent:
+            print "not parent"
+            if j == "(":
 
-closeSelf = ["receiveGo", "xPosition", "yPosition", "direction"]  # tags that should self-close
+                parin += 1
+                par = True
+                if parin != 1:
+                    print "start"
+                    inList.append("(")
+            elif j == ")":
+                parin -= 1
+
+                if parin != 0:
+                    print "end"
+                    inList.append(")")
+            elif parin >0:
+                print "add"
+                inList.append(j)
+            else:
+                print "else"
+                finalList.append(j)
+            if parin == 0 and par:
+                par = False
+                print "new"
+                print inList
+                finalList.append(parListMaker(inList))
+    return finalList
+def parenParser(lists): #this function builds the block out of the parsed list
+    #input parsed list output:xml for the list
+    print "start of paren parser"
+    global snapNames
+    parenResult = "\n"
+    parenResult += "<block s=\""+snapNames["operators"][lists[1]]+"\""+">" #adds the opperator function
+
+
+    for j in lists:
+        print j
+        if len(j) == 2 and type(j) is list: #adds if it is  a snap block
+            print j
+            try:
+                parenResult += "<block s=\""+snapNames[j[0]][j[1]]+"\""+"/>"
+            except KeyError:
+                print "ERROR"
+        elif type(j) is list:
+            print "list"
+            parenResult += parenParser(j)       #if there is  equation inside of a equation
+        elif j == lists[1]:
+            print ""
+        else:
+            try:
+                float(j)                    # if it is a number
+                parenResult += "<l>"+j+"</l>"
+                print "did work"
+            except ValueError:
+                print "didn't work"         # if it is  a variable
+                parenResult+="<block var=\""+j+"\" />"
+
+
+    parenResult += "</block>"
+    return parenResult
+def main():
+
+    g = parListMaker(["(", "m", "x", "pos", "/", "(", "hi", "+", "52", ")",")","+","6"])
+    print "g"
+    print g
+    print parenParser(g)
+if __name__ == '__main__':
+    main()
