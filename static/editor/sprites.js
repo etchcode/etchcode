@@ -81,12 +81,14 @@
 			this.create= function(sprite){
 				var spriteNum = that.list.indexOf(sprite)
 				
-				var modifying = (sprite.id ==="background") ? "backdrop" : "costume"; //we are modifying the backdrop list if this is the background, else it is a sprite so the costume list
+				var modifying = (sprite.id ==="background") ? "backdrops" : "costumes"; //we are modifying the backdrops list if this is the background, else it is a sprite so the costumes list
+				
+				console.info(modifying);
 				
 				that.list[spriteNum][modifying].push({
 					name: Random.words ? Random.phrase() : "undefined",
 					//use the backdrop if this is the background, otherwise the costume
-					data: spriteData.default.[modifying][0].data
+					data: spriteData.default[modifying][0].data
 				});
 			}
 		}

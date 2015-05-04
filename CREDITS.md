@@ -9,6 +9,9 @@
 4. Flask, which the server side of etch is built in.
 5. Google App Engine, the hosting for etchcode
 
+** In addition, this project uses other open source libraries including **
+1. AngularJS Toaster. Details and license at (https://github.com/jirikavi/AngularJS-Toaster).
+
 
 ** In addition, this project uses graphic resources from **
 
@@ -19,3 +22,4 @@
 ** Etch default images include **
 
 1. The default sprite image is “Gamecock on a Farm near Leakey, Texas, and San Antonio, 12/1973”. Details and license at (https://www.flickr.com/photos/usnationalarchives/3704388280/)
+2. The default background image is “Rooster in farmyard”. Details and license at (https://www.flickr.com/photos/floridamemory/3573811744/)
