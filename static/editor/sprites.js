@@ -15,11 +15,11 @@
 		
 		this.list = [ // this will be dynamicly generated and saved in the future
 			{
-				id: "Sprite 1", 
+				id: Random.phrase(), 
 				
 				costumes: [
 					{
-						name: "chicken",
+						name: Random.phrase(),
 						data: this.default.costumes[0].data
 					}
 				],
@@ -29,11 +29,11 @@
 				]
 			},
 			{
-				id: "Sprite 2",
+				id: Random.phrase(),
 				
 				costumes: [
 					{
-						name: "chicken",
+						name: Random.phrase(),
 						data: this.default.costumes[0].data
 					}
 				],
@@ -47,7 +47,7 @@
 				
 				costumes: [
 					{
-						name: "farm",
+						name: Random.phrase(),
 						data: this.default.backdrops[0].data
 					}
 				],
@@ -89,7 +89,7 @@
 				console.info(modifying);
 				
 				that.list[spriteNum].costumes.push({
-					name: Random.words ? Random.phrase() : "undefined",
+					name: Random.phrase(),
 					//use the backdrop if this is the background, otherwise the costume
 					data: spriteData.default[modifying][0].data
 				});
