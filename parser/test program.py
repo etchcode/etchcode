@@ -8,10 +8,6 @@ abriviations = {  # these reference other blocks form abriviation:block name tha
                   "e": "events",
                   "c": "control",
                   "o": "operators",
-                  "goy": "changey",
-                  "gox": "changex",
-                  "clearEffects": "cleargraphiceffects",
-                  "whenflagclicked":"flaglicked"
 }
 snapNames = {
 
@@ -110,7 +106,8 @@ snapNames = {
         "stopOthers": "doStopOthers",
         "whenistartasaclone": "receiveOnClone",
         "createcloneof": "createClone",
-        "deletethisclone": "removeClone"
+        "deletethisclone": "removeClone",
+        "whenflagclicked":"flagclicked"
     },
 
     "sensing": {
@@ -153,6 +150,7 @@ snapNames = {
 }
 def isParentTag(tag):
     """Return: True if a tag is a parent tag else false"""
+    tag = tag.lower()
     try:
         snapNames[tag]
         return 1
@@ -162,74 +160,188 @@ def isParentTag(tag):
             return 2
         except KeyError:
             return 0
+def parentMaker(lists):
+    if isParentTag(lists[0])== 1 or isParentTag(lists[0])== 2:
+        if isParentTag(lists[0])== 2:
+            lists[0] = abriviations[lists[0]]
+        try:
+            snapNames[lists[0]][lists[1].lower()]
+            return [lists[0],lists[1]]
+        except KeyError:
+            if len(lists) > 2:
+                g=""
+                for j in lists:
+                    if j == lists[0]:
+                        print ""
+                    elif j == ".":
+                        print ""
+                    else:
+                        g += j
+                        try:
+                            snapNames[lists[0]][g.lower()]
+                            return [lists[0].lower(),g.lower()]
+                        except KeyError:
+                            return 0
 def parListMaker(lists):
     finalList = []
     inList = []
-    nameList =""
-    par = False
-    parin = 0
+
+    while True:
+        try:
+            j = lists.index("(")
+        except ValueError:
+            print "stoppp \n"
+            break
+        parenCounter = 1
+        lists.pop(j)
+        x = j
+        k = j
+        print k
+
+        while True:
+            if lists[j] == ")":
+                parenCounter -= 1
+                print "-"
+                print parenCounter
+                if(parenCounter== 0):
+                    lists.pop(j)
+                    break
+            if lists[j] == "(":
+
+                parenCounter += 1
+                print parenCounter
+            print j
+            print "j"
+            inList.append(lists.pop(j))
+        print "x inlist"
+        print inList
+        print x
+        print lists
+        lists.insert(x, parListMaker(inList))
+        inlist = []
+    l = ["/", "*"]
+    g = 0
+    print "starting list"
+    print lists
+    d = 0
+    inList = []
+    d += lists.count("/")
+    d += lists.count("-")
+    d += lists.count("+")
+    d += lists.count("*")
     parent = False
-    for j in lists:
-        print j
-        print parin
-        print parent
-        if type(j) != list:
-            if isParentTag(j.lower()) == 1:   # checks if parent tag
-                print "parent"
-                parent = j.lower()
-            elif isParentTag(j.lower()) == 2:
-                print "parent abv"
-                parent = abriviations[j.lower()]
-            elif parent and not (j in snapNames["operators"]):
-                print "not op"
-                nameList += j.lower()
-            elif parent != False and j in snapNames["operators"] and len(nameList)>0:
-                print "op"
-                if parin > 0:
-                    inList.append([parent, nameList])
-                else:
-                    finalList.append([parent, nameList])
-                parent = False
-                nameList = ""
-            elif parent != False and j == "(" or j == ")" and len(nameList)>0:
-                print "paren"
-                print nameList
-                if parin > 0:
-                    inList.append([parent, nameList])
-                else:
-                    finalList.append([parent, nameList])
-                parent = False
-                nameList = ""
-        if not parent:
-            print "not parent"
-            if j == "(":
+    parlist = []
+    a = -1
+    if d == 1:
+        print "ran d1"
+        if len(lists) > 3:
+            for x in lists:
+                a += 1
+                if isParentTag(x):
+                    parent = True
+                if parent:
+                    parlist.append(lists.pop(a))
 
-                parin += 1
-                par = True
-                if parin != 1:
-                    print "start"
-                    inList.append("(")
-            elif j == ")":
-                parin -= 1
+                if x in snapNames["operators"]:
 
-                if parin != 0:
-                    print "end"
-                    inList.append(")")
-            elif parin >0:
-                print "add"
-                inList.append(j)
-            else:
-                print "else"
-                finalList.append(j)
-            if parin == 0 and par:
-                par = False
-                print "new"
+                    print "parlist"
+                    print parlist
+                    print inList
+                    lists.insert(2, parentMaker(parlist))
+                    parent = False
+                    parlist = []
+
+        return lists
+    while g < 2:
+        print l
+        while True:#checks if there is stuff we need to transform
+            parenCounter = 0
+            j= 1000
+            h = 1000
+            testExcept = 0
+            try:
+                j = lists.index(l[0])
+            except ValueError:
+                 testExcept += 1
+            try:
+                h = lists.index(l[1])
+            except ValueError:
+                 testExcept += 1
+            if testExcept == 2:
+                print testExcept
+                break
+
+            if j<=h:
+                j = j
+            if h<=j:
+                j = h
+            print "j"
+            print j
+            x = j
+            k = j
+            while True:
+                j -= 1
+                print j
+
+                if j < 0:
+                    k = j
+                    j+= 1
+                    break
+                if type(lists[j]) == list:
+                    k = j
+                    break
+                if lists[j] in snapNames["operators"]:
+                    k = j+1
+                    break
+            inList = []
+            o = 0
+            print inList
+            while True:
+                print "lists"
+
+                print j
+                try:
+                    if type(lists[j]) == list:
+                        print "lists"
+                    elif lists[j] in snapNames["operators"] and o != 2:
+                        o = 2
+                    elif (lists[j] in snapNames["operators"]) or j == ")" or j == "(":
+                        break
+                except IndexError:
+                    break
+                inList.append(lists[j])
+                lists.pop(j)
+                print "inlist"
                 print inList
-                finalList.append(parListMaker(inList))
-    return finalList
+            print inlist
+
+            lists.insert(j, inList)
+            d += lists.count("/")
+            d += lists.count("-")
+            d += lists.count("+")
+            d += lists.count("*")
+            if d == 1:
+                return lists
+        g += 1
+        l = ["+", "-"]
+
+
+
+
+
+    return lists
+
 def parenParser(lists): #this function builds the block out of the parsed list
     #input parsed list output:xml for the list
     print "start of paren parser"
+    if len(lists) == 1 and type(lists[0]) == list and len(lists[0]) != 2:
+        return parenParser(lists[0])
+    elif len(lists) == 1:
+        try:
+            l = float(lists[0])
+            return "<l>"+lists[0]+"</l>"
+        except ValueError:
+            return '''<block var="'''+lists[0]+'''"/>'''
     global snapNames
     parenResult = "\n"
     parenResult += "<block s=\""+snapNames["operators"][lists[1]]+"\""+">" #adds the opperator function
@@ -262,9 +374,10 @@ def parenParser(lists): #this function builds the block out of the parsed list
     return parenResult
 def main():
 
-    g = parListMaker(["(", "m", "x", "pos", "/", "(", "hi", "+", "52", ")",")","+","6"])
+    g = parListMaker(["2","+","m",".","xpos"])
     print "g"
     print g
     print parenParser(g)
+
 if __name__ == '__main__':
     main()
