@@ -1,19 +1,19 @@
-$darkest: hsla(229, 10%, 40%, 1);
-$medium: hsla(230, 2%, 53%, 1);
-$light: hsla(229, 10%, 70%, 1);
-$lightest: hsla(229, 10%, 87%, 1);
-   
+$color-1: hsla(229, 10%, 40%, 1);
+$color-2: hsla(229, 10%, 70%, 1);
+$color-3: hsla(230, 2%, 53%, 1);
+$color-4: hsla(229, 10%, 87%, 1);
+  
 body{
-	background-color: $darkest;
+	background-color: $color-1;
 }
 
 .enabled[type=button], .enabled li, li.enabled{
-	background-color: $darkest !important;
-	color: $lightest;
+	background-color: $color-1 !important;
+	color: $color-4;
 }
 
 #editors{
-	color: $lightest;
+	color: $color-4;
 }
 #editors textarea{
 	color: inherit;
@@ -39,18 +39,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .parent.header {
-	background-color: $medium;
+	background-color: $color-2;
 }
 
 #sidebar {
-	background-color: $light;
+	background-color: $color-3;
 }
 
 #sprites .background{
-	border-top: 2px solid $medium;
+	border-top: 2px solid $color-2;
 }
 
 // config
 #settings input{
-	color: $lightest;
+	color: $color-4;
 }

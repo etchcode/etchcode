@@ -65,7 +65,6 @@ tokenTypes = {
 }
 
 ignoreStrings = [
-    "(",
     ",",
     "."
 ]
@@ -75,13 +74,15 @@ closeBlockStrings = [
 ]
 
 ScriptTag = "<script x=\"5\" y=\"5\">"  # this tag is for importing into snap
+abriviations = blocks.abriviations
+snapNames = blocks.snapNames
 # BEGIN VARIABLES THAT CHANGE EVERY PARSING OF A STRING
 currentParent = False
-
+parenCounter = 0
+parenList = []
 lastType = False
 lastName = False
-word=""
-currentFunction=""
+childBuilderName= ""
 lastOverarchingType = False  # these two are for the ifThen/ifElse,Repeat blocks that have an overarching script tag in them.
 lastOverarchingName = False  # these reset on newlines
 overarchingNames = ["repeat", "forever", "ifThen", "ifThenElse", "repeatUntil"]
@@ -104,15 +105,15 @@ def isParentTag(tag):
             return 0
 
 def isFunction(parent, string):
-    global currentFunction, word
+    global currentFunction, childBuilderName
     try:
         blocks.snapNames[parent][string]
         return 3
     except KeyError:
         1*1
     try:
-        blocks.snapNames[parent][word+string]
-        word += string
+        blocks.snapNames[parent][childBuilderName+string]
+        childBuilderName += string
         return 2
     except KeyError:
         1*1
@@ -120,9 +121,9 @@ def isFunction(parent, string):
 
 
         for func in blocks.snapNames[parent]:
-            if func.find(word+string) != -1:
-                word += string
-                print word
+            if func.find(childBuilderName+string) != -1:
+                childBuilderName += string
+                print childBuilderName
                 currentFunction = func
                 return 1
     except KeyError:
@@ -136,7 +137,105 @@ def doCloseSelf(snapName):
     else:
         return ""
 
+def parListMaker(lists):
+    finalList = []
+    inList = []
+    nameList =""
+    par = False
+    parin = 0
+    parent = False
+    for j in lists:
+        print j
+        print parin
+        print parent
+        if type(j) != list:
+            if isParentTag(j.lower()) == 1:   # checks if parent tag
+                print "parent"
+                parent = j.lower()
+            elif isParentTag(j.lower()) == 2:
+                print "parent abv"
+                parent = abriviations[j.lower()]
+            elif parent and not (j in snapNames["operators"]):
+                print "not op"
+                nameList += j.lower()
+            elif parent != False and j in snapNames["operators"] and len(nameList)>0:
+                print "op"
+                if parin > 0:
+                    inList.append([parent, nameList])
+                else:
+                    finalList.append([parent, nameList])
+                parent = False
+                nameList = ""
+            elif parent != False and j == "(" or j == ")" and len(nameList)>0:
+                print "paren"
+                print nameList
+                if parin > 0:
+                    inList.append([parent, nameList])
+                else:
+                    finalList.append([parent, nameList])
+                parent = False
+                nameList = ""
+        if not parent:
+            print "not parent"
+            if j == "(":
 
+                parin += 1
+                par = True
+                if parin != 1:
+                    print "start"
+                    inList.append("(")
+            elif j == ")":
+                parin -= 1
+
+                if parin != 0:
+                    print "end"
+                    inList.append(")")
+            elif parin >0:
+                print "add"
+                inList.append(j)
+            else:
+                print "else"
+                finalList.append(j)
+            if parin == 0 and par:
+                par = False
+                print "new"
+                print inList
+                finalList.append(parListMaker(inList))
+    return finalList
+def parenParser(lists): #this function builds the block out of the parsed list
+    #input parsed list output:xml for the list
+    lists = parListMaker(lists)
+    print "start of paren parser"
+    global snapNames
+    parenResult = "\n"
+    parenResult += "<block s=\""+snapNames["operators"][lists[1]]+"\""+">" #adds the opperator function
+
+
+    for j in lists:
+        print j
+        if len(j) == 2 and type(j) is list: #adds if it is  a snap block
+            print j
+            try:
+                parenResult += "<block s=\""+snapNames[j[0]][j[1]]+"\""+"/>"
+            except KeyError:
+                print "ERROR"
+        elif type(j) is list:
+            print "list"
+            parenResult += parenParser(j)       #if there is  equation inside of a equation
+        elif j == lists[1]:
+            print ""
+        else:
+            try:
+                float(j)                    # if it is a number
+                parenResult += "<l>"+j+"</l>"
+                print "did work"
+            except ValueError:
+                print "didn't work"         # if it is  a variable
+                parenResult+="<block var=\""+j+"\" />"
+
+
+    parenResult += "</block>"
+    return parenResult
 """
 this adds the syntax needed to declare a block to the result string
 return None
@@ -176,15 +275,18 @@ def closeBlock():
     result += "</block>\n"""""
 
 
+
+
 def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     """
     "ENDMARKER",  Not used
     """
-    global currentParent, result, lastOverarchingType, lastOverarchingName, closeBlockWithScript, currentFunction, word
+    global currentParent, result, parenCounter, lastOverarchingType, lastOverarchingName, closeBlockWithScript, currentFunction, childBuilderName
 
     string = string.lower()
 
     type = tokenTypes[int(typeNum)]
+    print string
     print type
     if type == "NAME" and isParentTag(string) == 1 and currentParent == False:  # this defines a parent, so the next thing after the dot is a function
         currentParent = string
@@ -196,10 +298,21 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print currentParent
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
         return
+    elif type == "OP" and string == "(":
+        print "("
+        parenCounter += 1
+    elif type == "OP" and string == ")":
+        print ")"
+        parenCounter -= 1
+        if parenCounter == 1:
+            result += parenParser(parenList)
+
+    elif parenCounter > 1:
+        parenList.append(string)
     elif type == "NAME" and currentParent != False:  # this is a function
         isfunc = isFunction(currentParent,string)
         print isfunc
-        print word
+        print childBuilderName
         print currentParent
         if isfunc == 3:
             print "building 3"
@@ -210,11 +323,11 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         elif isfunc == 2:
 
             print "building 2"
-            print word
+            print childBuilderName
             print currentParent
-            buildBlock(type=currentParent, name=word)
+            buildBlock(type=currentParent, name=childBuilderName)
 
-            word=""
+            childBuilderName=""
             currentFunction =""
             currentParent = False
 
@@ -252,7 +365,7 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print string
         buildBlock(type=type, name=string)
 
-    if lastType == "Control" and string in overarchingNames:  # seperate from the if/else loop, check if we should record that this is an overarching name
+    if lastType == "Control" and string in overarchingNames:  #seperate from the if/else loop, check if we should record that this is an overarching name
         lastOverarchingName = string
         lastOverarchingType = lastType
 

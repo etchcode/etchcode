@@ -1,52 +1,42 @@
 @charset "UTF-8";
-/* line 6, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 body {
   background-color: #5c6070; }
 
-/* line 10, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .enabled[type=button], .enabled li, li.enabled {
   background-color: #5c6070 !important;
   color: #dbdce1; }
 
-/* line 15, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #editors {
   color: #dbdce1; }
 
-/* line 18, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #editors textarea {
   color: inherit; }
 
-/* line 22, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 textarea {
   background: transparent; }
 
-/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .whiteCursor {
-  /* The below copyright notice only applies to the data-url below (data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=). The "Software" refers only to the data-url data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII= .
-	
-	/* Copyright © 2014-2015 Lee Dohm
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-	*/
+  	/* The below copyright notice only applies to the data-url below (data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=). The "Software" refers only to the data-url data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII= .
+  	
+  	/* Copyright © 2014-2015 Lee Dohm
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  	*/
   cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=), auto; }
 
-/* line 41, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .parent.header {
-  background-color: #85868a; }
-
-/* line 45, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
-#sidebar {
   background-color: #abaeba; }
 
-/* line 49, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
-#sprites .background {
-  border-top: 2px solid #85868a; }
+#sidebar {
+  background-color: #85868a; }
 
-/* line 54, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+#sprites .background {
+  border-top: 2px solid #abaeba; }
+
 #settings input {
   color: #dbdce1; }
 

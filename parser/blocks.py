@@ -133,10 +133,10 @@ snapNames = {
     },
 
     "operators": {
-        "plus": "reportSum",
-        "minus": "reportDifference",
-        "times": "reportProduct",
-        "divide": "reportQuotient",
+        "+": "reportSum",
+        "-": "reportDifference",
+        "*": "reportProduct",
+        "/": "reportQuotient",
         "pickrandombetween": "reportRandom",
         "lessthan": "reportLessThan",
         "equal": "reportEquals",
@@ -147,7 +147,7 @@ snapNames = {
         "join": "reportJoinWords",
         "letternumber": "reportLetter",
         "lengthof": "reportStringSize",
-        "mod": "reportModulus",
+        "%": "reportModulus",
         "round": "reportRound",
         "operationofnumber": "reportMonadic"
     },
