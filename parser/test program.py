@@ -231,18 +231,30 @@ def parListMaker(lists):
     d += lists.count("*")
     parent = False
     parlist = []
-    a = -1
+    a = 0
     if d == 1:
         print "ran d1"
+        while True:
+            try:
+                lists.pop(lists.index("."))
+            except ValueError:
+                break
         if len(lists) > 3:
             for x in lists:
                 a += 1
+
                 if isParentTag(x):
                     parent = True
+                    print x
                 if parent:
-                    parlist.append(lists.pop(a))
-
-                if x in snapNames["operators"]:
+                    print x
+                    parlist.append(x)
+                print parent
+                print x
+                print a
+                print len(lists)
+                print x == "+" or x == "-" or x == "*" or x == "/" or len(lists)==a
+                if (x == "+" or x == "-" or x == "*" or x == "/" or len(lists)==a) and parent == True:
 
                     print "parlist"
                     print parlist
@@ -251,7 +263,7 @@ def parListMaker(lists):
                     parent = False
                     parlist = []
 
-        return lists
+        return lists[:-2]
     while g < 2:
         print l
         while True:#checks if there is stuff we need to transform
