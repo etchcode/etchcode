@@ -12,9 +12,9 @@ var Random;
 	random.prototype.phrase = function(){
 		var phrase = "";
 			
-		phrase += Random.adjectives[Math.floor(Math.random()*Random.adjectives.length)]+"-";
-		phrase += Random.nouns[Math.floor(Math.random()*Random.nouns.length)]+"-";
-		phrase += Random.verbs[Math.floor(Math.random()*Random.verbs.length)];
+		phrase += Random.words.adjectives[Math.floor(Math.random()*Random.words.adjectives.length)]+"-";
+		phrase += Random.words.nouns[Math.floor(Math.random()*Random.words.nouns.length)]+"-";
+		phrase += Random.words.verbs[Math.floor(Math.random()*Random.words.verbs.length)];
 
 		return phrase;
 	};
