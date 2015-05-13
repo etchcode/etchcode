@@ -1,13 +1,19 @@
 (function () {
 	"use strict";
 	
-	var app = angular.module("sprites", ["toaster"])
+	/*globals angular */
+	angular.module("sprites", ["toaster"])
 	
 	.directive("sprite", function(){
 		return {
 			restrict: "E",
 			templateUrl: "/static/editor/templates/sprite.html",
-		}
+			
+			controller: function($attrs){
+				
+			},
+			controllerAs: "spriteElem"
+		};
 	})
 	
 	.service("spriteData", [function(){
@@ -26,7 +32,9 @@
 				
 				variables: [
 					
-				]
+				],
+				
+				script: "C.flagClicked:\n\tM.go(90)"
 			},
 			{
 				id: "Sprite 2",
@@ -40,21 +48,25 @@
 				
 				variables: [
 					
-				]
+				],
+				
+				script: ""
 			},
 			{
 				id: "background",
-				
+
 				costumes: [
 					{
 						name: "farm",
 						data: this.default.backdrops[0].data
 					}
 				],
-				
+
 				variables: [
-					
-				]
+
+				],
+				
+				script: ""
 			}
 		];
 		
@@ -62,13 +74,15 @@
 			variables: [
 			
 			]
-		}
+		};
+		
 	}])
 	
 	.controller("spritesController", ["spriteData", "toaster", "editorsService", function(spriteData, toaster, editors){
 		var that = this; //cache this for the children
 		
 		that.list = spriteData.list; // all sprites
+		this.background = spriteData.background;
 		that.globals = spriteData.globals;
 		
 		that.current = that.list[0].id; // the sprite that we are editing now
@@ -85,9 +99,7 @@
 				var spriteNum = that.list.indexOf(sprite)
 				
 				var modifying = (sprite.id ==="background") ? "backdrops" : "costumes"; //we are modifying the backdrops list if this is the background, else it is a sprite so the costumes list
-				
-				console.info(modifying);
-				
+								
 				that.list[spriteNum].costumes.push({
 					name: Random.words ? Random.phrase() : "undefined",
 					//use the backdrop if this is the background, otherwise the costume

@@ -23,9 +23,10 @@
 		<script type="text/javascript" src="/static/editor/main.js"></script>
 		<script type="text/javascript" src="/static/editor/sprites.js"></script>
 		<script type="text/javascript" src="/static/editor/editor.js"></script>
+		<script type="text/javascript" src="/static/editor/editableImage.js"></script>
 		<script type="text/javascript" src="/static/editor/buildButton.js"></script>
 
-		<script type="text/javascript" src="/static/name/random.js" onload="Random.load()"></script>
+		<script type="text/javascript" src="/static/name/random.js"></script>
 	</head>
 	<body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
 		
@@ -49,7 +50,7 @@
 		
 		<div id="editors" ng-controller="editorsController as editors">
 			<div id="code" ng-show="editors.service.view === 'code'" selectable>
-				<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id"></editor>	
+				<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="{{ sprite }}"></editor>	
 			</div>
 
 			<div id="settings" ng-show="editors.service.view === 'settings'">
@@ -57,13 +58,13 @@
 					<h2>Settings</h2>
 					<form novalidate>
 						<pre ng-hide="sprites.current==='globals'">
-<!-- show a span with the value of background if it is the background, otherwise the linked input box -->
-<span ng-show="sprite.id==='background'">background</span><input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" ng-show="sprite.id!=='background'" required>: {
 
-	<span ng-show="sprite.id==='background'">backgrops</span><span ng-show="sprite.id!=='background'">costumes</span>: [
+<input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" required>: {
+
+	<span ng-show="sprite.id === 'background'">backdrops</span><span ng-show="sprite.id !== 'background'">costumes</span>: [
 		<div class="costume" ng-repeat="costume in sprite.costumes">
 		{<img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/close.svg" class="close icon">
-			<p>image: <img ng-src="{{ costume.data }}">,</p> <!-- the image is stored as base64 data -->
+			<p>image: <editable-image bind="costume.data"></editable-image>,</p> <!-- the image is stored as base64 data -->
 			<p class="name">name: <input type="text" ng-model="costume.name">,</p>
 		}
 		</div>	
@@ -89,9 +90,10 @@
 				<div ng-show="sprites.current==='globals'">
 					<h2>Settings</h2>
 					<pre>
-forAllSprites: {
-
-	variables: [
+General: {
+	Thumbnail: <editable-image bind="sprites.globals.thumbnail"></editable-image>,
+	
+	Variables (for all sprites): [
 	<ul class="variables">
 		<li ng-repeat="variable in sprites.globals.variables"><img ng-click="sprites.variable.remove('globals',variable)" src="/static/icons/close.svg" class="close icon"> {{ variable }},</li>
 	</ul>
@@ -110,9 +112,9 @@ forAllSprites: {
 		<div id="sidebar">
 			<h2>Sprites</h2>
 			<ul id="sprites">
-				<sprite ng-repeat="sprite in sprites.list" ng-click="sprites.current = sprite.id" ng-class="{enabled: sprites.current === sprite.id, background: sprite.id === 'background'}"></sprite>
-				
-				<li ng-click="sprites.globalsView();" ng-class="{enabled: sprites.current === 'globals'}">For all sprites</li>
+				<sprite ng-repeat="sprite in sprites.list" ng-click="sprites.current = sprite.id" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
+								
+				<li ng-click="sprites.globalsView();" ng-class="{enabled: sprites.current === 'globals'}">General</li>
 				
 			</ul>
 			

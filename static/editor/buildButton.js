@@ -7,5 +7,5 @@
 	
 	.controller("buildButtonController", function(){
 		this.dropdown = false;
-	})
+	});
 }());

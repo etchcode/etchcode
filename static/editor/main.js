@@ -1,6 +1,6 @@
 (function(){
 	"use strict";
 	
-	var app = angular.module("webapp", ["sprites", "editor", "buildButton"]);
+	angular.module("webapp", ["sprites", "editor", "editableImage", "buildButton"]);
 	
 }());
