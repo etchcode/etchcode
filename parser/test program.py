@@ -346,9 +346,10 @@ def parListMaker(lists):
 def parenParser(lists): #this function builds the block out of the parsed list
     #input parsed list output:xml for the list
     print "start of paren parser"
-    if len(lists) == 1 and type(lists[0]) == list and len(lists[0]) != 2:
-        return parenParser(lists[0])
-    elif len(lists) == 1:
+    if len(lists) == 1:
+        if type(lists[0]) == list and len(lists[0]) != 2:
+            return parenParser(lists[0])
+    if len(lists) == 1:
         try:
             l = float(lists[0])
             return "<l>"+lists[0]+"</l>"
