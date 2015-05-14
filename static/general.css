@@ -3,26 +3,30 @@
   src: url(/static/libs/anonymousPro.ttf); }
 
 /* line 7, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+.hidden {
+  display: none; }
+
+/* line 11, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 h1, h2, h3 {
   text-align: center; }
 
-/* line 11, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 15, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 * {
   font-size: 16px; }
 
-/* line 15, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 h1 {
   font-size: 30px; }
 
-/* line 18, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 22, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 h2 {
   font-size: 25px; }
 
-/* line 21, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 25, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 h3 {
   font-size: 20px; }
 
-/* line 27, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 31, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [unselectable] {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -30,7 +34,7 @@ h3 {
   -o-user-select: none;
   user-select: none; }
 
-/* line 34, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [selectable] {
   -webkit-user-select: all;
   -khtml-user-select: all;
@@ -38,15 +42,15 @@ h3 {
   -o-user-select: all;
   user-select: all; }
 
-/* line 42, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 46, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
 
-/* line 44, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 48, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 * {
   box-sizing: border-box; }
 
-/* line 48, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 52, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 input.ng-invalid {
   border-color: red;
   outline-color: red; }

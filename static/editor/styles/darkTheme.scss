@@ -40,6 +40,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .parent.header {
 	background-color: $color-2;
+	
+	.left h1{
+		background-color: transparent;
+		
+		input{
+			background-color: rgba(0, 0, 0, 0.1);
+			outline: 0px none;
+		}
+	}
 }
 
 #sidebar {
@@ -53,4 +62,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 // config
 #settings input{
 	color: $color-4;
+}
+
+.editableImage .overlay{
+	background-color: rgba($color-2, .8);
 }

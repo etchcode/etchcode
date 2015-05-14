@@ -16,13 +16,24 @@ html, body{
 
 img.icon{
 	height: 20px;
-	width: auto !important;
+	width: auto;
 	
 	margin-left: 6px;
 	
 	cursor: pointer;
 }
 
+.add.icon{
+	height: 25px;
+	width: 25px;
+}
+.remove.icon{
+	float: right;
+}
+
+.costume .remove.icon, .variables .remove.icon{
+	float: none;
+}
 // editor
 .textarea{
 	outline: none;
@@ -36,7 +47,7 @@ img.icon{
 	resize: none;
 }
 
-//settings
+//config
 #settings{
 	overflow: auto;
 	height: 100%;
@@ -71,14 +82,15 @@ img.icon{
 #settings .costume p{
 	margin-bottom: 0;
 }
-#settings .costume img{
-	width: 100px;
-}
 
 #settings .new[type=button]{
 	// this is the add new costume button
 	padding: 3px 20px 3px 20px;
 	margin-left: 20px; // offset the left padding so that the padded edge ligns up with the images and other text 
+	cursor: pointer;
+}
+
+.editableImage .bar .upload{
 	cursor: pointer;
 }
 
@@ -95,6 +107,15 @@ img.icon{
 
 
 .left.header {
+	h1{
+		font-size: 25px;
+		
+		input{
+			font-family: inherit;
+			font-size: inherit;
+		}
+	}
+	
 	.tabs{
 		input[type=button]{
 			@include reset-button;
@@ -106,9 +127,7 @@ img.icon{
 #sprites li{
 	list-style: none;
 	display: inline-block;
-	
-	cursor: pointer;
-	
+		
 	margin: 10px;
 	
 	padding: 15px;
@@ -121,29 +140,12 @@ img.icon{
 	margin: 0;
 }
 
-sprite-controls ul {
-	margin: 0;
-	padding: 0;
-	
-	text-align: right;
-}
-
-sprite-controls li{
-	display: inline;
-	list-style: none;
-
-	padding: 7px;
-	border-radius: 3px;
-
-	background-color: hsla(229, 8%, 67%, 1);
-}
-
-sprite-controls {
-	display: block;
-}
-
 sprite li p:empty::after {
   content: "undefined";
+}
+
+sprite .image{
+	cursor: pointer;
 }
 
 sprite p{
@@ -151,6 +153,8 @@ sprite p{
 	margin: 5px;
 }
 sprite img{
+	clear: right; //clear the remove icon
+	
 	width: 100px;
 	max-height: 100px;
 }
@@ -161,8 +165,15 @@ sprite img{
 	white-space: normal;
 }
 
+.variables li{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+//end variables
+
 pre {
 	font-family: anonymousPro;
 }
 
 @import "layout.scss";
+@import "validate.scss";

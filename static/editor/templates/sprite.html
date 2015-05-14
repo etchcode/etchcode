@@ -1,5 +1,10 @@
 <li>
-	<img ng-src="{{ sprite.costumes[0].data }}">
-	<br>
-	<p>{{ sprite.id }}</p>
+	<img ng-click="sprites.remove(sprite)" src="/static/icons/remove_black.svg" class="remove icon" ng-hide="sprite.id === 'background' || sprite.id === 'general'">
+	
+	<div ng-click="sprites.current = sprite.id" class="image">
+		<img ng-src="{{ sprite.costumes[0].data }}" ng-hide="sprite.id === 'general'">
+		<img ng-src="{{ sprite.thumbnail }}" ng-show="sprite.id === 'general'"> <!--fetch the thumbnail it it is the general sprite-->
+		<br>
+		<p>{{ sprite.id }}</p>
+	</div>
 </li>

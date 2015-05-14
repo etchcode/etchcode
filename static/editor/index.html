@@ -1,133 +1,151 @@
 <!DOCTYPE html>
 <html ng-app="webapp" lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<title>Project Editor | Etch</title>
-		
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" rel="stylesheet">
-		
-		<link rel="stylesheet" type="text/css" href="/static/general.css"> 
-		
-		<link rel="stylesheet" type="text/css" href="/static/editor/styles/base.css">
-		<link rel="stylesheet" type="text/css" href="/static/editor/styles/darkTheme.css">
-		
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
-</script>
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
-		
-		<script type="text/javascript" src="/static/editor/defaults.js"></script>
-		<script type="text/javascript" src="/static/editor/main.js"></script>
-		<script type="text/javascript" src="/static/editor/sprites.js"></script>
-		<script type="text/javascript" src="/static/editor/editor.js"></script>
-		<script type="text/javascript" src="/static/editor/editableImage.js"></script>
-		<script type="text/javascript" src="/static/editor/buildButton.js"></script>
 
-		<script type="text/javascript" src="/static/name/random.js"></script>
-	</head>
-	<body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
-		
-		<toaster-container></toaster-container> <!-- This is where the notifications go -->
-		
-		<div class="parent header">
-			<div class="left header">
-				
-				<span class="tabs" ng-controller="editorsController as editors">
-					<input type="button" value="Code" ng-class="{enabled:editors.service.view === 'code'}" ng-click="editors.service.view = 'code'" ng-hide="sprites.current=='globals'"> <!--the globals view can only modify config stuff-->
-					<input type="button" value="Settings" ng-class="{enabled:editors.service.view === 'settings'}" ng-click="editors.service.view = 'settings'">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Project Editor | Etch</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/general.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/editor/styles/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/editor/styles/darkTheme.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
+    </script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
+	
+	<script type="text/javascript" src="/static/libs/nunjucks.min.js"></script>
+
+    <script type="text/javascript" src="/static/editor/defaults.js"></script>
+    <script type="text/javascript" src="/static/editor/main.js"></script>
+    <script type="text/javascript" src="/static/editor/sprites.js"></script>
+    <script type="text/javascript" src="/static/editor/editor.js"></script>
+    <script type="text/javascript" src="/static/editor/editableImage.js"></script>
+	<script type="text/javascript" src="/static/editor/render.js"></script>
+    <script type="text/javascript" src="/static/editor/buildButton.js"></script>
+
+    <script type="text/javascript" src="/static/name/random.js"></script>
+</head>
+
+<body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
+
+    <toaster-container></toaster-container>
+    <!-- This is where the notifications go -->
+
+    <div class="parent header">
+        <div class="left header">
+
+			<h1>
+				<input ng-model="sprites.list[sprites.list.length-1].name">
+			</h1>
+			
+            <span class="tabs" ng-controller="editorsController as editors">
+					<input type="button" value="Code" ng-class="{enabled:editors.service.view === 'code'}" ng-click="editors.service.view = 'code'" ng-hide="sprites.current=='general'"> <!--the globals view can only modify config stuff-->
+					<input type="button" value="Settings" ng-class="{enabled:editors.service.view === 'settings' || sprites.current === 'general'}" ng-click="editors.service.view = 'settings'">
 				</span>
-				
-			</div>
-			<div class="right header">
-				
-				<h1>Etch Code</h1>
-			
-			</div>
-		</div>
-		
-		<div id="editors" ng-controller="editorsController as editors">
-			<div id="code" ng-show="editors.service.view === 'code'" selectable>
-				<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="{{ sprite }}"></editor>	
-			</div>
 
-			<div id="settings" ng-show="editors.service.view === 'settings'">
-				<div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
-					<h2>Settings</h2>
-					<form novalidate>
-						<pre ng-hide="sprites.current==='globals'">
+        </div>
+        <div class="right header">
 
-<input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" required>: {
+            <h1>Etch Code</h1>
 
-	<span ng-show="sprite.id === 'background'">backdrops</span><span ng-show="sprite.id !== 'background'">costumes</span>: [
-		<div class="costume" ng-repeat="costume in sprite.costumes">
-		{<img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/close.svg" class="close icon">
-			<p>image: <editable-image bind="costume.data"></editable-image>,</p> <!-- the image is stored as base64 data -->
-			<p class="name">name: <input type="text" ng-model="costume.name">,</p>
-		}
-		</div>	
-		
-		<input class="new" type="button" value="New" ng-click="sprites.costume.create(sprite)">
+        </div>
+    </div>
 
-	],
-	
-	variables: [
-	<ul class="variables">
-		<li ng-repeat="variable in sprite.variables"><img ng-click="sprites.variable.remove(sprite,variable)" src="/static/icons/close.svg" class="close icon"> {{ variable }},</li>
-	</ul>
-	
-		<input type="text" ng-model="sprites.variable.creating"> <input type="button" value="Create"  ng-click="sprites.variable.create(sprite, sprites.variable.creating)">
-	
-	],
+    <div id="editors" ng-controller="editorsController as editors">
+        <div id="code" ng-show="editors.service.view === 'code'" ng-hide="sprites.current === 'general'" selectable>
+            <editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="{{ sprite }}"></editor>
+        </div>
 
-}
-</pre>
-					</form>
-				</div>
-				
-				<div ng-show="sprites.current==='globals'">
-					<h2>Settings</h2>
-					<pre>
-General: {
-	Thumbnail: <editable-image bind="sprites.globals.thumbnail"></editable-image>,
-	
-	Variables (for all sprites): [
-	<ul class="variables">
-		<li ng-repeat="variable in sprites.globals.variables"><img ng-click="sprites.variable.remove('globals',variable)" src="/static/icons/close.svg" class="close icon"> {{ variable }},</li>
-	</ul>
+        <div id="settings" ng-show="editors.service.view === 'settings' || sprites.current === 'general'">
+            <div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
+                <h2>Settings</h2>
+                <form novalidate>
 
-		<input type="text" ng-model="sprites.variable.creating"> <input type="button" value="Create"  ng-click="sprites.variable.create('global', sprites.variable.creating)">		
-	]
+                    <input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" ng-show="sprite.id !== 'background' && sprite.id !=='general'" required><span ng-show="sprite.id === 'background'">Background</span><span ng-show="sprite.id === 'general'">General</span>: {
 
-}
-					</pre>
-				</div>
-				
-			</div>
-
-		</div>
-
-		<div id="sidebar">
-			<h2>Sprites</h2>
-			<ul id="sprites">
-				<sprite ng-repeat="sprite in sprites.list" ng-click="sprites.current = sprite.id" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
+					<p ng-show="sprite.id === 'general'" class="indent">
+						Project Name: <input ng-model="sprite.name">
+					</p>
 								
-				<li ng-click="sprites.globalsView();" ng-class="{enabled: sprites.current === 'globals'}">General</li>
-				
-			</ul>
-			
-			<div class="build" ng-controller="buildButtonController as buildButton">
-				<input type="button" value="Run">
-				<input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
-				
-				<ul class="dropdown" ng-show="buildButton.dropdown">
-					<input type="button" value="Save">
-					<input type="button" value="Share">
-			   </ul>
-			</div>
-		</div>
-		
-	</body>
+                    <div ng-hide="sprite.id ==='general' || sprite.id ==='background'" class="indent">
+                        <p>X Position:
+                            <input type="number" ng-model="sprite.x" ng-pattern="/^[0-9]+$/">,</p>
+                        <p>Y Position:
+                            <input type="number" ng-model="sprite.y" ng-pattern="/^[0-9]+$/">,</p>
+                    </div>
+					
+                    <div ng-hide="sprite.id === 'general'" class="indent">
+						<span ng-show="sprite.id === 'background'">backdrops</span>
+						<span ng-show="sprite.id !== 'background'">costumes</span>: [
+						
+                        <div class="costume" ng-repeat="costume in sprite.costumes">
+                            {
+                            <img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/remove_white.svg" class="remove icon">
+                            <p>image:
+                                <editable-image data="costume.data"></editable-image>,
+							</p>
+                            <p class="name">name:
+                                <input type="text" ng-model="costume.name">,
+							</p>
+                            }
+                        </div>
+
+                        <input class="new" type="button" value="New" ng-click="sprites.costume.create(sprite)">
+						<br>
+						],
+					</div>
+
+					<p ng-show="sprite.id === 'general'" class="indent">
+                        Thumbnail:
+                        <editable-image data="sprite.thumbnail"></editable-image>
+                    </p>
+
+                    <div class="indent">
+                        <p>variables<span ng-show="sprite.id === 'general'"> (for all sprites)</span>: [</p>
+                        <ul class="variables">
+                            <li ng-repeat="variable in sprite.variables" class="indent">
+                                <img ng-click="sprites.variable.remove(sprite,variable)" src="/static/icons/remove_white.svg" class="remove icon">{{ variable }},</li>
+                        </ul>
+
+                        <p class="indent">
+                            <input type="text" ng-model="sprites.variable.creating">
+                            <input type="button" value="Create" ng-click="sprites.variable.create(sprite, sprites.variable.creating)">
+                        </p>
+                        <br>],
+                    </div>
+
+                    }
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sidebar">
+        <h2>Sprites <img ng-click="sprites.add()" src="/static/icons/add_black.svg" class="add icon"></h2>
+        <ul id="sprites">
+            <sprite ng-repeat="sprite in sprites.list" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
+
+        </ul>
+
+        <div class="build" ng-controller="buildButtonController as buildButton">
+            <input type="button" value="Run">
+            <input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
+
+            <ul class="dropdown" ng-show="buildButton.dropdown">
+                <input type="button" value="Save">
+            </ul>
+        </div>
+    </div>
+
+</body>
+
 </html>
