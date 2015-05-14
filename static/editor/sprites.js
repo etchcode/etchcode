@@ -32,7 +32,7 @@
 					
 				],
 				
-				script: "C.flagClicked:\n\tM.go(90)"
+				script: "E.flagClicked:\n\tM.go(90)"
 			},
 			{
 				id: Random.phrase(),

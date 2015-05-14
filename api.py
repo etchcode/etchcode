@@ -30,6 +30,7 @@ def parse():
 #    try:
     from parser import translator
 
+    return request.form.get("scripts")
     scripts = json.loads(request.form.get("scripts"))
 
     parsed = {}
