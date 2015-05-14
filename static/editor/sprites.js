@@ -18,6 +18,9 @@
 			{
 				id: Random.phrase(), 
 				
+                x: 0,
+                y: 0,
+                
 				costumes: [
 					{
 						name: Random.phrase(),
@@ -34,6 +37,9 @@
 			{
 				id: Random.phrase(),
 				
+                x: 0,
+                y: 0,
+                
 				costumes: [
 					{
 						name: Random.phrase(),
@@ -49,9 +55,6 @@
 			},
 			{
 				id: "background",
-				
-				x: 0,
-				y: 0,
 				
 				costumes: [
 					{
