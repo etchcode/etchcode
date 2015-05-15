@@ -18,7 +18,7 @@ abriviations = {  # these reference other blocks form abriviation:block name tha
 snapNames = {
 
     "motion": {
-        # setRotationStyle is not in Snap!, so I can't support it
+        # setRotatioStyle is not in Snap!, so I can't support it
         "move": "forward",
         "turnright": "turn",
         "turnleft": "turnLeft",
