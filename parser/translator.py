@@ -1,7 +1,7 @@
 import tokenize
 import StringIO
 import re
-
+import sys
 import blocks # our own python file with the blocks in it
 
 tokenTypes = {
@@ -430,7 +430,9 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     type = tokenTypes[int(typeNum)]
     print string
     print type
-    if type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
+    if type == "COMMENT":
+        result += ""
+    elif type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
         currentParent = string
         print "parent"
         print currentParent
@@ -440,9 +442,33 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print currentParent
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
         return
+    elif string == ":":
+        if currentParent == True:
+            childBuilderName=""
+            currentFunction =""
+            currentParent = False
+        else:
+            childBuilderName=""
+            currentFunction =""
+            currentParent = False
+            print "Unreconized Function", sys.exc_info()[0]
+            raise
     elif type == "OP" and string == "(":
         print "("
-        parenCounter += 1
+        if currentParent == True:
+            childBuilderName=""
+            currentFunction =""
+            currentParent = False
+            parenCounter += 1
+        elif parenCounter >1:
+            print ""
+        else:
+            childBuilderName=""
+            currentFunction =""
+            currentParent = False
+            print "Unreconized Function", sys.exc_info()[0]
+            raise
+
     elif type == "OP" and string == ")":
         print ")"
         parenCounter -= 1
@@ -451,6 +477,8 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print "Parenlist parsed"
             print f
             result += parenParser(f)
+        if parenCounter == 0:
+            result += "</block"
 
     elif parenCounter > 1:
         parenList.append(string)
@@ -472,9 +500,6 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print currentParent
             buildBlock(type=currentParent, name=childBuilderName)
 
-            childBuilderName=""
-            currentFunction =""
-            currentParent = False
 
 
     elif type == "ENDMARKER":
@@ -544,6 +569,5 @@ def translate(string):
     closeBlockWithScript = False  # should, when closing a script (mainly because of an indent), we also put in a closing block tag
 
     return result
-
 
 
