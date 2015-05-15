@@ -6,6 +6,8 @@
 	.service("runProjectService", function(){
 		var that = this;
 		
+		that.show = false;
+		
 		that.init = function(player){
 			that.loaded = false;
 			
@@ -14,6 +16,8 @@
 			});
 
 			that.run = function(project){
+				that.show = true;
+				
 				if(that.loaded){
 					player.contentWindow.postMessage({"action": "loadString", string: project}, "http://etchcodeusercontent.appspot.com");
 				}
@@ -36,6 +40,7 @@
 				var player = $element.find("iframe.player")[0];
 				runProjectService.init(player);
 				
+				$scope.service = runProjectService;
 			}],
 			controllerAs: "runController"
         };

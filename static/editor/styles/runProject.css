@@ -1,5 +1,6 @@
 /* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject {
+  display: none;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -9,13 +10,17 @@
   background-color: black;
   color: white; }
 
-/* line 14, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
+/* line 15, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
+.runProject.show {
+  display: block; }
+
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject .inner {
   position: relative;
   width: 100%;
   height: 100%; }
 
-/* line 21, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
+/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject iframe {
   width: 100%;
   height: 100%; }
