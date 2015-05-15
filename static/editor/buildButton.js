@@ -5,11 +5,16 @@
 		this.xml = "";
 	})
 	
-	.controller("buildButtonController", ["renderService", "spriteData", function(render, spriteData){
+	.controller("buildButtonController", ["renderService", "spriteData", "runProjectService", function(render, spriteData, runProjectService){
 		this.dropdown = false;
 		
 		this.render = function(){
-			return render.project(spriteData.list);
+			render.project(spriteData.list).then(function(response){
+				console.log(response);
+				a = response;
+				
+				runProjectService.run(response);
+			});
 		};
 	}]);
 }());

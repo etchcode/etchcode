@@ -1,18 +1,21 @@
-/* line 1, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+/* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject {
   position: fixed;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 90%; }
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white; }
 
-/* line 10, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject .inner {
   position: relative;
   width: 100%;
   height: 100%; }
 
-/* line 17, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+/* line 21, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/runProject.scss */
 .runProject iframe {
   width: 100%;
   height: 100%; }
