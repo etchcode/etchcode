@@ -1,28 +1,28 @@
-/* line 13, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 13, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 html, body {
   cursor: default; }
 
-/* line 17, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 17, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 img.icon {
   height: 20px;
   width: auto;
   margin-left: 6px;
   cursor: pointer; }
 
-/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 26, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .add.icon {
   height: 25px;
   width: 25px; }
 
-/* line 30, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 30, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .remove.icon {
   float: right; }
 
-/* line 34, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 34, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .costume .remove.icon, .variables .remove.icon {
   float: none; }
 
-/* line 38, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 38, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .textarea {
   outline: none;
   line-height: 20px;
@@ -31,12 +31,12 @@ img.icon {
   font-family: anonymousPro;
   resize: none; }
 
-/* line 51, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 51, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings {
   overflow: auto;
   height: 100%; }
 
-/* line 56, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 56, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings input {
   background-color: rgba(0, 0, 0, 0.1);
   outline-color: transparent;
@@ -45,15 +45,15 @@ img.icon {
   padding: 4px;
   outline: 0; }
 
-/* line 66, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 66, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings input[type='text'] {
   width: 250px; }
 
-/* line 70, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 70, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings input[type="button"] {
   cursor: pointer; }
 
-/* line 74, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 74, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings .costume {
   white-space: normal;
   margin-left: 142px;
@@ -61,21 +61,21 @@ img.icon {
   overflow: hidden;
   text-align: left; }
 
-/* line 82, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 82, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings .costume p {
   margin-bottom: 0; }
 
-/* line 86, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 86, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #settings .new[type=button] {
   padding: 3px 20px 3px 20px;
   margin-left: 20px;
   cursor: pointer; }
 
-/* line 93, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 93, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .editableImage .bar .upload {
   cursor: pointer; }
 
-/* line 98, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 98, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .header h1 {
   padding: 0;
   margin: 0;
@@ -84,14 +84,14 @@ img.icon {
   text-shadow: 2px 1px rgba(131, 134, 149, 0.89);
   text-align: center; }
 
-/* line 110, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 110, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .left.header h1 {
   font-size: 25px; }
-  /* line 113, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+  /* line 113, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
   .left.header h1 input {
     font-family: inherit;
     font-size: inherit; }
-/* line 120, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 120, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .left.header .tabs input[type=button] {
   box-shadow: 0 0 0 0;
   border: none;
@@ -100,7 +100,7 @@ img.icon {
   padding: 7px;
   cursor: pointer; }
 
-/* line 127, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 127, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #sprites li {
   list-style: none;
   display: inline-block;
@@ -108,72 +108,72 @@ img.icon {
   padding: 15px;
   background-color: #bebfc5; }
 
-/* line 137, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 137, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 #sprites {
   padding: 15px;
   padding-top: 7px;
   margin: 0; }
 
-/* line 143, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 143, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 sprite li p:empty::after {
   content: "undefined"; }
 
-/* line 147, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 147, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 sprite .image {
   cursor: pointer; }
 
-/* line 151, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 151, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 sprite p {
   text-align: center;
   margin: 5px; }
 
-/* line 155, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 155, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 sprite img {
   clear: right;
   width: 100px;
   max-height: 100px; }
 
-/* line 163, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 163, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .variables {
   list-style: none;
   white-space: normal; }
 
-/* line 168, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 168, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 .variables li {
   margin-top: 5px;
   margin-bottom: 5px; }
 
-/* line 174, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
+/* line 174, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/base.scss */
 pre {
   font-family: anonymousPro; }
 
-/* line 11, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 11, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 html, body {
   height: 100%;
   width: 100%; }
 
-/* line 16, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 16, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 body {
   padding: 0;
   margin: 0; }
 
-/* line 21, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 21, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 hr {
   margin-top: 20px;
   margin-bottom: 20px; }
 
-/* line 27, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 27, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .parent.header {
   height: 80px; }
 
-/* line 31, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 31, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .right.header {
   display: inline-block;
   width: 40%;
   height: inherit;
   float: right; }
 
-/* line 40, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 40, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .right.header h1 {
   position: relative;
   top: 50%;
@@ -181,7 +181,7 @@ hr {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
 
-/* line 44, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 44, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .left.header {
   position: relative;
   display: inline-block;
@@ -189,34 +189,34 @@ hr {
   height: inherit;
   text-align: right;
   vertical-align: bottom; }
-  /* line 54, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+  /* line 54, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
   .left.header h1 {
     display: inline-block;
     float: left;
     margin: 20px 110px 20px 20px;
     width: 300px; }
-    /* line 60, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+    /* line 60, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
     .left.header h1 input {
       width: 100%;
       border: medium none;
       padding: 8px 5px 5px; }
-  /* line 67, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+  /* line 67, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
   .left.header .tabs {
     position: absolute;
     bottom: 0;
     right: 0; }
-    /* line 72, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+    /* line 72, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
     .left.header .tabs input[type=button] {
       padding-left: 20px;
       padding-right: 20px;
       border-radius: 3px 3px 0 0; }
 
-/* line 83, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 83, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #content {
   width: 100%;
   height: 100%; }
 
-/* line 89, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 89, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #sidebar {
   float: right;
   width: 40%;
@@ -224,82 +224,82 @@ hr {
   height: calc(100% - 80px);
   overflow: auto; }
 
-/* line 99, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 99, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #sprites .background {
   display: block;
   margin-top: 25px; }
 
-/* line 105, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 105, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 sprite img {
   display: block;
   margin-left: auto;
   margin-right: auto; }
 
-/* line 112, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 112, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #sidebar li {
   min-width: 150px; }
 
-/* line 116, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 116, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #sidebar hr {
   margin: 14px; }
 
-/* line 121, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 121, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #editors {
   float: left;
   clear: both;
   width: 60%;
   height: calc(100% - 80px); }
 
-/* line 128, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 128, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 editor {
   float: inherit;
   width: 100%;
   height: 100%; }
 
-/* line 134, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 134, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .textarea {
   width: 100%;
   height: 100%;
   padding: 15px;
   border: 0; }
 
-/* line 144, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 144, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #code {
   height: 100%;
   width: 100%; }
 
-/* line 150, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 150, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #settings {
   padding: 30px;
   padding-top: 10px; }
 
-/* line 155, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 155, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #settings .indent, #settings input.indent[type] {
   margin-left: 100px; }
 
-/* line 158, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 158, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 #settings p {
   margin-top: 25px;
   margin-bottom: 25px; }
 
-/* line 163, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 163, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .variables {
   padding: 0;
   margin: 0; }
 
-/* line 168, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 168, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage {
   position: relative;
   display: inline-block;
   width: 100px;
   height: 100px; }
 
-/* line 176, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 176, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage img {
   max-width: 100%;
   max-height: 100%; }
 
-/* line 181, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 181, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage .bar .upload {
   box-sizing: padding-box;
   height: 30px;
@@ -307,24 +307,43 @@ editor {
   float: right;
   margin: 7px; }
 
-/* line 190, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 190, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage .bar {
   position: absolute;
   width: 100px; }
 
-/* line 196, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 196, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage .overlay {
   position: absolute;
   height: 100%;
   width: 100%;
   display: none; }
 
-/* line 204, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
+/* line 204, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/layout.scss */
 .editableImage:hover .overlay {
   display: block !important; }
 
-/* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/validate.scss */
+/* line 1, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/validate.scss */
 input.ng-dirty.ng-invalid {
   box-shadow: 0 0 2.8px red; }
+
+/* line 1, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+.runProject {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%; }
+
+/* line 10, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+.runProject .inner {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+/* line 17, /Users/Jane/Desktop/Daniel/etchcode/static/editor/styles/runProject.scss */
+.runProject iframe {
+  width: 100%;
+  height: 100%; }
 
 /*# sourceMappingURL=base.css.map */

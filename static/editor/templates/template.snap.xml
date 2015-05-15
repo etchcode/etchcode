@@ -29,7 +29,7 @@
         <blocks/> 
 		
         <scripts>
-			{{ project.background.script | safe}}
+			{{ project.scripts.background | safe}}
 		</scripts>
 		
         <sprites>
@@ -59,7 +59,7 @@
 					
 					<blocks/> 
 					<scripts>
-						{{ sprite.script | safe}}
+						{{ project.scripts[sprite.id] | safe }}
 					</scripts>
 				</sprite>
 			{% endfor %}

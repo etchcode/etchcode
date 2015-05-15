@@ -5,11 +5,11 @@
 		this.xml = "";
 	})
 	
-	.controller("buildButtonController", ["renderService", function(render){
+	.controller("buildButtonController", ["renderService", "spriteData", function(render, spriteData){
 		this.dropdown = false;
 		
-		this.render = function(project){
-			return render.project(project);
+		this.render = function(){
+			return render.project(spriteData.list);
 		};
 	}]);
 }());

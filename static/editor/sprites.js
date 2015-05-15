@@ -32,7 +32,7 @@
 					
 				],
 				
-				script: "E.flagClicked:\n\tM.go(90)"
+				script: "E.flagClicked:\n\tL.think(\"Etch is cool\")"
 			},
 			{
 				id: Random.phrase(),

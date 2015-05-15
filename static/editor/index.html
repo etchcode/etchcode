@@ -39,6 +39,8 @@
     <toaster-container></toaster-container>
     <!-- This is where the notifications go -->
 
+    <run-project></run-project>
+    
     <div class="parent header">
         <div class="left header">
 
@@ -137,7 +139,7 @@
         </ul>
 
         <div class="build" ng-controller="buildButtonController as buildButton">
-            <input type="button" value="Run">
+            <input type="button" value="Run" ng-click="buildButton.render()">
             <input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
 
             <ul class="dropdown" ng-show="buildButton.dropdown">
