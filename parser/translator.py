@@ -92,6 +92,10 @@ closeBlockWithScript = False  # should, when closing a script (mainly because of
 result = ""  # This is the XML that snap processes
 # END VARIABLES THAT CHANGE EVERY PARSING OF A STRING
 
+class TranslatorError(Exception):
+    """Create a custom error for us. Use in format "raise TranslatorError('it all went wrong')" """
+    pass # It will be shown in the format <traceback fun> TranslationError: <any arguments you pass raise TranslatorError
+
 def isParentTag(tag):
     """Return: True if a tag is a parent tag else false"""
     tag = tag.lower()
@@ -428,10 +432,10 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     string = string.lower()
 
     type = tokenTypes[int(typeNum)]
-    print string
-    print type
+    print "String: " + string + " Type: " + type
+
     if type == "COMMENT":
-        result += ""
+        result += "" # TODO insert Snap! comment for comments instead of ignoring them
     elif type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
         currentParent = string
         print "parent"
@@ -443,7 +447,7 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
         return
     elif string == ":":
-        if currentParent == True:
+        if currentParent:
             childBuilderName=""
             currentFunction =""
             currentParent = False
@@ -451,11 +455,12 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             childBuilderName=""
             currentFunction =""
             currentParent = False
-            print "Unreconized Function", sys.exc_info()[0]
-            raise
+            raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
+
     elif type == "OP" and string == "(":
         print "("
-        if currentParent == True:
+
+        if currentParent:
             childBuilderName=""
             currentFunction =""
             currentParent = False
@@ -466,8 +471,7 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             childBuilderName=""
             currentFunction =""
             currentParent = False
-            print "Unreconized Function", sys.exc_info()[0]
-            raise
+            raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
 
     elif type == "OP" and string == ")":
         print ")"
@@ -478,7 +482,7 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print f
             result += parenParser(f)
         if parenCounter == 0:
-            result += "</block"
+            result += "</block>"
 
     elif parenCounter > 1:
         parenList.append(string)
