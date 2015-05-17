@@ -2,6 +2,7 @@ import tokenize
 import StringIO
 import re
 import sys
+
 import blocks # our own python file with the blocks in it
 
 tokenTypes = {
@@ -432,11 +433,17 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     string = string.lower()
 
     type = tokenTypes[int(typeNum)]
+
     print "String: " + string + " Type: " + type
 
     if type == "COMMENT":
         result += "" # TODO insert Snap! comment for comments instead of ignoring them
     elif type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
+
+        print string
+        print type
+    if type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
+
         currentParent = string
         print "parent"
         print currentParent
@@ -446,32 +453,37 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print currentParent
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
         return
-    elif string == ":":
-        if currentParent:
-            childBuilderName=""
-            currentFunction =""
-            currentParent = False
-        else:
-            childBuilderName=""
-            currentFunction =""
-            currentParent = False
-            raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
+
+    # elif string == ":":
+    #     if currentParent:
+    #         childBuilderName=""
+    #         currentFunction =""
+    #         currentParent = False
+    #     else:
+    #         childBuilderName=""
+    #         currentFunction =""
+    #         currentParent = False
+    #         raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
+    #
+    # elif type == "OP" and string == "(":
+    #     print "("
+    #
+    #     if currentParent:
+    #         childBuilderName=""
+    #         currentFunction =""
+    #         currentParent = False
+    #         parenCounter += 1
+    #     elif parenCounter >1:
+    #         print ""
+    #     else:
+    #         childBuilderName=""
+    #         currentFunction =""
+    #         currentParent = False
+    #         raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
 
     elif type == "OP" and string == "(":
         print "("
-
-        if currentParent:
-            childBuilderName=""
-            currentFunction =""
-            currentParent = False
-            parenCounter += 1
-        elif parenCounter >1:
-            print ""
-        else:
-            childBuilderName=""
-            currentFunction =""
-            currentParent = False
-            raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
+        parenCounter += 1
 
     elif type == "OP" and string == ")":
         print ")"
@@ -481,8 +493,10 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print "Parenlist parsed"
             print f
             result += parenParser(f)
+
         if parenCounter == 0:
             result += "</block>"
+
 
     elif parenCounter > 1:
         parenList.append(string)
@@ -504,6 +518,9 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print currentParent
             buildBlock(type=currentParent, name=childBuilderName)
 
+            childBuilderName=""
+            currentFunction =""
+            currentParent = False
 
 
     elif type == "ENDMARKER":
@@ -573,5 +590,6 @@ def translate(string):
     closeBlockWithScript = False  # should, when closing a script (mainly because of an indent), we also put in a closing block tag
 
     return result
+
 
 
