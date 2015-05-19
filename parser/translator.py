@@ -435,7 +435,9 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     type = tokenTypes[int(typeNum)]
     print string
     print type
-    if type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
+    if type == "COMMENT":
+        result += "" # TODO insert Snap! comment for comments instead of ignoring them
+    elif type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
         currentParent = string
         print "parent"
         print currentParent
