@@ -1,7 +1,6 @@
 import tokenize
 import StringIO
 import re
-import sys
 
 import blocks # our own python file with the blocks in it
 
@@ -92,10 +91,6 @@ closeBlockWithScript = False  # should, when closing a script (mainly because of
 
 result = ""  # This is the XML that snap processes
 # END VARIABLES THAT CHANGE EVERY PARSING OF A STRING
-
-class TranslatorError(Exception):
-    """Create a custom error for us. Use in format "raise TranslatorError('it all went wrong')" """
-    pass # It will be shown in the format <traceback fun> TranslationError: <any arguments you pass raise TranslatorError
 
 def isParentTag(tag):
     """Return: True if a tag is a parent tag else false"""
@@ -340,6 +335,11 @@ def parenParser(lists): #this function builds the block out of the parsed list
                     a == 0
                     print "parlist"
                     print parList
+                    while True:
+                        print lists
+                        if lists[0] == "+" or lists[0] == "-" or lists[0] == "*" or lists[0] == "/":
+                            break
+                        lists.pop(0)
 
                     lists.insert(0, parentMaker(parList))
                     parent = False
@@ -433,17 +433,9 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
     string = string.lower()
 
     type = tokenTypes[int(typeNum)]
-
-    print "String: " + string + " Type: " + type
-
-    if type == "COMMENT":
-        result += "" # TODO insert Snap! comment for comments instead of ignoring them
-    elif type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
-
-        print string
-        print type
+    print string
+    print type
     if type == "NAME" and isParentTag(string) == 1 and currentParent == False and parenCounter <2:  # this defines a parent, so the next thing after the dot is a function
-
         currentParent = string
         print "parent"
         print currentParent
@@ -453,38 +445,9 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
         print currentParent
     elif type == "OP" and string == "." and currentParent:  # you don't matter, the function after you does
         return
-
-    # elif string == ":":
-    #     if currentParent:
-    #         childBuilderName=""
-    #         currentFunction =""
-    #         currentParent = False
-    #     else:
-    #         childBuilderName=""
-    #         currentFunction =""
-    #         currentParent = False
-    #         raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
-    #
-    # elif type == "OP" and string == "(":
-    #     print "("
-    #
-    #     if currentParent:
-    #         childBuilderName=""
-    #         currentFunction =""
-    #         currentParent = False
-    #         parenCounter += 1
-    #     elif parenCounter >1:
-    #         print ""
-    #     else:
-    #         childBuilderName=""
-    #         currentFunction =""
-    #         currentParent = False
-    #         raise TranslatorError("Unrecognized Function", sys.exc_info()[0])
-
     elif type == "OP" and string == "(":
         print "("
         parenCounter += 1
-
     elif type == "OP" and string == ")":
         print ")"
         parenCounter -= 1
@@ -493,12 +456,10 @@ def parseToken(typeNum, string, startRowAndCol, endRowAndCol, lineNum):
             print "Parenlist parsed"
             print f
             result += parenParser(f)
-
         if parenCounter == 0:
             result += "</block>"
 
-
-    elif parenCounter > 1:
+    elif parenCounter > 2:
         parenList.append(string)
     elif type == "NAME" and currentParent != False:  # this is a function
         isfunc = isFunction(currentParent,string)
