@@ -1,46 +1,34 @@
-#
-# simpleArith.py
-#
-# Example of defining an arithmetic expression parser using
-# the operatorGrammar helper method in pyparsing.
-#
-# Copyright 2006, by Paul McGuire
-#
-
-from pyparsing import Word, nums, oneOf, Literal, operatorPrecedence, alphas, opAssoc
+import tokenize
+import StringIO
+import re
+from blocks import * # our own python file with the blocks in it
+from pyparsing import *
 
 integer = Word(nums).setParseAction(lambda t:int(t[0]))
-variable = Word(alphas,exact=1)
-operand = integer | variable
-
+variable = Word(alphas, exact=1)
+func =Group(Word(alphas) + Suppress(Literal(".")) + Group(OneOrMore(Word(alphas)))) #if it is a function inside a nother function
+operand = func | integer | variable #types of values allowed in expressions
 expop = Literal('^')
 signop = oneOf('+ -')
 multop = oneOf('* /')
 plusop = oneOf('+ -')
 factop = Literal('!')
+expression = Suppress(Literal("(")) + operatorPrecedence( operand,
+    [("!", 1, opAssoc.LEFT),
+     ("^", 2, opAssoc.RIGHT),
+     (signop, 1, opAssoc.RIGHT),
+     (multop, 2, opAssoc.LEFT),
+     (plusop, 2, opAssoc.LEFT),]
+    )+ Suppress(Literal(")"))
+reginput = Suppress(Literal("(")) + Group(operand + ZeroOrMore("," + operand)) + Suppress(Literal(")"))
 
-# To use the operatorGrammar helper:
-#   1.  Define the "atom" operand term of the grammar.
-#       For this simple grammar, the smallest operand is either
-#       and integer or a variable.  This will be the first argument
-#       to the operatorGrammar method.
-#   2.  Define a list of tuples for each level of operator
-#       precendence.  Each tuple is of the form
-#       (opExpr, numTerms, rightLeftAssoc, parseAction), where
-#       - opExpr is the pyparsing expression for the operator;
-#          may also be a string, which will be converted to a Literal
-#       - numTerms is the number of terms for this operator (must
-#          be 1 or 2)
-#       - rightLeftAssoc is the indicator whether the operator is
-#          right or left associative, using the pyparsing-defined
-#          constants opAssoc.RIGHT and opAssoc.LEFT.
-#       - parseAction is the parse action to be associated with
-#          expressions matching this operator expression (the
-#          parse action tuple member may be omitted)
-#   3.  Call operatorGrammar passing the operand expression and
-#       the operator precedence list, and save the returned value
-#       as the generated pyparsing expression.  You can then use
-#       this expression to parse input strings, or incorporate it
-#       into a larger, more complex grammar.
-#
+startCode = Word("events") + Suppress(Literal("."))+ Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":"))
 
+functions = Group(Word(alphas) + Suppress(Literal(".")) + Group(OneOrMore(Word(alphas))) +  +  LineEnd())
+
+scriptBlock = startCode + Group(OneOrMore(functions))
+fullCode = OneOrMore(Group(scriptBlock))
+
+print fullCode.parseString("""events.whenflag Clicked: events.hi g(2+3*x.ty re*21) events.hi as(2+3*x.ty re*21)
+events.flag Clicked: events.hi g(2+3*x.ty re*21)
+ """.lower())
