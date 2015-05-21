@@ -1,7 +1,11 @@
 from translator import transformList
 
 
-main = transformList("""events.whenflag Clicked: events.hi g(2+3*x.ty re*21) events.hi as(2+3*x.ty re*21)
-events.flag Clicked: events.hi g(2+3*x.ty re*21)
+main = transformList("""events.flagClicked: events.hi g(2+3*x.ty re*21) events.hisa g(2+3*x.ty re*21)
  """)
-print main.transform()
+lists = main.transform()
+def creatChild(parent, childList)
+#print lists.scriptblock.functions[1].dump()
+for script in lists:
+    print script.startcode
+
