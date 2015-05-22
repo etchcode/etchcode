@@ -2,45 +2,20 @@
 	nunjucks.configure("/static/editor/templates", { autoescape: true });
 	
 	angular.module("render", [])
-	
-	.service("runProjectService", function(){
-		var that = this;
-		
-		that.show = false;
-		
-		that.init = function(player){
-			that.loaded = false;
-			
-			player.addEventListener("load", function(){
-				that.loaded = true;
-			});
-
-			that.run = function(project){
-				that.show = true;
-				
-				if(that.loaded){
-					player.contentWindow.postMessage({"action": "loadString", string: project}, "http://etchcodeusercontent.appspot.com");
-				}
-				else{
-					player.onload = function(){
-						player.contentWindow.postMessage({"action": "loadString", string: project}, "http://etchcodeusercontent.appspot.com"); //intentionally use onload so that asking to load a new project will cancel prev one
-					};
-				}
-			};
-		};
-	})
 			
     .directive("runProject", function(){
         return {
             restrice: "E",
             
             templateUrl: "/static/editor/templates/run.html",
-			controller: ["$scope", "$element", "runProjectService", function($scope, $element, runProjectService){
+			controller: ["$rootScope", "$scope", "$element", function($rootScope, $scope, $element){
 				
 				var player = $element.find("iframe.player")[0];
-				runProjectService.init(player);
-				
-				$scope.service = runProjectService;
+                
+                $scope.$on("runProject", function(event, data){
+                    console.log(data);
+                });
+                
 			}],
 			controllerAs: "runController"
         };

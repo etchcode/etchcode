@@ -5,15 +5,14 @@
 		this.xml = "";
 	})
 	
-	.controller("buildButtonController", ["renderService", "spriteData", "runProjectService", function(render, spriteData, runProjectService){
+	.controller("buildButtonController", ["$rootScope", "renderService", "spriteData", function($rootScope, render, spriteData, runProjectService){
 		this.dropdown = false;
 		
 		this.render = function(){
 			render.project(spriteData.list).then(function(response){
 				console.log(response);
-				a = response;
-				
-				runProjectService.run(response);
+                
+                $rootScope.$broadcast("runProject", {"hello": "world"});
 			});
 		};
 	}]);
