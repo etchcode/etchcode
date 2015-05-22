@@ -5,6 +5,10 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /
+  static_files: static/editor/index.html
+  upload: static\/editor\/index.html
+  
 - url: /editor
   static_files: static/editor/index.html
   upload: static\/editor\/index.html
