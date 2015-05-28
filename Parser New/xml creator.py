@@ -1,11 +1,44 @@
 from translator import transformList
+from blocks import *
 
-
-main = transformList("""events.flagClicked: events.hi g(2+3*x.ty re*21) events.hisa g(2+3*x.ty re*21)
+main = transformList("""events.flagClicked: motion.move(motion.xpos) motion.gotoxy(0,0)
  """)
 lists = main.transform()
-def creatChild(parent, childList)
+result = "<scripts>"
+def combine(listsd):
+    res = ""
+    for x in listsd:
+        res += x
+    return res
+def createChild(parent, child):
+    try:
+        return snapNames[parent][child]
+    except KeyError:
+        print parent
+        print child
+        print "unreconized function " + str(parent) + " " + str(child)
+        return "sam"
+def exprparser(expr):
+    return expr
 #print lists.scriptblock.functions[1].dump()
 for script in lists:
-    print script.startcode
+    result += """<script x="116" y="14"> <block s="receiveGo"/>"""
+    script.pop(0)
+    for function in script[0]:
+        result+= '''<block s="''' + createChild(function[0], combine(function[1]))+ '''">'''
 
+        if function.reginput:
+
+            for input in function[2]:
+                if input.expression:
+                    result += str(exprparser(input[0]))
+                if input.varible:
+                    result += '''<block var="'''+ input[0]+ '''"/>'''
+                if input.func:
+                    result += '''<block s="''' + createChild(input[0][0], combine(input[0][1]))+ '''"></block>'''
+                else:
+                    result += "<l>"+str(input[0]) +"</l>"
+        result += "</block>"
+    result += "</script>"
+result += "</scripts>"
+print result
