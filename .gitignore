@@ -44,4 +44,4 @@ Temporary Items
 
 *.pyc
 
-parser/blocks.pyc
+werkzeug/wsgi.pyc

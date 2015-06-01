@@ -23,6 +23,7 @@
       <root url="file:///usr/local/google_appengine/lib/mox" />
       <root url="file:///usr/local/google_appengine/lib/oauth2" />
       <root url="file:///usr/local/google_appengine/lib/oauth2client" />
+      <root url="file:///usr/local/google_appengine/lib/portpicker" />
       <root url="file:///usr/local/google_appengine/lib/prettytable" />
       <root url="file:///usr/local/google_appengine/lib/protorpc-1.0" />
       <root url="file:///usr/local/google_appengine/lib/PyAMF-0.6.1" />
