@@ -1,48 +1,52 @@
+var runProjectScope;
+
 (function(){
+	"use strict";
+	
 	nunjucks.configure("/static/editor/templates", { autoescape: true });
 	
 	angular.module("render", [])
-	
-	.service("runProjectService", function(){
-		var that = this;
-		
-		that.show = false;
-		
-		that.init = function(player){
-			that.loaded = false;
-			
-			player.addEventListener("load", function(){
-				that.loaded = true;
-			});
-
-			that.run = function(project){
-				that.show = true;
-				
-				if(that.loaded){
-					player.contentWindow.postMessage({"action": "loadString", string: project}, "http://etchcodeusercontent.appspot.com");
-				}
-				else{
-					player.onload = function(){
-						player.contentWindow.postMessage({"action": "loadString", string: project}, "http://etchcodeusercontent.appspot.com"); //intentionally use onload so that asking to load a new project will cancel prev one
-					};
-				}
-			};
-		};
-	})
 			
     .directive("runProject", function(){
         return {
             restrice: "E",
             
             templateUrl: "/static/editor/templates/run.html",
-			controller: ["$scope", "$element", "runProjectService", function($scope, $element, runProjectService){
+			controller: function($scope, $element){
+				runProjectScope = $scope;
+				
+				$scope.loaded = false;
+				$scope.show = false;
 				
 				var player = $element.find("iframe.player")[0];
-				runProjectService.init(player);
 				
-				$scope.service = runProjectService;
-			}],
-			controllerAs: "runController"
+				player.addEventListener("load", function(){
+					//listen for when the player is loaded and update whether or not it is updated
+					$scope.$apply(function(){
+						$scope.loaded = true;
+					});
+				});
+				
+				$scope.run = function(xml){
+					function run(toRun){
+						$scope.show = true;
+						player.contentWindow.postMessage({"action": "loadString", "string": toRun}, "http://etchcodeusercontent.appspot.com/player");
+					}
+					
+					if($scope.loaded){
+						run(xml);
+					}
+					else{
+						player.onload = function(){ //with .onload we will only have one run waiting
+							$scope.$apply(function(){
+								run(xml)
+							});
+						};
+					}
+				};
+				
+			},
+			controllerAs: "runProject"
         };
     })
     

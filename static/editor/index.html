@@ -10,34 +10,33 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/static/general.css">
+    <link rel="stylesheet" href="/static/general.css">
 
-    <link rel="stylesheet" type="text/css" href="/static/editor/styles/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/editor/styles/darkTheme.css">
+    <link rel="stylesheet" href="/static/editor/styles/base.css">
+    <link rel="stylesheet" href="/static/editor/styles/darkTheme.css">
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
     </script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
 	
-	<script type="text/javascript" src="/static/libs/nunjucks.min.js"></script>
+	<script src="/static/libs/nunjucks.min.js"></script>
 
-    <script type="text/javascript" src="/static/editor/defaults.js"></script>
-    <script type="text/javascript" src="/static/editor/main.js"></script>
-    <script type="text/javascript" src="/static/editor/sprites.js"></script>
-    <script type="text/javascript" src="/static/editor/editor.js"></script>
-    <script type="text/javascript" src="/static/editor/editableImage.js"></script>
-	<script type="text/javascript" src="/static/editor/render.js"></script>
-    <script type="text/javascript" src="/static/editor/buildButton.js"></script>
+    <script src="/static/editor/defaults.js"></script>
+    <script src="/static/editor/main.js"></script>
+    <script src="/static/editor/sprites.js"></script>
+    <script src="/static/editor/editor.js"></script>
+    <script src="/static/editor/editableImage.js"></script>
+	<script src="/static/editor/render.js"></script>
+    <script src="/static/editor/buildButton.js"></script>
 
-    <script type="text/javascript" src="/static/name/random.js"></script>
+    <script src="/static/name/random.js"></script>
 </head>
 
 <body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
 
-    <toaster-container></toaster-container>
-    <!-- This is where the notifications go -->
+    <toaster-container><!-- This is where the notifications go --></toaster-container>
 
     <run-project></run-project>
     

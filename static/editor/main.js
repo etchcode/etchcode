@@ -1,6 +1,6 @@
 (function(){
 	"use strict";
 	
-	angular.module("webapp", ["sprites", "editor", "editableImage", "buildButton"]);
+	angular.module("webapp", ["sprites", "editor", "editableImage", "buildButton", "render"]);
 	
 }());
