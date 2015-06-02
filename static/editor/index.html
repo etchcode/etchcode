@@ -32,6 +32,8 @@
     <script src="/static/editor/buildButton.js"></script>
 
     <script src="/static/name/random.js"></script>
+	
+	<script src="/static/tracking.js"></script>
 </head>
 
 <body ng-controller="spritesController as sprites" class="container-fluid" unselectable>
@@ -139,11 +141,15 @@
 
         <div class="build" ng-controller="buildButtonController as buildButton">
             <input type="button" value="Run" ng-click="buildButton.render()">
-            <input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
+			
+			<!-- TODO: Implement save functionality in dropdown
+				<input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
 
-            <ul class="dropdown" ng-show="buildButton.dropdown">
-                <input type="button" value="Save">
-            </ul>
+				<ul class="dropdown" ng-show="buildButton.dropdown">
+					<input type="button" value="Save">
+				</ul>
+			-->
+			
         </div>
     </div>
 
