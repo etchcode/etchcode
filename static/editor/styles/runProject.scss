@@ -1,27 +1,31 @@
 .runProject{
-	position: fixed;
-	z-index: 9999;
-    top: 0;
-    left: 0;
-    
-    width: 100%;
-    height: 100%;
-	
 	background-color: black;
 	color: white;
-}
-.runProject.show{
-	display: block;
-}
-
-.runProject .inner{
-    position: relative;
-    
-    width: 100%;
-    height: 100%;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
 }
 
-.runProject iframe{    
-    width: 100%;
-    height: 100%;
-}
+	.runProject .inner{
+		height: 100%;
+		position: relative;
+		width: 100%;
+	
+		.header{
+			position: fixed;
+			right: 5px;
+			top: 5px;
+			
+			.minimize{
+				width: 30px;
+			}
+		}
+		
+		iframe{ 
+			height: 100%;
+			width: 100%;
+		}
+	}
