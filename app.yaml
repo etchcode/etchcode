@@ -13,9 +13,8 @@ handlers:
   static_files: static/editor/index.html
   upload: static\/editor\/index.html
 
-- url: /static/(.*)
-  static_files: static/\1
-  upload: static\/\1
+- url: /static
+  static_dir: static/
 
 - url: /api/.+
   script: api.app
