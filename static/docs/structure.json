@@ -1,0 +1,169 @@
+{
+	"abriviations": { 
+		"m": "motion",
+		"s": "sound",
+		"d": "data",
+		"l": "looks",
+		"p": "pen",
+		"e": "events",
+		"c": "controll",
+		"o": "operators"
+	},
+	
+	"snapNames": {
+
+		"motion": {
+			"unsupported": ["setRotationStyle"],
+			"items": [
+				"move",
+				"turn",
+				"turn left",
+				"point direction",
+				"point towards",
+				"go to x y",
+				"go to object",
+				"glide",
+				"change x",
+				"set x",
+				"change y",
+				"set y",
+				"if edge bounce",
+				"x pos",
+				"y pos",
+				"direction"
+			]
+		},
+
+		"looks": {
+			"unsupported": ["backdropName", "switchBackdropTo"],
+			"items": [
+				"timed say",
+				"say",
+				"timed think",
+				"think",
+				"show",
+				"hide",
+				"switch costume to",
+				"next costume",
+				"change effect",
+				"set effect",
+				"clear graphic effects",
+				"change size by",
+				"set size to",
+				"go to front",
+				"go back layers",
+				"costume number",
+				"size"
+			]
+		},
+
+		"sound": {
+			"unsupported": ["playDrum", "changeVolumeBy", "setVolumeTo", "volume", "setInstrumentTo"],
+			"items": [
+				"play sound",
+				"play sound until done",
+				"stop all sounds",
+				"rest for",
+				"play note",
+				"change tempo by",
+				"set tempo to",
+				"tempo"
+			]
+		},
+
+		"pen": {
+			"items": [
+				"clear",
+				"stamp",
+				"pen down",
+				"pen up",
+				"set pen color to",
+				"change pen color by",
+				"set pen color to number",
+				"change pen shade by",
+				"change pen size by",
+				"set pen size to"
+			]
+		},
+
+		"data": {
+			"items": [
+				"set",
+				"change by",
+				"show variable",
+				"hide variable"
+			]
+		},
+
+		"events": {
+			"unsupported": ["backdropswichesto", "greaterthan"],
+			"items": [
+				"flag clicked",
+				"key pressed",
+				"this spriteclicked",
+				"i receive message",
+				"broadcast",
+				"broadcast and wait"
+			]
+		},
+
+		"control": {
+			"unsupported": ["ifThenElse"],
+			"items": [
+				"wait seconds",
+				"repeat",
+				"forever",
+				"if",
+				"wait until",
+				"repeat until",
+				"stop this",
+				"stop others",
+				"when i start as a clone",
+				"create clone of",
+				"delete this clone",
+				"when flag clicked"
+			]
+		},
+
+		"sensing": {
+			"unsupported": ["loudness", "turnvideo", "setvideotransparencyto", "xpositionof", "dayssince2000", "username", "videon"],
+			"items": [
+				"touching item",
+				"touching color",
+				"colors touching",
+				"distance to",
+				"ask and wait",
+				"answer",
+				"is key pressed",
+				"is mouse down",
+				"mouse x",
+				"mouse y",
+				"timer",
+				"reset timer",
+				"current"
+			]
+		},
+
+		"operators": {
+			"items": [
+				"+",
+				"-",
+				"*",
+				"/",
+				"pick random between",
+				"less than",
+				"equal",
+				"greater than",
+				"and",
+				"or",
+				"not",
+				"join",
+				"letter number",
+				"length of",
+				"%",
+				"round",
+				"operation of number"
+			]
+		}
+	}
+}
