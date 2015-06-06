@@ -45,3 +45,7 @@ Temporary Items
 *.pyc
 
 werkzeug/wsgi.pyc
+
+*.iml
+.idea/
+.brackets.json
