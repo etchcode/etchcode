@@ -49,3 +49,6 @@ werkzeug/wsgi.pyc
 *.iml
 .idea/
 .brackets.json
+.idea/workspace.xml
+
+.idea/etchcode.iml
