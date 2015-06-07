@@ -1,7 +1,7 @@
 from translator import transformList
 from blocks import *
 
-main = transformList("""events.flagClicked: motion.move(motion.xpos) motion.gotoxy(0,0)
+main = transformList("""events.flagClicked: motion.move(motion.xpos) motion.gotoxy(0,0) data.set(foo to 21)
  """)
 lists = main.transform()
 result = "<scripts>"
@@ -32,9 +32,9 @@ for script in lists:
             for input in function[2]:
                 if input.expression:
                     result += str(exprparser(input[0]))
-                if input.varible:
+                elif input.varible:
                     result += '''<block var="'''+ input[0]+ '''"/>'''
-                if input.func:
+                elif input.func:
                     result += '''<block s="''' + createChild(input[0][0], combine(input[0][1]))+ '''"></block>'''
                 else:
                     result += "<l>"+str(input[0]) +"</l>"

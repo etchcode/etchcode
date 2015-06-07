@@ -23,7 +23,7 @@ class transformList:
              (plusop, 2, opAssoc.LEFT),]
             )
         operand = Group(func("func") | integer("integer") | variable("varible") | expression("expression"))
-        regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore(Suppress(Literal(",")) + operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
+        regInput = Suppress(Literal("(")) + Group(operand +ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
         startCode = Group(Word("events") + period+ Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
 
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
