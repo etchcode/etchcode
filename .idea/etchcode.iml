@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="google-appengine-python" name="Google App Engine (Python)">
       <configuration>
-        <option name="rootFolder" value="$USER_HOME$/Desktop/etchcode" />
+        <option name="rootFolder" value="$USER_HOME$/Desktop/etch/etchcode" />
         <option name="sdkFolder" value="/usr/local/google_appengine" />
         <option name="templatesFolder" value="" />
         <option name="oauth2" value="false" />
