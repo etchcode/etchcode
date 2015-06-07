@@ -28,8 +28,8 @@ def parse():
     Return: Parsed scripts
     """
     try:
-        from parser import translator
-        
+        from etchParser import translator
+
         scripts = json.loads(json.loads(request.data.decode())["scripts"]) #don't use request.form because ng transmits data as json
 
         parsed = {}
