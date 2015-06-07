@@ -11,7 +11,7 @@ class transformList:
         variable = Word(alphas)
         period = Suppress(Literal("."))
         func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))) #if it is a function inside a nother function
-        operand = func("func")  #types of values allowed in expressions
+        operand = Forward()  #types of values allowed in expressions
         negpos = oneOf('+ -')
         multop = oneOf('* /')
         plusop = oneOf('+ -')
@@ -22,13 +22,14 @@ class transformList:
              (multop, 2, opAssoc.LEFT),
              (plusop, 2, opAssoc.LEFT),]
             )
-        operand = Group(func("func") | integer("integer") | variable("varible") | expression("expression"))
+        allfunctions = Forward()
+        operand = Group(func("func") | integer("integer") | variable("variable") | expression("expression"))
         regInput = Suppress(Literal("(")) + Group(operand +ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
-        startCode = Group(Word("events") + period+ Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
-
+        startCode = Group(oneOf("events e")+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
-        # ifstatement = Word("if") + expression("expinput") | regInput("reginput") + oneOf("<= < >= > =")("relation") + expression("expinput") | regInput("reginput") + Suppress(Literal(":"))
-        scriptBlock = Group(startCode("startcode") + Group(OneOrMore(functions))("functions"))
+        ifstatement = Suppress(Literal("if")) + operand("op1") + oneOf("<= < >= > =")("relation") +  operand("op2") + Suppress(Literal(":")) + Suppress(LineEnd()) #regInput("reginput")
+        ifgroup = Group(ifstatement + indentedBlock(allfunctions, [1])("functions"))
+        allfunctions = OneOrMore(ifgroup | functions("function"))
+        scriptBlock = Group(startCode("startcode") + indentedBlock(allfunctions, [1])("functions"))
         fullCode = OneOrMore(scriptBlock("scriptblock"))
         return fullCode.parseString(self.string.lower())
-
