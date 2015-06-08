@@ -38,7 +38,7 @@ h3{
 [selectable] {
 	-webkit-user-select: all;
 	-khtml-user-select: all;
-	-moz-user-select: -moz-all;
+	-moz-user-select: text;
 	-o-user-select: all;
 	user-select: all;
 }
