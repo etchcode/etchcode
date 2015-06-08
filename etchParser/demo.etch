@@ -1,6 +1,6 @@
 translate("""events           f l a g Cl  ic k ed :
     Data.Set("foo", 1)
-    Motion.tu rnRi ght ((5/2+(m.x pos+(1))))
+    Motion.tu rnRi ght (2)
     M. g lide(5, 50, 50)
     Motion.goT oX Y(foo,0)
     """)
@@ -16,3 +16,10 @@ translate("""
     Motion.tu rnRi ght ((5/2+(m.x pos+(1))))
 
     """)
+
+    [['events', ['flag', 'clicked'],
+        [
+        ['events', ['hi', 'g'], [2, '+', [3, '*', ['x', ['ty', 're']], '*', 21]]],
+        ['events', ['hi', 'as'], [2, '+', [3, '*', ['x', ['ty', 're']], '*', 21]]]
+        ]],
+        ['events', ['flag', 'clicked'], [['events', ['hi', 'g'], [2, '+', [3, '*', ['x', ['ty', 're']], '*', 21]]]]]]

@@ -29,7 +29,7 @@ class transformList:
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
         ifstatement = Suppress(Literal("if")) + operand("op1") + oneOf("<= < >= > =")("relation") +  operand("op2") + Suppress(Literal(":")) + Suppress(LineEnd()) #regInput("reginput")
         ifgroup = Group(ifstatement + indentedBlock(allfunctions, [1])("functions"))
-        allfunctions = OneOrMore(ifgroup | functions("function"))
+        allfunctions = OneOrMore(functions("function"))
         scriptBlock = Group(startCode("startcode") + indentedBlock(allfunctions, [1])("functions"))
         fullCode = OneOrMore(scriptBlock("scriptblock"))
         return fullCode.parseString(self.string.lower())
