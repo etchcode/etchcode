@@ -1,17 +1,18 @@
 /* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .editor {
   position: relative; }
-  /* line 4, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
-  .editor .textarea {
-    opacity: .3; }
 
-/* line 9, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 5, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .syntaxHighlightContainer {
   margin-top: 1px;
   padding: 15px;
+  pointer-events: none;
   position: absolute;
-  top: 0;
-  z-index: -10; }
+  top: 0; }
+
+/* line 13, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.syntaxHighlightContainer, .editor .textarea {
+  overflow: hidden; }
 
 /* line 17, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .motion {

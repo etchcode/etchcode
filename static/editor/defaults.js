@@ -40,10 +40,10 @@ var Default = {
 			   "-": "reportDifference",
 			   "not": "reportNot",
 			   "or": "reportOr",
-			   "greaterthan": "reportGreaterThan",
-			   "and": "reportAnd",
-			   "equal": "reportEquals",
-			   "lessthan": "reportLessThan"
+			   ">": "reportGreaterThan",
+			   "&": "reportAnd",
+			   "=": "reportEquals",
+			   "<": "reportLessThan"
 			},
 			 "data": {
 			  "changeby": "doChangeVar",
@@ -80,7 +80,7 @@ var Default = {
 			   "whenistartasaclone": "receiveOnClone",
 			   "if": "doIf",
 			   "waituntil": "doWaitUntil",
-			   "waitseconds": "doWait",
+			   "wait": "doWait",
 			   "repeatuntil": "doUntil",
 			   "deletethisclone": "removeClone",
 			   "stopOthers": "doStopOthers",

@@ -21,6 +21,13 @@ textarea {
   background: transparent; }
 
 /* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+.scrollBar {
+  background-color: #454854; }
+  /* line 29, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+  .scrollBar .thumb {
+    background-color: #abaeba; }
+
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .whiteCursor {
   /* The below copyright notice only applies to the data-url below (data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=). The "Software" refers only to the data-url data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII= .
 	
@@ -34,30 +41,30 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	*/
   cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=), auto; }
 
-/* line 41, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+/* line 49, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .parent.header {
   background-color: #abaeba; }
-  /* line 44, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+  /* line 52, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
   .parent.header .left h1 {
     background-color: transparent; }
-    /* line 47, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+    /* line 55, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
     .parent.header .left h1 input {
       background-color: rgba(0, 0, 0, 0.1);
       outline: 0px none; }
 
-/* line 54, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+/* line 62, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #sidebar {
   background-color: #85868a; }
 
-/* line 58, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+/* line 66, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #sprites .background {
   border-top: 2px solid #abaeba; }
 
-/* line 63, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+/* line 71, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 #settings input {
   color: #dbdce1; }
 
-/* line 67, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
+/* line 75, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .editableImage .overlay {
   background-color: rgba(171, 174, 186, 0.8); }
 

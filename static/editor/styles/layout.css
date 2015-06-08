@@ -108,8 +108,8 @@ sprite img {
   height: 100%; }
 
 /* line 134, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/layout.scss */
-.textarea {
-  width: 100%;
+.textarea, .syntaxHighlightContainer {
+  width: calc(100% - 20px);
   height: 100%;
   padding: 15px;
   border: 0; }

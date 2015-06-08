@@ -1,0 +1,21 @@
+/* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/scrollBar.scss */
+.scrollBar {
+  cursor: pointer;
+  float: right;
+  height: 100%;
+  opacity: .2;
+  padding: 15px 0 15px 0;
+  width: 20px; }
+  /* line 9, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/scrollBar.scss */
+  .scrollBar:hover {
+    opacity: 1; }
+  /* line 13, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/scrollBar.scss */
+  .scrollBar .thumb {
+    border-radius: 5px;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    width: 8px; }
+
+/*# sourceMappingURL=scrollBar.css.map */

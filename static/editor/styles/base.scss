@@ -175,7 +175,12 @@ pre {
 	font-family: anonymousPro;
 }
 
-@import "layout.scss";
-@import "validate.scss";
-@import "runProject.scss";
-@import "syntaxHighlighter.scss";
+img{
+	pointer-events: none; // disable dragging of images
+}
+
+@import "layout.css";
+@import "validate.css";
+@import "runProject.css";
+@import "syntaxHighlighter.css";
+@import "scrollBar.css";

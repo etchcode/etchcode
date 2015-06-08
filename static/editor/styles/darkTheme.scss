@@ -23,6 +23,14 @@ textarea{
 	background: transparent;
 }
 
+.scrollBar{
+	background-color: $color-1;
+	
+	.thumb{
+		background-color: $color-2;
+	}
+}
+
 .whiteCursor {
 	/* The below copyright notice only applies to the data-url below (data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=). The "Software" refers only to the data-url data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII= .
 	

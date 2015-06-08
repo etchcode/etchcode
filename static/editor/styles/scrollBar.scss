@@ -1,0 +1,21 @@
+.scrollBar{
+	cursor: pointer;
+	float: right;
+	height: 100%;
+	opacity: .2;
+	padding: 15px 0 15px 0;
+	width: 20px;
+
+	&:hover{
+		opacity: 1;
+	}
+	
+	.thumb{
+		border-radius: 5px;
+		height: 30%;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 0; // and it should be at the top of the page
+		width: 8px; // we don't want the scrollbar to show up unless it is needed
+	}
+}

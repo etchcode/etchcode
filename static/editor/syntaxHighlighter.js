@@ -10,7 +10,12 @@
 		var blocks = Default.blocks;
 		
 		this.tokenizer = function(string) {
-			return string.split(/(\.|\,|\:|\(|\)|\n|\t)/);
+			if(string) {
+				return string.split(/(\.|\,|\:|\(|\)|\n|\t)/);
+			}
+			else{
+				return [];
+			}
 		};
 		
 		this.categorizeToken = function(token) {
@@ -35,10 +40,10 @@
 			if(tokenType){ 
 				return tokenType;
 			}
-			else if(token.match(/^(\"(.*)\"|\'(.*)\')$/)) {
+			else if(cleanedToken.match(/^(\"(.*)\"|\'(.*)\')$/)) {
 				return "string";
 			}
-			else if(token.match(/^[0-9]*$/)) {
+			else if(cleanedToken.match(/^[0-9]*$/)) {
 				return "number";
 			}
 			else {

@@ -33,12 +33,25 @@
 		return {
 			restrict: "E",
 			templateUrl: "/static/editor/templates/editor.html",
-			controller: ["$scope", "$sce", "syntaxHighlighterService", function($scope, $sce, syntaxHighlighter) { // this controller is for individual editor elements
+			controller: ["$scope", "$element", "syntaxHighlighterService", function($scope, $element, syntaxHighlighter) { // this controller is for individual editor elements
 				$scope.$watch("sprite.script", function(value){
 					$scope.syntaxHighlightedText = syntaxHighlighter.highlight(value);
 				});
 				
-				$scope.sh = syntaxHighlighter;
+				// scrollbar section
+				$scope.scroll = function(percent) {
+					var elem = $element.find(".textarea")[0];
+					var currentPos = elem.scrollTop;
+					
+					elem.scrollTop = Math.pow(10, 14); // if we go beyond the max height, scrollTop is set to the max height
+					var maxPos = elem.scrollTop;
+					
+					elem.scrollTop = currentPos; //reset the height changes we made to get the maxPos
+					
+					var amountToScrollBy = percent / 100 * maxPos;
+					elem.scrollTop = amountToScrollBy;
+					return amountToScrollBy;
+				};
 				
 			}],
 			controllerAs: "editor"
