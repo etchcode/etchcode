@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /* line 6, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 body {
-  background-color: #5c6070; }
+  background-color: #454854; }
 
 /* line 10, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
 .enabled[type=button], .enabled li, li.enabled {
-  background-color: #5c6070 !important;
+  background-color: #454854 !important;
   color: #dbdce1; }
 
 /* line 15, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */

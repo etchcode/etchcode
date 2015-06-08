@@ -1,6 +1,7 @@
+/* globals angular */
 (function(){
 	"use strict";
 	
-	angular.module("webapp", ["sprites", "editor", "editableImage", "buildButton", "render"]);
+	angular.module("webapp", ["ngSanitize", "sprites", "editor", "syntaxHighlighter", "editableImage", "buildButton", "render"])
 	
 }());

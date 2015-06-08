@@ -13,13 +13,13 @@ def blocks():
     """
 
     #TODO: This should return docs on the blocks
-    import parser.blocks
+    from etchParser import blocks
 
     return Response(json.dumps({
-        "closeSelf": parser.blocks.closeSelf,
-        "snapNames": parser.blocks.snapNames,
-        "startChunkBlocks": parser.blocks.startChunkBlocks,
-        "abbreviations": parser.blocks.abriviations
+        "closeSelf": blocks.closeSelf,
+        "snapNames": blocks.snapNames,
+        "startChunkBlocks": blocks.startChunkBlocks,
+        "abbreviations": blocks.abriviations
     }), content_type="application/json")
 
 @app.route("/api/parse.json", methods=["POST"])

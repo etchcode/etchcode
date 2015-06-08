@@ -35,7 +35,7 @@ img.icon{
 	float: none;
 }
 // editor
-.textarea{
+.textarea, .syntaxHighlightContainer span{
 	outline: none;
 	
 	line-height: 20px;
@@ -178,4 +178,4 @@ pre {
 @import "layout.scss";
 @import "validate.scss";
 @import "runProject.scss";
-
+@import "syntaxHighlighter.scss";

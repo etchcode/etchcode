@@ -1,3 +1,4 @@
+/* globals angular */
 (function(){	
 	"use strict";
 	
@@ -22,6 +23,7 @@
 	.service("editorsService", function(){
 		this.view = "code"; // code || settings, what view the user is in
 	})
+	
 	.controller("editorsController", ["editorsService", function(editorsService){ // a controller of the editors view
 		this.service = editorsService;
 
@@ -31,9 +33,14 @@
 		return {
 			restrict: "E",
 			templateUrl: "/static/editor/templates/editor.html",
-			controller: function(){	// this controller is for individual editor elements
+			controller: ["$scope", "$sce", "syntaxHighlighterService", function($scope, $sce, syntaxHighlighter) { // this controller is for individual editor elements
+				$scope.$watch("sprite.script", function(value){
+					$scope.syntaxHighlightedText = syntaxHighlighter.highlight(value);
+				});
 				
-			},
+				$scope.sh = syntaxHighlighter;
+				
+			}],
 			controllerAs: "editor"
 		};
 	});

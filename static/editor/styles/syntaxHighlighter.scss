@@ -1,0 +1,43 @@
+.editor{
+	position: relative; // keep it's position: absolute children from overflowing too far
+	
+	.textarea{
+		opacity: .3;
+	}
+}
+
+.syntaxHighlightContainer{
+	margin-top: 1px;
+	padding: 15px;
+	position: absolute;
+	top: 0;
+	z-index: -10;
+}
+
+.motion{
+	color: hsl(225, 62%, 66%);
+}
+.looks{
+	color: hsl(264, 62%, 59%);
+}
+.sound{
+	color: hsl(296, 52%, 51%);
+}
+.pen{
+	color: hsl(160, 83%, 33%);
+}
+.data{
+	color: hsl(29, 86%, 51%);
+}
+.events{
+	color: hsl(33, 61%, 49%);
+}
+.control{
+	color: hsl(43, 79%, 49%);
+}
+.sensing{
+	color: hsl(200, 76%, 53%);
+}
+.operators, .string, .number{
+	color: hsl(93, 82%, 39%);
+}
