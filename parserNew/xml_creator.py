@@ -30,7 +30,8 @@ class xmlcreator:
         for script in lists:
             result += """<script x="116" y="14"> <block s="receiveGo"/>"""
             script.pop(0)
-            for function in script[0][0]:
+            for function in script:
+
                 result+= '''<block s="''' + createChild(function[0], combine(function[1]))+ '''">'''
 
                 if function.reginput:

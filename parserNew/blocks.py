@@ -102,7 +102,7 @@ snapNames = {
 
     "control": {
         # ifThenElse is unsupported due to difficulty in implementation
-        "waitseconds": "doWait",
+        "wait": "doWait",
         "repeat": "doRepeat",
         "forever": "doForever",
         "if": "doIf",
@@ -138,9 +138,9 @@ snapNames = {
         "*": "reportProduct",
         "/": "reportQuotient",
         "pickrandombetween": "reportRandom",
-        "lessthan": "reportLessThan",
-        "equal": "reportEquals",
-        "greaterthan": "reportGreaterThan",
+        "<": "reportLessThan",
+        "=": "reportEquals",
+        ">": "reportGreaterThan",
         "and": "reportAnd",
         "or": "reportOr",
         "not": "reportNot",
