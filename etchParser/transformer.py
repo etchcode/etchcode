@@ -25,7 +25,7 @@ class transformList:
         allfunctions = Forward()
         operand = Group(func("func") | integer("integer") | variable("variable") | expression("expression")) | string("string")
         regInput = Suppress(Literal("(")) + Group(operand +ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
-        startCode = Group(oneOf("events e")+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
+        startCode = Group(oneOf("e")+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
         ifstatement = Suppress(Literal("if")) + operand("op1") + oneOf("<= < >= > =")("relation") +  operand("op2") + Suppress(Literal(":")) + Suppress(LineEnd()) #regInput("reginput")
         ifgroup = Group(ifstatement + indentedBlock(allfunctions, [1])("functions"))

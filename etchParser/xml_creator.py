@@ -5,7 +5,7 @@ class xmlcreator:
     def translates(self, string):
         main = transformList(string)
         lists = main.transform()
-        print lists.dump()
+        print lists
         result = "<scripts>"
         def combine(listsd):
             res = ""

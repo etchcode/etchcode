@@ -69,6 +69,7 @@ var Default = {
 			 "events": {
 			  "keypressed": "receiveKey",
 			   "flagclicked": "receiveGo",
+                "whenflagclicked": "receiveGo",
 			   "ireceivemessage": "receiveMessage",
 			   "thisspriteclicked": "receiveInteraction",
 			   "broadcast": "doBroadcast",
