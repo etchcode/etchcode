@@ -1,7 +1,7 @@
 (function () {
 	"use strict";
 	
-	/*globals angular */
+	/*globals angular, Random, Default */
 	angular.module("sprites", ["toaster"])
 	
 	.directive("sprite", function(){
@@ -32,7 +32,7 @@
 					
 				],
 				
-				script: "E.flagClicked:\n\tL.think(\"Etch is cool\")"
+				script: this.default.script
 			},
 			{
 				id: Random.phrase(),

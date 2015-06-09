@@ -1,5 +1,6 @@
 var Default = {
 	sprite: {
+		script: 'E.flagClicked:\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")\n\tL.think("Etch is cool")',
 		costumes: [
 			{
 				name: "chicken",

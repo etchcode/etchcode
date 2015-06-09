@@ -39,17 +39,29 @@
 				});
 				
 				// scrollbar section
+				function getMaxScrollPos(elem){
+					var currentPos = elem.scrollTop;
+					elem.scrollTop = Math.pow(10, 14); // if > the max height, scrollTop is max possible
+					var maxPos = elem.scrollTop;
+					elem.scrollTop = currentPos; // go back to where we were before
+					
+					return maxPos;
+				}
+				
+				function scrollSyntaxHighlight(){
+					var textareaElem = $element.find(".textarea")[0];
+					var syntaxHighlightElem = $element.find(".syntaxHighlightContainer")[0];
+					
+					syntaxHighlightElem.scrollTop = textareaElem.scrollTop;
+				}
+				
 				$scope.scroll = function(percent) {
 					var elem = $element.find(".textarea")[0];
-					var currentPos = elem.scrollTop;
 					
-					elem.scrollTop = Math.pow(10, 14); // if we go beyond the max height, scrollTop is set to the max height
-					var maxPos = elem.scrollTop;
-					
-					elem.scrollTop = currentPos; //reset the height changes we made to get the maxPos
-					
-					var amountToScrollBy = percent / 100 * maxPos;
+					var amountToScrollBy = percent / 100 * getMaxScrollPos(elem);
 					elem.scrollTop = amountToScrollBy;
+					scrollSyntaxHighlight();
+					
 					return amountToScrollBy;
 				};
 				
