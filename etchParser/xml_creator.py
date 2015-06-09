@@ -28,7 +28,19 @@ class xmlcreator:
             return expr
         #print lists.scriptblock.functions[1].dump()
         for script in lists:
-            result += """<script x="116" y="14"> <block s="receiveGo"/>"""
+            result += """<script x="116" y="14">"""
+
+            try:
+                print "startcode"
+                print script[0]
+                script[0][2]
+                result+= '''<block s="''' + createChild(script[0][0].lower(), combine(script[0][1]).lower())+ '''">'''
+                result += "<l><option>"+script[3].lower()+"</option></l></block>"
+            except IndexError:
+                startcode =createChild(script[0][0].lower(), combine(script[0][1]).lower())
+                if startcode != "receiveGo":
+                    print "This should raise a startcode error"
+                result+= '''<block s="''' + startcode+ '''"/>'''
             script.pop(0)
             for function in script:
 
