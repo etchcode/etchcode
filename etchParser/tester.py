@@ -1,6 +1,7 @@
 __author__ = 'samschickler'
 from xml_creator import xmlcreator
-string = """E.flagClicked:
+string = """
+e.flagclicked:
 	L.think("Etch is cool")
 """
 main = xmlcreator()

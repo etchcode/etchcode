@@ -23,13 +23,14 @@ class transformList:
              (plusop, 2, opAssoc.LEFT),]
             )
         allfunctions = Forward()
+        comments = Suppress(Optional(Literal("#") + restOfLine))
         operand = Group(func("func") | integer("integer") | variable("variable") | expression("expression")) | Group(string)
         regInput = Suppress(Literal("(")) + Group(operand +ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
-        startCode = Group(oneOf("e")+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
+        startCode = Group(oneOf("e events", caseless=False)+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))#startCode = Group(CaselessKeyword("E") ^ CaselessKeyword("events") + period + Suppress(Optional(CaselessLiteral("when")))+Group(CaselessLiteral("flag") + CaselessLiteral("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
         ifstatement = Suppress(Literal("if")) + operand("op1") + oneOf("<= < >= > =")("relation") +  operand("op2") + Suppress(Literal(":")) + Suppress(LineEnd()) #regInput("reginput")
         ifgroup = Group(ifstatement + indentedBlock(allfunctions, [1])("functions"))
-        allfunctions = OneOrMore(ifgroup | functions("function"))
-        scriptBlock = Group(startCode("startcode") + OneOrMore(allfunctions)("functions"))
+        allfunctions = OneOrMore(functions("function")+ comments)
+        scriptBlock = Group(startCode("startcode") + comments+ OneOrMore(allfunctions)("functions"))
         fullCode = OneOrMore(scriptBlock("scriptblock"))
-        return fullCode.parseString(self.string.lower())
+        return fullCode.parseString(self.string)

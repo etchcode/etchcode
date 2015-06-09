@@ -32,7 +32,7 @@ class xmlcreator:
             script.pop(0)
             for function in script:
 
-                result+= '''<block s="''' + createChild(function[0], combine(function[1]))+ '''">'''
+                result+= '''<block s="''' + createChild(function[0].lower(), combine(function[1]).lower())+ '''">'''
 
                 if function.reginput:
 
@@ -45,9 +45,9 @@ class xmlcreator:
                             print combine(input[0])
                             result += "<l>"+str(combine(input[0])) +"</l>"
                         elif input.variable:
-                            result += '''<block var="'''+ input[0]+ '''"/>'''
+                            result += '''<block var="'''+ input[0].lower()+ '''"/>'''
                         elif input.func:
-                            result += '''<block s="''' + createChild(input[0][0], combine(input[0][1]))+ '''"></block>'''
+                            result += '''<block s="''' + createChild(input[0][0].lower(), combine(input[0][1]).lower())+ '''"></block>'''
                         else:
                             result += "<l>"+str(input[0]) +"</l>"
                 result += "</block>"
