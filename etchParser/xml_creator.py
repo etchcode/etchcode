@@ -43,36 +43,30 @@ class xmlcreator:
                     print child
                     print "unreconized function " + str(parent) + " " + str(child)
                     return "sam"
-        def exprBlockMaker(lists, expression):
+        def exprBlockMaker(lists):
+            expression = lists[1]
             result = '''<block s="''' + createChild("operators", expression)+ '''">'''
             if len(lists[0]) == 1:
                 result += inputdecider(lists[0])
             else: #if there is another nested expression
                 result += exprparser(lists[0])
-            if len(lists) == 2:
-                if len(lists[1]) == 1:
-                    result += inputdecider(lists[1])
+            if len(lists) == 3:
+                if len(lists[2]) == 1:
+                    result += inputdecider(lists[2])
                 else:
-                    result += exprparser(lists[1])
+                    result += exprparser(lists[2])
             else:
                 lists.pop(0)
-                result += exprBlockMaker(lists, expression)
+                lists.pop(0)
+                result += exprBlockMaker(lists)
 
             result += "</block>"
             return result
         def exprparser(expr): #this function parses expressions.
             result = ""
             counter = 1
-            print expr
-            expression = expr[1]
-            try:
-                while True:
-                    expr.pop(counter)
-                    counter += 1
 
-            except IndexError:
-                print ""
-            result += exprBlockMaker(expr, expression)
+            result += exprBlockMaker(expr)
             return result
         #print lists.scriptblock.functions[1].dump()
         for script in lists:

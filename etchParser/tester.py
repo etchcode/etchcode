@@ -2,7 +2,7 @@ __author__ = 'samschickler'
 from xml_creator import xmlcreator
 string = """
 e.flagclicked:	L.think("Etch is cool")
-	l.think(2231+21+21*13)
+	l.think(2231+21+21*13*42)
 """
 main = xmlcreator()
 print main.translates(string)
