@@ -3,6 +3,7 @@ from xml_creator import xmlcreator
 string = """
 e.flagclicked:
 	L.think("Etch is cool")
+	l.think("erj")
 """
 main = xmlcreator()
 print main.translates(string)
