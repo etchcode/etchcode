@@ -9,7 +9,7 @@ class transformList:
         integer = Word(nums).setParseAction(lambda t:int(t[0]))
         variable = Word(alphas)
         period = Suppress(Literal("."))
-        string = Group(Suppress('''"''') + ZeroOrMore(Word(alphanums)) + Suppress('''"'''))
+        string = QuotedString('"', escChar='\\')#Group(Suppress('''"''') + ZeroOrMore(oneOf(list(Word(alphanums)+ " "))) + Suppress('''"'''))("string")
         func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))) #if it is a function inside a nother function
         operand = Forward()  #types of values allowed in expressions
         negpos = oneOf('+ -')
@@ -23,7 +23,7 @@ class transformList:
              (plusop, 2, opAssoc.LEFT),]
             )
         allfunctions = Forward()
-        operand = Group(func("func") | integer("integer") | variable("variable") | expression("expression")) | string("string")
+        operand = Group(func("func") | integer("integer") | variable("variable") | expression("expression")) | Group(string)
         regInput = Suppress(Literal("(")) + Group(operand +ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")")) #regular input#expressions take presidence currently
         startCode = Group(oneOf("e")+ period + Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line

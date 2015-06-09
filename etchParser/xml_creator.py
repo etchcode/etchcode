@@ -5,7 +5,7 @@ class xmlcreator:
     def translates(self, string):
         main = transformList(string)
         lists = main.transform()
-        print lists
+        print lists.dump()
         result = "<scripts>"
         def combine(listsd):
             res = ""
@@ -37,9 +37,13 @@ class xmlcreator:
                 if function.reginput:
 
                     for input in function[2]:
-
+                        print input.dump()
                         if input.expression:
                             result += str(exprparser(input[0]))
+                        elif input.string:
+                            print "string input"
+                            print combine(input[0])
+                            result += "<l>"+str(combine(input[0])) +"</l>"
                         elif input.variable:
                             result += '''<block var="'''+ input[0]+ '''"/>'''
                         elif input.func:
