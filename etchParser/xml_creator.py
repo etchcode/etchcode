@@ -37,6 +37,7 @@ class xmlcreator:
                 if function.reginput:
 
                     for input in function[2]:
+
                         if input.expression:
                             result += str(exprparser(input[0]))
                         elif input.variable:
