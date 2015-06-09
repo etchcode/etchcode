@@ -8,6 +8,7 @@
 	pointer-events: none; // this makes it as if this element doens't exist so clicks end up on the textarea
 	position: absolute;
 	top: 0;
+	white-space: pre-wrap;
 }
 
 .syntaxHighlightContainer, .editor .textarea{

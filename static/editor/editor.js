@@ -55,6 +55,21 @@
 					syntaxHighlightElem.scrollTop = textareaElem.scrollTop;
 				}
 				
+				function updateScrollBarSize(){
+					var elem = $element.find(".textarea");
+					
+					var visableHeight = elem.height();
+					var totalHeight = elem[0].scrollHeight;
+										
+					visableHeight = visableHeight ? visableHeight : 0; // if no visable height, is 0
+					totalHeight = totalHeight ? totalHeight : 0; // if no totalHeight, is 0
+					
+					var scrollBarHeight = visableHeight / totalHeight * 100 + "%";
+					$element.find(".scrollBar .thumb").height(scrollBarHeight);
+					
+					return scrollBarHeight;
+				}
+				
 				$scope.scroll = function(percent) {
 					var elem = $element.find(".textarea")[0];
 					
@@ -63,6 +78,12 @@
 					scrollSyntaxHighlight();
 					
 					return amountToScrollBy;
+				};
+				
+				$scope.scrollBarWatcher = function() {
+					// on every key press, update everything that needs to be update
+					updateScrollBarSize();
+					scrollSyntaxHighlight();
 				};
 				
 			}],

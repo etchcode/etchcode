@@ -21,7 +21,8 @@
 		this.categorizeToken = function(token) {
 			function cleanToken (token){
 				token = token.toLowerCase(); // tokens are case-insensitive
-				token = token.replace(" ", ""); // and can contain spaces
+				token = token.replace(/ /g, ""); // and can contain spaces
+				token = token.replace(/\t/g, ""); // and tabs
 				
 				var shortened = blocks.abbreviations[token];
 				
