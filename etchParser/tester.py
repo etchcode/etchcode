@@ -1,8 +1,10 @@
 __author__ = 'samschickler'
 from xml_creator import xmlcreator
 string = """
-e.flagclicked:	L.think("Etch is cool")
-	l.think(2231+21+21*13*42)
+Events.flag clicked:
+    Data.Set("foo", 1)
+    M.go toXY(foo,0)
+    Motion.turn right ( 12+213*m.xpos)
 """
 main = xmlcreator()
 print main.translates(string)
