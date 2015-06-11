@@ -2,6 +2,6 @@
 (function(){
 	"use strict";
 	
-	angular.module("webapp", ["ngSanitize", "sprites", "editor", "syntaxHighlighter", "editableImage", "buildButton", "render"])
+	angular.module("webapp", ["ngSanitize", "ui.codemirror", "sprites", "editor", "syntaxHighlighter", "editableImage", "buildButton", "render"])
 	
 }());

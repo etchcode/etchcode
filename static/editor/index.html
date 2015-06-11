@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/static/editor/">
 
     <title>Project Editor | Etch</title>
 
@@ -12,26 +13,29 @@
 
     <link rel="stylesheet" href="/static/general.css">
 
-    <link rel="stylesheet" href="/static/editor/styles/base.css">
-    <link rel="stylesheet" href="/static/editor/styles/darkTheme.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/darkTheme.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/theme/ambiance.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js">
-    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.min.js"></script>
-	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.js"></script>
+	<script src="/static/libs/ui-codemirror.min.js"></script>
 	<script src="/static/libs/nunjucks.min.js"></script>
 
-    <script src="/static/editor/defaults.js"></script>
-    <script src="/static/editor/main.js"></script>
-    <script src="/static/editor/sprites.js"></script>
-    <script src="/static/editor/editor.js"></script>
-	<script src="/static/editor/syntaxHighlighter.js"></script>
-    <script src="/static/editor/editableImage.js"></script>
-	<script src="/static/editor/render.js"></script>
-    <script src="/static/editor/buildButton.js"></script>
+    <script src="defaults.js"></script>
+    <script src="main.js"></script>
+    <script src="sprites.js"></script>
+    <script src="editor.js"></script>
+	<script src="syntaxHighlighter.js"></script>
+    <script src="editableImage.js"></script>
+	<script src="render.js"></script>
+    <script src="buildButton.js"></script>
 
     <script src="/static/name/random.js"></script>
 </head>

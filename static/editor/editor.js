@@ -33,12 +33,13 @@
 		return {
 			restrict: "E",
 			templateUrl: "/static/editor/templates/editor.html",
-			controller: ["$scope", "$element", "syntaxHighlighterService", function($scope, $element, syntaxHighlighter) { // this controller is for individual editor elements
-								
-				$scope.$watch("sprite.script", function(value){	
-					$scope.syntaxHighlightedText = syntaxHighlighter.highlight(value);
-				});
-							
+			controller: ["$scope", "$element", function($scope) { // this controller is for individual editor elements
+				$scope.codemirrorConfig = {
+					lineNumbers: true,
+					indentWithTabs: true,
+					theme: "ambiance"
+				};
+				
 			}],
 			controllerAs: "editor"
 		};
