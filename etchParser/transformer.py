@@ -1,5 +1,6 @@
 from pyparsing import *
 
+
 class transformList:
 
     def __init__(self, string):

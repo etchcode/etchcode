@@ -1,6 +1,6 @@
 from transformer import transformList
 from blocks import *
-
+from errors import *
 class xmlcreator:
     def translates(self, string):
         """
@@ -47,8 +47,8 @@ class xmlcreator:
 
                     print parent
                     print child
-                    print "unreconized function " + str(parent) + " " + str(child)
-                    return "sam"
+                    raise unreconizedFunction(str(parent) + "." + str(child))
+
         """
         This function parses expressions like 12+213*m.xpos into xml
         input: a list of all the inputs nest for order of operations for example this 12+213*m.xpos
@@ -95,7 +95,7 @@ class xmlcreator:
             except IndexError:                       # we need this because receiveGo is self closing and the other ones aren't
                 startcode =createChild(script[0][0].lower(), combine(script[0][1]).lower())
                 if startcode != "receiveGo":
-                    print "This should raise a startcode error"
+                    raise unreconizedFunction(str(script[0][0])+ "." + str(combine(script[0][1])))
                 result+= '''<block s="''' + startcode + '''"/>'''
             script.pop(0)
             for function in script: # this creates xml for all the functions
