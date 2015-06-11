@@ -1,4 +1,4 @@
-$color-1: hsla(229, 10%, 30%, 1);
+$color-1: hsla(0, 0%, 13%, 1);
 $color-2: hsla(229, 10%, 70%, 1);
 $color-3: hsla(230, 2%, 53%, 1);
 $color-4: hsla(229, 10%, 87%, 1);
@@ -12,22 +12,15 @@ body{
 	color: $color-4;
 }
 
-#editors{
-	color: $color-4;
-}
-#editors textarea{
-	color: inherit;
-}
-
-textarea{
-	background: transparent;
-}
-
-.scrollBar{
-	background-color: $color-1;
+#editors .CodeMirror{
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 	
-	.thumb{
-		background-color: $color-2;
+	.CodeMirror-gutters{
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
 	}
 }
 
