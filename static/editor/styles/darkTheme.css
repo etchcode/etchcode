@@ -53,7 +53,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border-top: 2px solid #abaeba; }
 
 /* line 64, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
-#settings input {
+#settings, #settings input {
   color: #dbdce1; }
 
 /* line 68, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/darkTheme.scss */
