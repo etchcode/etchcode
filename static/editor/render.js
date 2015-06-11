@@ -1,4 +1,4 @@
-var runProjectScope;
+/* globals angular, nunjucks, Promise */
 
 (function(){
 	"use strict";
@@ -13,8 +13,6 @@ var runProjectScope;
             
             templateUrl: "/static/editor/templates/run.html",
 			controller: function($scope, $element){
-				runProjectScope = $scope;
-				
 				$scope.loaded = false;
 				$scope.show = false;
 				
@@ -39,7 +37,7 @@ var runProjectScope;
 					else{
 						player.onload = function(){ //with .onload we will only have one run waiting
 							$scope.$apply(function(){
-								run(xml)
+								run(xml);
 							});
 						};
 					}
@@ -54,7 +52,7 @@ var runProjectScope;
 		var that = this;
 		
 		that.project = function(project){
-			return new Promise(function(resolve, reject){
+			return new Promise(function(resolve){
 
 				var scripts = {};
 				for(var i = 0; i < project.length; i++){
@@ -79,12 +77,12 @@ var runProjectScope;
 
 							scripts: data
 						}
-					 }))
+					 }));
 
 				});
 
 			});
-		}
+		};
 							   
 	}]);
 	

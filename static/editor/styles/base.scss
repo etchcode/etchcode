@@ -175,7 +175,7 @@ pre {
 	font-family: anonymousPro;
 }
 
-img{
+img:not(.action){
 	pointer-events: none; // disable dragging of images
 }
 
