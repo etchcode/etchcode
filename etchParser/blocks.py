@@ -10,10 +10,7 @@ abriviations = {  # these reference other blocks form abriviation:block name tha
                   "e": "events",
                   "c": "control",
                   "o": "operators",
-                  "goy": "changey",
-                  "gox": "changex",
-                  "clearEffects": "cleargraphiceffects",
-                  "whenflagclicked":"flaglicked"
+
 }
 snapNames = {
 
