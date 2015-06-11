@@ -2,7 +2,6 @@
 @import url(validate.css);
 @import url(runProject.css);
 @import url(syntaxHighlighter.css);
-@import url(scrollBar.css);
 /* line 13, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/base.scss */
 html, body {
   cursor: default; }

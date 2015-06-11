@@ -2,19 +2,6 @@
 	position: relative; // keep it's position: absolute children from overflowing too far
 }
 
-.syntaxHighlightContainer{
-	margin-top: 1px;
-	padding: 15px;
-	pointer-events: none; // this makes it as if this element doens't exist so clicks end up on the textarea
-	position: absolute;
-	top: 0;
-	white-space: pre-wrap;
-}
-
-.syntaxHighlightContainer, .editor .textarea{
-	overflow: hidden;
-}
-
 .motion{
 	color: hsl(225, 62%, 66%);
 }

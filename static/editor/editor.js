@@ -1,4 +1,4 @@
-/* globals angular */
+/* globals angular, window */
 (function(){	
 	"use strict";
 	
@@ -34,58 +34,11 @@
 			restrict: "E",
 			templateUrl: "/static/editor/templates/editor.html",
 			controller: ["$scope", "$element", "syntaxHighlighterService", function($scope, $element, syntaxHighlighter) { // this controller is for individual editor elements
-				$scope.$watch("sprite.script", function(value){
+								
+				$scope.$watch("sprite.script", function(value){	
 					$scope.syntaxHighlightedText = syntaxHighlighter.highlight(value);
 				});
-				
-				// scrollbar section
-				function getMaxScrollPos(elem){
-					var currentPos = elem.scrollTop;
-					elem.scrollTop = Math.pow(10, 14); // if > the max height, scrollTop is max possible
-					var maxPos = elem.scrollTop;
-					elem.scrollTop = currentPos; // go back to where we were before
-					
-					return maxPos;
-				}
-				
-				function scrollSyntaxHighlight(){
-					var textareaElem = $element.find(".textarea")[0];
-					var syntaxHighlightElem = $element.find(".syntaxHighlightContainer")[0];
-					
-					syntaxHighlightElem.scrollTop = textareaElem.scrollTop;
-				}
-				
-				function updateScrollBarSize(){
-					var elem = $element.find(".textarea");
-					
-					var visableHeight = elem.height();
-					var totalHeight = elem[0].scrollHeight;
-										
-					visableHeight = visableHeight ? visableHeight : 0; // if no visable height, is 0
-					totalHeight = totalHeight ? totalHeight : 0; // if no totalHeight, is 0
-					
-					var scrollBarHeight = visableHeight / totalHeight * 100 + "%";
-					$element.find(".scrollBar .thumb").height(scrollBarHeight);
-					
-					return scrollBarHeight;
-				}
-				
-				$scope.scroll = function(percent) {
-					var elem = $element.find(".textarea")[0];
-					
-					var amountToScrollBy = percent / 100 * getMaxScrollPos(elem);
-					elem.scrollTop = amountToScrollBy;
-					scrollSyntaxHighlight();
-					
-					return amountToScrollBy;
-				};
-				
-				$scope.scrollBarWatcher = function() {
-					// on every key press, update everything that needs to be update
-					updateScrollBarSize();
-					scrollSyntaxHighlight();
-				};
-				
+							
 			}],
 			controllerAs: "editor"
 		};

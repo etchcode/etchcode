@@ -3,51 +3,38 @@
   position: relative; }
 
 /* line 5, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
-.syntaxHighlightContainer {
-  margin-top: 1px;
-  padding: 15px;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  white-space: pre-wrap; }
-
-/* line 14, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
-.syntaxHighlightContainer, .editor .textarea {
-  overflow: hidden; }
-
-/* line 18, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .motion {
   color: #738dde; }
 
-/* line 21, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 8, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .looks {
   color: #8956d7; }
 
-/* line 24, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 11, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .sound {
   color: #ba41c3; }
 
-/* line 27, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .pen {
   color: #0e9a6b; }
 
-/* line 30, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 17, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .data {
   color: #ee7e17; }
 
-/* line 33, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 20, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .events {
   color: #c98531; }
 
-/* line 36, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 23, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .control {
   color: #e0a81a; }
 
-/* line 39, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .sensing {
   color: #2ca6e2; }
 
-/* line 42, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+/* line 29, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
 .operators, .string, .number {
   color: #5bb512; }
 
