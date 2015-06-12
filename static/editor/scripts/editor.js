@@ -4,22 +4,6 @@
 	
 	angular.module("editor", ["sprites"])
 	
-	.directive('allowTab', function () {
-		// enables tab key
-		return function ($scope, element) {
-			element.bind('keydown', function (event) {
-				if (event.which == 9) { // if tab key was pressed
-					event.preventDefault(); // don't do the normal tab stuff
-					var start = this.selectionStart;
-					var end = this.selectionEnd;
-					element.val(element.val().substring(0, start) + '\t' + element.val().substring(end)); // insert a tab character at the cursor position
-					this.selectionStart = this.selectionEnd = start + 1;
-					element.triggerHandler('change'); // tell others that this elment just changed
-				}
-			});
-		};
-	})
-	
 	.service("editorsService", function(){
 		this.view = "code"; // code || settings, what view the user is in
 	})
@@ -37,7 +21,8 @@
 				$scope.codemirrorConfig = {
 					lineNumbers: true,
 					indentWithTabs: true,
-					theme: "ambiance"
+					theme: "ambiance",
+					mode: "python"
 				};
 				
 			}],
