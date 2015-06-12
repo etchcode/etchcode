@@ -5,6 +5,6 @@
     "typography.scss"
   ],
   "sourcesContent": [],
-  "mappings": ";AAAA,AAAS;EACR,AAAY",
+  "mappings": ";AAAA,AAAS;EACR,AAAY;;;AAGb,AAAS;EACR,AAAiB",
   "names": []
 }

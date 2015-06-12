@@ -2,4 +2,8 @@
 .sidebar h3 {
   text-align: left; }
 
+/* line 5, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.property.unsupported {
+  text-decoration: line-through; }
+
 /*# sourceMappingURL=typography.css.map */

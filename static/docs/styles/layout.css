@@ -2,7 +2,7 @@
 .sidebar {
   overflow: auto;
   padding: 40px;
-  width: 270px; }
+  width: 300px; }
   /* line 6, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/layout.scss */
   .sidebar ul {
     list-style: none;

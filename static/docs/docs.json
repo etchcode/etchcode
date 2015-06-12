@@ -13,10 +13,10 @@
 	"snapNames": {
 
 		"motion": {
-			"unsupported": ["setRotationStyle"],
+			"unsupported": ["set rotation style"],
 			"items": [
 				"move",
-				"turn",
+				"turn right",
 				"turn left",
 				"point direction",
 				"point towards",
@@ -122,8 +122,7 @@
 				"stop others",
 				"when i start as a clone",
 				"create clone of",
-				"delete this clone",
-				"when flag clicked"
+				"delete this clone"
 			]
 		},
 
@@ -153,9 +152,9 @@
 				"*",
 				"/",
 				"pick random between",
-				"less than",
-				"equal",
-				"greater than",
+				"<",
+				"=",
+				">",
 				"and",
 				"or",
 				"not",

@@ -1,0 +1,31 @@
+$tooltip-color: hsla(0, 0, 0, .8);
+
+[tooltip]{
+	position: relative;
+	cursor: pointer;
+}
+
+[tooltip]:hover::after{
+	background-color: $tooltip-color;
+	bottom: 150%;
+	border-radius: 5px;
+	color: white;
+	font-size: 14px;
+	left: 0;
+	content: attr(tooltip);
+	padding: 5px;
+	overflow: visible;
+	position: absolute;
+	width: 200px;
+}
+
+[tooltip]:hover::before{
+	bottom: calc(150% - 7px);
+	border-top: 8px solid $tooltip-color;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	content: "";
+	color: $tooltip-color;
+	left: 85px;
+	position: absolute;
+}
