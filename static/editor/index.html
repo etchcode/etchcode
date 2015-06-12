@@ -94,7 +94,7 @@
 						
                         <div class="costume" ng-repeat="costume in sprite.costumes">
                             {
-                            <img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/remove_white.svg" class="remove icon">
+                            <img ng-click="sprites.costume.remove(sprite,costume)" src="/static/icons/remove_white.svg" class="remove icon action">
                             <p>image:
                                 <editable-image data="costume.data"></editable-image>,
 							</p>
@@ -118,7 +118,7 @@
                         <p>variables<span ng-show="sprite.id === 'general'"> (for all sprites)</span>: [</p>
                         <ul class="variables">
                             <li ng-repeat="variable in sprite.variables" class="indent">
-                                <img ng-click="sprites.variable.remove(sprite,variable)" src="/static/icons/remove_white.svg" class="remove icon">{{ variable }},</li>
+                                <img ng-click="sprites.variable.remove(sprite,variable)" src="/static/icons/remove_white.svg" class="remove icon action">{{ variable }},</li>
                         </ul>
 
                         <p class="indent">
@@ -136,7 +136,7 @@
     </div>
 
     <div id="sidebar">
-        <h2>Sprites <img ng-click="sprites.add()" src="/static/icons/add_black.svg" class="add icon"></h2>
+        <h2>Sprites <img ng-click="sprites.add()" src="/static/icons/add_black.svg" class="add icon action"></h2>
         <ul id="sprites">
             <sprite ng-repeat="sprite in sprites.list" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
 
