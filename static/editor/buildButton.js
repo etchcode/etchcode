@@ -1,3 +1,5 @@
+/* globals angular */
+
 (function(){
 	angular.module("buildButton", ["sprites", "render"])
 	
