@@ -21,13 +21,14 @@ class transformList:
         multop = oneOf('* /')
         plusop = oneOf('+ -')
         exprinputs = Group(func("func") ^ integer("integer") ^ variable("variable"))
-        expression = operatorPrecedence( exprinputs,
-            [("!", 1, opAssoc.LEFT),
-             ("^", 2, opAssoc.RIGHT),
-             #(negpos, 1, opAssoc.RIGHT),
-             (multop, 2, opAssoc.LEFT),
-             (plusop, 2, opAssoc.LEFT),]
-            )
+        expression = Optional(Suppress(Literal("("))) + operatorPrecedence( exprinputs,
+    [("!", 1, opAssoc.LEFT),
+     ("^", 2, opAssoc.RIGHT),
+     #(signop, 1, opAssoc.RIGHT),
+     (multop, 2, opAssoc.LEFT),
+     (plusop, 2, opAssoc.LEFT),]
+    )+ Optional(Suppress(Literal(")")))
+
         #this is combination of all of the inputs
         operand = Group(func("func") ^ integer("integer") ^ variable("variable") ^ string("string") ^ expression("expression"))
         #this makes it so you can put multiple inputs in a function
