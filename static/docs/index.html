@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="docs" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/static/docs/">
+
+    <title>Project Editor | Etch Code</title>
+
+	<link rel="stylesheet" href="/static/normalize.css">
+    <link rel="stylesheet" href="/static/general.css">
+	<link rel="stylesheet" href="styles/layout.css">
+	<link rel="stylesheet" href="styles/typography.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/theme/ambiance.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.js"></script>
+	<script src="/static/libs/ui-codemirror.min.js"></script>
+
+    <script src="scripts/main.js"></script>
+	
+</head>
+
+<body ng-controller="docsController as docs">
+		<!-- TODO: Make site wide header and add it here. (https://github.com/etchcode/etchcode/issues/17)-->
+	
+	<h2>Etch Code Documentation</h2>
+	
+	<div class="content">
+		<div class="sidebar">
+			<ul class="list">
+				<li class="group" ng-repeat="(key, val) in snapNames">
+					<h3>{{ key }}</h3>
+					
+					<ul>
+						<li ng-repeat="property in val.unsupported" class="unsupported property">
+							{{ serveProperty(property).name }} 
+						</li>
+						<li ng-repeat="property in val.items" class="property"> 
+							{{ serveProperty(property).name }} 
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="details">
+		
+		</div>
+	</div>
+</body>
+
+</html>

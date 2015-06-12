@@ -35,7 +35,7 @@
 		},
 
 		"looks": {
-			"unsupported": ["backdropName", "switchBackdropTo"],
+			"unsupported": ["backdrop name", "switch backdrop to"],
 			"items": [
 				"timed say",
 				"say",
@@ -58,7 +58,7 @@
 		},
 
 		"sound": {
-			"unsupported": ["playDrum", "changeVolumeBy", "setVolumeTo", "volume", "setInstrumentTo"],
+			"unsupported": ["play drum", "change volume by", "set volume to", "volume", "set instrument to"],
 			"items": [
 				"play sound",
 				"play sound until done",
@@ -96,7 +96,7 @@
 		},
 
 		"events": {
-			"unsupported": ["backdropswichesto", "greaterthan"],
+			"unsupported": ["backdrop swiches to", "greater than"],
 			"items": [
 				"flag clicked",
 				"key pressed",
@@ -108,7 +108,9 @@
 		},
 
 		"control": {
-			"unsupported": ["ifThenElse"],
+			"unsupported": [
+				"if then else"
+			],
 			"items": [
 				"wait seconds",
 				"repeat",
@@ -126,7 +128,7 @@
 		},
 
 		"sensing": {
-			"unsupported": ["loudness", "turnvideo", "setvideotransparencyto", "xpositionof", "dayssince2000", "username", "videon"],
+			"unsupported": ["loudness", "turn video", "set video transparency to", "x position of", "days since 2000", "username", "vide on"],
 			"items": [
 				"touching item",
 				"touching color",
