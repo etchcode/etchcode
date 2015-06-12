@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="webapp" lang="en">
+<html ng-app="editor" lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<base href="/static/editor/">
 
-    <title>Project Editor | Etch</title>
+    <title>Project Editor | Etch Code</title>
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" rel="stylesheet">
 
@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/darkTheme.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.css">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/theme/ambiance.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -28,15 +28,14 @@
 	<script src="/static/libs/ui-codemirror.min.js"></script>
 	<script src="/static/libs/nunjucks.min.js"></script>
 
-    <script src="scripts/defaults.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/sprites.js"></script>
-    <script src="scripts/editor.js"></script>
-    <script src="scripts/editableImage.js"></script>
-	<script src="scripts/render.js"></script>
-    <script src="scripts/buildButton.js"></script>
-	<script src="/static/scripts/etch_codemirror.js"></script>
-	<script src="/static/scripts/python.js"></script>
+    <script src="defaults.js"></script>
+    <script src="main.js"></script>
+    <script src="sprites.js"></script>
+    <script src="editor.js"></script>
+	<script src="syntaxHighlighter.js"></script>
+    <script src="editableImage.js"></script>
+	<script src="render.js"></script>
+    <script src="buildButton.js"></script>
 
     <script src="/static/name/random.js"></script>
 </head>
