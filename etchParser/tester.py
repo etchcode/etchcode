@@ -2,7 +2,8 @@ __author__ = 'samschickler'
 from xml_creator import xmlcreator
 string = """
 Events.flag clicked:
-    Motion.turn right ((12+213)*m.xpos)
+    Motion.turn right (12+213*m.xpos)
+
 """
 main = xmlcreator()
 print main.translates(string)

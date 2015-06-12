@@ -21,13 +21,13 @@ class transformList:
         multop = oneOf('* /')
         plusop = oneOf('+ -')
         exprinputs = Group(func("func") ^ integer("integer") ^ variable("variable"))
-        expression = Optional(Suppress(Literal("("))) + operatorPrecedence( exprinputs,
+        expression =  operatorPrecedence( exprinputs, #Optional(Suppress(Literal("("))) +
     [("!", 1, opAssoc.LEFT),
      ("^", 2, opAssoc.RIGHT),
      #(signop, 1, opAssoc.RIGHT),
      (multop, 2, opAssoc.LEFT),
      (plusop, 2, opAssoc.LEFT),]
-    )+ Optional(Suppress(Literal(")")))
+    )#+ Optional(Suppress(Literal(")")))
 
         #this is combination of all of the inputs
         operand = Group(func("func") ^ integer("integer") ^ variable("variable") ^ string("string") ^ expression("expression"))
@@ -60,7 +60,7 @@ class transformList:
         each script block includes when to start and then functions
         fullCode is a collection of scriptblocks
         """
-        scriptBlock = Group(startCode("startcode") + comments+   allfunctions("functions"))
+        scriptBlock = Group(startCode("startcode") + comments + allfunctions("functions"))
         fullCode = OneOrMore(scriptBlock("scriptblock")) + StringEnd() #This raises a error if it doesn't finish parsing the string
 
 
