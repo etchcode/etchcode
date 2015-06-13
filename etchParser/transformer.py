@@ -35,14 +35,17 @@ class transformList:
         regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")"))
 
         """
-        Currently if statements have to be if input relation(=) input {
-        functions
-        }
-        You can't nest if statments currently that gives an error.
-
+        Currently if statements do not work
+        What it should parse:
+        if input >= input:
+            function
+            function
+        function
+        When run gives:
+        pyparsing.ParseException:  (at char 37), (line:1, col:38)
         """
         ifstatement = Suppress(Literal("if")) + operand("op1") + oneOf("<= < >= > =")("relation") +  operand("op2")
-        ifgroup = Group(Group(ifstatement) + Suppress(Literal("{")) + OneOrMore(functions)("functions") + Suppress(Literal("}")))
+        ifgroup = Group(Group(ifstatement) + indentedBlock(functions("functions"), [1]))
 
 
         comments = Suppress(Optional(Literal("#") + restOfLine))
@@ -54,7 +57,7 @@ class transformList:
         """
         startCode = Group(Word(alphas)+ period + Suppress(Optional(oneOf("when When")))+Group(OneOrMore(Word(alphas))) + Suppress(Literal(":")))#startCode = Group(CaselessKeyword("E") ^ CaselessKeyword("events") + period + Suppress(Optional(CaselessLiteral("when")))+Group(CaselessLiteral("flag") + CaselessLiteral("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
-        allfunctions = OneOrMore(ifgroup+ comments ^ functions("function")+ comments)
+        allfunctions = OneOrMore(ifgroup + comments ^ functions("function")+ comments)
 
         """
         each script block includes when to start and then functions
