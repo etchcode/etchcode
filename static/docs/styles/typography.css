@@ -6,41 +6,46 @@ h1, h2, h3, p {
 h1 {
   font-size: 4em; }
 
-/* line 9, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 8, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+h3 span {
+  font-size: .5em;
+  font-weight: normal; }
+
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .markdown-body h1, .markdown-body h2, .markdown-body h3 {
   text-align: left; }
 
-/* line 14, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .unemphasize {
   color: gray; }
 
-/* line 18, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 23, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 code {
   padding: 1px 6px 1px 6px;
   border-radius: 2.5px; }
 
-/* line 24, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 29, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .sidebar h3 {
   font-size: 1.5em;
   text-align: left; }
 
-/* line 29, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .property.unsupported {
   text-decoration: line-through; }
 
-/* line 33, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .sidebar .property, .sidebar .groupName {
   cursor: pointer;
   text-decoration: underline; }
 
-/* line 39, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 44, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .details > ul {
   list-style: none; }
 
-/* line 43, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 48, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .details h3 {
   font-size: 2em; }
-/* line 46, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+/* line 51, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
 .details p {
   font-size: 1.1em; }
 

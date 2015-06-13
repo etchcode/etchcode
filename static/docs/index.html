@@ -52,7 +52,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 						</li>
 						
 						<li ng-repeat="property in group.items" ng-click="setDescribe(property.name)" class="property"> 
-							<span class="title">{{ group.name | title}}.</span>{{ property.name }} 
+							<span class="title">{{ group.name | title}}.</span>{{ property.name }}<span ng-show="property.type == 'function' || property.type == 'block'" class="unemphasize" tooltip="Action">()</span>
 						</li>
 					</ul>
 				</li>
@@ -70,7 +70,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 					<p ng-bind-html="group.explanation | markdown"></p>
 				</li>
 				<li ng-repeat="item in group.items" ng-show="describe == item.name">
-					<h3>{{ item.name | title }}</h3>
+					<h3>{{ item.name | title }} <span>(this block </span><span ng-show="item.type == 'function'">takes an action</span><span ng-show="item.type == 'reporter'">tells you a value</span><span>)</span></h3>
 					
 					<p>
 						<span class="unemphasize">{{ group.name | title}}.</span><span>{{ item.name }}</span><span class="inputs" ng-show="item.type == 'function' || item.inputs.length"><span class="unemphasize">(</span><span class="input" ng-repeat="input in item.inputs">
@@ -84,7 +84,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 						<p>
 This block takes something called a "string" as input. A string is just a programmer word for a bunch of words, special characters, and numbers. `H.el.lo Wo#rld !!` is an example of a string.
 
-To tell the computer that something is a string, we just put it in quotes. For example, `Looks.say("Hello World")`. If we didn't the computer could confuse the string with a variable named `Hello World`.
+To tell the computer that something is a string, we just put it in quotes. For example, `Looks.say("Hello World")`. If we didn't use the quotes the computer could confuse the string with a variable named `Hello World`.
 						</p>
 					</div>
 					

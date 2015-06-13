@@ -22,6 +22,7 @@
 5. Plus icon created by Kevin Kwok from the Noun Project. License info and more at (https://thenounproject.com/icon/8394/file-options/). My copy is modified.
 6. Remove icon created by John Chapman from the Noun Project. License info and more at (https://thenounproject.com/term/remove/8299/). My copy is modified.
 7. Minimize icon created by Sergey Krivoy from the Noun Project. License info and more at (https://thenounproject.com/search?q=minimize&i=66376). My copy is modified.
+8. Check icon by Austin Condiff from the Noun Project. License info and more at (https://thenounproject.com/search/?q=check&i=70958). My copy is modified.
 
 ## Etch default images include
 

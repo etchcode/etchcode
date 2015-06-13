@@ -17,6 +17,7 @@ $tooltip-color: hsla(0, 0, 0, .8);
 	overflow: visible;
 	position: absolute;
 	width: 200px;
+	z-index: 999999999;
 }
 
 [tooltip]:hover::before{
@@ -28,4 +29,5 @@ $tooltip-color: hsla(0, 0, 0, .8);
 	color: $tooltip-color;
 	left: 85px;
 	position: absolute;
+	z-index: 999999999;
 }

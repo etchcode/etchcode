@@ -39,7 +39,16 @@ hr{
 }
 .right.header h1{
 	@include vertical-align;
+	width: calc(100% - 5px); //50px is width of help icon
 }
+	.help.icon{
+		@include vertical-align;
+		float: right;
+		height: 50px;
+		margin: 5px;
+		top: 0;
+		width: 50px;
+	}
 
 .left.header{
 	position: relative; // to negate the absolute in .left.header .tabs
@@ -128,6 +137,7 @@ sprite img{
 .editor {
 	float: inherit;
 	height: 100%;
+	position: relative;
 	width: 100%;
 	
 	.textarea {
