@@ -2,4 +2,13 @@
 .property.unsupported {
   color: #990000; }
 
+/* line 5, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/colors.scss */
+.explanation {
+  background-color: #e6e6e6; }
+
+/* line 9, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/colors.scss */
+.banner {
+  background-color: #6699ff;
+  color: white; }
+
 /*# sourceMappingURL=colors.css.map */

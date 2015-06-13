@@ -22,7 +22,7 @@
 					lineNumbers: true,
 					indentWithTabs: true,
 					theme: "ambiance",
-					mode: "python"
+					mode: "etch"
 				};
 				
 			}],

@@ -10,23 +10,7 @@
 h1, h2, h3 {
   text-align: center; }
 
-/* line 15, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
-* {
-  font-size: 16px; }
-
-/* line 19, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
-h1 {
-  font-size: 30px; }
-
-/* line 22, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
-h2 {
-  font-size: 25px; }
-
-/* line 25, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
-h3 {
-  font-size: 20px; }
-
-/* line 31, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 17, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [unselectable] {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -34,7 +18,7 @@ h3 {
   -o-user-select: none;
   user-select: none; }
 
-/* line 38, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 24, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 [selectable] {
   -webkit-user-select: all;
   -khtml-user-select: all;
@@ -42,15 +26,15 @@ h3 {
   -o-user-select: all;
   user-select: all; }
 
-/* line 46, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 32, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
 
-/* line 48, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 * {
   box-sizing: border-box; }
 
-/* line 52, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
 input.ng-invalid {
   border-color: red;
   outline-color: red; }
