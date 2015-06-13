@@ -39,7 +39,7 @@
 		<div class="sidebar">
 			<ul class="list">
 				<li class="group" ng-repeat="(key, val) in snapNames">
-					<h3>{{ key }}</h3>
+					<h3>{{ key | title}}</h3>
 					
 					<ul>
 						<li ng-repeat="property in val.unsupported" class="unsupported property" tooltip="Property is unsupported">
@@ -54,7 +54,9 @@
 		</div>
 		
 		<div class="details">
-		
+			<div class="general" ng-show="describe == 'general'">
+				<general-documentation></general-documentation>
+			</div>
 		</div>
 	</div>
 </body>

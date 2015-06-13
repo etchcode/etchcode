@@ -15,11 +15,28 @@
 		"motion": {
 			"unsupported": ["set rotation style"],
 			"items": [
-				"move",
-				"turn right",
-				"turn left",
-				"point direction",
-				"point towards",
+				{"move": {
+					"type": "function",
+					"inputs": ["Amount to move by"]
+				}},
+				{"turn right": {
+					"type": "function",
+					"inputs": ["amount to turn right by"]
+				}},
+				{"turn left": {
+					"type": "function",
+					"inputs": ["amount to turn left by"]
+				}},
+				{"point direction": {
+					"type": "function",
+					"inputs": ["direction to point in"],
+					"explanation": "The direction to point in is in in degrees with 0 directly down and 360 directly up. The direction wraps, so 400 is the same as 140 (400 - 360)."
+				}},
+				{"point towards": {
+					"type": "function",
+					"inputs": ["what to point towards"],
+					"explanation": "This can point towards another sprite or the mouse pointer. If you are pointing towards another sprite, use `Motion.point towards(\"name-of-other-sprite-in-quotes\"). To point towards the mouse pointer, use `Motion.point towards(mouse pointer)`"
+				}},
 				"go to x y",
 				"go to object",
 				"glide",

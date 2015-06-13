@@ -1,12 +1,19 @@
 /* line 1, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/layout.scss */
 .sidebar {
+  float: left;
   overflow: auto;
   padding: 40px;
   width: 300px; }
-  /* line 6, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/layout.scss */
+  /* line 7, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/layout.scss */
   .sidebar ul {
     list-style: none;
     margin: 0;
     padding: 0; }
+
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/layout.scss */
+.details {
+  float: left;
+  padding: 15px;
+  width: calc(100% - 300px); }
 
 /*# sourceMappingURL=layout.css.map */

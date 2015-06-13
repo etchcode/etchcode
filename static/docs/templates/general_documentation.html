@@ -1,0 +1,49 @@
+<div>
+	<p>In Etch, you write out your code instead of dragging blocks in. For instance, in Scratch a simple program to say “Hello World" would look like this:
+	</p>
+
+	<img src="images/scratch_hello_world.png">
+
+	<p>In Etch, the same program would be written</p>
+
+	<pre><code lang="etch">
+Events.when flag clicked:
+	Looks.say(“Hello World")
+	</code></pre>
+
+	<p>As you can see, every block in Scratch directly corresponds with a few words in Etch. After a while, you will learn the words and will not need to check the documentation often. However, at the beginning, you may want to keep this page open in a tab.</p>
+
+	<p>The basic data types are strings and numbers (A string is any group of characters). To make something a string, just put it in quotes. As you saw above, to make the sprite say <code>Hello World</code> you need to put <code>Hello World</code> in quotes. To write a number, you don’t have to do anything special.</p>
+
+	<p>In Scratch, you have blocks that represent a string or number (like the block for the mouse position) and blocks that do something (like move the sprite). In Etch, blocks that represent strings or numbers are written as just the words (“Sensing.mouse x"). Blocks that do things are written with parentheses (“Motion.if edge bounce").</p>
+	
+	<p>Blocks that are headers, like <code>Control.when flag clicked</code>, have colons (":") after them in Etch. Then, any blocks that would be attatched to them are indented. For instance</p>
+	
+	<pre><code>
+Events.when flag clicked:
+	Looks.say(“Hello World")
+	
+	Control.forever:
+		Motion.move(10)
+	</code></pre>
+
+	<p>Blocks that do things can be told things by putting what you want to tell them in the parenthesis.</p>
+
+	<pre><code lang="etch">Motion.move(10)</code></pre>
+
+	<p>In Scratch, you have multiple different groups of blocks under on header block. For instance,</p>
+
+	<img src="images/scratch_hello_world_threading.png">
+
+	<p>In Etch, you can’t write multiple groups side by side. Instead, you would write it like this</p>
+
+	<pre><code lang="etch">
+Events.when flag clicked:
+	Looks.say(“Hello World")
+
+Events.when key pressed(“space"):
+	Looks.think(“Even though you can be cruel")
+	</code></pre>
+
+	<p>For more details, click on one of the block names on the left.</p>
+</div>
