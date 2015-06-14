@@ -1,9 +1,8 @@
 __author__ = 'samschickler'
 from xml_creator import xmlcreator
 string = """
-Events.flag clicked:
-    if 12 >= 12:
-        Motion.turn right (12+213*m.xpos)
+Events.when flag clicked:
+    m.move(12)
 
 """
 

@@ -16,11 +16,11 @@ snapNames = {
 
     "motion": {
         # setRotatioStyle is not in Snap!, so I can't support it
-        "move": "forward",
+        "move": ["forward", False],
         "turnright": "turn",
         "turnleft": "turnLeft",
         "pointdirection": "setHeading",
-        "pointtowards": "doFaceTowards",
+        "pointtowards": ["doFaceTowards", True],
         "gotoxy": "gotoXY",
         "gotoobject": "doGotoObject",
         "glide": "doGlide",
@@ -89,7 +89,7 @@ snapNames = {
 
     "events": {
         #we can't support backdropswichesto, and greaterthan because Snap! doesn't
-        "flagclicked": "receiveGo",
+        "flagclicked": ["receiveGo"],
         "keypressed": "receiveKey",
         "thisspriteclicked": "receiveInteraction",
         "ireceivemessage": "receiveMessage",

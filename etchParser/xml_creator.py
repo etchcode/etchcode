@@ -3,6 +3,8 @@ from blocks import *
 from errors import *
 class xmlcreator:
     def translates(self, string):
+
+        current_function = "" #used to tell what types of inputs work
         """
         Combines the words together in for functions
         listsd is a list of strings
@@ -39,10 +41,10 @@ class xmlcreator:
          """
         def createChild(parent, child):
             try:
-                return snapNames[parent][child] #if it not a abriviated parent name like (c for control)
+                return snapNames[parent][child][0] #if it not a abriviated parent name like (c for control)
             except KeyError:
                 try:
-                    return snapNames[abriviations[parent]][child] #if it is abriviated
+                    return snapNames[abriviations[parent]][child][0] #if it is abriviated
                 except KeyError:
 
                     print parent
