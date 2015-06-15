@@ -64,7 +64,7 @@
 					"type": "function",
 					"inputs": ["object to go to"],
 					"inputTypes": ["string", "option"],
-					"explanation": "Use this to go to the coordinates sprite or the mouse pointer. If you want to go to another sprite, use `Motion.go to object(\"name-of-other-sprite\")`. To go to the mouse pointer, use `Motion.go to(mouse pointer)`."
+					"explanation": "Use this to go to the coordinates sprite or the mouse pointer. If you want to go to another sprite, use `Motion.go to object(\"name-of-other-sprite\")`. To go to the mouse pointer, use `Motion.go to object(mouse pointer)`."
 				},
 				{
 					"name": "glide",
