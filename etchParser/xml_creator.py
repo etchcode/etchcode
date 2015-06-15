@@ -2,9 +2,8 @@ from transformer import transformList
 from blocks import *
 from errors import *
 class xmlcreator:
-    def translates(self, string):
+    def translates(self, string, variables):
 
-        current_function = "" #used to tell what types of inputs work
         """
         Combines the words together in for functions
         listsd is a list of strings
@@ -15,13 +14,21 @@ class xmlcreator:
             for x in listsd:
                 res += x
             return res
+        def variableChecker(variable, variables):
+            for x in variables:
+                if x == variable:
+                    return True
+            return False
         """This decides which input type it is and decides what to add to results
         input: input which is contained with in a list
         output: xml to add to results"""
-        def inputdecider(input):
-            result = ""
-            if input.expression:
+        def inputdecider(input, option = False):
 
+
+            result = ""
+            if option:
+                result += "<l><option>"+str(input[0]) +"</option></l>"
+            elif input.expression:
                 result += str(exprParser(input[0]))
             elif input.string:
                 print "string input"
@@ -36,19 +43,28 @@ class xmlcreator:
             return result
         """
         this function searches blocks data base for a match. Catching any errors.
-        input: parent and a child both are strings all lower case
+        input: parent and a child both are strings all lower case ifmaster is a bolian that refers to if it is a first function
         output: name for of snap block referenceing
          """
-        def createChild(parent, child):
+        def createChild(parent, child, ifmaster):
+            current_function = ""
+            print parent
+            print child
             try:
-                return snapNames[parent][child][0] #if it not a abriviated parent name like (c for control)
+                test = snapNames[parent][child]
+                if ifmaster:
+                    return test
+                    current_function = snapNames[parent][child]
+                return test["snap"] #if it not a abriviated parent name like (c for control)
             except KeyError:
                 try:
-                    return snapNames[abriviations[parent]][child][0] #if it is abriviated
+                    test = snapNames[abriviations[parent]][child]
+                    if ifmaster:
+                        return test
+                        print current_function["inputs"]
+                    return test["snap"]#if it is abriviated
                 except KeyError:
 
-                    print parent
-                    print child
                     raise unreconizedFunction(str(parent) + "." + str(child))
 
         """
@@ -84,7 +100,6 @@ class xmlcreator:
 
         #print lists.dump()
         result = "<scripts>" #starts the master results
-        #print lists.scriptblock.functions[1].dump()
         for script in lists:
             result += """<script x="116" y="14">""" #adds where the script will be placed
 
@@ -92,22 +107,51 @@ class xmlcreator:
                 # print "startcode"
                 # print script[0]
                 script[0][2]
-                result+= '''<block s="''' + createChild(script[0][0].lower(), combine(script[0][1]).lower())+ '''">'''
+                result+= '''<block s="''' + createChild(script[0][0].lower(), combine(script[0][1]).lower(), False)+ '''">'''
                 result += "<l><option>"+script[3].lower()+"</option></l></block>"
             except IndexError:                       # we need this because receiveGo is self closing and the other ones aren't
-                startcode =createChild(script[0][0].lower(), combine(script[0][1]).lower())
+                startcode =createChild(script[0][0].lower(), combine(script[0][1]).lower(), False)
                 if startcode != "receiveGo":
                     raise unreconizedFunction(str(script[0][0])+ "." + str(combine(script[0][1])))
                 result+= '''<block s="''' + startcode + '''"/>'''
             script.pop(0)
             for function in script: # this creates xml for all the functions
-                print function
-                result+= '''<block s="''' + createChild(function[0].lower(), combine(function[1]).lower())+ '''">''' #this creates the function block
+                print function.dump()
+                functionname =createChild(function[0].lower(), combine(function[1]).lower(), True)
+                result+= '''<block s="''' +functionname["snap"] + '''">''' #this creates the function block
 
 
+                num = 0
 
                 for input in function[2]: #this creates xml for all the inputs
-                    result += inputdecider(input)
+                    print input.dump()
+                    print functionname
+                    try:
+                        """This checks if a input is the correct type for the function"""
+                        if (input.integer and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                            result += inputdecider(input)
+                        elif (input.string and "string" == functionname["inputs"][num][0]and functionname["inputs"][num][1]):
+                            result += inputdecider(input)
+                        elif (input.expression and "expression" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                            result += inputdecider(input)
+                        elif (input.func and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                            result += inputdecider(input)
+                        elif input.variable:
+                            if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]):
+                                result += inputdecider(input, option = True)
+                            elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]:
+                                result += inputdecider(input)
+                            elif not variableChecker(input[0], variables) and not functionname["inputs"][num][1]:
+                                raise variableError("On function " + str(function[0]) +"."+str(combine(function[1]))+" unreconized variable " + input[0])
+                            else:
+                                raise inputError("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+
+
+                        else:
+                            raise inputError("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+                        num += 1
+                    except IndexError:
+                        raise inputError("On function " + str(function[0]) +"."+str(combine(function[1]))+" too many inputs " + str(len(functionname["inputs"]))+ " required")
 
                 result += "</block>"
             result += "</script>"

@@ -9,18 +9,17 @@ class transformList:
     def transform(self):
         functions = Forward()
         period = Suppress(Literal("."))
-
         #These are different types of inputs
         integer = Word(nums).setParseAction(lambda t: int(t[0]))
         variable = Word(alphas)
         string = QuotedString('"', escChar='\\')
-        func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("+")")))#this one is only for a function inside a nother function
+        func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("")")))#this one is only for a function inside a nother function
 
         #this part parses input when it is a expressions following order of operations
         #negpos = oneOf('+ -') #this doesn't work currently in our xml_creator
         multop = oneOf('* /')
         plusop = oneOf('+ -')
-        exprinputs = Group(func("func") ^ integer("integer") ^ variable("variable"))
+        exprinputs = Group(functions("func") ^ integer("integer") ^ variable("variable"))
         expression =  operatorPrecedence( exprinputs, #Optional(Suppress(Literal("("))) +
     [("!", 1, opAssoc.LEFT),
      ("^", 2, opAssoc.RIGHT),

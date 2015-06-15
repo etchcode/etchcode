@@ -4,7 +4,7 @@
 	/*globals angular, Random, Default */
 	angular.module("sprites", ["toaster"])
 	
-	.directive("sprite", function(){
+	.directive("integer", function(){
 		return {
 			restrict: "E",
 			templateUrl: "/static/editor/templates/sprite.html",
