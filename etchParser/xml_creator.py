@@ -146,13 +146,13 @@ class xmlcreator:
                     print functionname
                     try:
                         """This checks if a input is the correct type for the function"""
-                        if (input.integer and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        if (input.integer and "integer" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.string and "string" == functionname["inputs"][num][0]and functionname["inputs"][num][1]):
+                        elif (input.string and "string" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.expression and "expression" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        elif (input.expression and "expression" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.func and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        elif (input.func and "integer" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
                         elif input.variable:
                             if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable

@@ -2,8 +2,8 @@ __author__ = 'samschickler'
 from xml_creator import xmlcreator
 from blocks import snapNames
 string = """
-Events.when flag clickedsad12)()OP!L2:
-    l.think(foos213)
+Events.when flag clicked:
+    l.think("asd")
 
 """
 variables = ["foo"]
