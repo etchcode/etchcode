@@ -70,14 +70,14 @@ snapNames = {
     "pen": {
         "clear": {"snap": "clear", "inputs": [["integer", True]]},
         "stamp": {"snap": "doStamp", "inputs": [["integer", True]]},
-        "pendown": {"snap": "down", "inputs": [["integer", True]]},
-        "penup": {"snap": "up", "inputs": [["integer", True]]},
-        "setpencolorto": {"snap": "setColor", "inputs": [["integer", True]]},
-        "changepencolorby": {"snap": "changeHue", "inputs": [["integer", True]]},
-        "setpencolortonumber": {"snap": "setHue", "inputs": [["integer", True]]},
-        "changepenshadeby": {"snap": "changeBrightness", "inputs": [["integer", True]]},
-        "changepensizeby": {"snap": "setSize", "inputs": [["integer", True]]},
-        "setpensizeto": {"snap": "changeSize", "inputs": [["integer", True]]}
+        "down": {"snap": "down", "inputs": [["integer", True]]},
+        "up": {"snap": "up", "inputs": [["integer", True]]},
+        "setcolorto": {"snap": "setColor", "inputs": [["integer", True]]},
+        "changecolorby": {"snap": "changeHue", "inputs": [["integer", True]]},
+        "setcolortonumber": {"snap": "setHue", "inputs": [["integer", True]]},
+        "changeshadeby": {"snap": "changeBrightness", "inputs": [["integer", True]]},
+        "changesizeby": {"snap": "setSize", "inputs": [["integer", True]]},
+        "setsizeto": {"snap": "changeSize", "inputs": [["integer", True]]}
     },
 
     "data": {
@@ -114,7 +114,7 @@ snapNames = {
 
     "sensing": {
         # we can't support loudness, turnvideo, setvideotransparencyto, xpositionof, dayssince2000, username, and videon because Snap! doesn't support them
-        "touchingitem": {"snap": "reportTouchingObject", "inputs": [["integer", True]]},
+        "touching": {"snap": "reportTouchingObject", "inputs": [["integer", True]]},
         "touchingcolor": {"snap": "reportTouchingColor", "inputs": [["integer", True]]},
         "colorstouching": {"snap": "reportColorIsTouchingColor", "inputs": [["integer", True]]},
         "distanceto": {"snap": "reportDistanceTo", "inputs": [["integer", True]]},
