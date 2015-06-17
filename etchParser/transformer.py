@@ -19,10 +19,12 @@ class transformList:
         #negpos = oneOf('+ -') #this doesn't work currently in our xml_creator
         multop = oneOf('* /')
         plusop = oneOf('+ -')
+
         exprinputs = Group(functions("func") ^ integer("integer") ^ variable("variable"))
         expression =  operatorPrecedence( exprinputs, #Optional(Suppress(Literal("("))) +
     [("!", 1, opAssoc.LEFT),
      ("^", 2, opAssoc.RIGHT),
+     ("%", 2, opAssoc.LEFT),
      #(signop, 1, opAssoc.RIGHT),
      (multop, 2, opAssoc.LEFT),
      (plusop, 2, opAssoc.LEFT),]
