@@ -4,7 +4,7 @@ from errors import *
 from pyparsing import ParseException
 import re
 class xmlcreator:
-    def translates(self, string, variables, sprites):
+    def translates(self, string, variables, sprites, costumes):
 
         """
         Combines the words together in for functions
@@ -135,47 +135,53 @@ class xmlcreator:
                 result+= '''<block s="''' +functionname["snap"] + '''">''' #this creates the function block
 
 
-                num = 0
-
-                for input in function[2]: #this creates xml for all the inputs
-                    print input
-                    lineNumber = input[1]
-
-                    input = input[0]
-                    print input
-                    print functionname
+                num  = 0
+                if functionname == "setColor":
                     try:
-                        """This checks if a input is the correct type for the function"""
-                        if (input.integer and "integer" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.string and "string" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.expression and "expression" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.func and "integer" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif input.variable:
-                            if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
-                                result += inputdecider(input, option = True)
-                            elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
-                                result += inputdecider(input)
-                            elif variableChecker(input[0], sprites) and functionname["inputs"][num][1]:
-                                result += inputdecider(input)
-                            elif not variableChecker(input[0], variables) and not functionname["inputs"][num][1] and not variableChecker(input[0], sprites):
-                                error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" unreconized variable or sprite" + input[0])
-                                return  {"message": error, "error": True, "lineNumber": lineNumber}
-                            else:
-                                error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
-                                return  {"message": error, "error": True, "lineNumber": lineNumber}
-
-
-                        else:
-                            error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
-                            return  {"message": error, "error": True, "lineNumber": lineNumber}
-                        num += 1
+                        result += "<color>"+function[2][0]+","+function[2][1]+","+function[2][2]+","+function[2][3]+"</color>"
                     except IndexError:
                         error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" too many inputs " + str(len(functionname["inputs"]))+ " required")
                         return  {"message": error, "error": True, "lineNumber": lineNumber}
+                else:
+                    for input in function[2]: #this creates xml for all the inputs
+                        print input
+                        lineNumber = input[1]
+
+                        input = input[0]
+                        print input
+                        print functionname
+                        try:
+                            """This checks if a input is the correct type for the function"""
+                            if (input.integer and "integer" == functionname["inputs"][num][0]):
+                                result += inputdecider(input)
+                            elif (input.string and "string" == functionname["inputs"][num][0]):
+                                result += inputdecider(input)
+                            elif (input.expression and "expression" == functionname["inputs"][num][0]):
+                                result += inputdecider(input)
+                            elif (input.func and "integer" == functionname["inputs"][num][0]):
+                                result += inputdecider(input)
+                            elif input.variable:
+                                if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and not variableChecker(input[0], sprites) and not variableChecker(input[0],costumes): #if it needs the option syntax isn't sprite or variable
+                                    result += inputdecider(input, option = True)
+                                elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
+                                    result += inputdecider(input)
+                                elif (variableChecker(input[0], sprites) or variableChecker(input[0],costumes)) and functionname["inputs"][num][1]:
+                                    result += "<l>"+input[0]+"</l>"
+                                elif not variableChecker(input[0], variables) and not functionname["inputs"][num][1] and not variableChecker(input[0], sprites):
+                                    error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" unreconized variable or sprite" + input[0])
+                                    return  {"message": error, "error": True, "lineNumber": lineNumber}
+                                else:
+                                    error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+                                    return  {"message": error, "error": True, "lineNumber": lineNumber}
+
+
+                            else:
+                                error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+                                return  {"message": error, "error": True, "lineNumber": lineNumber}
+                            num += 1
+                        except IndexError:
+                            error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" too many inputs " + str(len(functionname["inputs"]))+ " required")
+                            return  {"message": error, "error": True, "lineNumber": lineNumber}
                 result += "</block>"
             result += "</script>"
         result += "</scripts>"
