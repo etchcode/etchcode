@@ -33,7 +33,7 @@ class transformList:
         #this is combination of all of the inputs
         operand = Group(func("func") ^ integer("integer") ^ variable("variable") ^ string("string") ^ expression("expression"))
         #this makes it so you can put multiple inputs in a function
-        regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")"))
+        regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore((Suppress(Literal(",")) | Suppress("to") | Suppress("for"))+ operand)) + Suppress(Literal(")"))
 
         """
         Currently if statements do not work
