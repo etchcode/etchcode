@@ -154,7 +154,7 @@ class xmlcreator:
                             result += inputdecider(input)
                         elif (input.func and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
                             result += inputdecider(input)
-                        elif input.variable and :
+                        elif input.variable:
                             if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
                                 result += inputdecider(input, option = True)
                             elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
