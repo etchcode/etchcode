@@ -127,7 +127,7 @@ snapNames = {
         "timer": {"snap": "getTimer", "inputs": []},
         "resettimer": {"snap": "doResetTimer", "inputs": []},
         # "current": {"snap": "reportDate", "inputs": [["integer", False]]}
-    },
+    }, 
 
     "operators": {
         "+": "reportSum",
