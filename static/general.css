@@ -1,0 +1,42 @@
+@font-face {
+  font-family: anonymousPro;
+  src: url(/static/libs/anonymousPro.ttf); }
+
+/* line 7, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+.hidden {
+  display: none; }
+
+/* line 11, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+h1, h2, h3 {
+  text-align: center; }
+
+/* line 17, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+[unselectable] {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none; }
+
+/* line 24, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+[selectable] {
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: text;
+  -o-user-select: all;
+  user-select: all; }
+
+/* line 32, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+* {
+  box-sizing: border-box; }
+
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/general.scss */
+input.ng-invalid {
+  border-color: red;
+  outline-color: red; }
+
+/*# sourceMappingURL=general.css.map */

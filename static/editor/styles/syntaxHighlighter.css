@@ -1,0 +1,41 @@
+/* line 1, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.editor {
+  position: relative; }
+
+/* line 5, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.motion {
+  color: #738dde; }
+
+/* line 8, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.looks {
+  color: #8956d7; }
+
+/* line 11, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.sound {
+  color: #ba41c3; }
+
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.pen {
+  color: #0e9a6b; }
+
+/* line 17, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.data {
+  color: #ee7e17; }
+
+/* line 20, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.events {
+  color: #c98531; }
+
+/* line 23, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.control {
+  color: #e0a81a; }
+
+/* line 26, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.sensing {
+  color: #2ca6e2; }
+
+/* line 29, /Users/daniel/Desktop/etch/etchcode/static/editor/styles/syntaxHighlighter.scss */
+.operators, .string, .number {
+  color: #5bb512; }
+
+/*# sourceMappingURL=syntaxHighlighter.css.map */

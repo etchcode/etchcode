@@ -1,0 +1,52 @@
+/* line 1, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+h1, h2, h3, p {
+  font-family: "Merriweather"; }
+
+/* line 4, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+h1 {
+  font-size: 4em; }
+
+/* line 8, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+h3 span {
+  font-size: .5em;
+  font-weight: normal; }
+
+/* line 14, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  text-align: left; }
+
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.unemphasize {
+  color: gray; }
+
+/* line 23, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+code {
+  padding: 1px 6px 1px 6px;
+  border-radius: 2.5px; }
+
+/* line 29, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.sidebar h3 {
+  font-size: 1.5em;
+  text-align: left; }
+
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.property.unsupported {
+  text-decoration: line-through; }
+
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.sidebar .property, .sidebar .groupName {
+  cursor: pointer;
+  text-decoration: underline; }
+
+/* line 44, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.details > ul {
+  list-style: none; }
+
+/* line 48, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.details h3 {
+  font-size: 2em; }
+/* line 51, /Users/daniel/Desktop/etch/etchcode/static/docs/styles/typography.scss */
+.details p {
+  font-size: 1.1em; }
+
+/*# sourceMappingURL=typography.css.map */

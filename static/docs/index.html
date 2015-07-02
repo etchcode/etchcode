@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html ng-app="docs" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/static/docs/">
+
+    <title>Documentation | Etch Code</title>
+	
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather:400,700italic,300|Source+Code+Pro">
+
+	<link rel="stylesheet" href="/static/normalize.css">
+    <link rel="stylesheet" href="/static/general.css">
+	<link rel="stylesheet" href="/static/libs/github-markdown.css">
+	
+	<link rel="stylesheet" href="styles/layout.css">
+	<link rel="stylesheet" href="styles/typography.css">
+	<link rel="stylesheet" href="styles/colors.css">
+	<link rel="stylesheet" href="styles/tooltip.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.js"></script>
+	<script src="/static/libs/marked.js"></script>
+
+    <script src="scripts/main.js"></script>
+	
+</head>
+
+<body ng-controller="docsController as docs">
+		<!-- TODO: Make site wide header and add it here. (https://github.com/etchcode/etchcode/issues/17)-->
+	
+	<h1>Etch Code Documentation</h1>
+	
+	<div class="content">
+		<div class="sidebar">
+			<ul class="list">
+				<li>
+					<h3 ng-click="setDescribe('general')" class="groupName">General</h3>
+				</li>
+				
+				<li class="group" ng-repeat="group in etchNames">
+					<h3 class="groupName" ng-click="
+setDescribe(group.name)">{{ group.name | title}}</h3>
+										
+					<ul>
+						<li ng-repeat="property in group.unsupported" class="unsupported property" tooltip="Property is unsupported">
+							<span class="title">{{ group.name | title}}.</span>{{ property }} 
+						</li>
+						
+						<li ng-repeat="property in group.items" ng-click="setDescribe(property.name)" class="property"> 
+							<span class="title">{{ group.name | title}}.</span>{{ property.name }}<span ng-show="property.type == 'function' || property.type == 'block'" class="unemphasize" tooltip="Action">()</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="details">
+			<div ng-show="describe == 'general'">
+				<general-documentation ></general-documentation>
+			</div>
+			
+			<ul ng-repeat="group in etchNames">
+				<li ng-show="describe == group.name">
+					<h2>{{ group.name | title }}</h2>
+					<p ng-bind-html="group.explanation | markdown"></p>
+				</li>
+				<li ng-repeat="item in group.items" ng-show="describe == item.name">
+					<h3>{{ item.name | title }} <span>(this block </span><span ng-show="item.type == 'function'">takes an action</span><span ng-show="item.type == 'reporter'">tells you a value</span><span>)</span></h3>
+					
+					<p>
+						<span class="unemphasize">{{ group.name | title}}.</span><span>{{ item.name }}</span><span class="inputs" ng-show="item.type == 'function' || item.inputs.length"><span class="unemphasize">(</span><span class="input" ng-repeat="input in item.inputs">
+							{{ input }}<span class="comma" ng-hide="$index == item.inputs.length - 1"><span class="unemphasize">,</span></span>
+						</span><span class="unemphasize">)<span ng-show="item.type == 'block'">:</span></span></span>
+					</p>
+					
+					<p ng-bind-html="item.explanation | markdown"></p>
+					
+					<div ng-show="inputType('string', item)" class="explanation" markdown>
+						<p>
+This block takes something called a "string" as input. A string is just a programmer word for a bunch of words, special characters, and numbers. `H.el.lo Wo#rld !!` is an example of a string.
+
+To tell the computer that something is a string, we just put it in quotes. For example, `Looks.say("Hello World")`. If we didn't use the quotes the computer could confuse the string with a variable named `Hello World`.
+						</p>
+					</div>
+					
+					<p ng-show="inputType('number', item)" class="explanation" markdown>
+This block takes a number as input. To tell the computer that someting is a number you don't have to do anything special. Just write the number. For example, `Motion.move(90)`.
+					</p>
+	
+					<p ng-show="inputType('option', item)" class="explanation" markdown>
+This block takes dropdown menu options as input. To tell the computer that something is a dropdown menu option, just write it in. For example, `Motion.point towards(mouse pointer)`.
+					</p>
+			
+					<p ng-show="inputType('color', item)" class="explanation" markdown>
+This block takes a color as input. In Etch, colors are represented in a format called RGBA. Scratch stores colors in a similar way behind the scenes. To bring up a color picker, click on the icon in the lower right hand corner of the editor. Once you are done choosing the color in the dialog box that comes up, click ok and the RGBA color will be copied to your clipboard. Just paste it as input for any block that requires a color. For example, `Pen.set pen color to(0, 13, 255, 1)`.
+					</p>
+					
+					<p ng-show="item.type == 'block'" class="explanation" markdown>
+This block starts a section that has other blocks in it. For example,
+    
+	Control.if(username = "Jill"):
+		Looks.say("Hello Jill")
+						
+As you can see, a section start block ends with a colon (":") and anything else that is a part of that block is indented. Once the text is no longer indented, it is no longer part of that section. For example,
+						
+	Control.if(username = "Jill":
+		Looks.say("Hello Jill")
+						
+	Looks.say("This will always be said, because it is outside of the Control.if section")
+					</p>
+								
+				</li>
+			</ul>
+		</div>
+		
+		<div class="banner" markdown>
+See an issue with anything here. A typo? Please email us at contact@etchcode.org so that can fix it.
+		</div>
+	</div>
+</body>
+
+</html>

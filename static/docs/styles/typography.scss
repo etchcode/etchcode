@@ -1,0 +1,54 @@
+h1, h2, h3, p{
+	font-family: "Merriweather";
+}
+h1{
+	font-size: 4em;
+}
+
+h3 span{
+	font-size: .5em;
+	font-weight: normal;
+}
+
+.markdown-body{
+	h1, h2, h3{
+		text-align: left;
+	}
+}
+
+.unemphasize{
+	color: hsl(0, 0%, 50%);
+}
+
+code{
+	padding: 1px 6px 1px 6px;
+	border-radius: 2.5px;
+}
+
+//sidebar
+	.sidebar h3{
+		font-size: 1.5em;
+		text-align: left;
+	}
+
+	.property.unsupported{
+		text-decoration: line-through;
+	}
+
+	.sidebar .property, .sidebar .groupName{
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+//details
+	.details > ul{
+		list-style: none;
+	}
+	.details{
+		h3{
+			font-size: 2em;
+		}
+		p{
+			font-size: 1.1em;
+		}
+	}

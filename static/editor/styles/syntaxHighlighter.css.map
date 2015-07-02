@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "syntaxHighlighter.css",
+  "sources": [
+    "syntaxHighlighter.scss"
+  ],
+  "sourcesContent": [],
+  "mappings": ";AAAA;EACC,AAAU;;;AAGX;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER;EACC,AAAO;;;AAER,AAAY,AAAS;EACpB,AAAO",
+  "names": []
+}

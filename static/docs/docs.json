@@ -1,0 +1,713 @@
+{
+	"abriviations": { 
+		"m": "motion",
+		"s": "sound",
+		"d": "data",
+		"l": "looks",
+		"p": "pen",
+		"e": "events",
+		"c": "controll",
+		"o": "operators"
+	},
+	
+	"etchNames": [
+
+		{
+			"name": "Motion",
+			"explanation": "Blocks related to moving",
+			"unsupported": ["set rotation style"],
+			"items": [
+				{
+					"name": "move",
+					"type": "function",
+					"inputs": ["amount to move forwards by"],
+					"inputTypes": ["number"],
+					"explanation": "Move forwards by the specified amount."
+				},
+				{
+					"name": "turn right",
+					"type": "function",
+					"inputs": ["degrees to turn right"],
+					"inputTypes": ["number"],
+					"explanation": "Turn right by the specified number of degrees"
+				},
+				{
+					"name": "turn left",
+					"type": "function",
+					"inputs": ["amount to turn left by"],
+					"inputTypes": ["number"],
+					"explanation": "Turn right by the specified number of degrees"
+				},
+				{
+					"name": "point direction",
+					"type": "function",
+					"inputs": ["direction to point in"],
+					"inputTypes": ["number"],
+					"explanation": "Point this sprite in a direction. The direction to point in is in degrees with 0 directly down and 360 directly up. The direction wraps, so 400 is the same as 140 (400 - 360)."
+				},
+				{
+					"name": "point towards",
+					"type": "function",
+					"inputs": ["what to point towards"],
+					"inputTypes": ["string", "option"],
+					"explanation": "This can point towards another sprite or the mouse pointer. If you are pointing towards another sprite, use `Motion.point towards(\"name-of-other-sprite\")`. To point towards the mouse pointer, use `Motion.point towards(mouse pointer)`."
+				},
+				{
+					"name": "go to x y",
+					"type": "function",
+					"inputs": ["x coordinate to go to", "y coordinate to go to"],
+					"inputTypes": ["number"],
+					"explanation": "Go to the specified x and y coordinates."
+				},
+				{
+					"name": "go to object",
+					"type": "function",
+					"inputs": ["object to go to"],
+					"inputTypes": ["string", "option"],
+					"explanation": "Use this to go to the coordinates sprite or the mouse pointer. If you want to go to another sprite, use `Motion.go to object(\"name-of-other-sprite\")`. To go to the mouse pointer, use `Motion.go to object(mouse pointer)`."
+				},
+				{
+					"name": "glide",
+					"type": "function",
+					"inputs": ["seconds to gilde for", "x coordinate to go to", "y coordinate to go to"],
+					"inputTypes": ["number"],
+					"explanation": "Have this sprite to the specified x and y coordinates for the specified amount of time."
+				},
+				{
+					"name": "change x",
+					"type": "function",
+					"inputs": ["amount to change to current x coordinate"],
+					"inputTypes": ["number"],
+					"explanation": "Change the current x coordinate of this sprite by the specified amount."
+				},
+				{
+					"name": "set x",
+					"type": "function",
+					"inputTypes": ["number"],
+					"inputs": ["amount to set the current x coordinate to"],
+					"explanation": "Set the x coordinate of this sprite to the specified amount."
+				},
+				{
+					"name": "change y",
+					"type": "function",
+					"inputTypes": ["number"],
+					"inputs": ["amount to change the current y coordinate by"],
+					"explanation": "Change the current y coordinate of this sprite by the specified amount."
+				},
+				{
+					"name": "set y",
+					"type": "function",
+					"inputTypes": ["number"],
+					"inputs": ["amount to set the current y coordinate to"],
+					"explanation": "Set the y coordinate of this sprite by the specified amount."
+				},
+				{
+					"name": "if edge bounce",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "If this sprite is on an edge, have the sprite bounce."
+				},
+				{
+					"name": "x pos",
+					"type": "reporter",
+					"explanation": "This is the current x position of this sprite."
+				},
+				{
+					"name": "y pos",
+					"type": "reporter",
+					"explanation": "This is the current y position of this sprite."
+				},
+				{
+					"name": "direction",
+					"type": "reporter",
+					"explanation": "This is the current direction that this sprite is pointing. 0 is directly up, 180 is directly down, 90 right, -90 left.",
+					"image": "images/direction-degrees-explanation.png"
+				}
+			]
+		},
+
+		{
+			"name": "looks",
+			"explanation": "Blocks related to looks",
+			"unsupported": ["backdrop name", "switch backdrop to"],
+			"items": [
+				{
+					"name": "timed say",
+				 	"type": "function",
+				 	"inputs": ["text to say", "number of seconds to say text for"],
+					"inputTypes": ["string", "number"],
+				 	"explanation": "Say something for a specified amount of time."
+				},
+				{
+					"name": "say",
+				 	"type": "function",
+				 	"inputs": ["text to say"],
+					"inputTypes": ["string"],
+				 	"explanation": "Say something."
+				},
+				{
+					"name": "timed think",
+				 	"type": "function",
+				 	"inputs": ["text to think", "number of seconds to think text for"],
+					"inputTypes": ["string", "number"],
+				 	"explanation": "Think something for a specified amount of time."
+				},
+				{
+					"name": "think",
+				 	"type": "function",
+				 	"inputs": ["text to think"],
+					"inputTypes": ["string"],
+				 	"explanation": "Think something"
+				},
+				{
+					"name": "show",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Show the current sprite"
+				},
+				{
+					"name": "hide",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Hide the current sprite"
+				},
+				{
+					"name": "switch costume to",
+					"type": "function",
+					"inputs": ["name of costume to switch to"],
+					"inputTypes": ["string"],
+					"explanation": "Switch the costume of this sprite to another costume."
+				},
+				{
+					"name": "next costume",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Switch to the next costume"
+				},
+				{
+					"name": "change effect",
+					"type": "function",
+					"inputs": ["effect to change", "amount to change effect by"],
+					"inputTypes": ["option", "number"],
+					"explanation": "Change an effect by a specified amount. Possible effects are `brightness`, `ghost`, `negative`, `comic`, `duplicate`, and `confetti`."
+				},
+				{
+					"name": "set effect",
+					"type": "function",
+					"inputTypes": ["option", "number"],
+					"inputs": ["effect to change", "amount to set effect to"],
+					"explanation": "Set an effect to an amount. Possible effects are `brightness`, `ghost`, `negative`, `comic`, `duplicate`, and `confetti`."
+				},
+				{
+					"name": "clear graphic effects",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Clear all graphic effects."
+				},
+				{
+					"name": "change size by",
+					"type": "function",
+					"inputs": ["amount to change size by"],
+					"inputTypes": ["number"],
+					"explanation": "Change the size of this sprite by an amount."
+				},
+				{
+					"name": "set size to",
+					"type": "function",
+					"inputs": ["amount to set size to"],
+					"inputTypes": ["number"],
+					"explanation": "Set the size of this sprite to an amount."
+				},
+				{
+					"name": "go to front",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Put this sprite in front of all other sprites."
+				},
+				{
+					"name": "go back layers",
+					"type": "function",
+					"inputs": ["number of layers to send this sprite back"],
+					"inputTypes": ["number"],
+					"explanation": "Send this sprite backwards a number of layers."
+				},
+				{
+					"name": "costume number",
+					"type": "reporter",
+					"explanation": "This is the number of the current costume. This is a zero based count so the first costume is zero, the second one, and so on."
+				},
+				{
+					"name": "size",
+					"type": "reporter",
+					"explanation": "This is the current size of this sprite."
+				}
+			]
+		},
+
+		{
+			"name": "sound",
+			"explanation": "Blocks related to sound. Many of these blocks are unsupported because Etch does not yet support uploading sounds, which it will do before it's beta release at the end of the summer.",
+			"unsupported": ["play drum", "change volume by", "set volume to", "volume", "set instrument to", "play sound", "play sound until done", "rest for"],
+			
+			"items": [
+				{
+					"name": "stop all sounds",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Stop playing every sound."
+				},
+				{
+					"name": "play note",
+					"type": "function",
+					"inputs": ["note to play"],
+					"inputTypes": ["number"],
+					"explanation": "Play a specific note. 48 is low C and 72 high C. See the image for details on the numbering system.",
+					"image": "images/note-chart.png"
+				},
+				{
+					"name": "change tempo by",
+					"type": "function",
+					"inputs": ["amount to change temp by"],
+					"inputTypes": ["number"],
+					"explanation": "Set the tempo that the music is played at. The number is in BPM (beats per minute)."
+				},
+				{
+					"name": "set tempo to",
+					"type": "function",
+					"inputs": ["amount to set tempo to"],
+					"inputTypes": ["number"],
+					"explanation": "Set the tempo that the music is plated at. The number is in BPC (beats per minute)."
+				},
+				{
+					"name": "tempo",
+					"type": "reporter",
+					"explanation": "This is the current tempo that the music is plated at. The number is in BPC (beats per minute)."
+				}
+			]
+		},
+
+		{
+			"name": "pen",
+			"explanation": "Blocks related to pen drawing. Etch does not save drawings you create while making your program. These should be costumes or backgrounds. As your program executes it will draw, but those drawing will not be saved for users of your program.",
+			"items": [
+				{
+					"name": "clear",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Clear any marks made by the pen."
+				},
+				{
+					"name": "stamp",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Make a stamp, or copy of what the sprite currently looks like, at the sprite's current position."
+				},
+				{
+					"name": "pen down",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Put the pen down to start drawing."
+				},
+				{
+					"name": "pen up",
+					"type": "function",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Lift up the pen so that you can move the pen to a new position without making marks."
+				},
+				{
+					"name": "set pen color to",
+					"type": "function",
+					"inputs": ["color to set the pen to"],
+					"inputTypes": ["color"],
+					"explanation": "Set the pen color to a specific color."
+				},
+				{
+					"name": "change pen color by",
+					"type": "function",
+					"inputs": ["amount to change pen color by"],
+					"inputTypes": ["number"],
+					"explanation": "Change the pen color by an amount."
+				},
+				{
+					"name": "set pen color to number",
+					"type": "function",
+					"inputs": ["amount to set the pen color to"],
+					"inputTypes": ["number"],
+					"explanation": "Set the pen color to an amount."
+				},
+				{
+					"name": "change pen shade by",
+					"type": "function",
+					"inputs": ["amount to change pen shade by"],
+					"inputTypes": ["number"],
+					"explanation": "Change the shade of the pen by a specified amount."
+				},
+				{
+					"name": "change pen size by",
+					"type": "function",
+					"inputs": ["amount to change pen size by"],
+					"inputTypes": ["number"],
+					"explanation": "Change the size of the pen by a specified amount."
+				},
+				{
+					"name": "set pen size to",
+					"type": "function",
+					"inputs": ["amount to set pen size to"],
+					"inputTypes": ["number"],
+					"explanation": "Set the pen size to a specified amount."
+				}
+			]
+		},
+
+		{
+			"name": "data",
+			"explanation": "Blocks related to the storing of data in variables. A variable is a container that can hold a value such as a number or word.",
+			"explanation": "The `Data` blocks allow you to create and store variables. Create a variable using the variables section of the \"Settings\" tab of the Etch editor. Then, use `Data.set` to set the value of a variable. You can access this variable by simply writing it's name anywhere in your program. For example, `motion.move(stored value)` if `stored value` is a variable.",
+			"items": [
+				{
+					"name": "set",
+					"type": "function",
+					"inputs": ["variable name", "what to set variable to"],
+					"inputTypes": ["string", "number"],
+					"explanation": "Set a variable to a value. For instance, to set the variable `foo` to 100 use `Data.set(\"foo\", 100)."
+				},
+				{
+					"name": "change by",
+					"type": "function",
+					"inputs": ["variable name", "amount to change variable by"],
+					"inputTypes": ["string", "number"],
+					"explanation": "Change the value of a variable by a number. For instance, use `Data.change by(\"foo\", 10)` to increase the variable `foo` by 10. If you try to use this on a variable that isn't a number, the variable will be set to the number you try to change it by."
+				},
+				{
+					"name": "show variable",
+					"type": "function",
+					"inputs": ["name of variable to show"],
+					"inputTypes": ["string"],
+					"explanation": "Show a variable so that it's value appears in a box on the stage."
+				},
+				{
+					"name": "hide variable",
+					"type": "function",
+					"inputs": ["name of variable to hide"],
+					"inputTypes": ["string"],
+					"explanation": "Hide a variable so that it's name doesn't show up in a box on the stage."
+				}
+			]
+		},
+
+		{
+			"name": "events",
+			"explanation": "Blocks related to events such as flag clicked or key pressed.",
+			"unsupported": ["backdrop swiches to", "greater than"],
+			"items": [
+				{
+					"name": "flag clicked",
+					"type": "block",
+					"explanation": "Anything grouped under this is run when the flag is clicked."
+				},
+				{
+					"name": "key pressed",
+					"type": "block",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Anything grouped under this is run when a specified key is pressed."
+				},
+				{
+					"name": "this sprite clicked",
+					"type": "block",
+					"explanation": "Anything grouped under this is run when this sprite is clicked."
+				},
+				{
+					"name": "i receive message",
+					"type": "block",
+					"inputs": [],
+					"inputTypes": [],
+					"explanation": "Anything grouped under this is run when the specified message is recieved. To match any message, use `events.i recieve message(any message)`."
+				},
+				{
+					"name": "broadcast",
+					"type": "function",
+					"inputs": ["message to broadcase"],
+					"inputTypes": ["string"],
+					"explanation": "Broadcase any message to all other sprites."
+				},
+				{
+					"name": "broadcast and wait",
+					"type": "function",
+					"inputs": ["message to broadcase"],
+					"inputTypes": ["string"],
+					"explanation": "Broadcase any message to all other sprites and then wait until the other sprites are done with whatever the other sprites do when the recieve the message."
+				}
+			]
+		},
+
+		{
+			"name": "control",
+			"explanation": "Blocks in the control category",
+			"unsupported": ["if then else"],
+			"items": [
+				{
+					"name": "wait seconds",
+					"type": "function",
+					"inputs": ["number of seconds to wait"],
+					"inputTypes": ["number"],
+					"explanation": "Wait for any number of seconds"
+				},
+				{
+					"name": "repeat",
+					"type": "block",
+					"inputs": ["number of times to repeat"],
+					"inputTypes": ["number"],
+					"explanation": "Anything grouped under this will be repeated the number of times that you specify."
+				},
+				{
+					"name": "forever",
+					"type": "block",
+					"explanation": "Anything grouped under this will be repeated forever."
+				},
+				{
+					"name": "if",
+					"type": "block",
+					"inputs": ["statement to check"],
+					"inputTypes": ["statement"],
+					"explanation": "If the statement to check is true, everything grouped under this is run. Otherwise, nothing happens. For instance, `Control.if(Sensing.mouse x > 10):`."
+				},
+				{
+					"name": "wait until",
+					"type": "function",
+					"inputs": ["statement to check"],
+					"inputTypes": ["statement"],
+					"explanation": "Wait until a statement is true. For instance, `Control.wait until(Sensing.mouse x > 10)`."
+				},
+				{
+					"name": "repeat until",
+					"type": "block",
+					"inputs": ["statement to repeat until the statement is true"],
+					"inputTypes": ["statement"],
+					"explanation": "Anything grouped under this will be repeated until the statement you specify becomes true. For instance, `Control.repeat until(Sensing.mouse x > 10):`."
+				},
+				{
+					"name": "stop",
+					"type": "function",
+					"inputs": ["what to stop"],
+					"inputTypes": ["option"],
+					"explanation": "Stop whatever you specify. The options are `all`, `this script`, or `this block`."
+				},
+				{
+					"name": "when i start as a clone",
+					"type": "block",
+					"explanation": "Anything grouped under this will be run when a clone of this sprite starts."
+				},
+				{
+					"name": "create clone of",
+					"type": "function",
+					"inputs": ["sprite to create a clone of"],
+					"inputTypes": ["string", "option"],
+					"explanation": "Create a clone of any sprite. You can use the name of a sprite to create a clone of, for example `Control.create clone of(\"name of other sprite\"), or `myself` to clone the current sprite, for example `Control.create clone of(myself)`."
+				},
+				{
+					"name": "delete this clone",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Delete this clone of a sprite."
+				}
+			]
+		},
+
+		{
+			"name": "sensing",
+			"explanation": "Blocks related to sensing",
+			"unsupported": ["loudness", "turn video", "set video transparency to", "x position of", "days since 2000", "username", "vide on"],
+			"items": [
+				{
+					"name": "touching",
+					"type": "reporter",
+					"inputs": ["what to check if this sprite is touching"],
+					"inputTypes": ["option"],
+					"explanation": "Check if this sprite is touching something. Possible options are `mouse pointer`, `edge`, or `pen trails`."
+				},
+				{
+					"name": "touching color",
+					"type": "reporter",
+					"inputs": ["color to check if sprite is touching"],
+					"inputTypes": ["color"],
+					"explanation": "Check if this sprite is touching the specified color."
+				},
+				{
+					"name": "colors touching",
+					"type": "reporter",
+					"inputs": ["color one", "color two"],
+					"inputTypes": ["color"],
+					"explanation": "Check if two colors are touching."
+				},
+				{
+					"name": "distance to",
+					"type": "reporter",
+					"inputs": ["what to check the distance to"],
+					"inputTypes": ["string", "option"],
+					"explanation": "Get the distance to another sprite or the mouse pointer. To get the distance to another sprite, use the sprites name. For example, `Sensing.distance to(\"sprite-name\"). To get the distance to the mouse pointer, use `Sensing.distance to(mouse pointer)."
+				},
+				{
+					"name": "ask and wait",
+					"type": "function",
+					"inputs": ["what to ask"],
+					"inputTypes": ["string"],
+					"explanation": "Ask the user something and then wait for their response. After they response, their answer will be available as if it were a reporter. For example, `Looks.say(Sensing.answer)`."
+				},
+				{
+					"name": "answer",
+					"type": "reporter",
+					"explanation": "This is the answer to what was asked using `Sensing.ask and wait(\"question\")`. Access the answer with `Sensing.answer`. For example, `Looks.say(Sensing.answer)`."
+				},
+				{
+					"name": "is key pressed",
+					"type": "reporter",
+					"inputs": ["key"],
+					"inputTypes": ["option"],
+					"explanation": "Check if a specified key is pressed."
+				},
+				{
+					"name": "is mouse down",
+					"type": "reporter",
+					"inputs": [],
+					"explanation": "Check if the mouse is down."
+				},
+				{
+					"name": "mouse x",
+					"type": "reporter",
+					"inputs": [],
+					"explanation": "Get the current x coordinate of the mouse."
+				},
+				{
+					"name": "mouse y",
+					"type": "reporter",
+					"inputs": [],
+					"explanation": "Get the current y coordinate of the mouse."
+				},
+				{
+					"name": "timer",
+					"type": "reporter",
+					"inputs": [],
+					"explanation": "Get the number of seconds that the program has been running."
+				},
+				{
+					"name": "reset timer",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Reset the number of seconds that the program has been running."
+				},
+				{
+					"name": "current",
+					"type": "reporter",
+					"inputs": [],
+					"explanation": "Get current date related values. You can get the current year, month, date, day of the week, hour, minute, second, and time in milliseconds. For example, `Looks.say(sensing.current(time in milliseconds))`."
+				}
+			]
+		},
+
+		{
+			"name": "operators",
+		 	"explanation": "Operator blocks. Many of these blocks can be used without writing `operators.`. For instance, you have to write `Looks.say` but not `Operators.+`, which is just `+`.",	
+			"unsupported": ["abs", "floor", "sqrt", "sin", "cos", "tan", "asic", "acos", "atan", "in", "e^"],
+			"items": [
+				{
+					"name": "+",
+					"type": "inline-math",
+					"explanation": "Add two items. For example, `Looks.say(5 + 4)`"
+				},
+				{
+					"name": "-",
+					"type": "inline-math",
+					"explanation": "Subtract two items. For example, `Looks.say(5 - 4)`"
+				},
+				{
+					"name": "*",
+					"type": "inline-math",
+					"explanation": "Multiply two items. For example, `Looks.say(5 * 4)`"
+				},
+				{
+					"name": "/",
+					"type": "inline-math",
+					"explanation": "Divide two items. For example, `Looks.say(5 / 4)`"
+				},
+				{
+					"name": "pick random between",
+					"type": "function",
+					"inputs": ["lowest possibility", "highest possibility"],
+					"inputTypes": ["number", "number"],
+					"explanation": "Pick a number between two specified numbers randomly. This is inclusive, so `Operators.pick random between(1, 3)` could be 1, 2, or 3."
+				},
+				{
+					"name": "<",
+					"type": "inline-math",
+					"explanation": "See if something is greater than something else. For example, `Control.if(count > 100):`"
+				},
+				{
+					"name": "=",
+					"type": "inline-math",
+					"explanation": "Check if two items are equal. For example, `Control.if(count = 100):`"
+				},
+				{
+					"name": ">",
+					"type": "inline-math",
+					"explanation": "See if something is less than something else. For example, `Control.if(count < 100):`"
+				},
+				{
+					"name": "and",
+					"type": "inline-math",
+					"explanation": "For example, `Control.if(count < 100 and special_effect not = 3):`"
+				},
+				{
+					"name": "or",
+					"type": "inline-math",
+					"explanation": "For example, `Control.if(count < 100 or special_effect = 3):`"
+				},
+				{
+					"name": "not",
+					"type": "inline-math",
+					"explanation": "Negate something. For example, `Control.if(special_effect not = 3):`"
+				},
+				{
+					"name": "join",
+					"type": "function",
+					"inputs": ["item one", "item two"],
+					"inputTypes": ["string", "number"],
+					"explanation": "Combine two items. For instance, say \"You got\" combined with the variable score use `Looks.say(Operators.join(\"You Got\", score))`"
+				},
+				{
+					"name": "letter number",
+					"type": "reporter",
+					"inputs": ["letter number", "word"],
+					"inputTypes": ["number", "string"],
+					"explanation": "Get a specific letter of a word or group of words. For example, `Operators.letter number(5, \"Hello World\")` is \"o\"."
+				},
+				{
+					"name": "length of",
+					"type": "function",
+					"inputs": ["word or number"],
+					"inputTypes": ["string", "number"],
+					"explanation": "For a word or group of words, this will get the number of characters. For a number, it will get the number of characters."
+				},
+				{
+					"name": "%",
+					"type": "inline-math",
+					"explanation": "Mod two numbers. For example, `Looks.say(5 % 4)` is 1."
+				},
+				{
+					"name": "round",
+					"type": "function",
+					"inputs": [],
+					"explanation": "Round a number to the nearest ones place."
+				}
+			]
+		}
+	]
+}
