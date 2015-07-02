@@ -1,0 +1,11 @@
+@mixin reset-button{
+	box-shadow: 0 0 0 0;
+	border: none;
+	outline: none;
+	
+	font-size: 1em;
+	
+	padding: 7px;
+	
+	cursor: pointer;
+}

@@ -1,0 +1,174 @@
+/* line 4, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+[unselectable] {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none; }
+
+/* line 11, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+[selectable] {
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: text;
+  -o-user-select: all;
+  user-select: all; }
+
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+/* line 21, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+* {
+  box-sizing: border-box; }
+
+/* line 25, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+img.icon {
+  height: 20px;
+  width: auto;
+  margin-left: 6px;
+  cursor: pointer; }
+
+/* line 34, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.add.icon {
+  height: 25px;
+  width: 25px; }
+
+/* line 38, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.remove.icon {
+  float: right; }
+
+/* line 42, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.costume .remove.icon, .variables .remove.icon {
+  float: none; }
+
+/* line 46, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.textarea {
+  outline: none;
+  line-height: 20px;
+  font-size: 14px;
+  overflow: auto;
+  font-family: anonymousPro;
+  resize: none; }
+
+/* line 59, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings {
+  overflow: auto;
+  height: 100%; }
+
+/* line 64, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings input {
+  background-color: rgba(0, 0, 0, 0.1);
+  outline-color: transparent;
+  border-color: transparent;
+  margin-right: 10px;
+  padding: 4px;
+  outline: 0; }
+
+/* line 74, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings input[type='text'] {
+  width: 250px; }
+
+/* line 78, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings input[type="button"], [ng-click] {
+  cursor: pointer; }
+
+/* line 82, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings .costume {
+  white-space: normal;
+  margin-left: 142px;
+  padding: 20px;
+  overflow: hidden;
+  text-align: left; }
+
+/* line 90, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings .costume p {
+  margin-bottom: 0; }
+
+/* line 94, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#settings .new[type=button] {
+  padding: 3px 20px 3px 20px;
+  margin-left: 20px;
+  cursor: pointer; }
+
+/* line 101, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.editableImage .bar .upload {
+  cursor: pointer; }
+
+/* line 106, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.header h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 2px 1px rgba(131, 134, 149, 0.89);
+  text-align: center; }
+
+/* line 118, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.left.header h1 {
+  font-size: 25px; }
+  /* line 121, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+  .left.header h1 input {
+    font-family: inherit;
+    font-size: inherit; }
+/* line 128, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.left.header .tabs input[type=button] {
+  box-shadow: 0 0 0 0;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 7px;
+  cursor: pointer; }
+
+/* line 135, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#sprites li {
+  list-style: none;
+  display: inline-block;
+  margin: 10px;
+  padding: 15px;
+  background-color: #bebfc5; }
+
+/* line 145, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+#sprites {
+  padding: 15px;
+  padding-top: 7px;
+  margin: 0; }
+
+/* line 151, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+sprite li p:empty::after {
+  content: "undefined"; }
+
+/* line 155, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+sprite .image {
+  cursor: pointer; }
+
+/* line 159, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+sprite p {
+  text-align: center;
+  margin: 5px; }
+
+/* line 163, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+sprite img {
+  clear: right;
+  width: 100px;
+  max-height: 100px; }
+
+/* line 171, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.variables {
+  list-style: none;
+  white-space: normal; }
+
+/* line 176, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+.variables li {
+  margin-top: 5px;
+  margin-bottom: 5px; }
+
+/* line 182, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+pre {
+  font-family: anonymousPro; }
+
+/* line 186, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
+img:not(.action) {
+  pointer-events: none; }
+
+/*# sourceMappingURL=general.css.map */
