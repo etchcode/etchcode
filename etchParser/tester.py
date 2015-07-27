@@ -3,7 +3,7 @@ from xml_creator import xmlcreator
 from blocks import snapNames
 string = """
 Events.when flag clickedsad12)()OP!L2:
-    l.think("stas)
+    l.think(stas)
 
 """
 variables = ["foo"]
