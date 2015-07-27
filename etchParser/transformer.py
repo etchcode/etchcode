@@ -11,7 +11,7 @@ class transformList:
         period = Suppress(Literal("."))
         #These are different types of inputs
         integer = Word(nums).setParseAction(lambda t: int(t[0]))
-        variable = Word(alphas)
+        variable = Combine(OneOrMore(Word(alphanums) + Optional(oneOf("_ -"))))
         string = QuotedString('"', escChar='\\')
         func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("")")))#this one is only for a function inside a nother function
 
@@ -19,10 +19,12 @@ class transformList:
         #negpos = oneOf('+ -') #this doesn't work currently in our xml_creator
         multop = oneOf('* /')
         plusop = oneOf('+ -')
+
         exprinputs = Group(functions("func") ^ integer("integer") ^ variable("variable"))
         expression =  operatorPrecedence( exprinputs, #Optional(Suppress(Literal("("))) +
     [("!", 1, opAssoc.LEFT),
      ("^", 2, opAssoc.RIGHT),
+     ("%", 2, opAssoc.LEFT),
      #(signop, 1, opAssoc.RIGHT),
      (multop, 2, opAssoc.LEFT),
      (plusop, 2, opAssoc.LEFT),]
@@ -31,7 +33,7 @@ class transformList:
         #this is combination of all of the inputs
         operand = Group(func("func") ^ integer("integer") ^ variable("variable") ^ string("string") ^ expression("expression"))
         #this makes it so you can put multiple inputs in a function
-        regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore((Suppress(Literal(",")) | Suppress("to") )+ operand)) + Suppress(Literal(")"))
+        regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore((Suppress(Literal(",")) | Suppress("to") | Suppress("for"))+ operand)) + Suppress(Literal(")"))
 
         """
         Currently if statements do not work
@@ -57,7 +59,10 @@ class transformList:
         startCode = Group(Word(alphas)+ period + Suppress(Optional(oneOf("when When")))+Group(OneOrMore(Word(alphas))) + Suppress(Literal(":")))#startCode = Group(CaselessKeyword("E") ^ CaselessKeyword("events") + period + Suppress(Optional(CaselessLiteral("when")))+Group(CaselessLiteral("flag") + CaselessLiteral("clicked")) + Suppress(Literal(":")))
         functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
         allfunctions = OneOrMore(ifgroup + comments ^ functions("function")+ comments)
-
+        operand.setParseAction(
+        lambda origString,loc,tokens:
+            ( tokens[0], lineno(loc,origString), col(loc,origString) )
+        )
         """
         each script block includes when to start and then functions
         fullCode is a collection of scriptblocks

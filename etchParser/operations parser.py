@@ -1,29 +1,37 @@
 from pyparsing import *
+ 
+text = """Lorem ipsum dolor sit amet, consectetur adipisicing 
+elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
+aute irure dolor in reprehenderit in voluptate velit esse cillum 
+dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+cupidatat non proident, sunt in culpa qui officia deserunt 
+mollit anim id est laborum"""
+ 
+# find all words beginning with a vowel
+vowels = "aeiouAEIOU"
+initialVowelWord = Word(vowels,alphas)
+ 
+# Unfortunately, searchString will advance character by character through
+# the input text, so it will detect that the initial "Lorem" is not an
+# initialVowelWord, but then it will test "orem" and think that it is. So
+# we need to add a do-nothing term that will match the words that start with
+# consonants, but we will just throw them away when we match them. The key is
+# that, in having been matched, the parser will skip over them entirely when
+# looking for initialVowelWords.
+consonants = ''.join(c for c in alphas if c not in vowels)
+initialConsWord = Word(consonants, alphas).suppress()
+ 
+# add parse action to store the current location in the parsed tokens
+# (you said you tried this, not sure why it didn't work for you)
+def addLocnToTokens(s,l,t):
+    t['locn'] = l
+    t['word'] = t[0]
+initialVowelWord.setParseAction(addLocnToTokens)
 
-integer = Word(nums).setParseAction(lambda t:int(t[0]))
-variable = Word(alphas, exact=1)
-period = Suppress(Literal("."))
-func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))) #if it is a function inside a nother function
-operand = func | integer | variable  #types of values allowed in expressions
-signop = oneOf('+ -')
-multop = oneOf('* /')
-plusop = oneOf('+ -')
-
-expression = Suppress(Literal("(")) + operatorPrecedence( operand,
-    [("!", 1, opAssoc.LEFT),
-     ("^", 2, opAssoc.RIGHT),
-     (signop, 1, opAssoc.RIGHT),
-     (multop, 2, opAssoc.LEFT),
-     (plusop, 2, opAssoc.LEFT),]
-    )+ Suppress(Literal(")")) #parses the expression for example (2+3*4) = [2+[3*4]]
-regInput = Suppress(Literal("(")) + Group(operand + ZeroOrMore("," + operand)) + Suppress(Literal(")")) #regular input
-input = expression | regInput #expressions take presidence currently
-startCode = Word("events") + Suppress(Literal("."))+ Suppress(Optional(Word("when")))+Group(Word("flag") + Word("clicked")) + Suppress(Literal(":"))
-
-functions = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas))) + input + LineEnd())#all functions must be on new line
-
-scriptBlock = startCode + Group(OneOrMore(functions))
-fullCode = OneOrMore(Group(scriptBlock))
-
-print expression.parseString("""((12+123)*21)
- """.lower())
+for ivowelInfo in (initialConsWord | initialVowelWord).searchString(text):
+    print ivowelInfo.dump()
+    if not ivowelInfo:
+        continue
+    print ivowelInfo.locn, ':', ivowelInfo.word
