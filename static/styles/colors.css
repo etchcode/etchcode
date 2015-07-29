@@ -8,42 +8,46 @@ body {
   color: #dbdce1; }
 
 /* line 15, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+#editors {
+  background-color: #212121; }
+
+/* line 19, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 #editors .CodeMirror {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none; }
-  /* line 20, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+  /* line 24, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
   #editors .CodeMirror .CodeMirror-gutters {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
 
-/* line 27, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 31, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 #sidebar {
   background-color: #85868a; }
 
-/* line 32, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 36, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 #settings, #settings input {
   color: #dbdce1; }
 
-/* line 36, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 40, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .editableImage .overlay {
   background-color: rgba(171, 174, 186, 0.8); }
 
-/* line 40, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 44, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .property.unsupported {
   color: #990000; }
 
-/* line 44, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 48, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .explanation {
   background-color: #e6e6e6; }
 
-/* line 48, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 52, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .banner {
   background-color: #6699ff;
   color: white; }
 
-/* line 53, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 57, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .enabled {
   background-color: #212121; }
 

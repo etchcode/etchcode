@@ -12,6 +12,10 @@ body{
 	color: $color-4;
 }
 
+#editors {
+	background-color: $color-1;
+}
+
 #editors .CodeMirror{
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
