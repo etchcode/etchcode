@@ -9,10 +9,12 @@
 		var that = this;
 		
 		that.project = function(project){
+			// function accepts string project and returns a Promise that resolves to a string of the built project
 			return new Promise(function(resolve){
 
 				var scripts = {};
 				for(var i = 0; i < project.length; i++){
+					// for every script in the project build a dictionary with scipts labled by their sprite name
 					var sprite = project[i];
 
 					if(sprite.script !== undefined){ 

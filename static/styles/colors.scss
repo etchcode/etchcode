@@ -4,7 +4,7 @@ $color-3: hsla(230, 2%, 53%, 1);
 $color-4: hsla(229, 10%, 87%, 1);
   
 body{
-	background-color: $color-1;
+	background-color: $color-4;
 }
 
 .enabled[type=button], .enabled li, li.enabled{
@@ -26,10 +26,6 @@ body{
 
 #sidebar {
 	background-color: $color-3;
-}
-
-#sprites .background{
-	border-top: 2px solid $color-2;
 }
 
 // config

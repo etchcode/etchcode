@@ -26,16 +26,16 @@
 				$scope.run = function(xml){
 					function run(toRun){
 						$scope.show = true;
-						player.contentWindow.postMessage({"action": "loadString", "string": toRun}, "http://etchcodeusercontent.appspot.com/player");
+						player.contentWindow.postMessage({"action": "loadString", "string": toRun}, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
 					}
 					
-					if($scope.loaded){
-						run(xml);
+					if($scope.loaded){ // if the iframe is loaded
+						run(xml); // run it 
 					}
-					else{
+					else{ // otherwise
 						player.onload = function(){ //with .onload we will only have one run waiting
 							$scope.$apply(function(){
-								run(xml);
+								run(xml); // run it later
 							});
 						};
 					}

@@ -16,15 +16,20 @@ body {
 	margin: 0;
 }
 
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+
 hr{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
-#sprites .background{
-	display: block;
-	
-	margin-top: 25px;
+.sprites{
+	width: 40%;
 }
 
 sprite img{
@@ -108,8 +113,7 @@ sprite img{
 }
 
 .editableImage .bar{
-	position: absolute;
-	
+	position: absolute;	
 	width: 100px;
 }
 

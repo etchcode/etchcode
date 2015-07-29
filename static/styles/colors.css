@@ -1,6 +1,6 @@
 /* line 6, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 body {
-  background-color: #212121; }
+  background-color: #dbdce1; }
 
 /* line 10, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .enabled[type=button], .enabled li, li.enabled {
@@ -22,32 +22,28 @@ body {
 #sidebar {
   background-color: #85868a; }
 
-/* line 31, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
-#sprites .background {
-  border-top: 2px solid #abaeba; }
-
-/* line 36, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 32, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 #settings, #settings input {
   color: #dbdce1; }
 
-/* line 40, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 36, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .editableImage .overlay {
   background-color: rgba(171, 174, 186, 0.8); }
 
-/* line 44, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 40, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .property.unsupported {
   color: #990000; }
 
-/* line 48, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 44, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .explanation {
   background-color: #e6e6e6; }
 
-/* line 52, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 48, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .banner {
   background-color: #6699ff;
   color: white; }
 
-/* line 57, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+/* line 53, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
 .enabled {
   background-color: #212121; }
 

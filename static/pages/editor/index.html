@@ -1,21 +1,18 @@
 <div ng-controller="spritesController as sprites">
-	<div class="parent header">
-		<div class="left header">
+	<div class="content-header left">
 
-			<h1>
-				<input ng-model="sprites.list[sprites.list.length-1].name">
-			</h1>
+		<h1>
+			<input ng-model="sprites.list[sprites.list.length-1].name">
+		</h1>
 
-			<span class="tabs" ng-controller="editorsController as editors">
-					<input type="button" value="Code" ng-class="{enabled:editors.view === 'code'}" ng-click="editors.view = 'code'" ng-hide="sprites.current=='general'"> <!--the globals view can only modify config stuff-->
-					<input type="button" value="Settings" ng-class="{enabled:editors.view === 'settings' || sprites.current === 'general'}" ng-click="editors.view = 'settings'">
-				</span>
-
-		</div>
+		<span class="tabs" ng-controller="editorsController as editors">
+				<input type="button" value="Code" class="reset" ng-class="{enabled:editors.view === 'code'}" ng-click="editors.view = 'code'" ng-hide="sprites.current=='general'"> <!--the globals view can only modify config stuff-->
+				<input type="button" value="Settings" class="reset" ng-class="{enabled:editors.view === 'settings' || sprites.current === 'general'}" ng-click="editors.view = 'settings'">
+		</span>
 
 	</div>
 
-	<div id="editors" ng-controller="editorsController as editors">
+	<div id="editors" ng-controller="editorsController as editors" class="left">
 		<div id="code" ng-show="editors.service.view === 'code'" ng-hide="sprites.current === 'general'" selectable>
 			<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="{{ sprite }}"></editor>
 		</div>
@@ -85,25 +82,14 @@
 
 	</div>
 
-	<div id="sidebar">
+	<div class="sprites right">
 		<h2>Sprites <img ng-click="sprites.add()" src="images/icons/add_black.svg" class="add icon action"></h2>
-		<ul id="sprites">
-
+		<ul>
 			<sprite ng-repeat="sprite in sprites.list" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
-
 		</ul>
 
 		<div class="build" ng-controller="buildButtonController as buildButton">
 			<input type="button" value="Run" ng-click="buildButton.render()">
-
-			<!-- TODO: Implement save functionality in dropdown
-				<input type="button" value="V" ng-click="buildButton.dropdown = !buildButton.dropdown;">
-
-				<ul class="dropdown" ng-show="buildButton.dropdown">
-					<input type="button" value="Save">
-				</ul>
-			-->
-
 		</div>
 	</div>
 </div>

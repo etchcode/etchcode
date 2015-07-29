@@ -105,14 +105,15 @@ img.icon {
   text-align: center; }
 
 /* line 118, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
-.left.header h1 {
+.content-header h1 {
   font-size: 25px; }
   /* line 121, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
-  .left.header h1 input {
+  .content-header h1 input {
     font-family: inherit;
     font-size: inherit; }
+
 /* line 128, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
-.left.header .tabs input[type=button] {
+.content-header .tabs input[type=button] {
   box-shadow: 0 0 0 0;
   border: none;
   outline: none;
@@ -121,7 +122,7 @@ img.icon {
   cursor: pointer; }
 
 /* line 135, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
-#sprites li {
+.sprites li {
   list-style: none;
   display: inline-block;
   margin: 10px;
@@ -129,7 +130,7 @@ img.icon {
   background-color: #bebfc5; }
 
 /* line 145, /Users/daniel/Desktop/etch/etchcode/static/styles/general.scss */
-#sprites {
+.sprites {
   padding: 15px;
   padding-top: 7px;
   margin: 0; }
