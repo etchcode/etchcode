@@ -44,7 +44,7 @@ sprite img{
 	float: left;
 	clear: both;
 	width: 60%;
-	height: calc(100% - 80px); //total minus headers
+	height: calc(100vh - 80px); //total minus headers
 }
 
 .editor {
@@ -52,13 +52,6 @@ sprite img{
 	height: 100%;
 	position: relative;
 	width: 100%;
-	
-	.textarea {
-		border: 0;
-		height: 100%;
-		padding: 15px 15px 0 15px;
-		width: calc(100% - 20px);
-	}
 	
 	.CodeMirror {
 		height: 100%;
