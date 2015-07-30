@@ -33,13 +33,13 @@ class xmlcreator:
             elif input.expression:
                 result += str(exprParser(input[0]))
             elif input.string:
-                print "string input"
-                print combine(input[0])
+                # print "string input"
+                # print combine(input[0])
                 result += "<l>"+str(combine(input[0])) +"</l>"
             elif input.variable:
                 result += '''<block var="'''+ input[0].lower()+ '''"/>'''
             elif input.func:
-                result += '''<block s="''' + createChild(input[0][0].lower(), combine(input[0][1]).lower())+ '''"></block>'''
+                result += '''<block s="''' + createChild(input[0][0].lower(), combine(input[0][1]).lower(), False)+ '''"></block>'''
             else:
                 result += "<l>"+str(input[0]) +"</l>"
             return result
@@ -50,20 +50,20 @@ class xmlcreator:
          """
         def createChild(parent, child, ifmaster):
             current_function = ""
-            print parent
-            print child
+            # print parent
+            # print child
             try:
-                test = snapNames[parent][child]
+
                 if ifmaster:
-                    return test
+                    return snapNames[parent][child]
                     current_function = snapNames[parent][child]
-                return test["snap"] #if it not a abriviated parent name like (c for control)
+                return snapNames[parent][child]["snap"] #if it not a abriviated parent name like (c for control)
             except KeyError:
                 try:
                     test = snapNames[abriviations[parent]][child]
                     if ifmaster:
                         return test
-                        print current_function["inputs"]
+
                     return test["snap"]#if it is abriviated
                 except KeyError:
 
@@ -79,7 +79,9 @@ class xmlcreator:
         def exprParser(lists): #this function parses expressions.
 
             expression = lists[1]
-            result = '''<block s="''' + createChild("operators", expression)+ '''">''' # this adds the operator block
+            result = '''<block s="''' + createChild("operators", expression, True
+
+                                                )+ '''">''' # this adds the operator block
             if len(lists[0]) == 1:
                 result += inputdecider(lists[0])
             else:                       # if there is another nested expression as the first part
@@ -99,6 +101,7 @@ class xmlcreator:
         try:
             main = transformList(string) # parses string into a list that we can creat xml from
             lists = main.transform()
+            print lists
         except ParseException as error:
             match = re.match(r"(.*?) \(at char ([0-9]*)\), \(line\:([0-9]*)", str(error))
 
@@ -138,24 +141,24 @@ class xmlcreator:
                 num = 0
 
                 for input in function[2]: #this creates xml for all the inputs
-                    print input
+
+
                     lineNumber = input[1]
 
                     input = input[0]
-                    print input
-                    print functionname
+
                     try:
                         """This checks if a input is the correct type for the function"""
-                        if (input.integer and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        if (input.integer and "integer" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.string and "string" == functionname["inputs"][num][0]and functionname["inputs"][num][1]):
+                        elif (input.string and "string" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.expression and "expression" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        elif (input.expression and "integer" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
-                        elif (input.func and "integer" == functionname["inputs"][num][0] and functionname["inputs"][num][1]):
+                        elif (input.func and "integer" == functionname["inputs"][num][0]):
                             result += inputdecider(input)
                         elif input.variable:
-                            if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and not variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
+                            if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
                                 result += inputdecider(input, option = True)
                             elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
                                 result += inputdecider(input)

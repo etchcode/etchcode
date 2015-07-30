@@ -12,7 +12,7 @@
 		})
 		.when("/docs", {
 			templateUrl: "pages/docs/index.html"
-		});
+		}).otherwise({templateUrl: "pages/editor/index.html"});
 	});
 	
 }());

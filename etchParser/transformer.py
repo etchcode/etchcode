@@ -1,26 +1,31 @@
 from pyparsing import *
 
-
+# class printx:
+#      def __init__(self, x):
+#          self.x = x
+#      def __repr__(self):
+#          print slef
 class transformList:
 
     def __init__(self, string):
         self.string = string
 
     def transform(self):
+        print "in transform"
         functions = Forward()
         period = Suppress(Literal("."))
         #These are different types of inputs
         integer = Word(nums).setParseAction(lambda t: int(t[0]))
         variable = Combine(OneOrMore(Word(alphanums) + Optional(oneOf("_ -"))))
         string = QuotedString('"', escChar='\\')
-        func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("")")))#this one is only for a function inside a nother function
+        func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("")"))).addParseAction()#this one is only for a function inside a nother function
 
         #this part parses input when it is a expressions following order of operations
         #negpos = oneOf('+ -') #this doesn't work currently in our xml_creator
         multop = oneOf('* /')
         plusop = oneOf('+ -')
 
-        exprinputs = Group(functions("func") ^ integer("integer") ^ variable("variable"))
+        exprinputs = Group(functions("func") | integer("integer") | variable("variable"))
         expression =  operatorPrecedence( exprinputs, #Optional(Suppress(Literal("("))) +
     [("!", 1, opAssoc.LEFT),
      ("^", 2, opAssoc.RIGHT),
@@ -28,7 +33,7 @@ class transformList:
      #(signop, 1, opAssoc.RIGHT),
      (multop, 2, opAssoc.LEFT),
      (plusop, 2, opAssoc.LEFT),]
-    )#+ Optional(Suppress(Literal(")")))
+    )#.addParseAction(lambda t: printx(t))#+ Optional(Suppress(Literal(")")))
 
         #this is combination of all of the inputs
         operand = Group(func("func") ^ integer("integer") ^ variable("variable") ^ string("string") ^ expression("expression"))
@@ -70,5 +75,5 @@ class transformList:
         scriptBlock = Group(startCode("startcode") + comments + allfunctions("functions"))
         fullCode = OneOrMore(scriptBlock("scriptblock")) + StringEnd() #This raises a error if it doesn't finish parsing the string
 
-
+        print "about to return"
         return fullCode.parseString(self.string)

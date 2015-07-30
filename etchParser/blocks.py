@@ -16,7 +16,7 @@ snapNames = {
 
     "motion": {
         # setRotatioStyle is not in Snap!, so I can't support it
-        "move": {"snap":"forward", "inputs": [["integer", False]]},
+        "move": {"snap": "forward", "inputs": [["integer", False]]},
         "turnright": {"snap": "turn", "inputs": [["integer", False]]},
         "turnleft": {"snap": "turnleft", "inputs": [["integer", False]]},
         "pointdirection": {"snap": "setHeading", "inputs": [["integer", False]]},
@@ -81,10 +81,10 @@ snapNames = {
     },
 
     "data": {
-        "set": {"snap": "doSetVar", "inputs": [["sprite", True] ["integer", False]]},
-        "changeby": {"snap": "doChangeVar", "inputs": [["sprite", True] ["integer", False]]},
-        "showvariable": {"snap": "doShowVar", "inputs": [["sprite", True] ["integer", False]]},
-        "hidevariable": {"snap": "doHideVar", "inputs": [["sprite", True] ["integer", False]]}
+        "set": {"snap": "doSetVar", "inputs": [["sprite", True], ["integer", False]]},
+        "changeby": {"snap": "doChangeVar", "inputs": [["sprite", True], ["integer", False]]},
+        "showvariable": {"snap": "doShowVar", "inputs": [["sprite", True], ["integer", False]]},
+        "hidevariable": {"snap": "doHideVar", "inputs": [["sprite", True], ["integer", False]]}
     },
 
     "events": {

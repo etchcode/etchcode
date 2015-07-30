@@ -1,37 +1,35 @@
 from pyparsing import *
- 
-text = """Lorem ipsum dolor sit amet, consectetur adipisicing 
-elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis 
-aute irure dolor in reprehenderit in voluptate velit esse cillum 
-dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
-cupidatat non proident, sunt in culpa qui officia deserunt 
-mollit anim id est laborum"""
- 
-# find all words beginning with a vowel
-vowels = "aeiouAEIOU"
-initialVowelWord = Word(vowels,alphas)
- 
-# Unfortunately, searchString will advance character by character through
-# the input text, so it will detect that the initial "Lorem" is not an
-# initialVowelWord, but then it will test "orem" and think that it is. So
-# we need to add a do-nothing term that will match the words that start with
-# consonants, but we will just throw them away when we match them. The key is
-# that, in having been matched, the parser will skip over them entirely when
-# looking for initialVowelWords.
-consonants = ''.join(c for c in alphas if c not in vowels)
-initialConsWord = Word(consonants, alphas).suppress()
- 
-# add parse action to store the current location in the parsed tokens
-# (you said you tried this, not sure why it didn't work for you)
-def addLocnToTokens(s,l,t):
-    t['locn'] = l
-    t['word'] = t[0]
-initialVowelWord.setParseAction(addLocnToTokens)
+class Macro(object):
+    def __init__(self, name, block):
+        self.name = name
+        self.block = block
+        
+    def __repr__(self):
+        print self.name
+        print "hi"
+        return "#%s %s" % (self.name, self.block)
+        
+class Block(object):
+    def __init__(self, content):
+        self.content = content
+        
+    def __repr__(self):
+        return "{ %s }" % ("".join([str(e) for e in self.content]))
 
-for ivowelInfo in (initialConsWord | initialVowelWord).searchString(text):
-    print ivowelInfo.dump()
-    if not ivowelInfo:
-        continue
-    print ivowelInfo.locn, ':', ivowelInfo.word
+lbrace = Literal("{")
+rbrace = Literal("}")
+decorator = Literal("#")
+
+block = Forward()
+macro = decorator + Word(alphas).setResultsName("name") + block.setResultsName("block")
+macro.setParseAction(lambda t: Macro(t.name, t.block))
+
+text = CharsNotIn("{}#")
+content = macro ^ text
+
+block << lbrace + ZeroOrMore(content).setResultsName("content") + rbrace
+block.setParseAction(lambda t: Block(t.content))
+
+if __name__ == "__main__":
+    test = "#i{italic text #b{bolded}\n  \nfoobar\n\nbaz}"
+    print macro.parseString(test)
