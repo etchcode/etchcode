@@ -1,5 +1,5 @@
 /* line 10, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
-html, body {
+html, body, .content {
   height: 100%;
   width: 100%; }
 
@@ -21,70 +21,91 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px; }
 
-/* line 31, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
-.sprites {
-  width: 40%; }
+/* --------------------------- Editor Page ------------------------------- */
+/* line 32, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.editor-page {
+  display: flex; }
 
-/* line 35, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
-sprite img {
+/* line 36, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.editors-container {
+  flex-basis: 60%;
+  overflow: auto; }
+
+/* line 40, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.sprites {
+  flex-basis: 40%;
+  overflow: auto; }
+
+/* line 45, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.sprites h2 {
+  margin-top: 0;
+  padding-top: 0; }
+
+/* line 50, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.sprite {
+  display: inline-block; }
+
+/* line 54, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+.sprite img {
   display: block;
   margin-left: auto;
   margin-right: auto; }
 
-/* line 43, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 62, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 #editors {
   float: left;
   clear: both;
-  width: 60%;
-  height: calc(100vh - 80px); }
+  width: 100%;
+  height: 100%; }
 
-/* line 50, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 69, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editor {
   float: inherit;
   height: 100%;
   position: relative;
   width: 100%; }
-  /* line 56, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+  /* line 75, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
   .editor .CodeMirror {
+    width: 100%;
     height: 100%; }
 
-/* line 62, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 82, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 #code {
   height: 100%;
   width: 100%; }
 
-/* line 68, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 88, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 #settings {
   padding: 30px;
   padding-top: 10px; }
 
-/* line 73, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 93, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .indent, input.indent[type] {
   margin-left: 100px; }
 
-/* line 76, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 96, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 #settings p {
   margin-top: 25px;
   margin-bottom: 25px; }
 
-/* line 81, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 101, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .variables {
   padding: 0;
   margin: 0; }
 
-/* line 86, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 106, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage {
   position: relative;
   display: inline-block;
   width: 100px;
   height: 100px; }
 
-/* line 94, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 114, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage img {
   max-width: 100%;
   max-height: 100%; }
 
-/* line 99, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 119, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage .bar .upload {
   box-sizing: padding-box;
   height: 30px;
@@ -92,19 +113,19 @@ sprite img {
   float: right;
   margin: 7px; }
 
-/* line 108, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 128, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage .bar {
   position: absolute;
   width: 100px; }
 
-/* line 113, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 133, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage .overlay {
   position: absolute;
   height: 100%;
   width: 100%;
   display: none; }
 
-/* line 121, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
+/* line 141, /Users/daniel/Desktop/etch/etchcode/static/styles/layout.scss */
 .editableImage:hover .overlay {
   display: block !important; }
 

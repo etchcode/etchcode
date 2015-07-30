@@ -54,6 +54,13 @@ body{
 	color: white;
 }
 
-.enabled{
+.enabled:not(.sprite){
+	background-color: $color-1;
+}
+
+.sprite li {
+	background-color: hsla(229, 6%, 76%, 1);
+}
+.sprite.enabled li {
 	background-color: $color-1;
 }

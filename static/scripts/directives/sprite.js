@@ -7,6 +7,7 @@
 	.directive("sprite", function(){
 		return {
 			restrict: "E",
+			replace: true,
 			templateUrl: "partials/sprite.html",
 		};
 	});

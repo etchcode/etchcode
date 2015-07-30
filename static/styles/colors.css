@@ -48,7 +48,15 @@ body {
   color: white; }
 
 /* line 57, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
-.enabled {
+.enabled:not(.sprite) {
+  background-color: #212121; }
+
+/* line 61, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+.sprite li {
+  background-color: #bebfc5; }
+
+/* line 64, /Users/daniel/Desktop/etch/etchcode/static/styles/colors.scss */
+.sprite.enabled li {
   background-color: #212121; }
 
 /*# sourceMappingURL=colors.css.map */

@@ -7,7 +7,7 @@
   transform: translateY(-50%);
 }
 
-html, body{
+html, body, .content{
 	height: 100%; 
 	width: 100%;
 }
@@ -28,11 +28,30 @@ hr{
 	margin-bottom: 20px;
 }
 
-.sprites{
-	width: 40%;
+/* --------------------------- Editor Page ------------------------------- */
+.editor-page {
+	display: flex;
 }
 
-sprite img{
+.editors-container {
+	flex-basis: 60%;
+	overflow: auto;
+}
+.sprites {
+	flex-basis: 40%;
+	overflow: auto;
+}
+
+.sprites h2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+.sprite {
+	display: inline-block;
+}
+
+.sprite img{
 	display: block;
 	
 	margin-left: auto;
@@ -43,8 +62,8 @@ sprite img{
 #editors {
 	float: left;
 	clear: both;
-	width: 60%;
-	height: calc(100vh - 80px); //total minus headers
+	width: 100%;
+	height: 100%;
 }
 
 .editor {
@@ -54,6 +73,7 @@ sprite img{
 	width: 100%;
 	
 	.CodeMirror {
+		width: 100%;
 		height: 100%;
 	}
 }
