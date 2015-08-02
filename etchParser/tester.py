@@ -5,7 +5,7 @@ print snapNames["motion"]["move"]["snap"]
 string = """
 events.flag Clicked:
     L.think("Hello, World") # l is short for looks
-    motion.Move(30+5+motion.xpos)
+    motion.Move(30+5)
     control.waIt(3)
     looks.think("Etch is cool")
     m.go to xy(12, 21)

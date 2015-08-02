@@ -1,11 +1,11 @@
 /* globals angular */
 
-(function(){
+(function () {
 	"use strict";
 		
 	angular.module("etch")
 			
-    .directive("runProject", function(){
+    .directive("runProject", function () {
         return {
             restrice: "E",
             

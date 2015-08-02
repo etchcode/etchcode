@@ -8,7 +8,7 @@
 			<br>
 			<div id="editors">
 				<div id="code" ng-show="editors.view === 'code'" ng-hide="sprites.current === 'general'" selectable>
-					<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="{{ sprite }}"></editor>
+					<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="sprite"></editor>
 				</div>
 
 				<div id="settings" ng-show="editors.view === 'settings' || sprites.current === 'general'">

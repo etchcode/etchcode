@@ -6,7 +6,7 @@
 	
 	.controller("spritesController", ["spriteData", "toaster", "random", function(spriteData, toaster, random){
 		var that = this; //cache this for the children
-		
+		that.restrictedStrings = ["mouse-pointer", "edge", "pen trails"];
 		that.list = spriteData.list; // all sprites
 		this.background = spriteData.background;
 		that.globals = spriteData.globals;
@@ -36,8 +36,17 @@
 		};
 		that.remove = function(sprite){
 			var spriteNum = that.list.indexOf(sprite);
-			
-			that.list.splice(spriteNum, 1);
+            
+            var currentSprite = that.list.indexOf(that.current);
+            
+			if (that.current == sprite.id){
+                
+                that.list.splice(spriteNum, 1);
+                that.current = that.list[0].id;
+			     }
+            else {
+            that.list.splice(spriteNum, 1);
+            }
 		};
 		
 		that.costume = new function(){
@@ -49,6 +58,7 @@
 			};
 			
 			this.create= function(sprite){
+                
 				var spriteNum = that.list.indexOf(sprite);
 				
 				var modifying = (sprite.id ==="background") ? "backdrops" : "costumes"; //we are modifying the backdrops list if this is the background, else it is a sprite so the costumes list
@@ -69,14 +79,22 @@
 					sprite = that.globals; //so do what it wants
 				}
 				
+                
 				if(text === ""){
 					//the variable is empty
 					toaster.pop({
 						type: "error",
 						title: "Error",
-						body: "Variables cannot be blank"
+						body: "Variables cannot be blanks"
+					});}
+                else if (that.restrictedStrings.indexOf(text.toLowerCase()) >= 0) {//add new restricted words here in the list
+                    toaster.pop({
+						type: "error",
+						title: "Error",
+						body: ("Variables cannot be named " + text)
 					});
-				}
+                }
+				
 				else if(sprite.variables.indexOf(text) == -1 && that.list[that.list.length-1].variables.indexOf(text) == -1){
 					//it is not a duplicate
 					
