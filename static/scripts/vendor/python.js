@@ -14,13 +14,20 @@
   function wordRegexp(words) {
     return new RegExp("^((" + words.join(")|(") + "))\\b");
   }
-
+    function eatChecker(word){
+    return true;}
+var currentKeyword = "SAd";
+    var parentBol  = false;
+    var dictionary = {"m": ["ove", "gotoxy"], "l":["think"],"c": ["wait"], "e":["flagclicked"]};
   var wordOperators = wordRegexp(["and", "or", "not", "is"]);
-  var commonKeywords = ["as", "assert", "break", "class", "continue",
-                        "def", "del", "elif", "else", "except", "finally",
-                        "for", "from", "global", "if", "import",
-                        "lambda", "pass", "raise", "return",
-                        "try", "while", "with", "yield", "in"];
+//  var commonKeywords = ["as", "assert", "break", "class", "continue",
+//                        "def", "del", "elif", "else", "except", "finally",
+//                        "for", "from", "global", "if", "import",
+//                        "lambda", "pass", "raise", "return",
+//                        "try", "while", "with", "yield", "in", 
+    var parent_abriviation = ["l", "m", "s", "d", "p", "e", "c", "o"];
+    
+    var parents = ["looks", "motion","sensing", "data", "pen", "events", "control", "operators"];
   var commonBuiltins = ["abs", "all", "any", "bin", "bool", "bytearray", "callable", "chr",
                         "classmethod", "compile", "complex", "delattr", "dict", "dir", "divmod",
                         "enumerate", "eval", "filter", "float", "format", "frozenset",
@@ -32,14 +39,14 @@
                         "sorted", "staticmethod", "str", "sum", "super", "tuple",
                         "type", "vars", "zip", "__import__", "NotImplemented",
                         "Ellipsis", "__debug__"];
-  var py2 = {builtins: ["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
-                        "file", "intern", "long", "raw_input", "reduce", "reload",
-                        "unichr", "unicode", "xrange", "False", "True", "None"],
-             keywords: ["exec", "print"]};
-  var py3 = {builtins: ["ascii", "bytes", "exec", "print"],
-             keywords: ["nonlocal", "False", "True", "None", "async", "await"]};
+//  var py2 = {builtins: ["apply", "basestring", "buffer", "cmp", "coerce", "execfile",
+//                        "file", "intern", "long", "raw_input", "reduce", "reload",
+//                        "unichr", "unicode", "xrange", "False", "True", "None"],
+//             keywords: ["exec", "print"]};
+//  var py3 = {builtins: ["ascii", "bytes", "exec", "print"],
+//             keywords: ["nonlocal", "False", "True", "None", "async", "await"]};
 
-  CodeMirror.registerHelper("hintWords", "python", commonKeywords.concat(commonBuiltins));
+  CodeMirror.registerHelper("hintWords", "python", parents.concat(commonBuiltins));//what does this do?
 
   function top(state) {
     return state.scopes[state.scopes.length - 1];
@@ -48,10 +55,10 @@
   CodeMirror.defineMode("python", function(conf, parserConf) {
     var ERRORCLASS = "error";
     
-    var singleDelimiters = parserConf.singleDelimiters || new RegExp("^[\\(\\)\\[\\]\\{\\}@,:`=;\\.]");
-    var doubleOperators = parserConf.doubleOperators || new RegExp("^((==)|(!=)|(<=)|(>=)|(<>)|(<<)|(>>)|(//)|(\\*\\*))");
-    var doubleDelimiters = parserConf.doubleDelimiters || new RegExp("^((\\+=)|(\\-=)|(\\*=)|(%=)|(/=)|(&=)|(\\|=)|(\\^=))");
-    var tripleDelimiters = parserConf.tripleDelimiters || new RegExp("^((//=)|(>>=)|(<<=)|(\\*\\*=))");
+var singleDelimiters = parserConf.singleDelimiters || new RegExp("^[\\(\\)\\[\\]\\{\\}@,:`=;\\.]");
+//    var doubleOperators = parserConf.doubleOperators || new RegExp("^((==)|(!=)|(<=)|(>=)|(<>)|(<<)|(>>)|(//)|(\\*\\*))");
+//    var doubleDelimiters = parserConf.doubleDelimiters || new RegExp("^((\\+=)|(\\-=)|(\\*=)|(%=)|(/=)|(&=)|(\\|=)|(\\^=))");
+//    var tripleDelimiters = parserConf.tripleDelimiters || new RegExp("^((//=)|(>>=)|(<<=)|(\\*\\*=))");
 
     if (parserConf.version && parseInt(parserConf.version, 10) == 3){
         // since http://legacy.python.org/dev/peps/pep-0465/ @ is also an operator
@@ -64,7 +71,7 @@
 
     var hangingIndent = parserConf.hangingIndent || conf.indentUnit;
 
-    var myKeywords = commonKeywords, myBuiltins = commonBuiltins;
+    var myKeywords = parents, myBuiltins = commonBuiltins;
     if(parserConf.extra_keywords != undefined){
       myKeywords = myKeywords.concat(parserConf.extra_keywords);
     }
@@ -72,22 +79,22 @@
       myBuiltins = myBuiltins.concat(parserConf.extra_builtins);
     }
     if (parserConf.version && parseInt(parserConf.version, 10) == 3) {
-      myKeywords = myKeywords.concat(py3.keywords);
-      myBuiltins = myBuiltins.concat(py3.builtins);
+//      myKeywords = myKeywords.concat(py3.keywords);
+//      myBuiltins = myBuiltins.concat(py3.builtins);
       var stringPrefixes = new RegExp("^(([rb]|(br))?('{3}|\"{3}|['\"]))", "i");
     } else {
-      myKeywords = myKeywords.concat(py2.keywords);
-      myBuiltins = myBuiltins.concat(py2.builtins);
+//      myKeywords = myKeywords.concat(py2.keywords);
+//      myBuiltins = myBuiltins.concat(py2.builtins);
       var stringPrefixes = new RegExp("^(([rub]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
     }
-    var keywords = wordRegexp(myKeywords);
-    var builtins = wordRegexp(myBuiltins);
+    var keywords = new  RegExp( parents.join("|"), "i");
+    var builtins = new RegExp(parent_abriviation.join("|"), "i");
 
     // tokenizers
     function tokenBase(stream, state) {
       // Handle scope changes
-        console.info("Stream: "+ stream);
-        console.info("state: " + state);
+        
+//        console.info("state: " + state);
       if (stream.sol() && top(state).type == "py") {
         var scopeOffset = top(state).offset;
         if (stream.eatSpace()) {
@@ -108,10 +115,12 @@
     }
 
     function tokenBaseInner(stream, state) {
+        
+//        var stream = streams.toLowerCase();
       if (stream.eatSpace()) return null;
 
       var ch = stream.peek();
-
+//        console.info("current: "+ stream);
       // Handle Comments
       if (ch == "#") {
         stream.skipToEnd();
@@ -161,21 +170,60 @@
       }
 
       // Handle operators and Delimiters
-      if (stream.match(tripleDelimiters) || stream.match(doubleDelimiters))
-        return null;
-
-      if (stream.match(doubleOperators) || stream.match(singleOperators))
-        return "operator";
+//      if (stream.match(tripleDelimiters) || stream.match(doubleDelimiters))
+//        return null;
+//
+//      if (stream.match(doubleOperators) || stream.match(singleOperators))
+//        return "operator";
 
       if (stream.match(singleDelimiters))
         return null;
+      var key = stream.match(keywords);
+      if (key){
+//          console.log(key);
+          
+          var next = stream.peek(); 
+          
+          if(next == "."){
+              
+              parentBol = true;
+              currentKeyword = key[0].toLowerCase();
+//              console.info(currentKeyword);
+//              console.log("keyword"+ stream.string.substring(stream.start, -1));
+        return "keyword";}}
+        var bul = stream.match(builtins);
+      if (bul){
+          
+          var next = stream.peek(); 
+        if(next == "."){
+            currentKeyword = bul[0].toLowerCase();
+            parentBol = true;
+        return "keyword";}}
+        if(parentBol){
+            parentBol = false;
+        var x = true;
+              var j = 0;
+              var strings = "";
+              stream.eat("\.");
+              
+              while (x){
+                if(stream.peek()=="(" || stream.peek() == undefined || stream.peek() == ":"||j>14){
+                x = false;}
+            else{
+//                console.info(stream.peek());
+                var g = stream.eat(new RegExp(".")).toLowerCase();
+                if(g != " "){
+              strings = strings.concat(g);}//this combine the entire child 
+              } j++;}//while statement
+//            
+//            console.info(currentKeyword);
+//            console.info(strings);
+//            console.info(dictionary[currentKeyword[0]]);
+            if(dictionary[currentKeyword[0]].indexOf(strings) != -1){
+            return "builtin";}
 
-      if (stream.match(keywords) || stream.match(wordOperators))
-        return "keyword";
-
-      if (stream.match(builtins))
-        return "builtin";
-
+        
+        }//end of child area
       if (stream.match(/^(self|cls)\b/))
         return "variable-2";
 
@@ -186,7 +234,7 @@
       }
 
       // Handle non-detected items
-      stream.next();
+      console.log(stream.next());
       return ERRORCLASS;
     }
 
