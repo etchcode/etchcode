@@ -8,5 +8,5 @@ def translate(string, variables, sprites):
     main = xmlcreator()
 
     x = main.translates(string, variables, sprites)
-    print x
+
     return x

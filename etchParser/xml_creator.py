@@ -108,8 +108,8 @@ class xmlcreator:
             return {
                 "error": True,
                 "message": match.group(1),
-                "lineNumber": match.group(2),
-                "column": match.group(3)
+                "lineNumber": match.group(3),
+                "column": match.group(2)
             }
 
 
