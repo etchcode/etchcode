@@ -1,3 +1,21 @@
-
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh; }
+  .runProject.large .inner {
+    position: relative; }
+    .runProject.large .inner .header .minimize {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+      width: 30px;
+      height: 30px; }
+    .runProject.large .inner .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0; }
 
 /*# sourceMappingURL=runProject.css.map */

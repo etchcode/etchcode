@@ -31,7 +31,6 @@
                                 "action": "loadString",
                                 "string": toRun
                             }, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
-                            window.open("data:text/plain,"+toRun)
                         });
 					}
 					
