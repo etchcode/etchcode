@@ -58,6 +58,16 @@ hr{
 	margin-right: auto;
 }
 
+.tabs {
+  .projectName {
+    float: right;
+
+    input {
+      width: 20em;
+    }
+  }
+}
+
 //code view
 #editors {
 	float: left;

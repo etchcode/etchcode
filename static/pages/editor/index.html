@@ -1,9 +1,17 @@
 <div ng-controller="spritesController as sprites">
+
+    <run-project></run-project>
+
 	<div class="editor-page" ng-controller="editorsController as editors">
 		<div class="editors-container">
 			<span class="tabs">
 					<input type="button" value="Code" class="reset" ng-class="{enabled:editors.view === 'code'}" ng-click="editors.view = 'code'" ng-hide="sprites.current=='general'"> <!--the globals view can only modify config stuff-->
 					<input type="button" value="Settings" class="reset" ng-class="{enabled:editors.view === 'settings' || sprites.current === 'general'}" ng-click="editors.view = 'settings'">
+
+                    <label class="projectName">
+                        Project:
+                        <input ng-model="sprites.list[sprites.list.length-1].name"> <!-- the last sprite is the general sprite which contains the name of the project-->
+                    </label>
 			</span>
 			<br>
 			<div id="editors">
@@ -81,7 +89,6 @@
 			<h2>
 				Sprites 
 				<img ng-click="sprites.add()" src="images/icons/add_black.svg" class="add icon action">
-				<input ng-model="sprites.list[sprites.list.length-1].name">
 			</h2>
 
 			<ul>
