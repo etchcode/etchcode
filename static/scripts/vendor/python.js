@@ -13,7 +13,7 @@
 
   function wordRegexp(words) {
     return new RegExp("^((" + words.join(")|(") + "))\\b");
-  }
+  } 
     function eatChecker(word){
     return true;}
 var currentKeyword = "SAd";
@@ -180,7 +180,7 @@ var singleDelimiters = parserConf.singleDelimiters || new RegExp("^[\\(\\)\\[\\]
         return null;
       var key = stream.match(keywords);
       if (key){
-//          console.log(key);
+          
           
           var next = stream.peek(); 
           
@@ -193,7 +193,11 @@ var singleDelimiters = parserConf.singleDelimiters || new RegExp("^[\\(\\)\\[\\]
         return "keyword";}}
         var bul = stream.match(builtins);
       if (bul){
-          
+          console.info(stream.string);
+          console.log(stream.start);
+           console.log(stream.pos);
+          console.log(stream.string[stream.pos]);
+//          replaceRange({replacement: "sa", from: {line:stream.pos.line, ch:(stream.pos.ch -1)}, to:{line:stream.pos.line, ch:(stream.pos.ch)}});
           var next = stream.peek(); 
         if(next == "."){
             currentKeyword = bul[0].toLowerCase();

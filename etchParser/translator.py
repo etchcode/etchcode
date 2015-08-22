@@ -3,7 +3,7 @@ from xml_creator import xmlcreator
 def translate(string, variables, sprites):
     print "input"
     if string.replace(" ", "") == "":
-        return "<scripts></scripts>"
+        return {'code': "<scripts></scripts>"}
     print string
     main = xmlcreator()
 
