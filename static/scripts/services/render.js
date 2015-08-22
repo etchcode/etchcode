@@ -1,5 +1,7 @@
 /* globals angular, nunjucks, Promise */
 
+var p;
+
 (function(){
 	"use strict";
 		
@@ -50,7 +52,15 @@
 //                    console.info("data: " +data);
 //                    data = '<scripts><script x="116" y="14"><block s="receiveGo"/><block s="doThink"><l>Hello, World</l></block><block s="forward"><block s="reportSum"><l>30</l><l>5</l></block></block><block s="doWait"><l>3</l></block><block s="doThink"><l>Etch is cool</l></block><block s="gotoXY"><l>12</l><l>21</l></block></script></scripts>';
 //                    console.info("data: " +data);
-                
+
+                    p =	{
+                        globals: globals,
+                        background: background,
+                        sprites: sprites,
+
+                        scripts: data
+                    }
+
 					resolve(nunjucks.render("template.snap.xml", { //render jinja template
 						project: {
 							globals: globals,
