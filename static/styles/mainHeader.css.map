@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAMI,mBAAG;EACD,MAAM,EAAE,YAAY;EACpB,SAAS,EAAE,KAAK",
+"sources": ["mainHeader.scss"],
+"names": [],
+"file": "mainHeader.css"
+}

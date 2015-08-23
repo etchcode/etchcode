@@ -1,34 +1,29 @@
-/* line 1, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 h1, h2, h3, p {
   font-family: "Merriweather"; }
 
-/* line 4, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 h1 {
   font-size: 4em;
   text-align: center; }
 
-/* line 9, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
+h2 {
+  font-size: 1.5em; }
+
 .sprites h1 input {
   font-size: .4em; }
 
-/* line 13, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 h3 span {
   font-size: .5em;
   font-weight: normal; }
 
-/* line 19, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 .markdown-body h1, .markdown-body h2, .markdown-body h3 {
   text-align: left; }
 
-/* line 24, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 .unemphasize {
   color: gray; }
 
-/* line 27, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 .hidden {
   display: none; }
 
-/* line 31, /Users/daniel/Desktop/etch/etchcode/static/styles/typography.scss */
 code {
   padding: 1px 6px 1px 6px;
   border-radius: 2.5px;

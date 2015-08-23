@@ -95,7 +95,7 @@
 				<sprite ng-repeat="sprite in sprites.list" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
 			</ul>
 
-			<div class="build" ng-controller="buildButtonController as buildButton">
+			<div class="buildButton" ng-controller="buildButtonController as buildButton">
 				<input type="button" value="Run" ng-click="buildButton.render()">
 			</div>
 		</div>

@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="styles/layout.css">
 		<link rel="stylesheet" href="styles/typography.css">
 		<link rel="stylesheet" href="styles/colors.css">
+        <link rel="stylesheet" href="styles/mainHeader.css">
 		<link rel="stylesheet" href="styles/tooltip.css">
         <link rel="stylesheet" href="styles/runProject.css">
 
@@ -51,6 +52,7 @@
 		<script src="scripts/directives/markdown.js"></script>
 		<script src="scripts/directives/render.js"></script>
 		<script src="scripts/directives/sprite.js"></script>
+        <script src="scripts/directives/mainHeader.js"></script>
 		
 		<script src="scripts/filters/markdown.js"></script>
 		<script src="scripts/filters/title.js"></script>
@@ -64,10 +66,8 @@
 	
 	<body>
 		<toaster-container></toaster-container>
-		
-		<header>
-			<h1>Etch Code</h1>
-		</header>
+
+        <main-header></main-header>
 
 		<div class="content" ng-view>
 		

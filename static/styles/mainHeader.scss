@@ -1,0 +1,12 @@
+header {
+  &.maximized {
+
+  }
+
+  &.minimized {
+    h1 {
+      margin: 5px 0 10px 0;
+      font-size: 3.5em;
+    }
+  }
+}
