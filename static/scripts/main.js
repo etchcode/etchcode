@@ -6,15 +6,19 @@
 	
 	angular.module("etch", ["ngSanitize", "ui.codemirror", "ngRoute", "toaster"])
 	
-	.config(function($routeProvider){
-		$routeProvider.when("/editor", {
-			templateUrl: "pages/editor/index.html"
-		})
-		.when("/docs", {
-			templateUrl: "pages/docs/index.html"
-		}).otherwise({
-            templateUrl: "pages/home/index.html"
-        });
-	});
+	.config(["$routeProvider", "$locationProvider",
+        function($routeProvider, $locationProvider){
+            $routeProvider.when("/editor", {
+                templateUrl: "pages/editor/index.html"
+            })
+            .when("/docs", {
+                templateUrl: "pages/docs/index.html"
+            }).otherwise({
+                templateUrl: "pages/home/index.html"
+            });
+
+            //$locationProvider.html5Mode(true);
+	    }
+    ]);
 	
 }());

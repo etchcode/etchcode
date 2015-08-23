@@ -5,7 +5,6 @@
             return {
                 restrict: "E",
 
-
                 templateUrl: "partials/mainHeader.html",
                 controller: ["$scope", "$location", function($scope, $location){
                     $scope.pageType = function(){

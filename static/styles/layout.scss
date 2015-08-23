@@ -1,4 +1,4 @@
-//usefull mixins
+//useful mixins
 @mixin vertical-align {
   position: relative;
   top: 50%;
@@ -21,6 +21,12 @@ body {
 }
 .right{
 	float:right;
+}
+.centerBlock{
+  margin: 0 auto 0 auto;
+}
+.centerText{
+  text-align: center;
 }
 
 hr{
@@ -172,4 +178,10 @@ hr{
     border: 1px solid grey;
     border-radius: 3px;
   }
+}
+/* --------------------------------- Content Page ----------------------------------- */
+.contentPage { // the main element of a page that should be styled as content, like a blog post or article
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 0 auto;
 }
