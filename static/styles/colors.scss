@@ -64,3 +64,22 @@ body{
 .sprite.enabled li {
 	background-color: $color-1;
 }
+
+header {
+  &.maximized {
+    background-color: $color-1;
+    color: $color-4;
+
+    nav a {
+      color: $color-3;
+      text-decoration: none;
+    }
+  }
+
+  &.minimized {
+    nav a{
+      color: $color-1;
+      text-decoration: none;
+    }
+  }
+}

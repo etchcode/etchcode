@@ -54,7 +54,7 @@ hr{
   ul {
     overflow: auto;
     margin-top: 0;
-    height: calc(100vh - 2em - (3.5em + 5px + 10px) - 15px - (1.5em + (2 * 15px) + (2 * 1px)) - 20px); // calc(total page size - height of label and icon - height of minimized header - padding of the sprite thumbnails on the top row - height of build button - amount to make it smaller rather than larger so that at worse there will be a gap at the bottom rather than an overflow) // height of label and icon = font size // height of minimized header = font size + padding top + padding bottom // height of build button = font size + (padding * 2) + (border * 2)
+    height: calc(100vh - 2em - (3.5em + 5px + 10px + 1em) - 15px - (1.5em + (2 * 15px) + (2 * 1px)) - 20px); // calc(total page size - height of label and icon - height of minimized header - padding of the sprite thumbnails on the top row - height of build button - amount to make it smaller rather than larger so that at worse there will be a gap at the bottom rather than an overflow) // height of label and icon = font size // height of minimized header = font size + padding top + padding bottom + links font size// height of build button = font size + (padding * 2) + (border * 2)
   }
 }
 
@@ -89,7 +89,7 @@ hr{
   float: left;
   clear: both;
   width: 100%;
-  height: calc(100vh - (1em + (2 * 7px)) - (3.5em + 5px + 10px) - 20px); // calc(total page size - height of tabs - height of minimized header - amount to make it smaller rather than larger so that at worse there will be a gap at the bottom rather than an overflow) // height of tabs = font size + (2 x padding) // height of minimized header = font size + padding top + padding bottom
+  height: calc(100vh - (1em + (2 * 7px)) - (3.5em + 5px + 10px + 1em) - 20px); // calc(total page size - height of tabs - height of minimized header - amount to make it smaller rather than larger so that at worse there will be a gap at the bottom rather than an overflow) // height of tabs = font size + (2 x padding) // height of minimized header = font size + padding top + padding bottom + links font size
 
 }
 
