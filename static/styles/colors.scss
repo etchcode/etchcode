@@ -2,67 +2,69 @@ $color-1: hsla(0, 0%, 13%, 1);
 $color-2: hsla(229, 10%, 70%, 1);
 $color-3: hsla(230, 2%, 53%, 1);
 $color-4: hsla(229, 10%, 87%, 1);
-  
-body{
-	background-color: $color-4;
+
+body {
+  background-color: $color-4;
 }
 
-.enabled[type=button], .enabled li, li.enabled{
-	background-color: $color-1 !important;
-	color: $color-4;
+.enabled[type=button], .enabled li, li.enabled {
+  background-color: $color-1 !important;
+  color: $color-4;
 }
 
 #editors {
-	background-color: $color-1;
+  background-color: $color-1;
 }
 
-#editors .CodeMirror{
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	
-	.CodeMirror-gutters{
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-	}
+#editors .CodeMirror {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: $color-1;
+
+  .CodeMirror-gutters {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
 }
 
 #sidebar {
-	background-color: $color-3;
+  background-color: $color-3;
 }
 
 // config
 #settings, #settings input {
-	color: $color-4;
+  color: $color-4;
 }
 
-.editableImage .overlay{
-	background-color: rgba($color-2, .8);
+.editableImage .overlay {
+  background-color: rgba($color-2, .8);
 }
 
-.property.unsupported{
-	color: hsla(0, 100%, 30%, 1);
+.property.unsupported {
+  color: hsla(0, 100%, 30%, 1);
 }
 
-.explanation{
-		background-color: hsl(0, 0%, 90);
-	}
-
-.banner{
-	background-color: hsla(220, 100%, 70%, 1);
-	color: white;
+.explanation {
+  background-color: hsl(0, 0%, 90);
 }
 
-.enabled:not(.sprite){
-	background-color: $color-1;
+.banner {
+  background-color: hsla(220, 100%, 70%, 1);
+  color: white;
+}
+
+.enabled:not(.sprite) {
+  background-color: $color-1;
 }
 
 .sprite li {
-	background-color: hsla(229, 6%, 76%, 1);
+  background-color: hsla(229, 6%, 76%, 1);
 }
+
 .sprite.enabled li {
-	background-color: $color-1;
+  background-color: $color-1;
 }
 
 header {
@@ -77,7 +79,7 @@ header {
   }
 
   &.minimized {
-    nav a{
+    nav a {
       color: $color-1;
       text-decoration: none;
     }

@@ -11,7 +11,8 @@ body {
 #editors .CodeMirror {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
-  box-shadow: none; }
+  box-shadow: none;
+  background-color: #212121; }
   #editors .CodeMirror .CodeMirror-gutters {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
