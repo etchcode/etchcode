@@ -21,6 +21,9 @@ body {
 #sidebar {
   background-color: #85868a; }
 
+.cm-s-ambiance.CodeMirror {
+  color: #abaeba; }
+
 #settings, #settings input {
   color: #dbdce1; }
 

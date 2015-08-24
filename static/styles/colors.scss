@@ -33,6 +33,10 @@ body {
   background-color: $color-3;
 }
 
+.cm-s-ambiance.CodeMirror {
+  color: $color-2;
+}
+
 // config
 #settings, #settings input {
   color: $color-4;
