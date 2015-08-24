@@ -185,3 +185,26 @@ hr{
   max-width: 700px;
   margin: 0 auto 0 auto;
 }
+
+/* ----------------------------- Docs --------------------------------- */
+.docsPage {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: calc(1em + 14px); // account for the floating footer
+
+  .sidebar {
+    padding: 0 20px 0 0;
+  }
+  .details ul {
+    list-style: none;
+  }
+
+  .banner {
+    position: fixed;
+    bottom: 0;
+    left:0;
+
+    padding: 7px;
+    width: 100%;
+  }
+}

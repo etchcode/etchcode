@@ -2,7 +2,7 @@
 (function() {
 	angular.module("etch")
 	
-	.controller("docsController", ["$scope", "$http", function($scope, $http){
+	.controller("docsController", ["$scope", "$http", "$window", function($scope, $http, $window){
 		$http.get("pages/docs/data/docs.json").then(function(data){
 			var docsData = data.data;
 
@@ -14,6 +14,7 @@
 		$scope.describe = "general";
 		$scope.setDescribe = function(newDescribe) {
 			$scope.describe = newDescribe;
+            $window.scrollTo(0, 0)
 		};
 
 		$scope.inputType = function(type, item){

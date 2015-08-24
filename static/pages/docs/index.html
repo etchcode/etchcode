@@ -1,4 +1,4 @@
-<div ng-controller="docsController as docs">
+<div class="docsPage" ng-controller="docsController as docs">
 		<div class="sidebar">
 			<ul class="list">
 				<li>
@@ -15,7 +15,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 						</li>
 						
 						<li ng-repeat="property in group.items" ng-click="setDescribe(property.name)" class="property"> 
-							<span class="title">{{ group.name | title}}.</span>{{ property.name }}<span ng-show="property.type == 'function' || property.type == 'block'" class="unemphasize" tooltip="Action">()</span>
+							<span class="title">{{ group.name | title}}.</span>{{ property.name }}<span ng-show="property.type == 'function' || property.type == 'block'" class="unemphasize" tooltip="Action block">()</span>
 						</li>
 					</ul>
 				</li>
@@ -81,7 +81,7 @@ As you can see, a section start block ends with a colon (":") and anything else 
 			</ul>
 		</div>
 		
-		<div class="banner" markdown>
-See an issue with anything here. A typo? Please email us at contact@etchcode.org so that can fix it.
+		<div class="banner">
+See an issue with anything here. A typo? Thanks for letting us know on our <a href="https://gitreports.com/issue/etchcode/etchcode">issue tracker</a>.
 		</div>
 </div>

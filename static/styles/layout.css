@@ -135,4 +135,20 @@ hr {
   max-width: 700px;
   margin: 0 auto 0 auto; }
 
+/* ----------------------------- Docs --------------------------------- */
+.docsPage {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: calc(1em + 14px); }
+  .docsPage .sidebar {
+    padding: 0 20px 0 0; }
+  .docsPage .details ul {
+    list-style: none; }
+  .docsPage .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 7px;
+    width: 100%; }
+
 /*# sourceMappingURL=layout.css.map */

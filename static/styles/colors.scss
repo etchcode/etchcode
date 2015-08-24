@@ -53,6 +53,10 @@ body {
 .banner {
   background-color: hsla(220, 100%, 70%, 1);
   color: white;
+
+  a{
+    color: white;
+  }
 }
 
 .enabled:not(.sprite) {

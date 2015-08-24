@@ -36,6 +36,8 @@ body {
 .banner {
   background-color: #6699ff;
   color: white; }
+  .banner a {
+    color: white; }
 
 .enabled:not(.sprite) {
   background-color: #212121; }

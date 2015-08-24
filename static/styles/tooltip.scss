@@ -8,7 +8,7 @@ $tooltip-color: hsla(0, 0, 0, .8);
 [tooltip]:hover::after{
 	background-color: $tooltip-color;
 	bottom: 150%;
-	border-radius: 5px;
+	border-radius: 5px 5px 5px 0;
 	color: white;
 	font-size: 14px;
 	left: 0;
@@ -27,7 +27,7 @@ $tooltip-color: hsla(0, 0, 0, .8);
 	border-right: 15px solid transparent;
 	content: "";
 	color: $tooltip-color;
-	left: 85px;
+	left: -1px;
 	position: absolute;
 	z-index: 999999999;
 }
