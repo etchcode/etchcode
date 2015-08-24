@@ -14,7 +14,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 							<span class="title">{{ group.name | title}}.</span>{{ property }} 
 						</li>
 						
-						<li ng-repeat="property in group.items" ng-click="setDescribe(property.name)" class="property"> 
+						<li ng-repeat="property in group.items" ng-click="setDescribe(group.name + '.' + property.name)" class="property">
 							<span class="title">{{ group.name | title}}.</span>{{ property.name }}<span ng-show="property.type == 'function' || property.type == 'block'" class="unemphasize" tooltip="Action block">()</span>
 						</li>
 					</ul>
@@ -32,7 +32,7 @@ setDescribe(group.name)">{{ group.name | title}}</h3>
 					<h2>{{ group.name | title }}</h2>
 					<p ng-bind-html="group.explanation | markdown"></p>
 				</li>
-				<li ng-repeat="item in group.items" ng-show="describe == item.name">
+				<li ng-repeat="item in group.items" ng-show="describe == group.name + '.' + item.name">
 					<h3>{{ item.name | title }} <span>(this block </span><span ng-show="item.type == 'function'">takes an action</span><span ng-show="item.type == 'reporter'">tells you a value</span><span>)</span></h3>
 					
 					<p>

@@ -1,6 +1,6 @@
 <div class="sprite">
 	<li>
-		<img ng-click="sprites.remove(sprite)" src="images/icons/remove_black.svg" class="remove icon action" ng-hide="sprite.id === 'background' || sprite.id === 'general'">
+		<img ng-click="sprites.remove(sprite)" ng-src="images/icons/remove_{{ removeIconColor() }}.svg" class="remove icon action" ng-hide="sprite.id === 'background' || sprite.id === 'general'">
 
 		<div ng-click="sprites.current = sprite.id" class="image">
 			<img ng-src="{{ sprite.costumes[0].data }}" ng-hide="sprite.id === 'general'">
