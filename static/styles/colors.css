@@ -1,0 +1,64 @@
+body {
+  background-color: #dbdce1; }
+
+.enabled[type=button], .enabled li, li.enabled {
+  background-color: #212121 !important;
+  color: #dbdce1; }
+
+#editors {
+  background-color: #212121; }
+
+#editors .CodeMirror {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #212121; }
+  #editors .CodeMirror .CodeMirror-gutters {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+#sidebar {
+  background-color: #85868a; }
+
+.cm-s-ambiance.CodeMirror {
+  color: #abaeba; }
+
+#settings, #settings input {
+  color: #dbdce1; }
+
+.editableImage .overlay {
+  background-color: rgba(171, 174, 186, 0.8); }
+
+.property.unsupported {
+  color: #990000; }
+
+.explanation {
+  background-color: #e6e6e6; }
+
+.banner {
+  background-color: #6699ff;
+  color: white; }
+  .banner a {
+    color: white; }
+
+.enabled:not(.sprite) {
+  background-color: #212121; }
+
+.sprite li {
+  background-color: #bebfc5; }
+
+.sprite.enabled li {
+  background-color: #212121; }
+
+header.maximized {
+  background-color: #212121;
+  color: #dbdce1; }
+  header.maximized nav a {
+    color: #85868a;
+    text-decoration: none; }
+header.minimized nav a {
+  color: #212121;
+  text-decoration: none; }
+
+/*# sourceMappingURL=colors.css.map */

@@ -1,0 +1,27 @@
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+
+  .inner {
+    position: relative;
+
+    .header .minimize {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+
+      width: 30px;
+      height: 30px;
+    }
+
+    .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+    }
+  }
+}

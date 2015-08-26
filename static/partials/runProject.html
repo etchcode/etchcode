@@ -1,0 +1,9 @@
+<div class="large model runProject" ng-style="{visibility: show ? 'visible' : 'hidden'}"> <!-- This CANNOT be display:none. Error NS_ERROR_FAILURE is thrown by the browser. The iframe must occupy space. Instead, use visibility:hidden and position:fixed to stop it from making a gap -->
+    <div class="inner">
+		<div class="header">
+			<img class="minimize action" src="images/icons/minimize_white.svg" ng-click="show = false;">
+		</div>
+		
+        <iframe src="http://etchcodeusercontent.appspot.com/play/" class="player"></iframe>
+    </div>
+</div>

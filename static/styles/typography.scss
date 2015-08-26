@@ -1,0 +1,42 @@
+h1, h2, h3, p {
+  font-family: "Merriweather";
+}
+h1 {
+  font-size: 4em;
+  text-align: center;
+}
+h2 {
+  font-size: 1.5em;
+}
+
+.sprites h1 input {
+  font-size: .4em;
+}
+
+h3 span{
+  font-size: .5em;
+  font-weight: normal;
+}
+
+.markdown-body{
+  h1, h2, h3{
+    text-align: left;
+  }
+}
+
+.unemphasize{
+  color: hsl(0, 0%, 50%);
+}
+.hidden{
+  display: none;
+}
+
+code{
+  padding: 1px 6px 1px 6px;
+  border-radius: 2.5px;
+  font-family: "Anonymous Pro";
+}
+
+.contentPage{ // the main element of a page that should be styled as content, like a blog post or article
+  font-size: 1.1em;
+}

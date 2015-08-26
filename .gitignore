@@ -52,3 +52,5 @@ werkzeug/wsgi.pyc
 .idea/workspace.xml
 
 .idea/etchcode.iml
+
+.idea/misc.xml

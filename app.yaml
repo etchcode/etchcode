@@ -6,17 +6,9 @@ threadsafe: yes
 
 handlers:
 - url: /
-  static_files: static/editor/index.html
-  upload: static\/editor\/index.html
+  static_files: static/pages/index.html
+  upload: static\/pages\/index.html
  
-- url: /editor
-  static_files: static/editor/index.html
-  upload: static\/editor\/index\.html
-  
-- url: /docs
-  static_files: static/docs/index.html
-  upload: static\/docs\/index\.html
-
 - url: /static
   static_dir: static/
 
