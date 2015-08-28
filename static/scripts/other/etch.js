@@ -203,10 +203,14 @@ var d;
                     return "keyword";
                 }
             }
+             console.info("peek" +stream.peek());
+            if(!parentBol ){
             var bul = stream.match(builtins);
+            }
             if (bul) {
                 //          replaceRange({replacement: "sa", from: {line:stream.pos.line, ch:(stream.pos.ch -1)}, to:{line:stream.pos.line, ch:(stream.pos.ch)}});
                 var next = stream.peek();
+                console.info("peek" +stream.peek());
                 if (next == ".") {
                     currentKeyword = bul[0].toLowerCase();
                     parentBol = true;
@@ -215,13 +219,17 @@ var d;
             }
             if (parentBol) {
                 parentBol = false;
+                
                 var x = true;
                 var j = 0;
                 var strings = "";
+                console.info("peek" +stream.peek());
                 stream.eat("\.");
-
+//                if(currentKeyword == "motion"){
+//                strings = "m";
+//                }
                 while (x) {
-                    if (stream.peek() == "(" || stream.peek() == undefined || stream.peek() == ":" || j > 14) {
+                    if (stream.peek() == "(" || stream.peek() == undefined || stream.peek() == ":" || j > 14) { 
                         x = false;
                     }
                     else {
@@ -229,6 +237,7 @@ var d;
                         var g = stream.eat(new RegExp(".")).toLowerCase();
                         if (g != " ") {
                             strings = strings.concat(g);
+                            console.info(strings);
                         }//this combine the entire child
                     }
                     j++;
