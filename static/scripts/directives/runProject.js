@@ -7,15 +7,16 @@
 			
     .directive("runProject", function () {
         return {
-            restrice: "E",
+            restrict: "E",
             
             templateUrl: "partials/runProject.html",
 			controller: function($scope, $element){
 				$scope.loaded = false;
-				$scope.show = false;
+				$scope.show = true;
+                $scope.large = false; // default view is inline but if this is true the editor will be fullscreen
 				
 				var player = $element.find("iframe.player")[0];
-				
+
 				player.addEventListener("load", function(){
 					//listen for when the player is loaded and update whether or not it is updated
 					$scope.$apply(function(){

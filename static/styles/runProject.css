@@ -7,15 +7,16 @@
   height: 100vh; }
   .runProject.large .inner {
     position: relative; }
-    .runProject.large .inner .header .minimize {
-      position: fixed;
-      top: 5px;
-      left: 5px;
-      width: 30px;
-      height: 30px; }
     .runProject.large .inner .player {
       width: 100vw;
       height: 100vh;
       border: 0; }
+
+.header .minimize, .header .maximize {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px; }
 
 /*# sourceMappingURL=runProject.css.map */
