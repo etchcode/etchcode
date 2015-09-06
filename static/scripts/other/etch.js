@@ -19,7 +19,7 @@ var d;
     var dictionary = {};
     var parent_abbreviation = [];
     var parents = [];
-
+    var listOfChildren = [];
     fetch("/api/blocks.json").then(function(response) { // this uses the super-modern fetch api to get data on the blocks from the server
         return response.json(); // returns a promise that resolves to the json sent
 
@@ -28,7 +28,7 @@ var d;
             if (blocksData.snapNames.hasOwnProperty(parent)) {
                 var pAbbriv = parent[0];
 
-                var listOfChildren = []; // currently the children are listed as properties of the parent object. This will hold a list converted from the parent object
+                 // currently the children are listed as properties of the parent object. This will hold a list converted from the parent object
                 for(var child in blocksData.snapNames[parent]) {
                     if(blocksData.snapNames[parent].hasOwnProperty(child)) {
                         listOfChildren.push(child);
@@ -188,48 +188,22 @@ var d;
 
             if (stream.match(singleDelimiters))
                 return null;
-            var key = stream.match(keywords);
-            if (key) {
+            if (stream.match(singleOperators))
+                return null;
+            console.info("peek" +stream.peek());
+            if (true) {
 
-
-                var next = stream.peek();
-
-                if (next == ".") {
-
-                    parentBol = true;
-                    currentKeyword = key[0].toLowerCase();
-                    //              console.info(currentKeyword);
-                    //              console.log("keyword"+ stream.string.substring(stream.start, -1));
-                    return "keyword";
-                }
-            }
-             console.info("peek" +stream.peek());
-            if(!parentBol ){
-            var bul = stream.match(builtins);
-            }
-            if (bul) {
-                //          replaceRange({replacement: "sa", from: {line:stream.pos.line, ch:(stream.pos.ch -1)}, to:{line:stream.pos.line, ch:(stream.pos.ch)}});
-                var next = stream.peek();
-                console.info("peek" +stream.peek());
-                if (next == ".") {
-                    currentKeyword = bul[0].toLowerCase();
-                    parentBol = true;
-                    return "keyword";
-                }
-            }
-            if (parentBol) {
-                parentBol = false;
                 
                 var x = true;
                 var j = 0;
                 var strings = "";
                 console.info("peek" +stream.peek());
-                stream.eat("\.");
+
 //                if(currentKeyword == "motion"){
 //                strings = "m";
 //                }
                 while (x) {
-                    if (stream.peek() == "(" || stream.peek() == undefined || stream.peek() == ":" || j > 14) { 
+                    if (stream.peek() == "(" || stream.peek() == undefined || stream.peek() == ":" || j > 30) {
                         x = false;
                     }
                     else {
@@ -246,14 +220,11 @@ var d;
                 //            console.info(currentKeyword);
                 //            console.info(strings);
                 //            console.info(dictionary[currentKeyword[0]]);
-                if(dictionary[currentKeyword[0]]) {
-                    if (dictionary[currentKeyword[0]].indexOf(strings) != -1) {
+
+                    if (listOfChildren.indexOf(strings) != -1) {
                         return "builtin";
                     }
-                }
-
-
-            }//end of child area
+                }//end of child area
             if (stream.match(/^(self|cls)\b/))
                 return "variable-2";
 

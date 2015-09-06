@@ -18,7 +18,7 @@ class transformList:
         integer = Word(nums).setParseAction(lambda t: int(t[0]))
         variable = Combine(OneOrMore(Word(alphanums) + Optional(oneOf("_ -"))))
         string = QuotedString('"', escChar='\\')
-        func = Group(Word(alphas) + period + Group(OneOrMore(Word(alphas)))+ Optional(Suppress("("")"))).addParseAction()#this one is only for a function inside a nother function
+        func = Group( Group(OneOrMore(Word(alphas)))+ Suppress("("")")).addParseAction()#this one is only for a function inside a nother function
 
         #this part parses input when it is a expressions following order of operations
         #negpos = oneOf('+ -') #this doesn't work currently in our xml_creator
@@ -61,8 +61,8 @@ class transformList:
         functions is a broad definition that uses regInput to recognize functions.
         allFunctions is recognizes if statments and functions with comments after them
         """
-        startCode = Group(Word(alphas)+ period + Suppress(Optional(oneOf("when When")))+Group(OneOrMore(Word(alphas))) + Suppress(Literal(":")))#startCode = Group(CaselessKeyword("E") ^ CaselessKeyword("events") + period + Suppress(Optional(CaselessLiteral("when")))+Group(CaselessLiteral("flag") + CaselessLiteral("clicked")) + Suppress(Literal(":")))
-        functions = Group(Word(alphas)("parent") + period + Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
+        startCode = Group(Suppress(Optional(oneOf("when When")))+Group(OneOrMore(Word(alphas))) + Suppress(Literal(":")))#startCode = Group(CaselessKeyword("E") ^ CaselessKeyword("events") + period + Suppress(Optional(CaselessLiteral("when")))+Group(CaselessLiteral("flag") + CaselessLiteral("clicked")) + Suppress(Literal(":")))
+        functions = Group( Group(OneOrMore(Word(alphas)))("child") +regInput("reginput"))("function")#all functions must be on new line
         allfunctions = OneOrMore(ifgroup + comments ^ functions("function")+ comments)
         operand.setParseAction(
         lambda origString,loc,tokens:
