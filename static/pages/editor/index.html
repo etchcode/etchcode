@@ -1,22 +1,103 @@
 <div ng-controller="spritesController as sprites">
 
+    <run-project></run-project>
+
 	<div class="editor-page" ng-controller="editorsController as editors">
-        <div class="leftColumn">
-            <div class="runProjectContainer">
-                <h2>{{ sprites.list[sprites.list.length-1].name }}</h2>
-                <run-project></run-project>
-            </div>
+		<div class="editors-container">
+			<span class="tabs">
+					<input type="button" value="Code" class="reset" ng-class="{enabled:editors.view === 'code'}" ng-click="editors.view = 'code'" ng-hide="sprites.current=='general'"> <!--the globals view can only modify config stuff-->
+					<input type="button" value="Settings" class="reset" ng-class="{enabled:editors.view === 'settings' || sprites.current === 'general'}" ng-click="editors.view = 'settings'">
 
-            <button class="runButton">
-                <i class="material-icons md-18">check</i>
-                Run
-            </button>
+                    <label class="projectName">
+                        Project:
+                        <input ng-model="sprites.list[sprites.list.length-1].name"> <!-- the last sprite is the general sprite which contains the name of the project-->
+                    </label>
+			</span>
+			<br>
+			<div id="editors">
+				<div id="code" ng-show="editors.view === 'code'" ng-hide="sprites.current === 'general'" selectable>
+					<editor ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id" sprite="sprite"></editor>
+				</div>
 
-            <sprites-list></sprites-list>
-        </div>
+				<div id="settings" ng-show="editors.view === 'settings' || sprites.current === 'general'">
+					<div class="setting" ng-repeat="sprite in sprites.list" ng-show="sprites.current === sprite.id">
+						<h2>Settings</h2>
+						<form novalidate>
 
-        <editor-tabs></editor-tabs>
-        <editor></editor>
+							<input type="text" ng-model="sprite.id" ng-change="sprites.current = sprite.id" ng-show="sprite.id !== 'background' && sprite.id !=='general'" required ng-pattern="/^[0-9A-z _-]+/"><span ng-show="sprite.id === 'background'">Background</span><span ng-show="sprite.id === 'general'">General</span>: {
+
+							<p ng-show="sprite.id === 'general'" class="indent">
+								Project Name: <input ng-model="sprite.name">
+							</p>
+
+							<div ng-hide="sprite.id ==='general' || sprite.id ==='background'" class="indent">
+								<p>X Position:
+									<input type="number" ng-model="sprite.x" ng-pattern="/^[0-9]+$/">,</p>
+								<p>Y Position:
+									<input type="number" ng-model="sprite.y" ng-pattern="/^[0-9]+$/">,</p>
+							</div>
+
+							<div ng-hide="sprite.id === 'general'" class="indent">
+								<span ng-show="sprite.id === 'background'">backdrops</span>
+								<span ng-show="sprite.id !== 'background'">costumes</span>: [
+
+								<div class="costume" ng-repeat="costume in sprite.costumes">
+									{
+									<img ng-click="sprites.costume.remove(sprite,costume)" src="images/icons/remove_white.svg" class="remove icon action">
+									<p>image:
+										<editable-image data="costume.data"></editable-image>,
+									</p>
+									<p class="name">name:
+										<input type="text" ng-model="costume.name" ng-pattern="/^[0-9A-z _-]+/">,
+									</p>
+									}
+								</div>
+
+								<input class="new" type="button" value="New" ng-click="sprites.costume.create(sprite)">
+								<br>
+								],
+							</div>
+
+							<p ng-show="sprite.id === 'general'" class="indent">
+								Thumbnail:
+								<editable-image data="sprite.thumbnail"></editable-image>
+							</p>
+
+							<div class="indent">
+								<p>variables<span ng-show="sprite.id === 'general'"> (for all sprites)</span>: [</p>
+								<ul class="variables">
+									<li ng-repeat="variable in sprite.variables" class="indent">
+										<img ng-click="sprites.variable.remove(sprite,variable)" src="images/icons/remove_white.svg" class="remove icon action">{{ variable }},</li>
+								</ul>
+
+								<p class="indent">
+									<input type="text" ng-model="sprites.variable.creating" ng-pattern="/^[0-9A-z _-]+/">
+									<input type="button" value="Create" ng-click="sprites.variable.create(sprite, sprites.variable.creating)">
+								</p>
+								<br>],
+							</div>
+
+							}
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<div class="sprites">
+			<h2>
+				Sprites 
+				<img ng-click="sprites.add()" src="images/icons/add_black.svg" class="add icon action">
+			</h2>
+
+			<ul>
+				<sprite ng-repeat="sprite in sprites.list" ng-class="{enabled: sprites.current === sprite.id}"></sprite>
+			</ul>
+
+			<div class="buildButton" ng-controller="buildButtonController as buildButton">
+				<input type="button" value="Run" ng-click="buildButton.render()">
+			</div>
+		</div>
 	</div>
-
 </div>

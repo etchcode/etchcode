@@ -9,19 +9,19 @@
   .inner {
     position: relative;
 
+    .header .minimize {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+
+      width: 30px;
+      height: 30px;
+    }
+
     .player {
       width: 100vw;
       height: 100vh;
       border: 0;
     }
   }
-}
-
-.header .minimize, .header .maximize{
-  position: fixed;
-  top: 5px;
-  left: 5px;
-
-  width: 30px;
-  height: 30px;
 }

@@ -10,7 +10,7 @@
 		
 		this.render = function(){
 			render.project(spriteData.list).then(function(response){
-                angular.element("run-project").scope().run(response); // refering to runProject directive in file directives/runProject.js
+                angular.element("run-project").scope().run(response); // refering to runProject directive in file directives/render.js
                 angular.element("run-project").scope().show = true;
 			});
 		};
