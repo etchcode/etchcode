@@ -1,9 +1,9 @@
 <md-card class="blocks">
     <md-card-content>
         <md-grid-list md-cols="2" md-row-height="23px" md-gutter="5px"> <!-- md-row-height is md-button padding top + padding bottom + font-size -->
-            <md-grid-tile ng-repeat="parent in scratchParentOrder" class="parent">
-                <md-button ng-click="setBlocksListParent(parent)" ng-class="{'md-accent': blocksListParent == parent}">
-                    {{ parent }}
+            <md-grid-tile ng-repeat="parent in blocks" class="parent">
+                <md-button ng-click="setBlocksListParent(parent.name)" ng-class="{'md-accent': blocksListParent == parent.name}">
+                    {{ parent.name }}
                 </md-button>
             </md-grid-tile>
         </md-grid-list>
@@ -12,9 +12,9 @@
         <md-divider></md-divider>
         <br>
 
-        <md-list ng-repeat="(blockParentName, blockParent) in blocks" ng-show="blocksListParent === blockParentName">
-            <md-list-item ng-repeat="(name, blockChild) in blockParent">
-                {{ name }}
+        <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name">
+            <md-list-item ng-repeat="item in parent">
+                {{ item.name }}
             </md-list-item>
         </md-list>
 
