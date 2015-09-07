@@ -9,14 +9,14 @@
 		
 		this.list = [ // this will be dynamicly generated and saved in the future
 			{
-				id: random.phrase(), 
+				id: random.word(),
 				
                 x: 0,
                 y: 0,
                 
 				costumes: [
 					{
-						name: random.phrase(),
+						name: random.word(),
 						data: this.default.costumes[0].data
 					}
 				],
@@ -28,14 +28,14 @@
 				script: this.default.script
 			},
 			{
-				id: random.phrase(),
+				id: random.word(),
 				
                 x: 0,
                 y: 0,
                 
 				costumes: [
 					{
-						name: random.phrase(),
+						name: random.word(),
 						data: this.default.costumes[0].data
 					}
 				],
@@ -51,7 +51,7 @@
 				
 				costumes: [
 					{
-						name: random.phrase(),
+						name: random.word(),
 						data: this.default.backdrops[0].data
 					}
 				],
@@ -65,7 +65,7 @@
 			{
 				id: "general",
 				
-				name: random.phrase(),
+				name: random.word(),
 				notes: "Notes about this project",
 				
 				thumbnail: this.default.backdrops[0].data,

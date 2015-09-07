@@ -46,4 +46,9 @@ header.minimized nav a {
   color: #212121;
   text-decoration: none; }
 
+.spriteTile .label {
+  background-color: #424242;
+  color: #9e9e9e;
+  opacity: .8; }
+
 /*# sourceMappingURL=colors.css.map */

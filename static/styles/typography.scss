@@ -43,6 +43,11 @@ code{
 
 .editor-page{
   .spriteTile{
-    font-size:14px;
+    font-size:11px;
+
+    .label{
+      display:flex;
+      align-items: center;
+    }
   }
 }

@@ -11,19 +11,30 @@
 						 
 		 return {
 			phrase: function(){
-				var part1 = words.adjectives[Math.floor(Math.random()*words.adjectives.length)]+"-";
+				var phrase = "";
 
-                var choice = Math.floor(Math.random()*2);
-                var part2;
-                if(choice === 0) {
-                    part2 = words.nouns[Math.floor(Math.random() * words.nouns.length)];
-                }
-                else {
-                    part2 = words.verbs[Math.floor(Math.random() * words.verbs.length)];
-                }
+				phrase += words.adjectives[Math.floor(Math.random()*words.adjectives.length)]+"-";
+				phrase += words.nouns[Math.floor(Math.random()*words.nouns.length)]+"-";
+				phrase += words.verbs[Math.floor(Math.random()*words.verbs.length)];
 
-				return part1+part2;
-			}
+				return phrase;
+			},
+             word: function(){
+                 var type = Math.floor(Math.random()*3)
+                 var list;
+
+                 if(type == 0){
+                     list = words.adjectives;
+                 }
+                 else if(type == 1){
+                     list = words.nouns;
+                 }
+                 else if(type == 2){
+                     list = words.verbs;
+                 }
+
+                 return list[Math.floor(Math.random()*list.length)];
+             }
 		 };
 	});
 }());

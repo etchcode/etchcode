@@ -44,6 +44,16 @@ hr{
   .spriteTile{
     width: 100%;
     height: 100%;
+
+    display: flex; /* align label to bottom */
+    flex-direction: column-reverse; /* align label to bottom */
+
+    .label{
+      width: 100%;
+      overflow: hidden;
+      height: 15px; //prevent the text from expanding vertically if it gets too big
+      padding: 15px;
+    }
   }
 }
 /* --------------------------------- Content Page ----------------------------------- */

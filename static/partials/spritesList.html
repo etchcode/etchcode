@@ -5,7 +5,9 @@
         <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="10px">
             <md-grid-tile ng-repeat="sprite in sprites.list">
                 <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data }})">
-                    {{ sprite.id }}
+                    <div class="label">
+                        {{ sprite.id }}
+                    </div>
                 </div>
             </md-grid-tile>
         </md-grid-list>
