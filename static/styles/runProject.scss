@@ -19,8 +19,23 @@
   }
 
   &.small{
-	.inner{
+	.inner{ // using http://www.mademyday.de/css-height-equals-width-with-pure-css.html#outer_wrap to make the card have an aspect ration of 1:1
 	  position: relative;
+      width: 100%;
+
+      &:before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+      }
+
+      .player{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
 
 	  .playPause {
 		position: absolute;

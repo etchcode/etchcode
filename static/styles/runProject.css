@@ -12,7 +12,18 @@
       height: 100vh;
       border: 0; }
 .runProject.small .inner {
-  position: relative; }
+  position: relative;
+  width: 100%; }
+  .runProject.small .inner:before {
+    content: "";
+    display: block;
+    padding-top: 100%; }
+  .runProject.small .inner .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
   .runProject.small .inner .playPause {
     position: absolute;
     bottom: -15px;

@@ -65,7 +65,7 @@
 			{
 				id: "general",
 				
-				name: random.word(),
+				name: "",
 				notes: "Notes about this project",
 				
 				thumbnail: this.default.backdrops[0].data,

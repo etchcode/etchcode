@@ -50,4 +50,12 @@ code{
       align-items: center;
     }
   }
+
+  .blocks{
+    .parent{
+      .md-button{
+        font-size: 11px;
+      }
+    }
+  }
 }
