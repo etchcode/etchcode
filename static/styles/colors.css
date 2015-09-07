@@ -1,6 +1,3 @@
-body {
-  background-color: #dbdce1; }
-
 .enabled[type=button], .enabled li, li.enabled {
   background-color: #212121 !important;
   color: #dbdce1; }
@@ -18,14 +15,8 @@ body {
     -moz-box-shadow: none;
     box-shadow: none; }
 
-#sidebar {
-  background-color: #85868a; }
-
 .cm-s-ambiance.CodeMirror {
   color: #abaeba; }
-
-#settings, #settings input {
-  color: #dbdce1; }
 
 .editableImage .overlay {
   background-color: rgba(171, 174, 186, 0.8); }
@@ -43,12 +34,6 @@ body {
     color: white; }
 
 .enabled:not(.sprite) {
-  background-color: #212121; }
-
-.sprite li {
-  background-color: #bebfc5; }
-
-.sprite.enabled li {
   background-color: #212121; }
 
 header.maximized {

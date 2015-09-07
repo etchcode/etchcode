@@ -1,18 +1,40 @@
-.runProject.large {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100vw;
-  height: 100vh;
+.runProject {
+  &.large {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
 
-  .inner {
-    position: relative;
+    .inner {
+      position: relative;
 
-    .player {
-      width: 100vw;
-      height: 100vh;
-      border: 0;
+      .player {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+      }
+    }
+  }
+
+  &.small{
+	.inner{
+	  position: relative;
+
+	  .playPause {
+		position: absolute;
+		bottom: -15px;
+		right: -20px;
+	  }
+	}
+  }
+
+  .inner{
+    .player{
+      border: none;
+      height: 100%;
+      width: 100%;
     }
   }
 }

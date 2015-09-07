@@ -1,4 +1,5 @@
 /* globals angular */
+var foo;
 
 (function () {
 	"use strict";
@@ -8,14 +9,17 @@
     .directive("runProject", function () {
         return {
             restrict: "E",
+            replace: true,
             
             templateUrl: "partials/runProject.html",
 			controller: function($scope, $element){
 				$scope.loaded = false;
 				$scope.show = true;
                 $scope.large = false; // default view is inline but if this is true the editor will be fullscreen
-				
-				var player = $element.find("iframe.player")[0];
+                $scope.running = false;
+
+				var player = $element[0].getElementsByClassName("player")[0];
+                foo = player;
 
 				player.addEventListener("load", function(){
 					//listen for when the player is loaded and update whether or not it is updated
@@ -28,6 +32,8 @@
 					function run(toRun){
                         $scope.$apply(function() {
                             $scope.show = true;
+                            $scope.running = true;
+
                             player.contentWindow.postMessage({
                                 "action": "loadString",
                                 "string": toRun

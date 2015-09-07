@@ -36,8 +36,15 @@ hr{
 
 /* --------------------------- Editor Page ------------------------------- */
 .editor-page {
-  display: flex;
-  flex-direction: row;
+  .columnLeft{
+    overlow: auto;
+    height: 100%;
+  }
+
+  .spriteTile{
+    width: 100%;
+    height: 100%;
+  }
 }
 /* --------------------------------- Content Page ----------------------------------- */
 .contentPage { // the main element of a page that should be styled as content, like a blog post or article

@@ -3,10 +3,6 @@ $color-2: hsla(229, 10%, 70%, 1);
 $color-3: hsla(230, 2%, 53%, 1);
 $color-4: hsla(229, 10%, 87%, 1);
 
-body {
-  background-color: $color-4;
-}
-
 .enabled[type=button], .enabled li, li.enabled {
   background-color: $color-1 !important;
   color: $color-4;
@@ -29,17 +25,8 @@ body {
   }
 }
 
-#sidebar {
-  background-color: $color-3;
-}
-
 .cm-s-ambiance.CodeMirror {
   color: $color-2;
-}
-
-// config
-#settings, #settings input {
-  color: $color-4;
 }
 
 .editableImage .overlay {
@@ -64,14 +51,6 @@ body {
 }
 
 .enabled:not(.sprite) {
-  background-color: $color-1;
-}
-
-.sprite li {
-  background-color: hsla(229, 6%, 76%, 1);
-}
-
-.sprite.enabled li {
   background-color: $color-1;
 }
 

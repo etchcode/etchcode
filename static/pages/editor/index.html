@@ -1,22 +1,19 @@
 <div ng-controller="spritesController as sprites">
 
-	<div class="editor-page" ng-controller="editorsController as editors">
-        <div class="leftColumn">
-            <div class="runProjectContainer">
-                <h2>{{ sprites.list[sprites.list.length-1].name }}</h2>
-                <run-project></run-project>
-            </div>
+    <div class="editor-page" ng-controller="editorsController as editors" layout="row">
+        <div layout="column" flex="33" class="columnLeft">
+            <md-input-container>
+                <label>Project Name</label>
+                <input ng-model="sprites.list[sprites.list.length-1].name" type="text">
+            </md-input-container>
 
-            <button class="runButton">
-                <i class="material-icons md-18">check</i>
-                Run
-            </button>
+            <run-project></run-project>
 
             <sprites-list></sprites-list>
         </div>
 
-        <editor-tabs></editor-tabs>
+        <blocks-list></blocks-list>
         <editor></editor>
-	</div>
+    </div>
 
 </div>

@@ -23,9 +23,12 @@ hr {
   margin-bottom: 20px; }
 
 /* --------------------------- Editor Page ------------------------------- */
-.editor-page {
-  display: flex;
-  flex-direction: row; }
+.editor-page .columnLeft {
+  overlow: auto;
+  height: 100%; }
+.editor-page .spriteTile {
+  width: 100%;
+  height: 100%; }
 
 /* --------------------------------- Content Page ----------------------------------- */
 .contentPage {
