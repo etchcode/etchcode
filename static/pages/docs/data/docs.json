@@ -13,7 +13,7 @@
 	"etchNames": [
 
 		{
-			"name": "Motion",
+			"name": "motion",
 			"explanation": "Blocks related to moving",
 			"unsupported": ["set rotation style"],
 			"items": [

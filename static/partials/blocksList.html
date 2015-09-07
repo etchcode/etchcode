@@ -13,8 +13,8 @@
         <br>
 
         <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name">
-            <md-list-item ng-repeat="item in parent">
-                {{ item.name }}
+            <md-list-item ng-repeat="child in parent.items" class="child">
+                {{ child.name }}
             </md-list-item>
         </md-list>
 

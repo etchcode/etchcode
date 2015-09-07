@@ -39,5 +39,7 @@ code {
     align-items: center; }
 .editor-page .blocks .parent .md-button {
   font-size: 11px; }
+.editor-page .blocks .child {
+  font-size: 13px; }
 
 /*# sourceMappingURL=typography.css.map */

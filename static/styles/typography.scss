@@ -52,10 +52,13 @@ code{
   }
 
   .blocks{
-    .parent{
-      .md-button{
+    .parent {
+      .md-button {
         font-size: 11px;
       }
+    }
+    .child{
+      font-size: 13px;
     }
   }
 }
