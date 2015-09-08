@@ -37,9 +37,10 @@ code {
   .editor-page .spriteTile .label {
     display: flex;
     align-items: center; }
-.editor-page .blocks .parent .md-button {
+
+.blocks .parent .md-button {
   font-size: 11px; }
-.editor-page .blocks .child {
-  font-size: 13px; }
+.blocks .child {
+  font-size: 15px; }
 
 /*# sourceMappingURL=typography.css.map */

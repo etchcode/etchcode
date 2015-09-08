@@ -12,9 +12,9 @@
         <md-divider></md-divider>
         <br>
 
-        <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name">
+        <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name" gutter="0">
             <md-list-item ng-repeat="child in parent.items" class="child">
-                {{ child.name }}
+                <snap-block block="child"></snap-block>
             </md-list-item>
         </md-list>
 
