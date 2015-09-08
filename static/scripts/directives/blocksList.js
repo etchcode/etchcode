@@ -10,7 +10,7 @@
                 templateUrl: "partials/blocksList.html",
                 controller: ["$scope", "$http", function($scope, $http){
                     $scope.blocks = {};
-                    $scope.blocksListParent = "Motion"; // the parent currently clicked on
+                    $scope.blocksListParent = "motion"; // the parent currently clicked on
 
                     $scope.setBlocksListParent = function(newParent){
                         $scope.blocksListParent = newParent;

@@ -51,4 +51,11 @@ header.minimized nav a {
   color: white;
   opacity: .8; }
 
+.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
+  stroke: #f57c00; }
+.blocks .md-accent div {
+  color: #f57c00; }
+.blocks .md-accent path, .blocks .md-accent line {
+  stroke-width: 2px; }
+
 /*# sourceMappingURL=colors.css.map */

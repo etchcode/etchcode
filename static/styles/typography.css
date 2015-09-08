@@ -42,5 +42,7 @@ code {
   font-size: 11px; }
 .blocks .child {
   font-size: 15px; }
+  .blocks .child .snapBlock {
+    cursor: pointer; }
 
 /*# sourceMappingURL=typography.css.map */

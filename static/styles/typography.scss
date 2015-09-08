@@ -60,5 +60,9 @@ code{
   }
   .child{
     font-size: 15px;
+
+    .snapBlock {
+      cursor: pointer;
+    }
   }
 }

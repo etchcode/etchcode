@@ -5,6 +5,7 @@ $color-4: hsla(229, 10%, 87%, 1);
 
 // md colors
 $grey-800: #424242;
+$md-accent: #f57c00;
 
 .enabled[type=button], .enabled li, li.enabled {
   background-color: $color-1 !important;
@@ -81,5 +82,19 @@ header {
     background-color: $grey-800; // grey 800
     color: white;
     opacity: .8;
+  }
+}
+
+.blocks{
+  .md-accent{
+    path, line, text{
+      stroke: $md-accent;
+    }
+    div{
+      color: $md-accent;
+    }
+    path, line{
+      stroke-width: 2px;
+    }
   }
 }

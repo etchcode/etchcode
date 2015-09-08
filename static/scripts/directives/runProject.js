@@ -1,6 +1,3 @@
-/* globals angular */
-var foo;
-
 (function () {
 	"use strict";
 		
@@ -19,7 +16,6 @@ var foo;
                 $scope.running = false;
 
 				var player = $element[0].getElementsByClassName("player")[0];
-                foo = player;
 
 				player.addEventListener("load", function(){
 					//listen for when the player is loaded and update whether or not it is updated
