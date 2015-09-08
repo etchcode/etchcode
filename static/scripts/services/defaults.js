@@ -5,7 +5,7 @@
 	.factory("default", function() {
 		return {
 			sprite: {
-				script: 'events.flag Clicked:\n    L.think("Hello, World") # l is short for looks\n    motion.Move(30+21*21) # motion could be abbreviated here with m\n    control.waIt(3)\n    looks.think("Etch is cool")\n    m.go to xy(12, 21)',
+				script: 'flag Clicked:\n    think("Hello, World") # It does not need to be capitalized\n    Move(30+21*21) # But it can if you want\n    waIt(3)\n    think("Etch is cool")\n    go to xy(12, 21) # Press Run to see what this program does',
 				costumes: [
 					{
 						name: "chicken",

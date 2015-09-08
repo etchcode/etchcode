@@ -3,12 +3,12 @@ from xml_creator import xmlcreator
 from blocks import snapNames
 print snapNames["motion"]["move"]["snap"]
 string = """
-events.flag Clicked:
-    L.think("Hello, World") # l is short for looks
-    motion.Move(30+5)
-    control.waIt(3)
-    looks.think("Etch is cool")
-    m.go to xy(12, 21)
+flag Clicked:
+    think("Hello, World") # l is short for looks
+    Move(30+5)
+    waIt(3)
+    think("Etch is cool")
+    go to xy(12, 21)
 """
 variables = ["stas"]
 sprites = ["foos213"]

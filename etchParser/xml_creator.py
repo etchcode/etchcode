@@ -48,10 +48,19 @@ class xmlcreator:
         input: parent and a child both are strings all lower case ifmaster is a bolian that refers to if it is a first function
         output: name for of snap block referenceing
          """
-        def createChild(parent, child, ifmaster):
+        def parentchooser(child):
+            for x in ["motion", "sensing", "control", "events", "sound", "data", "operators", "pen", "looks"]:
+                try:
+                    snapNames[x][child]
+                    return x
+                except KeyError:
+                    None
+            raise unreconizedFunction(str(child))
+        def createChild( child, ifmaster):
             current_function = ""
             # print parent
             # print child
+            parent = parentchooser(child)
             try:
 
                 if ifmaster:
@@ -67,7 +76,7 @@ class xmlcreator:
                     return test["snap"]#if it is abriviated
                 except KeyError:
 
-                    raise unreconizedFunction(str(parent) + "." + str(child))
+                    raise unreconizedFunction(str(child))
 
         """
         This function parses expressions like 12+213*m.xpos into xml
@@ -79,9 +88,7 @@ class xmlcreator:
         def exprParser(lists): #this function parses expressions.
 
             expression = lists[1]
-            result = '''<block s="''' + createChild("operators", expression, True
-
-                                                )+ '''">''' # this adds the operator block
+            result = '''<block s="''' + createChild(expression, True)+ '''">''' # this adds the operator block
             if len(lists[0]) == 1:
                 result += inputdecider(lists[0])
             else:                       # if there is another nested expression as the first part
@@ -123,24 +130,24 @@ class xmlcreator:
                 # print "startcode"
                 # print script[0]
                 script[0][2]
-                result+= '''<block s="''' + createChild(script[0][0].lower(), combine(script[0][1]).lower(), False)+ '''">'''
+                result+= '''<block s="''' + createChild( combine(script[0][0]).lower(), False)+ '''">'''
                 result += "<l><option>"+script[3].lower()+"</option></l></block>"
             except IndexError:                       # we need this because receiveGo is self closing and the other ones aren't
-                startcode =createChild(script[0][0].lower(), combine(script[0][1]).lower(), False)
+                startcode =createChild(combine(script[0][0]).lower(), False)
                 if startcode != "receiveGo":
-                    raise unreconizedFunction(str(script[0][0])+ "." + str(combine(script[0][1])))
+                    raise unreconizedFunction(str(combine(script[0][0])))
                 result+= '''<block s="''' + startcode + '''"/>'''
             script.pop(0)
             for function in script: # this creates xml for all the functions
 
-
-                functionname =createChild(function[0].lower(), combine(function[1]).lower(), True)
+                print function
+                functionname =createChild(combine(function[0]).lower(), True)
                 result+= '''<block s="''' +functionname["snap"] + '''">''' #this creates the function block
 
 
                 num = 0
 
-                for input in function[2]: #this creates xml for all the inputs
+                for input in function[1]: #this creates xml for all the inputs
 
 
                     lineNumber = input[1]
