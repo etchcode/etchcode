@@ -11,7 +11,7 @@
 		this.background = spriteData.background;
 		that.globals = spriteData.globals;
 		
-		that.current = that.list[0].id; // the sprite that we are editing now
+		that.current = that.list[0]; // the sprite that we are editing now
 		
 		that.add = function(){
 			var newItem = {

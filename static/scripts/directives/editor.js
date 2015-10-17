@@ -12,7 +12,7 @@
 				$scope.codemirrorConfig = {
 					lineNumbers: true,
 					indentWithTabs: true,
-					theme: "ambiance",
+					theme: "xq-light",
 					mode: "etch"
 				};
 

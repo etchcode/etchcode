@@ -1,96 +1,64 @@
-//useful mixins
-@mixin vertical-align {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+.runProject {
+  &.large {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
 
-html, body{
-	height: 100%; 
-	width: 100%;
-}
-body {
-	padding: 0;
-	margin: 0;
-}
+    .inner {
+      position: relative;
 
-.left{
-	float:left;
-}
-.right{
-	float:right;
-}
-.centerBlock{
-  margin: 0 auto 0 auto;
-}
-.centerText{
-  text-align: center;
-}
-
-hr{
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-/* --------------------------- Editor Page ------------------------------- */
-.editor-page {
-  .columnLeft{
-    overlow: auto;
-    height: 100%;
+      .player {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+      }
+    }
   }
 
-  .spriteTile{
-    width: 100%;
-    height: 100%;
-
-    display: flex; /* align label to bottom */
-    flex-direction: column-reverse; /* align label to bottom */
-
-    .label{
+  &.small{
+    .inner{ // using http://www.mademyday.de/css-height-equals-width-with-pure-css.html#outer_wrap to make the card have an aspect ration of 4:3
+      position: relative;
       width: 100%;
-      overflow: hidden;
-      height: 15px; //prevent the text from expanding vertically if it gets too big
-      padding: 15px;
+
+      &:before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+      }
+
+      .player{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      .playPause {
+        position: absolute;
+        bottom: -15px;
+        right: -20px;
+      }
+    }
+  }
+
+  .inner{
+    .player{
+      border: none;
+      height: 100%;
+      width: 100%;
     }
   }
 }
-/* --------------------------------- Content Page ----------------------------------- */
-.contentPage { // the main element of a page that should be styled as content, like a blog post or article
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto 0 auto;
-}
 
-/* ----------------------------- Docs --------------------------------- */
-.docsPage {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: calc(1em + 14px); // account for the floating footer
+.header .minimize, .header .maximize{
+  position: fixed;
+  top: 5px;
+  left: 5px;
 
-  .sidebar {
-    padding: 0 20px 0 0;
-  }
-  .details ul {
-    list-style: none;
-  }
-
-  .banner {
-    position: fixed;
-    bottom: 0;
-    left:0;
-
-    padding: 7px;
-    width: 100%;
-  }
-}
-/* ------------------------- snapBlock ----------------------*/
-.snapBlock{
-  width: 100%;
-  height: 100%;
-}
-.blocks .child{
-  min-height: auto;
-  padding: 2px 5px 2px 5px; 
+  width: 30px;
+  height: 30px;
 }

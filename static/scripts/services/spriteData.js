@@ -28,25 +28,6 @@
 				script: this.default.script
 			},
 			{
-				id: random.word(),
-				
-                x: 0,
-                y: 0,
-                
-				costumes: [
-					{
-						name: random.word(),
-						data: this.default.costumes[0].data
-					}
-				],
-				
-				variables: [
-					
-				],
-				
-				script: ""
-			},
-			{
 				id: "background",
 				
 				costumes: [

@@ -1,7 +1,7 @@
 <div ng-controller="spritesController as sprites">
 
     <div class="editor-page" ng-controller="editorsController as editors" layout="row">
-        <div layout="column" flex="30" class="columnLeft">
+        <div layout="column" flex="40" class="columnLeft">
             <md-input-container>
                 <label>Project Name</label>
                 <input ng-model="sprites.list[sprites.list.length-1].name" type="text">
@@ -12,8 +12,7 @@
             <sprites-list></sprites-list>
         </div>
 
-        <blocks-list flex="20"></blocks-list>
-        <editor flex="50"></editor>
+        <blocks-list flex="15"></blocks-list>
+        <editor flex="45"></editor>
     </div>
-
 </div>
