@@ -27,12 +27,14 @@
 
                     $scope.run = function(xml){
                         function run(toRun){
-                            $scope.show = true;
+                            $scope.$apply(function() {
+                                $scope.show = true;
 
-                            player.contentWindow.postMessage({
-                                "action": "loadString",
-                                "string": toRun
-                            }, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
+                                player.contentWindow.postMessage({
+                                    "action": "loadString",
+                                    "string": toRun
+                                }, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
+                            });
                         }
 
                         if($scope.loaded){ // if the iframe is loaded
@@ -40,9 +42,7 @@
                         }
                         else{ // otherwise
                             player.onload = function(){ //with .onload we will only have one run waiting
-                                $scope.$apply(function(){
-                                    run(xml); // run it when loaded                                    
-                                });
+                                run(xml); // run it later
                             };
                         }
                     };
@@ -60,7 +60,7 @@
                             $scope.running = false;
                         }
                         else {
-                            render.project(spriteData.sprites).then(function (response) {
+                            render.project(spriteData.list).then(function (response) {
                                 $scope.run(response); // referring to element in runProject directive in file directives/runProject.js
                             });
                             $scope.running = true;

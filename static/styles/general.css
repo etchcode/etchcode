@@ -1,0 +1,49 @@
+/* line 2, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+[unselectable] {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  user-select: none; }
+
+/* line 9, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+[selectable] {
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: text;
+  -o-user-select: all;
+  user-select: all; }
+
+/* line 17, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+img.icon {
+  height: 20px;
+  width: auto;
+  margin-left: 6px;
+  cursor: pointer; }
+
+/* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+pre {
+  font-family: anonymousPro; }
+
+/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+img:not(.action) {
+  pointer-events: none; }
+
+/* line 36, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+input.reset[type=button] {
+  box-shadow: 0 0 0 0;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 7px;
+  cursor: pointer; }
+
+/* line 48, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.scss */
+.spriteTile {
+  background-size: cover; }
+
+/*# sourceMappingURL=general.css.map */

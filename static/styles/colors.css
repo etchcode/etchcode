@@ -1,0 +1,82 @@
+/* line 10, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.enabled[type=button], .enabled li, li.enabled {
+  background-color: #212121 !important;
+  color: #dbdce1; }
+
+/* line 15, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+#editors {
+  background-color: #212121; }
+
+/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+#editors .CodeMirror {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: #212121; }
+  /* line 25, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+  #editors .CodeMirror .CodeMirror-gutters {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+
+/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.cm-s-ambiance.CodeMirror {
+  color: #abaeba; }
+
+/* line 36, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.editableImage .overlay {
+  background-color: rgba(171, 174, 186, 0.8); }
+
+/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.property.unsupported {
+  color: #990000; }
+
+/* line 44, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.explanation {
+  background-color: #e6e6e6; }
+
+/* line 48, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.banner {
+  background-color: #6699ff;
+  color: white; }
+  /* line 52, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+  .banner a {
+    color: white; }
+
+/* line 57, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.enabled:not(.sprite) {
+  background-color: #212121; }
+
+/* line 62, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+header.maximized {
+  background-color: #212121;
+  color: #dbdce1; }
+  /* line 66, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+  header.maximized nav a {
+    color: #85868a;
+    text-decoration: none; }
+
+/* line 73, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+header.minimized nav a {
+  color: #212121;
+  text-decoration: none; }
+
+/* line 81, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.spriteTile .label {
+  background-color: #424242;
+  color: white;
+  opacity: .8; }
+
+/* line 90, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
+  stroke: #f57c00; }
+
+/* line 93, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.blocks .md-accent div {
+  color: #f57c00; }
+
+/* line 96, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.scss */
+.blocks .md-accent path, .blocks .md-accent line {
+  stroke-width: 2px; }
+
+/*# sourceMappingURL=colors.css.map */
