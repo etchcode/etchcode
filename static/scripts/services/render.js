@@ -14,13 +14,15 @@ var p;
             // function accepts string project and returns a Promise that resolves to a string of the built project
             return new Promise(function (resolve) {
 
+                var all = project.list.concat(project.background).concat(project.general);
+                
                 var scripts = {};
                 var sprites = [];
-                for (var i = 0; i < project.list.length; i++) {
+                for (var i = 0; i < all.length; i++) {
                     // for every script in the project build a dictionary with scipts labled by their sprite name
-                    var sprite = project.list[i];
+                    var sprite = all[i];
                         
-                    sprites.push(project[i].id);
+                    sprites.push(sprite.id);
                     scripts[sprite.id] = sprite.script;
                 }
 

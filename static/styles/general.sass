@@ -1,0 +1,49 @@
+// modfiy user selectability in the format <div selectable> or <div unselectable>
+[unselectable]
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: -moz-none
+  -o-user-select: none
+  user-select: none
+
+[selectable]
+  -webkit-user-select: all
+  -khtml-user-select: all
+  -moz-user-select: text
+  -o-user-select: all
+  user-select: all
+
+.nav, .pagination, .carousel, .panel-title a
+  cursor: pointer
+
+img.icon
+  height: 20px
+  width: auto
+  margin-left: 6px
+  cursor: pointer
+
+pre
+  font-family: anonymousPro
+
+img:not(.action)
+  pointer-events: none
+  // disable dragging of images
+
+input.reset[type=button]
+  box-shadow: 0 0 0 0
+  border: none
+  outline: none
+  font-size: 1em
+  padding: 7px
+  cursor: pointer
+
+.spriteTile
+  background-size: cover
+
+//.blocks .child{
+//  -webkit-user-select: none;
+//  -khtml-user-select: none;
+//  -moz-user-select: none;
+//  -ms-user-select: none;
+//  user-select: none;
+//}

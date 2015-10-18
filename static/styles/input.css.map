@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "input.css",
+  "sources": [
+    "input.sass"
+  ],
+  "sourcesContent": [],
+  "mappings": ";AAAc,KAAK,AAAA,SAAS,AAAA,WAAW,CAAb;EACxB,UAAU,EAAE,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,GAAG,GADA",
+  "names": []
+}
