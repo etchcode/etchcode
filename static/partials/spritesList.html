@@ -1,10 +1,14 @@
 <md-card>
     <md-card-content class="spriteList">
-        <h3>Sprites</h3>
+        <h3>Sprites
+            <md-button class="md-icon-button" ng-click="sprites.new()">
+                <md-icon md-font-set="material-icons">note_add</md-icon>
+            </md-button>
+        </h3>
 
         <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="10px">
-            <md-grid-tile ng-repeat="sprite in sprites.list">
-                <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data }})" ng-click="sprites.current = sprite">
+            <md-grid-tile ng-repeat="sprite in sprites.all"> <!-- sprites.all includes sprites.list, sprites.general, and sprites.background -->
+                <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
                     <div class="label">
                         {{ sprite.id }}
                     </div>
