@@ -6,11 +6,20 @@
             </md-button>
         </h3>
 
-        <md-grid-list md-cols="3" md-row-height="1:1" md-gutter="10px">
-            <md-grid-tile ng-repeat="sprite in sprites.all"> <!-- sprites.all includes sprites.list, sprites.general, and sprites.background -->
+        <md-grid-list md-row-height="1:1" md-gutter="15px" 
+            md-cols-sm="3"
+            md-cols-gt-sm="5"
+            md-cols="7"
+            md-cols-md="9"
+            md-cols-lg="11">
+            <md-grid-tile ng-repeat="sprite in sprites.all()"> <!-- sprites.all() includes sprites.list, sprites.general, and sprites.background -->
                 <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
-                    <div class="label">
-                        {{ sprite.id }}
+                    <div class="footer">
+                        <span class="label">{{ sprite.id }}</span>
+                        
+                        <md-button class="md-icon-button spriteSettings md-secondary" ng-click="sprites.settings(sprite)">
+                            <md-icon md-font-set="material-icons" class="material-icons md-light">info_outline</md-icon>
+                        </md-button>
                     </div>
                 </div>
             </md-grid-tile>

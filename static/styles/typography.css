@@ -45,10 +45,11 @@ code {
 /* line 38, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .editor-page .spriteTile {
   font-size: 11px; }
-  /* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-  .editor-page .spriteTile .label {
-    display: flex;
-    align-items: center; }
+
+/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.editor-page .footer {
+  display: flex;
+  align-items: center; }
 
 /* line 46, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .blocks .parent .md-button {
@@ -60,5 +61,9 @@ code {
   /* line 50, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
   .blocks .child .snapBlock {
     cursor: pointer; }
+
+/* line 54, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+md-dialog .md-subheader .md-subheader-inner {
+  padding-left: 0; }
 
 /*# sourceMappingURL=typography.css.map */

@@ -4,10 +4,12 @@
 
 	nunjucks.configure("/static/partials", {autoescape: true});
 
-	angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror", "ngRoute", "toaster"])
+	angular.module("etch", ["ngSanitize", "ngMaterial", "ngAnimate", "ui.codemirror", "ngRoute", "toaster"])
 
 		.config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
 			function ($routeProvider, $locationProvider, $mdThemingProvider) {
+//                $locationProvider.html5Mode(true);
+
 				$routeProvider
 					.when("/", {
                         templateUrl: "pages/home/index.html"
@@ -21,15 +23,13 @@
 						redirectTo: "/"
 					});
 
-				//$locationProvider.html5Mode(true);
-
                 $mdThemingProvider.theme("default")
                     .primaryPalette("blue", {
                         "default": "500"
                     })
                     .accentPalette("orange", {
                         "default": "700"
-                    })
+                    });
 			}
 		]);
 

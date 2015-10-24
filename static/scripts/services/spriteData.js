@@ -7,7 +7,7 @@
 	.service("spriteData", ["random", "default", function(random, Default){
         var myself = this; // cache this for use inside functions
 		this.default = Default.sprite;
-        var forbidden_variable_names = ["mouse-pointer", "edge", "pen trails"];
+        this.forbidden_variable_names = ["mouse-pointer", "edge", "pen trails"];
 		
         // define the needed objects
         
@@ -19,27 +19,6 @@
             
             this.name = inputs.name || random.word();
             this.data = inputs.data || myself.default.costumes[0].data
-        }
-        
-        this.Variable = function(variable, other_names){ // variable object. takes name of variable, list of potential conflicts. has properties name, valid, and (if valid == false) invalid_reason. if valid is false the variable created should not be recorded and the user should be notified
-            this.name = variable;
-            this.valid = true;
-            
-            // check if the name is undefined
-            if(this.name === undefined || this.name === ""){
-                this.valid = false;
-                this.invalid_reason = "undefined"
-            }
-            // check if the variable is restricted
-            if(forbidden_variable_names.indexOf(this.name) != -1){
-                this.valid = false;
-                this.invalid_reason = "forbidden name";
-            }
-            // check if there is a variable of the same name
-            if(other_names.indexOf(this.name) != -1){
-                this.valid = false;
-                this.invalid_reason = "conflict";
-            }
         }
         
         // types of sprite
@@ -89,6 +68,35 @@
                 new this.Sprite()
             ]
         }
+        
+        // data-checking functions
+        this.isValidVariable = function(variable, other_names){ // variable object. takes name of variable, list of potential conflicts. has properties name, valid, and (if valid == false) invalid_reason. if valid is false the variable created should not be recorded and the user should be notified
+            var message = {
+                error: false
+            };
+            
+            // check if the name is undefined
+            if(this.name === undefined || this.name === ""){
+                message.error = false;
+                message.message = "undefined";
+            }
+            // check if the variable is restricted
+            if(this.forbidden_variable_names.indexOf(this.name) != -1){
+                message.error = true;
+                message.message = "forbidden name";
+            }
+            // check if there is a variable of the same name
+            for(var i = 0; i < other_names.length; i++){
+                var other_name = other_names[i]
+                
+                if(other_name == this.name){
+                    message.error = true;
+                    message.message = "conflict";
+                }
+            }
+            
+            return message;
+        };
 		
 	}]);
 }());

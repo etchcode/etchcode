@@ -1,0 +1,53 @@
+<md-dialog flex="80" class="settingsDialog">
+    <md-dialog-content>
+        <form>            
+            <md-input-container>
+                <label>Sprite Name</label>
+                <input required ng-model="sprite.id" id="settingsSpriteTitle">
+            </md-input-container>
+            
+            <div layout="row" ng-if="sprite.position">
+                <md-input-container>
+                    <label>X Position</label>
+                    <input required ng-model="sprite.position.x">
+                </md-input-container>
+                
+                <md-input-container>
+                    <label>Y Position</label>
+                    <input required ng-model="sprite.position.y"
+                </md-input-container>            
+            </div>
+            
+            <div>
+                <md-chips ng-model="sprite.variables" placeholder="+Variable" secondary-placeholder="+Variable"></md-chips>
+            </div>
+            
+            <div ng-if="sprite.costumes" class="costumes">
+                <md-subheader ng-hide="sprite.id == 'background'">Costumes</md-subheader>
+                <md-subheader ng-show="sprite.id == 'background'">Backdrops</md-subheader>
+
+                <md-grid-list md-row-height="1:1" md-gutter="15px"
+                              md-cols-sm="3"
+                              md-cols-gt-sm="5"
+                              md-cols="7"
+                              md-cols-md="9"
+                              md-cols-lg="11">
+                    <md-grid-tile ng-repeat="costume in sprite.costumes" style="background-image: url({{ costume.data }})" class="costumeTile">
+                        <div class="costume" style="background-image: url({{ costume.data }})"></div>
+                         <md-button class="md-icon-button md-mini">
+                            <md-icon>delete</md-icon>
+                        </md-button>                       
+                    </md-grid-tile>    
+                </md-grid-list>                
+            </div>
+        </form>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button ng-click="delete()" class="md-warn">
+            Delete
+        </md-button>
+        <md-button ng-click="close()" class="md-primary">
+            Close
+        </md-button>
+    </div>
+</md-dialog>

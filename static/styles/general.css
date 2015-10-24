@@ -15,25 +15,6 @@
   user-select: all; }
 
 /* line 16, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer; }
-
-/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
-img.icon {
-  height: 20px;
-  width: auto;
-  margin-left: 6px;
-  cursor: pointer; }
-
-/* line 25, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
-pre {
-  font-family: anonymousPro; }
-
-/* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
-img:not(.action) {
-  pointer-events: none; }
-
-/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
 input.reset[type=button] {
   box-shadow: 0 0 0 0;
   border: none;
@@ -42,8 +23,13 @@ input.reset[type=button] {
   padding: 7px;
   cursor: pointer; }
 
-/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
-.spriteTile {
-  background-size: cover; }
+/* line 24, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
+.spriteTile, .costumeTile .costume {
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+/* line 29, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/general.sass */
+md-dialog.md-transition-in {
+  opacity: 1; }
 
 /*# sourceMappingURL=general.css.map */
