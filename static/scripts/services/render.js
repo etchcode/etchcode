@@ -50,6 +50,8 @@ var p;
 
                         scripts: data.code
                     }
+                    
+                    console.info(p);
 
                     resolve(nunjucks.render("template.snap.xml", { //render jinja template
                         project: {

@@ -190,14 +190,14 @@ var d;
                 return null;
             if (stream.match(singleOperators))
                 return null;
-            console.info("peek" +stream.peek());
+//            console.info("peek" +stream.peek());
             if (true) {
 
                 
                 var x = true;
                 var j = 0;
                 var strings = "";
-                console.info("peek" +stream.peek());
+//                console.info("peek" +stream.peek());
 
 //                if(currentKeyword == "motion"){
 //                strings = "m";
@@ -211,7 +211,7 @@ var d;
                         var g = stream.eat(new RegExp(".")).toLowerCase();
                         if (g != " ") {
                             strings = strings.concat(g);
-                            console.info(strings);
+//                            console.info(strings);
                         }//this combine the entire child
                     }
                     j++;

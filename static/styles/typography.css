@@ -33,36 +33,35 @@ h3 span {
   display: none; }
 
 /* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-code {
-  padding: 1px 6px 1px 6px;
-  border-radius: 2.5px;
-  font-family: "Anonymous Pro"; }
+.CodeMirror {
+  font-size: 12px;
+  font-family: Source Code Pro; }
 
-/* line 33, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .contentPage {
   font-size: 1.1em; }
 
-/* line 38, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 37, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .editor-page .spriteTile {
   font-size: 11px; }
 
-/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 39, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .editor-page .footer {
   display: flex;
   align-items: center; }
 
-/* line 46, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 45, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .blocks .parent .md-button {
   font-size: 11px; }
 
-/* line 48, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 47, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .blocks .child {
   font-size: 15px; }
-  /* line 50, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+  /* line 49, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
   .blocks .child .snapBlock {
     cursor: pointer; }
 
-/* line 54, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 53, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 md-dialog .md-subheader .md-subheader-inner {
   padding-left: 0; }
 

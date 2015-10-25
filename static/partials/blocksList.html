@@ -2,7 +2,7 @@
     <md-card-content>
         <md-grid-list md-cols="2" md-row-height="23px" md-gutter="5px"> <!-- md-row-height is md-button padding top + padding bottom + font-size -->
             <md-grid-tile ng-repeat="parent in blocks" class="parent">
-                <md-button ng-click="setBlocksListParent(parent.name)" ng-class="{'md-accent': blocksListParent == parent.name}">
+                <md-button ng-click="setBlocksListParent(parent.name)" ng-class="{'md-accent': blocksListParent == parent.name}" class="blocksListCategory">
                     {{ parent.name }}
                 </md-button>
             </md-grid-tile>
