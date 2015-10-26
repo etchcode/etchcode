@@ -36,6 +36,34 @@
                     $scope.close = function(){
                         $mdDialog.hide();
                     };
+                    
+                    // newCostume
+                    $scope.newCostume = {
+                        image: "",
+                        name: "",
+                        addFailed: false
+                    };
+                    
+                    $scope.newCostume.reset = function(){
+                        $scope.newCostume.image = "";
+                        $scope.newCostume.name = "";
+                        $scope.newCostume.addFailed = false;
+                    };
+                    
+                    $scope.newCostume.add = function(){
+                        if($scope.newCostume.image.length > 0 && $scope.newCostume.name.length > 0){ // they have entered an image and name
+                            var costume = new $scope.spriteData.Costume({
+                                name: $scope.newCostume.name,
+                                data: $scope.newCostume.image
+                            });
+                            $scope.sprite.costumes.push(costume);
+                            
+                            $scope.newCostume.reset();
+                        }
+                        else{ // they are misssing either the image or the name
+                            $scope.newCostume.addFailed = true;
+                        }
+                    }
                 }]
             });
         };

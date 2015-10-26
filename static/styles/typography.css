@@ -1,68 +1,42 @@
-/* line 1, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-h1, h2, h3, p {
-  font-family: "Merriweather"; }
-
-/* line 4, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-h1 {
-  font-size: 4em;
-  text-align: center; }
-
-/* line 8, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-h2 {
-  font-size: 1.5em; }
-
-/* line 11, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-.sprites h1 input {
-  font-size: .4em; }
-
-/* line 14, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-h3 span {
-  font-size: .5em;
-  font-weight: normal; }
-
-/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 2, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .markdown-body h1, .markdown-body h2, .markdown-body h3 {
   text-align: left; }
 
-/* line 22, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-.unemphasize {
-  color: gray; }
-
-/* line 25, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
-.hidden {
-  display: none; }
-
-/* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 5, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .CodeMirror {
   font-size: 12px;
   font-family: Source Code Pro; }
 
-/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 9, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .contentPage {
   font-size: 1.1em; }
 
-/* line 37, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 14, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .editor-page .spriteTile {
   font-size: 11px; }
 
-/* line 39, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 16, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .editor-page .footer {
   display: flex;
   align-items: center; }
 
-/* line 45, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 22, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .blocks .parent .md-button {
   font-size: 11px; }
 
-/* line 47, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 24, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .blocks .child {
   font-size: 15px; }
-  /* line 49, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+  /* line 26, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
   .blocks .child .snapBlock {
     cursor: pointer; }
 
-/* line 53, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 30, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 md-dialog .md-subheader .md-subheader-inner {
   padding-left: 0; }
+
+/* line 33, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.errorMessage {
+  font-size: 70%; }
 
 /*# sourceMappingURL=typography.css.map */

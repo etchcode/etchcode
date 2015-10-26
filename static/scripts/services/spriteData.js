@@ -35,6 +35,11 @@
                 x: inputs.x || 0, // the specified x pos or 0
                 y: inputs.y || 0 // the specified y pos or 0
             };
+            
+            this.deleteCostume = function(costume){
+                var index = this.costumes.indexOf(costume);
+                this.costumes.splice(index, 1);
+            }
         }
         
         this.Background = function(inputs){ // background object. every input Sprite takes by position            
@@ -46,6 +51,11 @@
             this.costumes = inputs.costumes || [new myself.Costume({data: myself.default.backdrops[0].data})]; // the specified list or a list with a single costume. list items should be Costume() objects
             this.variables = inputs.variables || []; // the specified list or an empty list. List items should be Variable() objects
             this.script = inputs.script || ""; // the specified script or an empty string
+            
+            this.deleteCostume = function(costume){
+                var index = this.costumes.indexOf(costume);
+                this.costumes.splice(index, 1);
+            }
         }
         
         this.General = function(inputs){ // general object. takes object with project name, notes, thumbnail, variables
@@ -58,15 +68,6 @@
             this.notes = inputs.notes || "";
             this.thumbnail = inputs.thumbnail || myself.default.backdrops[0].data;
             this.variables = inputs.variables || [];
-        }
-        
-        // create the object where all the spriteData is stored
-        this.sprites = {
-            background: new this.Background(),
-            general: new this.General(),
-            list: [
-                new this.Sprite()
-            ]
         }
         
         // data-checking functions
@@ -98,5 +99,13 @@
             return message;
         };
 		
+        // create the object where all the spriteData is stored
+        this.sprites = {
+            background: new this.Background(),
+            general: new this.General(),
+            list: [
+                new this.Sprite()
+            ]
+        }
 	}]);
 }());

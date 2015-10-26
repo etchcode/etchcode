@@ -56,36 +56,23 @@ hr {
   margin-top: 20px; }
 
 /* line 59, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-.settingsDialog .costumeTile {
-  position: relative; }
-  /* line 62, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-  .settingsDialog .costumeTile .costume {
-    width: 100%;
-    height: 100%; }
-  /* line 66, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-  .settingsDialog .costumeTile button {
-    position: absolute;
-    bottom: -8;
-    right: -8; }
-
-/* line 71, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .contentPage {
   width: 100%;
   max-width: 700px;
   margin: 0 auto 0 auto; }
 
-/* line 78, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 66, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .docsPage {
   display: flex;
   flex-direction: row;
   margin-bottom: calc(1em + 14px); }
-  /* line 83, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 71, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .sidebar {
     padding: 0 20px 0 0; }
-  /* line 85, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 73, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .details ul {
     list-style: none; }
-  /* line 87, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 75, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .banner {
     position: fixed;
     bottom: 0;
@@ -93,12 +80,12 @@ hr {
     padding: 7px;
     width: 100%; }
 
-/* line 95, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 83, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .snapBlock {
   width: 100%;
   height: 100%; }
 
-/* line 99, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 87, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .blocks .child {
   min-height: auto;
   padding-top: 2px;

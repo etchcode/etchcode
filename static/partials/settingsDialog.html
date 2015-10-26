@@ -1,4 +1,4 @@
-<md-dialog flex="80" class="settingsDialog">
+<md-dialog flex="40" class="settingsDialog">
     <md-dialog-content>
         <form>            
             <md-input-container>
@@ -9,12 +9,12 @@
             <div layout="row" ng-if="sprite.position">
                 <md-input-container>
                     <label>X Position</label>
-                    <input required ng-model="sprite.position.x">
+                    <input required type="number" ng-model="sprite.position.x">
                 </md-input-container>
                 
                 <md-input-container>
                     <label>Y Position</label>
-                    <input required ng-model="sprite.position.y"
+                    <input required type="number" ng-model="sprite.position.y">
                 </md-input-container>            
             </div>
             
@@ -26,19 +26,35 @@
                 <md-subheader ng-hide="sprite.id == 'background'">Costumes</md-subheader>
                 <md-subheader ng-show="sprite.id == 'background'">Backdrops</md-subheader>
 
-                <md-grid-list md-row-height="1:1" md-gutter="15px"
-                              md-cols-sm="3"
-                              md-cols-gt-sm="5"
-                              md-cols="7"
-                              md-cols-md="9"
-                              md-cols-lg="11">
-                    <md-grid-tile ng-repeat="costume in sprite.costumes" style="background-image: url({{ costume.data }})" class="costumeTile">
-                        <div class="costume" style="background-image: url({{ costume.data }})"></div>
-                         <md-button class="md-icon-button md-mini">
-                            <md-icon>delete</md-icon>
-                        </md-button>                       
-                    </md-grid-tile>    
-                </md-grid-list>                
+                <md-list>
+                    <md-list-item ng-repeat="costume in sprite.costumes">
+                        <img class="md-avatar" ng-src="{{ costume.data }}">
+                        <p>
+                            <md-input-container>
+                                <input ng-model="costume.name">
+                            </md-input-container>
+                        </p>
+                        <md-button class="md-icon-button" ng-click="sprite.deleteCostume(costume)">
+                            <md-icon md-font-set="material-icons">delete</md-icon>
+                        </md-button>
+                    </md-list-item>
+                    
+                    <md-list-item class="newCostume md-3-line">
+                        <md-button class="md-avatar-icon md-icon-button" file-upload="newCostume.image" file-upload-restrict-type="'.png,.svg,.jpg,.jpeg,.gif'">
+                            <md-icon md-font-set="material-icons">file_upload</md-icon>
+                        </md-button>
+                        <md-input-container>
+                            <label>new costume name</label>
+                            <input ng-model="newCostume.name">
+                        </md-input-container>
+                        <md-button ng-click="newCostume.add()">Add</md-button>
+                                                
+                        <p class="errorMessage">
+                            <span ng-show="newCostume.addFailed && newCostume.image.length == 0">Select a costume image using the upload button.</span>
+                            <span ng-show="newCostume.addFailed && newCostume.name.length == 0">Enter a name for the new costume.</span>
+                        </p>
+                    </md-list-item>
+                </md-list>                
             </div>
         </form>
     </md-dialog-content>

@@ -23,7 +23,7 @@
 						redirectTo: "/"
 					});
 
-                $mdThemingProvider.theme("default")
+                $mdThemingProvider.theme("default") // these colors should also been included in static/styles/color.sass in the form of the variables $md-accent and $md-default
                     .primaryPalette("blue", {
                         "default": "500"
                     })
