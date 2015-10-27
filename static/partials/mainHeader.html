@@ -1,9 +1,52 @@
-<!--<header class="mainHeader" ng-class="{'maximized': pageType() === 'home', 'minimized': pageType() === 'subpage'}">-->
-    <!--<nav>-->
-        <!--<a href="/#/">Home</a>-->
-        <!--<a href="/#/editor">Editor</a>-->
-        <!--<a href="/#/docs">Docs</a>-->
-    <!--</nav>-->
+<md-toolbar class="mainHeader">
+    <div class="md-toolbar-tools">
+        
+        <md-button class="md-icon-button" ng-click="toggleSideNav()">
+            <md-icon md-font-set="material-icons">menu</md-icon>
+        </md-button>
 
-    <!--<h1>Etch Code</h1>-->
-<!--</header>-->
+        <h1>
+            <a class="md-button" href="/#/">
+                Etch Code
+                
+                <span ng-show="pageName">
+                     - {{ pageName }}
+                </span>
+            </a>
+        </h1>
+        
+    </div>
+</md-toolbar>
+
+<div class="mainHeaderSpacer"></div> <!-- fills up space = to mainHeader so that content doesn't get behind mainHeader -->
+
+<md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen">  
+    <nav layout="column" layout-align="space-between start">
+        <div class="upper">
+            <h2>
+                <a class="md-button" href="/#/editor">
+                    <md-icon>create</md-icon>
+                    Create Project
+                </a>        
+            </h2>
+        </div>
+        
+        <div class="lower">
+            <md-divider></md-divider>
+            
+            <h2>
+                <a class="md-button" href="/#/help">
+                    <md-icon>help</md-icon>
+                    Help &amp; Feedback
+                </a>            
+            </h2>
+            
+            <h2>
+                <a class="md-button" href="/#/docs">
+                    <md-icon>description</md-icon>
+                    Documentation
+                </a>            
+            </h2>
+        </div>
+    </nav>
+</md-sidenav>

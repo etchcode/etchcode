@@ -1,3 +1,5 @@
+$mainHeader-height: 64px
+
 //useful mixins
 =vertical-align
   position: relative
@@ -33,7 +35,38 @@ hr
 .pageBlock
     // block of the page that should be surrounded by whitespace
     padding: 20px
+    
+//--------------------------- Header/navigation ------------------------------------
+.mainHeader
+    position: fixed
+    height: $mainHeader-height
+    
+.mainHeaderSpacer 
+    // fills up space so the header doesn't overlap the body content
+    height: $mainHeader-height
+    width: 100%
+    
+.navigation
+    h2
+        margin: 0 0 0 0
+        
+        a
+            width: calc(100% - 16px)
+            padding-right: 0
+            
+    nav 
+        height: 100%
+        
+        .upper, .lower
+            width: 100%
 
+//-------------------------- Content Pages (pages displaying paragraph text) -
+md-content
+    width: 100%
+    max-width: 800px
+    margin: 0 auto 0 auto
+    padding-top: 0
+    
 //--------------------------- Editor Page -------------------------------
 .editor-page
     .columnLeft
@@ -58,16 +91,22 @@ hr
             
     .runProject
         margin-right: 20px
+    
+    editor
+        position: fixed
+        height: calc(100% - #{$mainHeader-height})
+        width: 100% // with position:fixed it becomes 0 by default
+        
+        .editor
+            height: 100% // so that it will expand to fill it's parent which is sized using fill-remaining-height
+            position: relative;
+
+            .CodeMirror
+                height: 100% // same reason parent has height:100%
             
 .settingsDialog
     .costumes
         margin-top: 20px
-// --------------------------------- Content Page -----------------------------------
-.contentPage
-  // the main element of a page that should be styled as content, like a blog post or article
-  width: 100%
-  max-width: 700px
-  margin: 0 auto 0 auto
 
 // ----------------------------- Docs ---------------------------------
 .docsPage

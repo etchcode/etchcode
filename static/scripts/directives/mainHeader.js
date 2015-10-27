@@ -6,7 +6,9 @@
                 restrict: "E",
 
                 templateUrl: "partials/mainHeader.html",
-                controller: ["$scope", "$location", function($scope, $location){
+                controller: ["$scope", "$location", "$rootScope", function($scope, $location){
+                    $scope.sideNavOpen = false;
+                    
                     $scope.pageType = function(){
                        switch ($location.path()) {
                             case "/":
@@ -14,7 +16,11 @@
                             default:
                                 return "subpage";
                         }
-                    }
+                    };
+                    
+                    $scope.toggleSideNav = function(){
+                        $scope.sideNavOpen = !$scope.sideNavOpen;
+                    };
                 }]
             };
         });

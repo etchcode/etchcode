@@ -3,6 +3,7 @@
 	
 	angular.module("etch")
 	
-	.controller("editorsController", ["$scope", "spriteData", function($scope, spriteData){ // a controller of the editors view
+	.controller("editorController", ["$scope", "spriteData", "$rootScope", function($scope, spriteData, $rootScope){ // a controller of the editor view
+        $rootScope.pageName = "Editor";
 	}]);
 }());

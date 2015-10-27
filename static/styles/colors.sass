@@ -6,10 +6,18 @@
     
     @return $color
 
-$md-primary: md-color("blue", "500")
-$md-accent: md-color("orange", "700")
+$md-primary-name: "blue"
+$md-accent-name: "orange"
+
+$md-primary: md-color($md-primary-name, "500")
+$md-accent: md-color($md-accent-name, "700")
 $md-error: md-color("red", "500")
 
+*::selection
+    background-color: md-color($md-accent-name, "100") !important
+*::-moz-selection
+    background-color: md-color($md-accent-name, "100") !important
+    
 .spriteTile
   .footer
     background-color: md-color("grey", "800")

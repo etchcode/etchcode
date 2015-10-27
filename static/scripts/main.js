@@ -4,24 +4,28 @@
 
 	nunjucks.configure("/static/partials", {autoescape: true});
 
-	angular.module("etch", ["ngSanitize", "ngMaterial", "ngAnimate", "ui.codemirror", "ngRoute", "toaster"])
+	angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror", "ngRoute", "toaster"])
 
 		.config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
 			function ($routeProvider, $locationProvider, $mdThemingProvider) {
 //                $locationProvider.html5Mode(true);
 
 				$routeProvider
-					.when("/", {
-                        templateUrl: "pages/home/index.html"
-                    })
-					.when("/editor", {
-						templateUrl: "pages/editor/index.html"
-					})
-					.when("/docs", {
-						templateUrl: "pages/docs/index.html"
-					}).otherwise({
-						redirectTo: "/"
-					});
+                .when("/", {
+                    templateUrl: "pages/home/index.html"
+                })
+                .when("/editor", {
+                    templateUrl: "pages/editor/index.html"
+                })
+                .when("/docs", {
+                    templateUrl: "pages/docs/index.html"
+                })
+                .when("/help", {
+                    templateUrl: "pages/help/index.html"
+                })
+                .otherwise({
+                    redirectTo: "/"
+                });
 
                 $mdThemingProvider.theme("default") // these colors should also been included in static/styles/color.sass in the form of the variables $md-accent and $md-default
                     .primaryPalette("blue", {
@@ -40,7 +44,8 @@
         
             $rootScope.$on("$routeChangeStart", function(event, next, current){
                 heap.track("location", {path: $location.path()});
-                console.info("tracking change");
+                
+                $rootScope.pageName = undefined; // reset pageName
             });
         });
 

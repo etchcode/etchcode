@@ -44,4 +44,9 @@ md-dialog .md-subheader .md-subheader-inner {
 .errorMessage {
   font-size: 70%; }
 
+/* line 43, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.navigation a, .mainHeader a {
+  text-transform: none;
+  text-align: left; }
+
 /*# sourceMappingURL=typography.css.map */

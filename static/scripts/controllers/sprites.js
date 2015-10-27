@@ -32,9 +32,11 @@
                 controller: ["$scope", "$mdDialog", "spriteData", "sprite", function($scope, $mdDialog, spriteData, sprite){
                     $scope.spriteData = spriteData;
                     $scope.sprite = sprite;
+                    $scope.show = true; // should we show the sprite
                     
                     $scope.close = function(){
                         $mdDialog.hide();
+                        $scope.show = false;
                     };
                     
                     $scope.delete = function(){
