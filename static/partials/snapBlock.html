@@ -1,0 +1,8 @@
+<div class="snapBlock" draggable="true">
+    <div ng-if="block.type == 'function'" ng-include="'images/function.svg'"></div>
+    <div ng-if="block.type == 'reporter'" ng-include="'images/reporter.svg'"></div>
+    <div ng-if="block.type == 'block'" ng-include="'images/block.svg'"></div>
+    <div ng-if="block.type == 'inline-math'">
+        {{ block.name }}
+    </div>
+</div>

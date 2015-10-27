@@ -1,0 +1,69 @@
+<md-dialog flex="40" class="settingsDialog">
+    <md-dialog-content>
+        <form>            
+            <md-input-container>
+                <label>Sprite Name</label>
+                <input required ng-model="sprite.id" id="settingsSpriteTitle">
+            </md-input-container>
+            
+            <div layout="row" ng-if="sprite.position">
+                <md-input-container>
+                    <label>X Position</label>
+                    <input required type="number" ng-model="sprite.position.x">
+                </md-input-container>
+                
+                <md-input-container>
+                    <label>Y Position</label>
+                    <input required type="number" ng-model="sprite.position.y">
+                </md-input-container>            
+            </div>
+            
+            <div>
+                <md-chips ng-model="sprite.variables" placeholder="+Variable" secondary-placeholder="+Variable"></md-chips>
+            </div>
+            
+            <div ng-if="sprite.costumes" class="costumes">
+                <md-subheader ng-hide="sprite.id == 'background'">Costumes</md-subheader>
+                <md-subheader ng-show="sprite.id == 'background'">Backdrops</md-subheader>
+
+                <md-list>
+                    <md-list-item ng-repeat="costume in sprite.costumes">
+                        <img class="md-avatar" ng-src="{{ costume.data }}">
+                        <p>
+                            <md-input-container>
+                                <input ng-model="costume.name">
+                            </md-input-container>
+                        </p>
+                        <md-button class="md-icon-button" ng-click="sprite.deleteCostume(costume)">
+                            <md-icon md-font-set="material-icons">delete</md-icon>
+                        </md-button>
+                    </md-list-item>
+                    
+                    <md-list-item class="newCostume md-3-line">
+                        <md-button class="md-avatar-icon md-icon-button" file-upload="newCostume.image" file-upload-restrict-type="'.png,.svg,.jpg,.jpeg,.gif'">
+                            <md-icon md-font-set="material-icons">file_upload</md-icon>
+                        </md-button>
+                        <md-input-container>
+                            <label>new {{newCostume.costumeCalled}} name</label>
+                            <input ng-model="newCostume.name">
+                        </md-input-container>
+                        <md-button ng-click="newCostume.add()">Add</md-button>
+                                                
+                        <p class="errorMessage">
+                            <span ng-show="newCostume.addFailed && newCostume.image.length == 0">Select a {{newCostume.costumeCalled}} image using the upload button.</span>
+                            <span ng-show="newCostume.addFailed && newCostume.name.length == 0">Enter a name for the new {{newCostume.costumeCalled}}.</span>
+                        </p>
+                    </md-list-item>
+                </md-list>                
+            </div>
+        </form>
+    </md-dialog-content>
+    <div class="md-actions">
+        <md-button ng-click="delete()" class="md-warn" ng-if="sprite.id != 'background' && sprite.id !='general'">
+            Delete
+        </md-button>
+        <md-button ng-click="close()" class="md-primary">
+            Close
+        </md-button>
+    </div>
+</md-dialog>

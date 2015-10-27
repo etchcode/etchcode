@@ -1,0 +1,31 @@
+// modfiy user selectability in the format <div selectable> or <div unselectable>
+[unselectable]
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: -moz-none
+    -o-user-select: none
+    user-select: none
+
+[selectable]
+    -webkit-user-select: all
+    -khtml-user-select: all
+    -moz-user-select: text
+    -o-user-select: all
+    user-select: all
+
+input.reset[type=button]
+    box-shadow: 0 0 0 0
+    border: none
+    outline: none
+    font-size: 1em
+    padding: 7px
+    cursor: pointer
+
+.spriteTile, .costumeTile .costume
+    background-size: cover
+    background-repeat: no-repeat
+
+
+md-dialog.md-transition-in 
+    // clumsy hack because we can't get it to animate in
+    opacity: 1

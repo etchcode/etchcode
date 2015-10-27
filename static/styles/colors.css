@@ -1,64 +1,24 @@
-body {
-  background-color: #dbdce1; }
+/* https://github.com/unspace/sass-material-colors/blob/master/sass/_sass-material-colors-map.scss */
+/* line 14, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.spriteTile .footer {
+  background-color: #424242;
+  color: white;
+  opacity: .8; }
 
-.enabled[type=button], .enabled li, li.enabled {
-  background-color: #212121 !important;
-  color: #dbdce1; }
+/* line 21, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
+  stroke: #f57c00; }
 
-#editors {
-  background-color: #212121; }
+/* line 23, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.blocks .md-accent div {
+  color: #f57c00; }
 
-#editors .CodeMirror {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  background-color: #212121; }
-  #editors .CodeMirror .CodeMirror-gutters {
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none; }
+/* line 25, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.blocks .md-accent path, .blocks .md-accent line {
+  stroke-width: 2px; }
 
-#sidebar {
-  background-color: #85868a; }
-
-.cm-s-ambiance.CodeMirror {
-  color: #abaeba; }
-
-#settings, #settings input {
-  color: #dbdce1; }
-
-.editableImage .overlay {
-  background-color: rgba(171, 174, 186, 0.8); }
-
-.property.unsupported {
-  color: #990000; }
-
-.explanation {
-  background-color: #e6e6e6; }
-
-.banner {
-  background-color: #6699ff;
-  color: white; }
-  .banner a {
-    color: white; }
-
-.enabled:not(.sprite) {
-  background-color: #212121; }
-
-.sprite li {
-  background-color: #bebfc5; }
-
-.sprite.enabled li {
-  background-color: #212121; }
-
-header.maximized {
-  background-color: #212121;
-  color: #dbdce1; }
-  header.maximized nav a {
-    color: #85868a;
-    text-decoration: none; }
-header.minimized nav a {
-  color: #212121;
-  text-decoration: none; }
+/* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.errorMessage {
+  color: #f44336; }
 
 /*# sourceMappingURL=colors.css.map */

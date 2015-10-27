@@ -1,9 +1,15 @@
-<div class="large model runProject" ng-style="{visibility: show ? 'visible' : 'hidden'}"> <!-- This CANNOT be display:none. Error NS_ERROR_FAILURE is thrown by the browser. The iframe must occupy space. Instead, use visibility:hidden and position:fixed to stop it from making a gap -->
+<md-card class="runProject" ng-class="{large: large, small: !large}" ng-style="{visibility: show ? 'visible' : 'hidden'}"> <!-- This CANNOT be display:none. Error NS_ERROR_FAILURE is thrown by the browser. The iframe must occupy space. Instead, use visibility:hidden and position:fixed to stop it from making a gap -->
+
     <div class="inner">
 		<div class="header">
-			<img class="minimize action" src="images/icons/minimize_white.svg" ng-click="show = false;">
+			<img class="minimize action" src="images/icons/minimize_white.svg" ng-click="show = false;" ng-show="large">
 		</div>
-		
-        <iframe src="http://etchcodeusercontent.appspot.com/play/" class="player"></iframe>
+
+        <iframe src="http://etchcodeusercontent.appspot.com/play/" class="player" id="player"></iframe>
+
+        <md-button class="md-fab md-mini playPause" aria-label="Play/Pause project" ng-click="toggleStartStop()">
+            <md-icon md-font-set="material-icons" ng-show="!running">flag</md-icon>
+            <md-icon md-font-set="material-icons" ng-show="running">stop</md-icon>
+        </md-button>
     </div>
-</div>
+</md-card>

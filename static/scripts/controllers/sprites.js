@@ -1,139 +1,77 @@
-/*globals angular */
+/*globals angular, console, document */
 (function () {
 	"use strict";
 	
 	angular.module("etch")
 	
-	.controller("spritesController", ["spriteData", "toaster", "random", function(spriteData, toaster, random){
-		var that = this; //cache this for the children
-		that.restrictedStrings = ["mouse-pointer", "edge", "pen trails"];
-		that.list = spriteData.list; // all sprites
-		this.background = spriteData.background;
-		that.globals = spriteData.globals;
-		
-		that.current = that.list[0].id; // the sprite that we are editing now
-		
-		that.add = function(){
-			var newItem = {
-				id: random.phrase(),
-
-				costumes: [
-					{
-						name: random.phrase(),
-						data: spriteData.default.costumes[0].data
-					}
-				],
-
-				variables: [
-
-				],
+	.controller("spritesController", ["spriteData", "toaster", "random", "$mdDialog", function(spriteData, toaster, random, $mdDialog){
+        var myself = this; //cache this for the children
+        
+		this.list = spriteData.sprites.list; // all sprites
+		this.background = spriteData.sprites.background;
+        this.general = spriteData.sprites.general;
+        this.current = this.list[0]; // the sprite that we are editing now
+        
+        this.all = function(){
+            return myself.list.concat(myself.background).concat(myself.general);
+        };
 				
-				script: ""
-			};
-			
-			that.list.splice(that.list.length-2, 0, newItem);
-			that.current = that.list[that.list.length-3].id;
-		};
-		that.remove = function(sprite){
-			var spriteNum = that.list.indexOf(sprite);
-            
-            var currentSprite = that.list.indexOf(that.current);
-            
-			if (that.current == sprite.id){
+        this.new = function(){
+            this.list.push(new spriteData.Sprite());
+        };
+        
+        this.settings = function(sprite){ // open a settings dialog to change the settings of a sprite            
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                focusOnOpen: false,
+                templateUrl: "partials/settingsDialog.html",
+                locals: {
+                    sprite: sprite
+                },
                 
-                that.list.splice(spriteNum, 1);
-                that.current = that.list[0].id;
-			     }
-            else {
-            that.list.splice(spriteNum, 1);
-            }
-		};
-		
-		that.costume = new function(){
-			this.remove = function(sprite, costume){
-				var spriteNum = that.list.indexOf(sprite);
-				var costumeNum = that.list[spriteNum].costumes.indexOf(costume);
-
-				that.list[spriteNum].costumes.splice(costumeNum, 1); //remove the element
-			};
-			
-			this.create= function(sprite){
-                
-				var spriteNum = that.list.indexOf(sprite);
-				
-				var modifying = (sprite.id ==="background") ? "backdrops" : "costumes"; //we are modifying the backdrops list if this is the background, else it is a sprite so the costumes list
-								
-				that.list[spriteNum].costumes.push({
-					name: random.phrase(),
-					//use the backdrop if this is the background, otherwise the costume
-					data: spriteData.default[modifying][0].data
-				});
-			};
-		};
-	
-		that.variable = new function(){
-			this.creating = ""; //the content of the add variable text box
-			
-			this.create = function(sprite, text){
-				if(sprite == "global"){//this is telling us it wants to be the globals sprite
-					sprite = that.globals; //so do what it wants
-				}
-				
-                
-				if(text === ""){
-					//the variable is empty
-					toaster.pop({
-						type: "error",
-						title: "Error",
-						body: "Variables cannot be blanks"
-					});}
-                else if (that.restrictedStrings.indexOf(text.toLowerCase()) >= 0) {//add new restricted words here in the list
-                    toaster.pop({
-						type: "error",
-						title: "Error",
-						body: ("Variables cannot be named " + text)
-					});
-                }
-				
-				else if(sprite.variables.indexOf(text) == -1 && that.list[that.list.length-1].variables.indexOf(text) == -1){
-					//it is not a duplicate
-					
-					if(sprite === that.globals){
-						that.globals.variables.push(text);
-					}
-					else{
-						var spriteNum = that.list.indexOf(sprite);
-
-						that.list[spriteNum].variables.push(text);
-					}
-					
-					this.creating = "";
-				}
-				else{
-					toaster.pop({
-						type: "error",
-						title: "Error",
-						body: "The variable \""+text+"\" already exists"
-					});
-				}
-			};
-			
-			this.remove = function(sprite, text){
-				var variableNum;
-				
-				if(sprite === "globals"){//this is telling us it is the globals sprite
-					variableNum = that.globals.variables.indexOf(text);
-					
-					that.globals.variables.splice(variableNum, 1); //remove the element
-				}
-				else{ //this is a normal sprite, get rid of the variable
-					var spriteNum = that.list.indexOf(sprite);
-					variableNum = that.list[spriteNum].variables.indexOf(text);
-
-					that.list[spriteNum].variables.splice(variableNum, 1); //remove the element
-				}
-			};
-		};
-		
+                controller: ["$scope", "$mdDialog", "spriteData", "sprite", function($scope, $mdDialog, spriteData, sprite){
+                    $scope.spriteData = spriteData;
+                    $scope.sprite = sprite;
+                    
+                    $scope.close = function(){
+                        $mdDialog.hide();
+                    };
+                    
+                    $scope.delete = function(){
+                        spriteData.sprites.deleteSprite($scope.sprite);
+                        $mdDialog.hide();
+                    };
+                    
+                    // newCostume
+                    $scope.newCostume = {
+                        image: "",
+                        name: "",
+                        addFailed: false,
+                        costumeCalled: $scope.sprite.id == "background" ? "backdrop" : "costume" // do we call it a backdrop or costume?
+                    };
+                    
+                    $scope.newCostume.reset = function(){
+                        $scope.newCostume.image = "";
+                        $scope.newCostume.name = "";
+                        $scope.newCostume.addFailed = false;
+                    };
+                    
+                    $scope.newCostume.add = function(){
+                        if($scope.newCostume.image.length > 0 && $scope.newCostume.name.length > 0){ // they have entered an image and name
+                            var costume = new $scope.spriteData.Costume({
+                                name: $scope.newCostume.name,
+                                data: $scope.newCostume.image
+                            });
+                            $scope.sprite.costumes.push(costume);
+                            
+                            $scope.newCostume.reset();
+                        }
+                        else{ // they are misssing either the image or the name
+                            $scope.newCostume.addFailed = true;
+                        }
+                    };
+                }]
+            });
+        };
 	}]);
 }());

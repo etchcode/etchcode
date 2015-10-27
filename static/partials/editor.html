@@ -1,20 +1,10 @@
-<div class="editor">
-	<textarea 
-			  class="textarea"
-			  ng-model="sprite.script"
-			  ui-codemirror="codemirrorConfig"
-	></textarea>
-
-<!--
-	<div ng-controller="colorInputController" class="colorInput">
-		<img class="image icon action colorPicker" src="images/icons/color_picker_white.svg" ng-click="expanded = true" ng-hide="expanded">
-		
-		<div class="expanded" ng-show="expanded">
-			<input type="text" value="{{ color }}" class="colorpickerValue" ng-click="select()">
-			<div class="colorpickerContainer"></div>
-		</div>
-		
-		<img class="image icon action colorPicker expanded" src="images/icons/check_white.svg" ng-click="expanded = false" ng-show="expanded">
-	</div>
--->
-</div>
+<md-card>
+    <md-card-content class="editor">
+        <textarea
+                  class="textarea editorTextarea"
+                  ng-model="sprites.current.script"
+                  ui-codemirror="codemirrorConfig"
+                  ng-if="sprites.current.script != undefined"
+        ></textarea>
+    </md-card-content>
+</md-card>

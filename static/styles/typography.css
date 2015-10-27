@@ -1,35 +1,47 @@
-h1, h2, h3, p {
-  font-family: "Merriweather"; }
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,500|Roboto:400,700,500);
+/* line 3, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+body {
+  font-family: Roboto; }
 
-h1 {
-  font-size: 4em;
-  text-align: center; }
-
-h2 {
-  font-size: 1.5em; }
-
-.sprites h1 input {
-  font-size: .4em; }
-
-h3 span {
-  font-size: .5em;
-  font-weight: normal; }
-
+/* line 7, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .markdown-body h1, .markdown-body h2, .markdown-body h3 {
   text-align: left; }
 
-.unemphasize {
-  color: gray; }
+/* line 10, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.CodeMirror {
+  font-size: 12px;
+  font-family: Roboto Mono; }
 
-.hidden {
-  display: none; }
-
-code {
-  padding: 1px 6px 1px 6px;
-  border-radius: 2.5px;
-  font-family: "Anonymous Pro"; }
-
+/* line 14, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .contentPage {
   font-size: 1.1em; }
+
+/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.editor-page .spriteTile {
+  font-size: 11px; }
+
+/* line 21, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.editor-page .footer {
+  display: flex;
+  align-items: center; }
+
+/* line 27, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.blocks .parent .md-button {
+  font-size: 11px; }
+
+/* line 29, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.blocks .child {
+  font-size: 15px; }
+  /* line 31, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+  .blocks .child .snapBlock {
+    cursor: pointer; }
+
+/* line 35, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+md-dialog .md-subheader .md-subheader-inner {
+  padding-left: 0; }
+
+/* line 38, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+.errorMessage {
+  font-size: 70%; }
 
 /*# sourceMappingURL=typography.css.map */

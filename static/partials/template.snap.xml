@@ -32,12 +32,12 @@
 		
         <sprites>
 			{% for sprite in project.sprites %}
-				<sprite name="{{ sprite.id }}" x="{{ sprite.x }}" y="{{ sprite.y }}" heading="90" scale="1" rotation="1" draggable="true" costume="1" color="80,80,80" pen="tip">
+				<sprite name="{{ sprite.id }}" x="{{ sprite.position.x }}" y="{{ sprite.position.y }}" heading="90" scale="1" rotation="1" draggable="true" costume="1" color="80,80,80" pen="tip">
 					<costumes>
 						<list>
 							{% for costume in sprite.costumes %}
 								<item>
-									<costume name="{{costume.name}}" center-x="{{costume[center-x]}}" center-y="{{costume[center-y]}}"  image="{{costume.data}}"></costume>
+									<costume name="{{costume.name}}" image="{{costume.data}}"></costume>
 								</item>
 							{% endfor %}
 						</list>

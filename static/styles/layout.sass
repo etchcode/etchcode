@@ -1,0 +1,90 @@
+//useful mixins
+=vertical-align
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+html, body
+  height: 100%
+  width: 100%
+
+body
+  padding: 0
+  margin: 0
+
+.left
+  float: left
+
+.right
+  float: right
+
+.centerBlock
+  margin: 0 auto 0 auto
+
+.centerText
+  text-align: center
+
+hr
+  margin-top: 20px
+  margin-bottom: 20px
+
+//--------------------------- Editor Page -------------------------------
+.editor-page
+    .columnLeft
+        overlow: auto
+        height: 100%
+        
+    .spriteTile
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column-reverse // align footer to bottom
+
+        .footer
+            width: 100%
+            overflow: hidden
+            height: 15px
+            padding: 15px
+            padding-right: 0px
+
+            .label
+                width: calc(100% - 24px)
+            
+.settingsDialog
+    .costumes
+        margin-top: 20px
+// --------------------------------- Content Page -----------------------------------
+.contentPage
+  // the main element of a page that should be styled as content, like a blog post or article
+  width: 100%
+  max-width: 700px
+  margin: 0 auto 0 auto
+
+// ----------------------------- Docs ---------------------------------
+.docsPage
+  display: flex
+  flex-direction: row
+  margin-bottom: calc(1em + 14px)
+  // account for the floating footer
+  .sidebar
+    padding: 0 20px 0 0
+  .details ul
+    list-style: none
+  .banner
+    position: fixed
+    bottom: 0
+    left: 0
+    padding: 7px
+    width: 100%
+
+// ------------------------- snapBlock ----------------------
+.snapBlock
+  width: 100%
+  height: 100%
+
+.blocks .child
+  min-height: auto
+  padding-top: 2px
+  padding-bottom: 2px

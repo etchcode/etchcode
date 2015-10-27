@@ -1,5 +1,13 @@
-/* line 1, /Users/daniel/Desktop/etch/etchcode/static/styles/input.scss */
+/* line 1, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/input.sass */
 input.ng-dirty.ng-invalid {
   box-shadow: 0 0 2.8px red; }
+
+/* line 4, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/input.sass */
+.md-button.spriteSettings {
+  width: 24px; }
+  /* line 7, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/input.sass */
+  .md-button.spriteSettings md-icon {
+    opacity: 1;
+    color: white; }
 
 /*# sourceMappingURL=input.css.map */
