@@ -21,4 +21,8 @@
 .errorMessage {
   color: #f44336; }
 
+/* line 32, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.CodeMirror-gutters {
+  background-color: white; }
+
 /*# sourceMappingURL=colors.css.map */

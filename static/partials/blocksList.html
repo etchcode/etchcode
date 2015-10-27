@@ -1,22 +1,19 @@
-<md-card class="blocks">
-    <md-card-content>
-        <md-grid-list md-cols="2" md-row-height="23px" md-gutter="5px"> <!-- md-row-height is md-button padding top + padding bottom + font-size -->
-            <md-grid-tile ng-repeat="parent in blocks" class="parent">
-                <md-button ng-click="setBlocksListParent(parent.name)" ng-class="{'md-accent': blocksListParent == parent.name}" class="blocksListCategory">
-                    {{ parent.name }}
-                </md-button>
-            </md-grid-tile>
-        </md-grid-list>
+<div class="blocks">
+    <md-grid-list md-cols="2" md-row-height="23px" md-gutter="5px"> <!-- md-row-height is md-button padding top + padding bottom + font-size -->
+        <md-grid-tile ng-repeat="parent in blocks" class="parent">
+            <md-button ng-click="setBlocksListParent(parent.name)" ng-class="{'md-accent': blocksListParent == parent.name}" class="blocksListCategory">
+                {{ parent.name }}
+            </md-button>
+        </md-grid-tile>
+    </md-grid-list>
 
-        <br>
-        <md-divider></md-divider>
-        <br>
+    <br>
+    <md-divider></md-divider>
+    <br>
 
-        <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name" gutter="0">
-            <md-list-item ng-repeat="child in parent.items" class="child">
-                <snap-block block="child"></snap-block>
-            </md-list-item>
-        </md-list>
-
-    </md-card-content>
-</md-card>
+    <md-list ng-repeat="parent in blocks" ng-show="blocksListParent === parent.name" gutter="0">
+        <md-list-item ng-repeat="child in parent.items" class="child">
+            <snap-block block="child"></snap-block>
+        </md-list-item>
+    </md-list>
+</div>
