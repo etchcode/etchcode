@@ -1,4 +1,4 @@
-(function(){ /* globals document, console, FileReader, angular */
+(function(){
     "use strict";
     
     angular.module("etch")

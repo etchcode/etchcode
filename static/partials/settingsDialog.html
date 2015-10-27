@@ -44,14 +44,14 @@
                             <md-icon md-font-set="material-icons">file_upload</md-icon>
                         </md-button>
                         <md-input-container>
-                            <label>new costume name</label>
+                            <label>new {{newCostume.costumeCalled}} name</label>
                             <input ng-model="newCostume.name">
                         </md-input-container>
                         <md-button ng-click="newCostume.add()">Add</md-button>
                                                 
                         <p class="errorMessage">
-                            <span ng-show="newCostume.addFailed && newCostume.image.length == 0">Select a costume image using the upload button.</span>
-                            <span ng-show="newCostume.addFailed && newCostume.name.length == 0">Enter a name for the new costume.</span>
+                            <span ng-show="newCostume.addFailed && newCostume.image.length == 0">Select a {{newCostume.costumeCalled}} image using the upload button.</span>
+                            <span ng-show="newCostume.addFailed && newCostume.name.length == 0">Enter a name for the new {{newCostume.costumeCalled}}.</span>
                         </p>
                     </md-list-item>
                 </md-list>                
@@ -59,7 +59,7 @@
         </form>
     </md-dialog-content>
     <div class="md-actions">
-        <md-button ng-click="delete()" class="md-warn">
+        <md-button ng-click="delete()" class="md-warn" ng-if="sprite.id != 'background' && sprite.id !='general'">
             Delete
         </md-button>
         <md-button ng-click="close()" class="md-primary">

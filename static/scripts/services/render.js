@@ -1,8 +1,4 @@
-/* globals angular, nunjucks, Promise */
-
-var p;
-
-(function () {
+(function () { /* globals nunjucks */
     "use strict";
 
     angular.module("etch")
@@ -30,7 +26,7 @@ var p;
                     scripts: JSON.stringify(scripts),
                     sprites: JSON.stringify(sprites)
                 }).success(function (data) {
-                    for (sprite in data) {
+                    for (var sprite in data) {
                         if (data[sprite].message) {
                             toaster.pop({
                                 type: "error",
@@ -42,16 +38,6 @@ var p;
                     var globals = project.general; 
                     var background = project.background;
                     var sprites = project.list;
-
-                    p = {
-                        globals: globals,
-                        background: background,
-                        sprites: sprites,
-
-                        scripts: data.code
-                    }
-                    
-                    console.info(p);
 
                     resolve(nunjucks.render("template.snap.xml", { //render jinja template
                         project: {

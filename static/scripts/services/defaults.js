@@ -1,4 +1,3 @@
-/* globals angular */
 (function (){
 	angular.module("etch")
 	

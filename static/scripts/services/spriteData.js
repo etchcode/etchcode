@@ -1,7 +1,6 @@
 (function () {
 	"use strict";
 	
-	/*globals angular */
 	angular.module("etch")
 	
 	.service("spriteData", ["random", "default", function(random, Default){
@@ -18,8 +17,8 @@
             }
             
             this.name = inputs.name || random.word();
-            this.data = inputs.data || myself.default.costumes[0].data
-        }
+            this.data = inputs.data || myself.default.costumes[0].data;
+        };
         
         // types of sprite
         this.Sprite = function(inputs){ // sprite object. takes object with properties id, costumes, variables, script, position. Nonexistant properties will take default values
@@ -39,15 +38,15 @@
             this.deleteCostume = function(costume){
                 var index = this.costumes.indexOf(costume);
                 this.costumes.splice(index, 1);
-            }
-        }
+            };
+        };
         
         this.Background = function(inputs){ // background object. every input Sprite takes by position            
             if(!inputs){
                 inputs = {}; // if they don't specify an inputs object use an empty one
             }
             
-            this.id = "background"
+            this.id = "background";
             this.costumes = inputs.costumes || [new myself.Costume({data: myself.default.backdrops[0].data})]; // the specified list or a list with a single costume. list items should be Costume() objects
             this.variables = inputs.variables || []; // the specified list or an empty list. List items should be Variable() objects
             this.script = inputs.script || ""; // the specified script or an empty string
@@ -55,20 +54,35 @@
             this.deleteCostume = function(costume){
                 var index = this.costumes.indexOf(costume);
                 this.costumes.splice(index, 1);
-            }
-        }
+            };
+        };
         
         this.General = function(inputs){ // general object. takes object with project name, notes, thumbnail, variables
             if(!inputs){
                 inputs = {};
             }
             
-            this.id = "general"
+            this.id = "general";
             this.name = inputs.name || "";
             this.notes = inputs.notes || "";
             this.thumbnail = inputs.thumbnail || myself.default.backdrops[0].data;
             this.variables = inputs.variables || [];
-        }
+        };
+        
+        this.Sprites = function(inputs){// object to container the background, general, and sprites
+            if(!inputs){
+                inputs = {};
+            }
+            
+            this.background = inputs.background || new myself.Background();
+            this.general = inputs.general || new myself.General();
+            this.list = inputs.list || [new myself.Sprite()];
+            
+            this.deleteSprite = function(sprite){
+                var index = this.list.indexOf(sprite);
+                this.list.splice(index, 1);
+            };
+        };
         
         // data-checking functions
         this.isValidVariable = function(variable, other_names){ // variable object. takes name of variable, list of potential conflicts. has properties name, valid, and (if valid == false) invalid_reason. if valid is false the variable created should not be recorded and the user should be notified
@@ -88,7 +102,7 @@
             }
             // check if there is a variable of the same name
             for(var i = 0; i < other_names.length; i++){
-                var other_name = other_names[i]
+                var other_name = other_names[i];
                 
                 if(other_name == this.name){
                     message.error = true;
@@ -100,12 +114,6 @@
         };
 		
         // create the object where all the spriteData is stored
-        this.sprites = {
-            background: new this.Background(),
-            general: new this.General(),
-            list: [
-                new this.Sprite()
-            ]
-        }
+        this.sprites = new this.Sprites();
 	}]);
 }());

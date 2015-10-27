@@ -37,11 +37,17 @@
                         $mdDialog.hide();
                     };
                     
+                    $scope.delete = function(){
+                        spriteData.sprites.deleteSprite($scope.sprite);
+                        $mdDialog.hide();
+                    };
+                    
                     // newCostume
                     $scope.newCostume = {
                         image: "",
                         name: "",
-                        addFailed: false
+                        addFailed: false,
+                        costumeCalled: $scope.sprite.id == "background" ? "backdrop" : "costume" // do we call it a backdrop or costume?
                     };
                     
                     $scope.newCostume.reset = function(){
@@ -63,7 +69,7 @@
                         else{ // they are misssing either the image or the name
                             $scope.newCostume.addFailed = true;
                         }
-                    }
+                    };
                 }]
             });
         };
