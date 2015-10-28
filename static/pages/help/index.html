@@ -1,20 +1,36 @@
 <md-content ng-controller="helpController as help">
     <md-card>
-        <md-card-content>            
+        <md-card-content>
+            <md-subheader>Help for people who have...</md-subheader>
+            
             <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="never programmed before">
-                    <md-content class="md-padding">
-                        We're glad you want to learn Etch. At this point, we don't have help content for you. If you lean the basics of Scratch first, you will be able to easily learn Etch.
-                    </md-content>
+                <md-tab>
+                    <md-tab-label>
+                        never programmed before
+                    </md-tab-label>
+                    
+                    <md-tab-body>
+                        <div ng-bind-html="help.fromNothing | html"></div>
+                    </md-tab-body>
                 </md-tab>
-                <md-tab label="scratch programmer" md-active="true">
-                    <md-content class="md-padding">
-                        Welcome Scratch Programmer. This content will be written soon.
-                    </md-content>
+                
+                <md-tab md-active="true">
+                    <md-tab-label>
+                        make scratch programs
+                    </md-tab-label>
+        
+                    <md-tab-body>
+                        <div ng-bind-html="help.fromScratch | html"></div>
+                    </md-tab-body>
                 </md-tab>
+                
                 <md-tab label="written language programmer">
+                    <md-tab-label>
+                        make written programs
+                    </md-tab-label>
+                    
                     <md-content class="md-padding">
-                        foo filler content
+                        <div ng-bind-html="help.fromWritten | html"></div>
                     </md-content>
                 </md-tab>
             </md-tabs>
