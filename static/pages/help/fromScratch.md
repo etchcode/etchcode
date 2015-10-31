@@ -1,3 +1,5 @@
+We're glad you want to learn Etch Code. Etch Code was specifically designed to be easy to learn by Scratch programmers.
+
 ### Etch is a written language
 
 In Etch, you write out your code instead of dragging blocks in. For instance, in Scratch a simple program to say "Hello World" would look like this:
@@ -13,15 +15,17 @@ In Etch, the same program would be written
 
 As you can see, every block in Scratch directly corresponds with a few words in Etch. After a while, you will learn the words and will not need to look them up. However, at the beginning you can drag the blocks listed next to the editor into your code.
 	
-### Basic data types
+### Strings and Numbers
 
-The basic data types are strings and numbers (A string is a group of text). To make something a string, just put it in quotes. As you saw above, to make the sprite say `Hello World` you need write `"Hello World"`. To write a number, you don't have to do anything special. A dropdown menu choice that would be built into Scratch, such as the option `ghost` for `Looks.set effect("ghost", 20)`, would be written as a string (like `"ghost"`). 
+The basic data types are strings and numbers. (A string is some text). To make something a string, just put it in quotes. As you saw above, to make the sprite say `Hello World` you need to write `"Hello World"`. To write a number, you don't have to do anything special. Just write the number itself (like `move(10)`)
 
-### Block Types
+A dropdown menu choice, such as the option `ghost` for `set effect("ghost", 20)`, is written as a string. (`set effect("ghost", 20)`)
+
+### Types of blocks
 	
 In Scratch, you have blocks that represent a string or number (like the block for the mouse position) and blocks that do something (like move the sprite). In Etch, blocks that represent strings or numbers are written as just the words (`mouse x`). Blocks that do things are written with parentheses (`if edge bounce()`).
 
-Blocks that are headers, like `Control.when flag clicked`, have colons (":") after them. Any blocks that would be attatched to them are indented. For instance
+Blocks that are headers, like `Control.when flag clicked`, have colons (":") after them. Any blocks that would be attatched to them are indented. For instance:
 
 	flag clicked:
 		say("Hello World")
@@ -51,7 +55,7 @@ In Scratch, you can have multiple parallel groups of blocks. For instance,
 
 ![Scratch Hello World with Threading](images/scratch_hello_world_threading.png)
 
-In Etch, you can't write multiple groups side by side. Instead, you would write it like this
+In Etch, you can't write multiple groups side by side. Instead, you would write it like this:
 
 	flag clicked:
 		say("Hello World")

@@ -44,7 +44,25 @@ md-dialog .md-subheader .md-subheader-inner {
 .errorMessage {
   font-size: 70%; }
 
-/* line 43, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+/* line 41, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+code {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+
+/* line 47, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+pre {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+  /* line 52, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
+  pre code {
+    padding: 0;
+    background: none;
+    border-radius: 0; }
+
+/* line 60, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/typography.sass */
 .navigation a, .mainHeader a {
   text-transform: none;
   text-align: left; }
