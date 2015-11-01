@@ -6,7 +6,7 @@
            return {
                 restrict: "E",
 
-                templateUrl: "partials/spritesList.html"
+                templateUrl: "pages/editor/spritesList/spritesList.html"
             };
         });
 }());

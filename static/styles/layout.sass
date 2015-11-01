@@ -1,4 +1,4 @@
-$mainHeader-height: 64px
+$navigation-height: 64px
 
 //useful mixins
 =vertical-align
@@ -37,13 +37,13 @@ hr
     padding: 20px
     
 //--------------------------- Header/navigation ------------------------------------
-.mainHeader
+.navigation
     position: fixed
-    height: $mainHeader-height
+    height: $navigation-height
     
-.mainHeaderSpacer 
+.navigationSpacer 
     // fills up space so the header doesn't overlap the body content
-    height: $mainHeader-height
+    height: $navigation-height
     width: 100%
     
 .navigation
@@ -94,7 +94,7 @@ md-content
     
     editor
         position: fixed
-        height: calc(100% - #{$mainHeader-height})
+        height: calc(100% - #{$navigation-height})
         width: 100% // with position:fixed it becomes 0 by default
         
         .editor
@@ -104,7 +104,7 @@ md-content
             .CodeMirror
                 height: 100% // same reason parent has height:100%
             
-.settingsDialog
+.spriteSettingsDialog
     .costumes
         margin-top: 20px
 

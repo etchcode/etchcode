@@ -5,7 +5,7 @@
             return {
                 restrict: "E",
 
-                templateUrl: "partials/mainHeader.html",
+                templateUrl: "components/navigation/mainHeader.html",
                 controller: ["$scope", "$location", "$rootScope", function($scope, $location){
                     $scope.sideNavOpen = false;
                     

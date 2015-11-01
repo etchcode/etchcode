@@ -7,7 +7,7 @@
             return {
                 restrict: "E",
 
-                templateUrl: "partials/blocksList.html",
+                templateUrl: "pages/editor/blocksList/blocksList.html",
                 controller: ["$scope", "$http", function($scope, $http){
                     $scope.blocks = {};
                     $scope.blocksListParent = "motion"; // the parent currently clicked on

@@ -22,56 +22,63 @@
 		<link rel="stylesheet" href="styles/typography.css">
 		<link rel="stylesheet" href="styles/colors.css">
         <link rel="stylesheet" href="styles/input.css">
-        <link rel="stylesheet" href="styles/navigation.css">
 		<link rel="stylesheet" href="styles/tooltip.css">
-        <link rel="stylesheet" href="styles/runProject.css">
-
-        <script src="https://login.persona.org/include.js"></script>
-
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
         
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-sanitize.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.js"></script>
-		
-		<script src="scripts/vendor/marked.js"></script>
-		<script src="scripts/vendor/nunjucks.min.js"></script>
-		<script src="scripts/vendor/codemirror.js"></script>
-		<script src="scripts/vendor/ui-codemirror.js"></script>
-		<script src="scripts/vendor/toaster.min.js"></script>
-		<script src="scripts/other/etch.js"></script>
-		<script src="scripts/main.js"></script>
+        <!-- angularjs and it's scripts -->
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-animate.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-sanitize.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-aria.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-messages.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.js"></script>
 
-		<script src="scripts/controllers/colorInput.js"></script>
-		<script src="scripts/controllers/docs.js"></script>
-		<script src="scripts/controllers/editor.js"></script>
-		<script src="scripts/controllers/sprites.js"></script>
-        <script src="scripts/controllers/help.js"></script>
+        <!-- non-angularjs scripts by others -->
+            <script src="scripts/vendor/marked.js"></script>
+            <script src="scripts/vendor/nunjucks.min.js"></script>
+            <script src="scripts/vendor/codemirror.js"></script>
+            <script src="scripts/vendor/ui-codemirror.js"></script>
+            <script src="scripts/vendor/toaster.min.js"></script>
+            <script src="scripts/other/etch.js"></script>
+            <script src="https://login.persona.org/include.js"></script>
+        
+        <!-- main script -->
+            <script src="scripts/main.js"></script>
+
+        <!-- pages and their page-specific scripts/styles -->
+            <script src="pages/docs/docs.js"></script>
+            <script src="pages/editor/editor.js"></script>
+                <script src="pages/editor/spritesList/spritesList.js"></script>
+                <script src="pages/editor/blocksList/blocksList.js"></script>
+            <script src="pages/editor/sprites.js"></script>
+            <script src="pages/help/help.js"></script>
 		
-		<script src="scripts/directives/editableImage.js"></script>
-		<script src="scripts/directives/editor.js"></script>
-		<script src="scripts/directives/markdown.js"></script>
-		<script src="scripts/directives/runProject.js"></script>
-		<script src="scripts/directives/sprite.js"></script>
-        <script src="scripts/directives/navigation.js"></script>
-        <script src="scripts/directives/etchCode.js"></script>
-        <script src="scripts/directives/spritesList.js"></script>
-        <script src="scripts/directives/blocksList.js"></script>
-        <script src="scripts/directives/snapBlock.js"></script>
-        <script src="scripts/directives/fileUpload.js"></script>
-        <script src="scripts/directives/fillRemainingHeight.js"></script>
+        <!-- components -->
+            <!-- editor -->
+            <script src="components/editor/editor.js"></script>
+            <!-- markdown -->
+            <script src="components/markdown/markdown.js"></script>
+            <!-- runProject -->
+            <script src="components/runProject/runProject.js"></script>
+            <link rel="stylesheet" href="components/runProject/runProject.css">
+            <!-- navigation -->
+            <script src="components/navigation/mainHeader.js"></script>
+            <link rel="stylesheet" href="components/navigation/navigation.css">
+            <!-- snapBlock -->
+            <script src="components/snapBlock/snapBlock.js"></script>
+            <!-- fileUpload -->
+            <script src="components/fileUpload/fileUpload.js"></script>
 		
-		<script src="scripts/filters/markdown.js"></script>
-		<script src="scripts/filters/title.js"></script>
-        <script src="scripts/filters/html.js"></script>
+        <!-- filters -->
+            <script src="scripts/filters/markdown.js"></script>
+            <script src="scripts/filters/title.js"></script>
+            <script src="scripts/filters/html.js"></script>
 		
-        <script src="scripts/services/render.js"></script>
-		<script src="scripts/services/defaults.js"></script>
-		<script src="scripts/services/random.js"></script>
-		<script src="scripts/services/spriteData.js"></script>
+        <!-- services -->
+            <script src="scripts/services/render.js"></script>
+            <script src="scripts/services/defaults.js"></script>
+            <script src="scripts/services/random.js"></script>
+            <script src="scripts/services/spriteData.js"></script>
 		
 	</head>
 	

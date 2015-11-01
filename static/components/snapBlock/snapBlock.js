@@ -9,7 +9,7 @@
                 scope: {block: "="},
                 replace: true,
 
-                templateUrl: "partials/snapBlock.html",
+                templateUrl: "components/snapBlock/snapBlock.html",
                 link: function($scope, $elem){
                     $elem[0].addEventListener("dragstart", function(event){
                         var block = $scope.block;

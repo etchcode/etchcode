@@ -2,7 +2,7 @@
 (function () {
 	"use strict";
 
-	nunjucks.configure("/static/partials", {autoescape: true});
+	nunjucks.configure("/static/pages/editor", {autoescape: true});
 
 	angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror", "ngRoute", "toaster"])
 

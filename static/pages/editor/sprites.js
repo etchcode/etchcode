@@ -24,7 +24,7 @@
             $mdDialog.show({
                 clickOutsideToClose: true,
                 focusOnOpen: false,
-                templateUrl: "partials/settingsDialog.html",
+                templateUrl: "pages/editor/spriteSettingsDialog/spriteSettingsDialog.html",
                 locals: {
                     sprite: sprite
                 },

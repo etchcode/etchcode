@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "navigation.css",
+  "sources": [
+    "navigation.sass"
+  ],
+  "sourcesContent": [],
+  "mappings": ";AAAA,WAAW,CAAC;EACR,MAAM,EAAE,IAAK,GADJ",
+  "names": []
+}

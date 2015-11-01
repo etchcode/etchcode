@@ -34,12 +34,12 @@ hr {
   padding: 20px; }
 
 /* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-.mainHeader {
+.navigation {
   position: fixed;
   height: 64px; }
 
 /* line 44, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-.mainHeaderSpacer {
+.navigationSpacer {
   height: 64px;
   width: 100%; }
 
@@ -105,7 +105,7 @@ md-content {
       height: 100%; }
 
 /* line 108, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
-.settingsDialog .costumes {
+.spriteSettingsDialog .costumes {
   margin-top: 20px; }
 
 /* line 112, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */

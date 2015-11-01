@@ -1,0 +1,54 @@
+/* line 2, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh; }
+  /* line 9, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+  .runProject.large .inner {
+    position: relative; }
+    /* line 11, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+    .runProject.large .inner .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0; }
+
+/* line 16, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+.runProject.small .inner {
+  position: relative;
+  width: 100%; }
+  /* line 20, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+  .runProject.small .inner:before {
+    content: "";
+    display: block;
+    padding-top: 75%; }
+  /* line 24, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+  .runProject.small .inner .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+  /* line 30, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+  .runProject.small .inner .playPause {
+    position: absolute;
+    bottom: -15px;
+    right: -20px; }
+
+/* line 35, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+.runProject .inner .player {
+  border: none;
+  height: 100%;
+  width: 100%; }
+
+/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/components/runProject/runProject.sass */
+.header .minimize, .header .maximize {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px; }
+
+/*# sourceMappingURL=runProject.css.map */
