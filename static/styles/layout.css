@@ -78,48 +78,47 @@ md-content {
   flex-direction: column-reverse; }
   /* line 82, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .editor-page .spriteTile .footer {
-    width: 100%;
     overflow: hidden;
     height: 15px;
     padding: 15px;
     padding-right: 0px; }
-    /* line 89, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+    /* line 88, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
     .editor-page .spriteTile .footer .label {
       width: calc(100% - 24px); }
 
-/* line 92, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 91, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .editor-page .runProject {
   margin-right: 20px; }
 
-/* line 95, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 94, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .editor-page editor {
   position: fixed;
   height: calc(100% - 64px);
   width: 100%; }
-  /* line 100, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 99, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .editor-page editor .editor {
     height: 100%;
     position: relative; }
-    /* line 104, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+    /* line 103, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
     .editor-page editor .editor .CodeMirror {
       height: 100%; }
 
-/* line 108, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 107, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .spriteSettingsDialog .costumes {
   margin-top: 20px; }
 
-/* line 112, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 111, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .docsPage {
   display: flex;
   flex-direction: row;
   margin-bottom: calc(1em + 14px); }
-  /* line 117, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 116, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .sidebar {
     padding: 0 20px 0 0; }
-  /* line 119, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 118, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .details ul {
     list-style: none; }
-  /* line 121, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  /* line 120, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
   .docsPage .banner {
     position: fixed;
     bottom: 0;
@@ -127,12 +126,12 @@ md-content {
     padding: 7px;
     width: 100%; }
 
-/* line 129, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 128, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .snapBlock {
   width: 100%;
   height: 100%; }
 
-/* line 133, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+/* line 132, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
 .blocks .child {
   min-height: auto;
   padding-top: 2px;
