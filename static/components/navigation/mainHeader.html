@@ -1,4 +1,4 @@
-<md-toolbar class="mainHeader">
+<md-toolbar class="mainHeader md-whiteframe-4dp"> <!-- md-whiteframe sets the appropriate z-height <https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-> -->
     <div class="md-toolbar-tools">
         
         <md-button class="md-icon-button" ng-click="toggleSideNav()">
@@ -14,6 +14,25 @@
                 </span>
             </a>
         </h1>
+        
+        <div class="accountSection">
+            <div class="loginButtons" ng-show="!user.loggedIn">
+                <md-button class="login" ng-click="login()">Login</md-button>
+                <md-button class="signup" ng-click="login()">Signup</md-button>
+            </div>
+            
+            <md-menu class="userMenu" ng-show="user.loggedIn">
+                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon>account_circle</md-icon>
+                </md-button>
+                
+                <md-menu-content>
+                    <md-menu-item>
+                        <md-button id="signoutButton">Signout</md-button> <!-- navigator.id.signout must be done in the onclick handler of the element, not ng-click -->
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
         
     </div>
 </md-toolbar>

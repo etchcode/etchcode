@@ -1,16 +1,16 @@
-<md-content ng-controller="helpController as help">
+<md-content ng-controller="helpController as help" class="helpPage">
     <md-card>
         <md-card-content>
             <md-subheader class="md-no-sticky">Help for people who ...</md-subheader>
             
-            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tabs md-dynamic-height md-border-bottom class="md-primary">
                 <md-tab>
                     <md-tab-label>
                         haven't programmed
                     </md-tab-label>
                     
                     <md-tab-body>
-                        <div ng-bind-html="help.fromNothing | html"></div>
+                        <div ng-bind-html="help.fromNothing"></div>
                     </md-tab-body>
                 </md-tab>
                 
@@ -20,7 +20,7 @@
                     </md-tab-label>
         
                     <md-tab-body>
-                        <div ng-bind-html="help.fromScratch | html"></div>
+                        <div ng-bind-html="help.fromScratch"></div>
                     </md-tab-body>
                 </md-tab>
                 
@@ -29,9 +29,9 @@
                         make written programs
                     </md-tab-label>
                     
-                    <md-content class="md-padding">
-                        <div ng-bind-html="help.fromWritten | html"></div>
-                    </md-content>
+                    <md-tab-body>
+                        <div ng-bind-html="help.fromWritten"></div>
+                    </md-tab-body>
                 </md-tab>
             </md-tabs>
         </md-card-content>

@@ -25,12 +25,12 @@
 .blocks .md-accent path, .blocks .md-accent line {
   stroke-width: 2px; }
 
-/* line 36, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
-.errorMessage {
-  color: #f44336; }
-
 /* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
 .CodeMirror-gutters {
   background-color: white; }
+
+/* line 44, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
+.loginButtons .signup, .loginButtons .signup:hover {
+  background-color: #ef6c00; }
 
 /*# sourceMappingURL=colors.css.map */

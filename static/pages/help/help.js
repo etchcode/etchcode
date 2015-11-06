@@ -1,7 +1,7 @@
 (function(){
     angular.module("etch")
     
-    .controller("helpController", ["$scope", "$rootScope", "$http", function($scope, $rootScope, $http){
+    .controller("helpController", ["$scope", "$rootScope", "$http", "$sce", function($scope, $rootScope, $http, $sce){
         var _this = this;
         
         $rootScope.pageName = "Help & Feedback";
@@ -13,7 +13,7 @@
                 var content = response.data;
                 var name = contentToGet[response.config.url];
             
-                _this[name] = marked(content);
+                _this[name] = $sce.trustAsHtml(marked(content));
             });
         }
     }]);
