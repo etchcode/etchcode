@@ -8,24 +8,25 @@
 
 		.config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
 			function ($routeProvider, $locationProvider, $mdThemingProvider) {
-//                $locationProvider.html5Mode(true);
 
 				$routeProvider
                 .when("/", {
-                    templateUrl: "pages/home/index.html"
+                    templateUrl: "static/pages/home/index.html"
                 })
                 .when("/editor", {
-                    templateUrl: "pages/editor/index.html"
+                    templateUrl: "static/pages/editor/index.html"
                 })
                 .when("/docs", {
-                    templateUrl: "pages/docs/index.html"
+                    templateUrl: "static/pages/docs/index.html"
                 })
                 .when("/help", {
-                    templateUrl: "pages/help/index.html"
+                    templateUrl: "static/pages/help/index.html"
                 })
                 .otherwise({
                     redirectTo: "/"
                 });
+                
+                $locationProvider.html5Mode(false);
 
                 $mdThemingProvider.theme("default") // these colors should also been included in static/styles/color.sass in the form of the variables $md-accent and $md-default
                     .primaryPalette("blue", {

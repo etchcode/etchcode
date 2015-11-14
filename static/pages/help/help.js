@@ -6,7 +6,7 @@
         
         $rootScope.pageName = "Help & Feedback";
         
-        var contentToGet = {"pages/help/fromScratch.md": "fromScratch", "pages/help/fromNothing.md": "fromNothing", "pages/help/fromWritten.md": "fromWritten"};
+        var contentToGet = {"static/pages/help/fromScratch.md": "fromScratch", "static/pages/help/fromNothing.md": "fromNothing", "static/pages/help/fromWritten.md": "fromWritten"};
         
         for(var page in contentToGet){
             $http.get(page).then(function success(response){

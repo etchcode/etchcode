@@ -68,7 +68,7 @@
 			<variable name="{{ variable }}">
 				<l>0</l> 
 			</variable>
-		{% endfor %}	
+		{% endfor %}
 	</variables>
 	
 	<hidden/> 

@@ -6,7 +6,7 @@
         </md-button>
 
         <h1>
-            <a class="md-button" href="/#/">
+            <a class="md-button" href="/">
                 Etch Code
                 
                 <span ng-show="pageName">
@@ -17,8 +17,8 @@
         
         <div class="accountSection">
             <div class="loginButtons" ng-show="!user.loggedIn">
-                <md-button class="login" ng-click="login()">Login</md-button>
-                <md-button class="signup" ng-click="login()">Signup</md-button>
+                <md-button id="loginButton">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
+                <md-button id="signupButton">Signup</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
             </div>
             
             <md-menu class="userMenu" ng-show="user.loggedIn">
@@ -28,7 +28,13 @@
                 
                 <md-menu-content>
                     <md-menu-item>
-                        <md-button id="signoutButton">Signout</md-button> <!-- navigator.id.signout must be done in the onclick handler of the element, not ng-click -->
+                        <md-button>
+                            My Account
+                        </md-button>
+                    </md-menu-item>
+                    
+                    <md-menu-item>
+                        <md-button id="signoutButton">Signout</md-button> <!-- navigator.id.logout must be done in the onclick handler of the element, not ng-click -->
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
@@ -43,7 +49,7 @@
     <nav layout="column" layout-align="space-between start">
         <div class="upper">
             <h2>
-                <a class="md-button" href="/#/editor">
+                <a class="md-button" href="#/editor">
                     <md-icon>create</md-icon>
                     Create Project
                 </a>        
@@ -54,14 +60,14 @@
             <md-divider></md-divider>
             
             <h2>
-                <a class="md-button" href="/#/help">
+                <a class="md-button" href="#/help">
                     <md-icon>help</md-icon>
                     Help &amp; Feedback
                 </a>            
             </h2>
             
             <h2>
-                <a class="md-button" href="/#/docs">
+                <a class="md-button" href="#/docs">
                     <md-icon>description</md-icon>
                     Documentation
                 </a>            

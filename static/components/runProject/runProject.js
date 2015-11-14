@@ -8,7 +8,7 @@
                 restrict: "E",
                 replace: true,
 
-                templateUrl: "components/runProject/runProject.html",
+                templateUrl: "static/components/runProject/runProject.html",
                 controller: ["$scope", "$element", "spriteData", "renderService", function($scope, $element, spriteData, render){
                     // running a project
                     $scope.loaded = false;

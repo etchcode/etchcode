@@ -1,8 +1,17 @@
 from flask import Flask, Response, request
 import json
+import os
+
+if os.environ["SERVER_SOFTWARE"].startswith("Development"):
+    PRODUCTION = False
+elif os.environ["SERVER_SOFTWARE"].startswith("Google"):
+    PRODUCTION = True
+else:
+    print "unknown environment " + os.environ["SERVER_SOFTWARE"]
 
 app = Flask("api")
 app.config.from_pyfile("config.py")
+
 
 @app.route("/api/blocks.json")
 def blocks():
@@ -20,6 +29,7 @@ def blocks():
         "startChunkBlocks": blocks.startChunkBlocks,
         "abbreviations": blocks.abriviations
     }), content_type="application/json")
+
 
 @app.route("/api/parse.json", methods=["POST"])
 def parse():
@@ -43,9 +53,12 @@ def parse():
     except Exception as error:
         return Response(json.dumps({"error": str(error)}), content_type="application/json", status="500")
 
-@app.route("/api/login.json")
+
+@app.route("/api/login", methods=["POST"])
 def login():
-    """Get: user data from mozilla persona
+    """Get: mozilla persona token
     Sets: user session
-    Return: if login succeeded or failed
     """
+
+
+

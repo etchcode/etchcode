@@ -30,7 +30,7 @@
   background-color: white; }
 
 /* line 44, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/colors.sass */
-.loginButtons .signup, .loginButtons .signup:hover {
+.loginButtons #signupButton, .loginButtons #signupButton:hover {
   background-color: #ef6c00; }
 
 /*# sourceMappingURL=colors.css.map */

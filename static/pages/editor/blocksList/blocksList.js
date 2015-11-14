@@ -7,23 +7,14 @@
             return {
                 restrict: "E",
 
-                templateUrl: "pages/editor/blocksList/blocksList.html",
-                controller: ["$scope", "$http", function($scope, $http){
-                    $scope.blocks = {};
+                templateUrl: "static/pages/editor/blocksList/blocksList.html",
+                controller: ["$scope", "$http", "blocksData", function($scope, $http, blocksData){
                     $scope.blocksListParent = "motion"; // the parent currently clicked on
-
+                    $scope.blocks = blocksData.etchNames;
+                    
                     $scope.setBlocksListParent = function(newParent){
                         $scope.blocksListParent = newParent;
                     };
-
-                    $http.get("pages/docs/data/docs.json").then(function(response){
-                        if(response.status === 200){
-                            $scope.blocks = response.data.etchNames;
-                        }
-                        else{
-                            throw new Error("Failed to load blocks.json");
-                        }
-                    })
                 }]
             }
         })
