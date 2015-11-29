@@ -47,8 +47,12 @@ Temporary Items
 werkzeug/wsgi.pyc
 
 *.iml
-.idea/*
+.idea/
 .brackets.json
 
 # Sensitive Content
 config.py
+
+# files to be built on local computers
+node_modules/
+.sass-cache/

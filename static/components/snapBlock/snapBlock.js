@@ -11,7 +11,10 @@
 
                 templateUrl: "static/components/snapBlock/snapBlock.html",
                 link: function($scope, $elem){
-                    $elem[0].addEventListener("dragstart", function(event){
+                    var elem = $elem[0];
+                                        
+                    // drag-and-drop code
+                    elem.addEventListener("dragstart", function(event){
                         var block = $scope.block;
                         var text = block.name;
 
@@ -34,11 +37,11 @@
                         }
 
                         event.dataTransfer.setData("text", text);
-                        $elem[0].className += " md-accent";
+                        elem.className += " md-accent";
                     });
 
-                    $elem[0].addEventListener("dragend", function(event){
-                        $elem[0].className = $elem[0].className.replace(/ md-accent/g, "");
+                    elem.addEventListener("dragend", function(event){
+                        elem.className = $elem[0].className.replace(/ md-accent/g, "");
                     })
                 }
             }

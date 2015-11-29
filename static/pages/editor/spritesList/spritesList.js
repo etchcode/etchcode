@@ -5,7 +5,6 @@
         .directive("spritesList", function(){
            return {
                 restrict: "E",
-
                 templateUrl: "static/pages/editor/spritesList/spritesList.html"
             };
         });

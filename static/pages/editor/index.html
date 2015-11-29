@@ -1,15 +1,15 @@
-<div class="editor-page" ng-controller="editorController as editors" layout="row">
+<div class="editor-page" ng-controller="editorController as editor" layout="row">
     <div layout="column" flex="40" class="columnLeft">
         <md-input-container class="pageBlock">
             <label>Project Name</label>
             <input ng-model="sprites.general.name" type="text">
         </md-input-container>
 
-<!--        <run-project></run-project>-->
+        <run-project></run-project>
 
-<!--        <sprites-list class="pageBlock"></sprites-list>-->
+        <sprites-list class="pageBlock"></sprites-list>
     </div>
 
-<!--    <blocks-list flex="15" class="pageBlock"></blocks-list>-->
-<!--    <editor flex="45" class="pageBlock"></editor>-->
+    <blocks-list flex="15" class="pageBlock"></blocks-list>
+    <editor flex="45" class="pageBlock"></editor>
 </div>
