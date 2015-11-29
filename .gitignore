@@ -47,10 +47,8 @@ Temporary Items
 werkzeug/wsgi.pyc
 
 *.iml
-.idea/
+.idea/*
 .brackets.json
-.idea/workspace.xml
 
-.idea/etchcode.iml
-
-.idea/misc.xml
+# Sensitive Content
+config.py

@@ -2,14 +2,8 @@ from google.appengine.ext import ndb
 
 
 class User(ndb.Model):  # a user of etch
-    email = ndb.StringProperty()
-    name = ndb.StringProperty()
-    googleUserID = ndb.StringProperty()
+	email = ndb.StringProperty() # login indentifier
+	active = ndb.BooleanProperty() # are they allowed to log in?
 
-
-class Project(ndb.Model):
-    projectName = ndb.StringProperty()
-    googleUserID = ndb.StringProperty()
-
-    jsonFile = ndb.TextProperty()
-    xmlFile = ndb.TextProperty()
+	# profile
+	username = ndb.StringProperty()
