@@ -6,10 +6,7 @@
         var rootUrl = "/api/";
 
         this.login = function(assertion){
-            $http.post(rootUrl + "login", assertion)
-                .then(function(response){
-                    console.log(response.data);
-                });
-        }
+            return $http.post(rootUrl + "login", assertion)
+        };
     }]);
 }());

@@ -1,0 +1,114 @@
+html, body {
+  height: 100%;
+  width: 100%; }
+
+body {
+  padding: 0;
+  margin: 0; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.centerBlock {
+  margin: 0 auto 0 auto; }
+
+.centerText {
+  text-align: center; }
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.pageBlock {
+  padding: 20px; }
+
+.navigation {
+  position: fixed;
+  height: 64px; }
+
+.navigationSpacer {
+  height: 64px;
+  width: 100%; }
+
+.navigation h2 {
+  margin: 0 0 0 0; }
+  .navigation h2 a {
+    width: calc(100% - 16px);
+    padding-right: 0; }
+.navigation nav {
+  height: 100%; }
+  .navigation nav .upper, .navigation nav .lower {
+    width: 100%; }
+
+md-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding-top: 0; }
+
+.editor-page .columnLeft {
+  overlow: auto;
+  height: 100%; }
+.editor-page .spriteTile {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column-reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; }
+  .editor-page .spriteTile .footer {
+    overflow: hidden;
+    height: 15px;
+    padding: 15px;
+    padding-right: 0px; }
+    .editor-page .spriteTile .footer .label {
+      width: calc(100% - 24px); }
+.editor-page .runProject {
+  margin-right: 20px; }
+.editor-page editor {
+  position: fixed;
+  height: calc(100% - 64px);
+  width: 100%; }
+  .editor-page editor .editor {
+    height: 100%;
+    position: relative; }
+    .editor-page editor .editor .CodeMirror {
+      height: 100%; }
+
+.spriteSettingsDialog .costumes {
+  margin-top: 20px; }
+
+.docsPage {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: calc(1em + 14px); }
+  .docsPage .sidebar {
+    padding: 0 20px 0 0; }
+  .docsPage .details ul {
+    list-style: none; }
+  .docsPage .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 7px;
+    width: 100%; }
+
+.snapBlock {
+  width: 100%;
+  height: 100%; }
+
+.blocks .child {
+  min-height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px; }
+
+/*# sourceMappingURL=layout.css.map */

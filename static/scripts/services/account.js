@@ -30,9 +30,13 @@
             loggedInUser: null, // at some time we should have session management and remember people
             onlogin: function(assertion){
                 $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
-                    $rootScope.user.loggedIn = true;
-                    
-                    console.log(assertion);
+                    api.login(assertion).then(function success(response){
+                        $rootScope.user.loggedIn = true;
+                        $rootScope.user.profile = response.data;
+                        
+                    },function error(response){
+                        navigator.id.logout(); 
+                    });
                 });
             },
             onlogout: function(){

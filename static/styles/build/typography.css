@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,500|Roboto:400,700,500);
+body {
+  font-family: Roboto; }
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  text-align: left; }
+
+.CodeMirror {
+  font-size: 12px;
+  font-family: Roboto Mono; }
+
+.contentPage {
+  font-size: 1.1em; }
+
+.editor-page .spriteTile {
+  font-size: 11px; }
+.editor-page .footer {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.blocks .parent .md-button {
+  font-size: 11px; }
+.blocks .child {
+  font-size: 15px; }
+  .blocks .child .snapBlock {
+    cursor: pointer; }
+
+md-dialog .md-subheader .md-subheader-inner {
+  padding-left: 0; }
+
+.errorMessage {
+  font-size: 70%; }
+
+code {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+
+pre {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+  pre code {
+    padding: 0;
+    background: none;
+    border-radius: 0; }
+
+.navigation a, .mainHeader a {
+  text-transform: none;
+  text-align: left; }
+
+/*# sourceMappingURL=typography.css.map */

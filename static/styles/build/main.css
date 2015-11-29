@@ -1,0 +1,309 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,500|Roboto:400,700,500);
+[unselectable] {
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -ms-user-select: none;
+      user-select: none; }
+
+[selectable] {
+  -webkit-user-select: all;
+  -moz-user-select: text;
+  -o-user-select: all;
+  -ms-user-select: all;
+      user-select: all; }
+
+input.reset[type=button] {
+  box-shadow: 0 0 0 0;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 7px;
+  cursor: pointer; }
+
+.spriteTile, .costumeTile .costume {
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+body {
+  padding: 0;
+  margin: 0; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.centerBlock {
+  margin: 0 auto 0 auto; }
+
+.centerText {
+  text-align: center; }
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.pageBlock {
+  padding: 20px; }
+
+.navigation {
+  position: fixed;
+  height: 64px; }
+
+.navigationSpacer {
+  height: 64px;
+  width: 100%; }
+
+.navigation h2 {
+  margin: 0 0 0 0; }
+  .navigation h2 a {
+    width: calc(100% - 16px);
+    padding-right: 0; }
+.navigation nav {
+  height: 100%; }
+  .navigation nav .upper, .navigation nav .lower {
+    width: 100%; }
+
+md-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding-top: 0; }
+
+.editor-page .columnLeft {
+  overlow: auto;
+  height: 100%; }
+.editor-page .spriteTile {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column-reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; }
+  .editor-page .spriteTile .footer {
+    overflow: hidden;
+    height: 15px;
+    padding: 15px;
+    padding-right: 0px; }
+    .editor-page .spriteTile .footer .label {
+      width: calc(100% - 24px); }
+.editor-page .runProject {
+  margin-right: 20px; }
+.editor-page editor {
+  position: fixed;
+  height: calc(100% - 64px);
+  width: 100%; }
+  .editor-page editor .editor {
+    height: 100%;
+    position: relative; }
+    .editor-page editor .editor .CodeMirror {
+      height: 100%; }
+
+.spriteSettingsDialog .costumes {
+  margin-top: 20px; }
+
+.docsPage {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-bottom: calc(1em + 14px); }
+  .docsPage .sidebar {
+    padding: 0 20px 0 0; }
+  .docsPage .details ul {
+    list-style: none; }
+  .docsPage .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 7px;
+    width: 100%; }
+
+.snapBlock {
+  width: 100%;
+  height: 100%; }
+
+.blocks .child {
+  min-height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px; }
+
+body {
+  font-family: Roboto; }
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  text-align: left; }
+
+.CodeMirror {
+  font-size: 12px;
+  font-family: Roboto Mono; }
+
+.contentPage {
+  font-size: 1.1em; }
+
+.editor-page .spriteTile {
+  font-size: 11px; }
+.editor-page .footer {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.blocks .parent .md-button {
+  font-size: 11px; }
+.blocks .child {
+  font-size: 15px; }
+  .blocks .child .snapBlock {
+    cursor: pointer; }
+
+md-dialog .md-subheader .md-subheader-inner {
+  padding-left: 0; }
+
+.errorMessage {
+  font-size: 70%; }
+
+code {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+
+pre {
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px; }
+  pre code {
+    padding: 0;
+    background: none;
+    border-radius: 0; }
+
+.navigation a, .mainHeader a {
+  text-transform: none;
+  text-align: left; }
+
+/* https://github.com/unspace/sass-material-colors/blob/master/sass/_sass-material-colors-map.scss */
+*::-moz-selection {
+  background-color: #ffe0b2 !important; }
+*::selection {
+  background-color: #ffe0b2 !important; }
+
+*::-moz-selection {
+  background-color: #ffe0b2 !important; }
+
+.spriteTile .footer {
+  background-color: #424242;
+  color: white;
+  opacity: 0.8; }
+
+.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
+  stroke: #f57c00; }
+.blocks .md-accent div {
+  color: #f57c00; }
+.blocks .md-accent path, .blocks .md-accent line {
+  stroke-width: 2px; }
+
+.CodeMirror-gutters {
+  background-color: white; }
+
+.loginButtons #signupButton, .loginButtons #signupButton:hover {
+  background-color: #ef6c00; }
+
+input.ng-dirty.ng-invalid {
+  box-shadow: 0 0 2.8px red; }
+
+.md-button.spriteSettings {
+  width: 24px; }
+  .md-button.spriteSettings md-icon {
+    opacity: 1;
+    color: white; }
+
+[tooltip] {
+  position: relative;
+  cursor: pointer; }
+
+[tooltip]:hover::after {
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: 150%;
+  border-radius: 5px 5px 5px 0;
+  color: white;
+  font-size: 14px;
+  left: 0;
+  content: attr(tooltip);
+  padding: 5px;
+  overflow: visible;
+  position: absolute;
+  width: 200px;
+  z-index: 999999999; }
+
+[tooltip]:hover::before {
+  bottom: calc(150% - 7px);
+  border-top: 8px solid rgba(0, 0, 0, 0.8);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  content: "";
+  color: rgba(0, 0, 0, 0.8);
+  left: -1px;
+  position: absolute;
+  z-index: 999999999; }
+
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh; }
+  .runProject.large .inner {
+    position: relative; }
+    .runProject.large .inner .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0; }
+.runProject.small .inner {
+  position: relative;
+  width: 100%; }
+  .runProject.small .inner:before {
+    content: "";
+    display: block;
+    padding-top: 75%; }
+  .runProject.small .inner .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+  .runProject.small .inner .playPause {
+    position: absolute;
+    bottom: -15px;
+    right: -20px; }
+.runProject .inner .player {
+  border: none;
+  height: 100%;
+  width: 100%; }
+
+.header .minimize, .header .maximize {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px; }
+
+.navigation {
+  height: 100%; }
+
+.accountSection {
+  margin: 0 0 0 auto; }
+
+/*# sourceMappingURL=main.css.map */

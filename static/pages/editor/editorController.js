@@ -4,8 +4,10 @@
 	
 	angular.module("etch")
 	
-	.controller("spritesController", ["spriteData", "toaster", "random", "$mdDialog", function(spriteData, toaster, random, $mdDialog){
+	.controller("editorController", ["spriteData", "toaster", "random", "$mdDialog", "$rootScope", function(spriteData, toaster, random, $mdDialog, $rootScope){
         var myself = this; //cache this for the children
+        
+        $rootScope.pageName = "Editor"
         
 		this.list = spriteData.sprites.list; // all sprites
 		this.background = spriteData.sprites.background;
