@@ -1,0 +1,140 @@
+/* line 11, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+html, body {
+  height: 100%;
+  width: 100%; }
+
+/* line 15, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+body {
+  padding: 0;
+  margin: 0; }
+
+/* line 19, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.left {
+  float: left; }
+
+/* line 22, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.right {
+  float: right; }
+
+/* line 25, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.centerBlock {
+  margin: 0 auto 0 auto; }
+
+/* line 28, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.centerText {
+  text-align: center; }
+
+/* line 31, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+/* line 35, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.pageBlock {
+  padding: 20px; }
+
+/* line 40, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.navigation {
+  position: fixed;
+  height: 64px; }
+
+/* line 44, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.navigationSpacer {
+  height: 64px;
+  width: 100%; }
+
+/* line 50, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.navigation h2 {
+  margin: 0 0 0 0; }
+  /* line 53, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .navigation h2 a {
+    width: calc(100% - 16px);
+    padding-right: 0; }
+
+/* line 57, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.navigation nav {
+  height: 100%; }
+  /* line 60, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .navigation nav .upper, .navigation nav .lower {
+    width: 100%; }
+
+/* line 64, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+md-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+  padding-top: 0; }
+
+/* line 72, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.editor-page .columnLeft {
+  overlow: auto;
+  height: 100%; }
+
+/* line 76, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.editor-page .spriteTile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse; }
+  /* line 82, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .editor-page .spriteTile .footer {
+    overflow: hidden;
+    height: 15px;
+    padding: 15px;
+    padding-right: 0px; }
+    /* line 88, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+    .editor-page .spriteTile .footer .label {
+      width: calc(100% - 24px); }
+
+/* line 91, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.editor-page .runProject {
+  margin-right: 20px; }
+
+/* line 94, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.editor-page editor {
+  position: fixed;
+  height: calc(100% - 64px);
+  width: 100%; }
+  /* line 99, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .editor-page editor .editor {
+    height: 100%;
+    position: relative; }
+    /* line 103, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+    .editor-page editor .editor .CodeMirror {
+      height: 100%; }
+
+/* line 107, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.spriteSettingsDialog .costumes {
+  margin-top: 20px; }
+
+/* line 111, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.docsPage {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: calc(1em + 14px); }
+  /* line 116, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .docsPage .sidebar {
+    padding: 0 20px 0 0; }
+  /* line 118, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .docsPage .details ul {
+    list-style: none; }
+  /* line 120, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+  .docsPage .banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 7px;
+    width: 100%; }
+
+/* line 128, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.snapBlock {
+  width: 100%;
+  height: 100%; }
+
+/* line 132, /Users/DanielFranklin/Desktop/etch/etchcode/static/styles/layout.sass */
+.blocks .child {
+  min-height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px; }
+
+/*# sourceMappingURL=layout.css.map */

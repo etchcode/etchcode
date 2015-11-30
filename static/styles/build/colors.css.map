@@ -1,0 +1,1 @@
+{"version":3,"sources":["colors.css","../colors.sass"],"names":[],"mappings":"AAAA,qGAAqG;ACerG;EACI,qCAA2D,EAAA;AAD/D;EACI,qCAA2D,EAAA;;AAC/D;EACI,qCAA2D,EAAA;;AAG3D;EACI,0BAlBkB;EAmBlB,aAAY;EACZ,aAAW,EAAA;;AAIX;EACI,gBAjB8B,EAAA;AAkBlC;EACI,eAnB8B,EAAA;AAoBlC;EACI,kBAAiB,EAAA;;AAMzB;EACI,wBAAuB,EAAA;;AAG3B;EACI,0BAxCkB,EAAA","file":"colors.css"}

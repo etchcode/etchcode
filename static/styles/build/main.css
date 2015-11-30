@@ -1,31 +1,4 @@
-/* https://github.com/unspace/sass-material-colors/blob/master/sass/_sass-material-colors-map.scss */
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,500|Roboto:400,700,500);
-*::-moz-selection {
-  background-color: #ffe0b2 !important; }
-*::selection {
-  background-color: #ffe0b2 !important; }
-
-*::-moz-selection {
-  background-color: #ffe0b2 !important; }
-
-.spriteTile .footer {
-  background-color: #424242;
-  color: white;
-  opacity: 0.8; }
-
-.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
-  stroke: #f57c00; }
-.blocks .md-accent div {
-  color: #f57c00; }
-.blocks .md-accent path, .blocks .md-accent line {
-  stroke-width: 2px; }
-
-.CodeMirror-gutters {
-  background-color: white; }
-
-.loginButtons #signupButton, .loginButtons #signupButton:hover {
-  background-color: #ef6c00; }
-
 [unselectable] {
   -webkit-user-select: none;
   -moz-user-select: -moz-none;
@@ -51,15 +24,6 @@ input.reset[type=button] {
 .spriteTile, .costumeTile .costume {
   background-size: cover;
   background-repeat: no-repeat; }
-
-input.ng-dirty.ng-invalid {
-  box-shadow: 0 0 2.8px red; }
-
-.md-button.spriteSettings {
-  width: 24px; }
-  .md-button.spriteSettings md-icon {
-    opacity: 1;
-    color: white; }
 
 html, body {
   height: 100%;
@@ -174,35 +138,6 @@ md-content {
   padding-top: 2px;
   padding-bottom: 2px; }
 
-[tooltip] {
-  position: relative;
-  cursor: pointer; }
-
-[tooltip]:hover::after {
-  background-color: rgba(0, 0, 0, 0.8);
-  bottom: 150%;
-  border-radius: 5px 5px 5px 0;
-  color: white;
-  font-size: 14px;
-  left: 0;
-  content: attr(tooltip);
-  padding: 5px;
-  overflow: visible;
-  position: absolute;
-  width: 200px;
-  z-index: 999999999; }
-
-[tooltip]:hover::before {
-  bottom: calc(150% - 7px);
-  border-top: 8px solid rgba(0, 0, 0, 0.8);
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  content: "";
-  color: rgba(0, 0, 0, 0.8);
-  left: -1px;
-  position: absolute;
-  z-index: 999999999; }
-
 body {
   font-family: Roboto; }
 
@@ -257,5 +192,118 @@ pre {
 .navigation a, .mainHeader a {
   text-transform: none;
   text-align: left; }
+
+/* https://github.com/unspace/sass-material-colors/blob/master/sass/_sass-material-colors-map.scss */
+*::-moz-selection {
+  background-color: #ffe0b2 !important; }
+*::selection {
+  background-color: #ffe0b2 !important; }
+
+*::-moz-selection {
+  background-color: #ffe0b2 !important; }
+
+.spriteTile .footer {
+  background-color: #424242;
+  color: white;
+  opacity: 0.8; }
+
+.blocks .md-accent path, .blocks .md-accent line, .blocks .md-accent text {
+  stroke: #f57c00; }
+.blocks .md-accent div {
+  color: #f57c00; }
+.blocks .md-accent path, .blocks .md-accent line {
+  stroke-width: 2px; }
+
+.CodeMirror-gutters {
+  background-color: white; }
+
+.loginButtons #signupButton, .loginButtons #signupButton:hover {
+  background-color: #ef6c00; }
+
+input.ng-dirty.ng-invalid {
+  box-shadow: 0 0 2.8px red; }
+
+.md-button.spriteSettings {
+  width: 24px; }
+  .md-button.spriteSettings md-icon {
+    opacity: 1;
+    color: white; }
+
+[tooltip] {
+  position: relative;
+  cursor: pointer; }
+
+[tooltip]:hover::after {
+  background-color: rgba(0, 0, 0, 0.8);
+  bottom: 150%;
+  border-radius: 5px 5px 5px 0;
+  color: white;
+  font-size: 14px;
+  left: 0;
+  content: attr(tooltip);
+  padding: 5px;
+  overflow: visible;
+  position: absolute;
+  width: 200px;
+  z-index: 999999999; }
+
+[tooltip]:hover::before {
+  bottom: calc(150% - 7px);
+  border-top: 8px solid rgba(0, 0, 0, 0.8);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  content: "";
+  color: rgba(0, 0, 0, 0.8);
+  left: -1px;
+  position: absolute;
+  z-index: 999999999; }
+
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh; }
+  .runProject.large .inner {
+    position: relative; }
+    .runProject.large .inner .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0; }
+.runProject.small .inner {
+  position: relative;
+  width: 100%; }
+  .runProject.small .inner:before {
+    content: "";
+    display: block;
+    padding-top: 75%; }
+  .runProject.small .inner .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+  .runProject.small .inner .playPause {
+    position: absolute;
+    bottom: -15px;
+    right: -20px; }
+.runProject .inner .player {
+  border: none;
+  height: 100%;
+  width: 100%; }
+
+.header .minimize, .header .maximize {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px; }
+
+.navigation {
+  height: 100%; }
+
+.accountSection {
+  margin: 0 0 0 auto; }
 
 /*# sourceMappingURL=main.css.map */
