@@ -57,3 +57,4 @@ config.py
 node_modules/
 .sass-cache/
 bower_components/
+build/

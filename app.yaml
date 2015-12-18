@@ -4,25 +4,27 @@ runtime: python27
 api_version: 1
 threadsafe: yes
 
+# every handler must have secure:always
 handlers:
 - url: /.well-known/acme-challenge/rNd4bawGtFjt-vOsJEjXePBqg7YrvwOG7nMXiqkIxoE
   static_files: letsencrypt_key.txt
   upload: letsencrypt_key.txt
   mime_type: text/plain
+  secure: always
   
 - url: /static
   static_dir: static/
+  secure: always
   
 - url: /bower_components
   static_dir: bower_components/
-
+  secure: always
+  
 - url: /api/.+
   script: api.app
+  secure: always
 
 - url: /
-  static_files: static/pages/index.html
-  upload: static\/pages\/index.html
-
-libraries:
-- name: webapp2
-  version: "2.5.2"
+  static_files: static/pages/build/index.html
+  upload: static/pages/build/index.html
+  secure: always

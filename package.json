@@ -14,9 +14,12 @@
     "grunt-concat-sourcemap": "^0.4.3",
     "grunt-concurrent": "^2.1.0",
     "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.2",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-copy-to": "0.0.12",
+    "grunt-gae": "^0.2.4",
     "grunt-postcss": "^0.7.1",
     "grunt-replace": "^0.11.0",
     "grunt-string-replace": "^1.2.0"
