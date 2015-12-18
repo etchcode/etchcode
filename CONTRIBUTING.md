@@ -1,4 +1,6 @@
 ## SSL through letsencrypt.org
+Daniel has a digitalocean ubuntu server with letsencrypt set up (the mac version is very buggy).
+
 First download letsencrypt with `git clone https://github.com/letsencrypt/letsencrypt` (as of 17-12-2015 this only works on Linux).
 `cd letsencrypt` to go to the letsencrypt directory and run `./letsencrypt-auto certonly --manual` to generate the certificate. The challenge body goes in `letsencrypt_key.txt`
 and the challenge file name goes into app.yaml (replace the existing path).
