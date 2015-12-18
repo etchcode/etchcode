@@ -353,7 +353,7 @@
                     $scope.large = false; // default view is inline but if this is true the editor will be fullscreen
                     $scope.running = false;
                     
-                    $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "http://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
+                    $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "https://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
 
                     $e = $element;
                     var player = $element[0].getElementsByClassName("player")[0];
