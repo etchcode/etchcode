@@ -7,7 +7,7 @@
 	.controller("editorController", ["spriteData", "toaster", "random", "$mdDialog", "$rootScope", "$scope", function(spriteData, toaster, random, $mdDialog, $rootScope, $scope){
         var _this = this; //cache _this for the children
         
-        $rootScope.pageName = "Editor"
+        $rootScope.pageName = "Editor";
         
         $scope.sprites = {};
             $scope.sprites.list = spriteData.sprites.list; // all sprites
@@ -75,6 +75,6 @@
                         };
                     }]
                 });
-            }
+            };
 	}]);
 }());

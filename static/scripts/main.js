@@ -22,6 +22,9 @@
                 .when("/help", {
                     templateUrl: "static/pages/help/index.html"
                 })
+                .when("/account", {
+                    templateUrl: "static/pages/account/index.html"
+                })
                 .otherwise({
                     redirectTo: "/"
                 });

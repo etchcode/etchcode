@@ -19,10 +19,10 @@
 				return phrase;
 			},
              word: function(){
-                 var type = Math.floor(Math.random()*3)
+                 var type = Math.floor(Math.random()*3);
                  var list;
 
-                 if(type == 0){
+                 if(type === 0){
                      list = words.adjectives;
                  }
                  else if(type == 1){

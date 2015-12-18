@@ -56,3 +56,4 @@ config.py
 # files to be built on local computers
 node_modules/
 .sass-cache/
+bower_components/

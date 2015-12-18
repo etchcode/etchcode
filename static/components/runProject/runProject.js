@@ -1,3 +1,4 @@
+var $e;
 (function () {
     "use strict";
 
@@ -9,15 +10,18 @@
                 replace: true,
 
                 templateUrl: "static/components/runProject/runProject.html",
-                controller: ["$scope", "$element", "spriteData", "renderService", function($scope, $element, spriteData, render){
+                controller: ["$scope", "$element", "spriteData", "renderService", "$sce", function($scope, $element, spriteData, render, $sce){
                     // running a project
                     $scope.loaded = false;
                     $scope.show = true;
                     $scope.large = false; // default view is inline but if this is true the editor will be fullscreen
                     $scope.running = false;
+                    
+                    $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "http://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
 
+                    $e = $element;
                     var player = $element[0].getElementsByClassName("player")[0];
-
+                    
                     player.addEventListener("load", function(){
                         //listen for when the player is loaded and update whether or not it is updated
                         $scope.$apply(function(){
@@ -32,7 +36,7 @@
                             player.contentWindow.postMessage({
                                 "action": "loadString",
                                 "string": toRun
-                            }, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
+                            }, $scope.PLAYER_URL); // this postMessage must be done once the iframe is loaded
                             
                         }
 
@@ -55,7 +59,7 @@
                     };
 
                     // the run button itself
-                    $scope.toggleStartStop = function(){
+                    $scope.toggleStartStop = function(){                        
                         if($scope.running) {
                             $scope.stop();
                             $scope.running = false;

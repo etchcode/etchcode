@@ -143,9 +143,6 @@ md-content {
     .editor-page editor .editor .CodeMirror {
       height: 100%; }
 
-.spriteSettingsDialog .costumes {
-  margin-top: 20px; }
-
 .docsPage {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -164,10 +161,6 @@ md-content {
     left: 0;
     padding: 7px;
     width: 100%; }
-
-.snapBlock {
-  width: 100%;
-  height: 100%; }
 
 .blocks .child {
   min-height: auto;
@@ -258,10 +251,57 @@ pre {
   text-transform: none;
   text-align: left; }
 
+.spriteSettingsDialog {
+  padding: 20px; }
+  .spriteSettingsDialog .costumes {
+    margin-top: 20px; }
+
 .navigation {
   height: 100%; }
 
 .accountSection {
   margin: 0 0 0 auto; }
+
+.runProject.large {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh; }
+  .runProject.large .inner {
+    position: relative; }
+    .runProject.large .inner .player {
+      width: 100vw;
+      height: 100vh;
+      border: 0; }
+.runProject.small .inner {
+  position: relative;
+  width: 100%; }
+  .runProject.small .inner:before {
+    content: "";
+    display: block;
+    padding-top: 75%; }
+  .runProject.small .inner .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+  .runProject.small .inner .playPause {
+    position: absolute;
+    bottom: -15px;
+    right: -20px; }
+.runProject .inner .player {
+  border: none;
+  height: 100%;
+  width: 100%; }
+
+.header .minimize, .header .maximize {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px; }
 
 /*# sourceMappingURL=main.css.map */

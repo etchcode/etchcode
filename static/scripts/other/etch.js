@@ -52,10 +52,10 @@ var d;
 
                 scope.$apply(function() {
                     scope.codemirrorConfig.mode = "tempDummyFakeMode"; // this is needed so that when the scope is set to etch below it will be a change
-                });
+                }); // jshint ignore:line
                 scope.$apply(function(){
                     scope.codemirrorConfig.mode = "etch"; // set the scope to etch again so that the mode will be reloaded
-                });
+                }); // jshint ignore:line
             }
         }
 
@@ -83,13 +83,14 @@ var d;
         var hangingIndent = parserConf.hangingIndent || conf.indentUnit;
 
         var myKeywords = parents;
-        if (parserConf.extra_keywords != undefined) {
+        var stringPrefixes;
+        if (parserConf.extra_keywords !== undefined) {
             myKeywords = myKeywords.concat(parserConf.extra_keywords);
         }
         if (parserConf.version && parseInt(parserConf.version, 10) == 3) {
-            var stringPrefixes = new RegExp("^(([rb]|(br))?('{3}|\"{3}|['\"]))", "i");
+            stringPrefixes = new RegExp("^(([rb]|(br))?('{3}|\"{3}|['\"]))", "i");
         } else {
-            var stringPrefixes = new RegExp("^(([rub]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
+            stringPrefixes = new RegExp("^(([rub]|(ur)|(br))?('{3}|\"{3}|['\"]))", "i");
         }
         var keywords = new RegExp(parents.join("|"), "i");
         var builtins = new RegExp(parent_abbreviation.join("|"), "i");
@@ -203,7 +204,7 @@ var d;
 //                strings = "m";
 //                }
                 while (x) {
-                    if (stream.peek() == "(" || stream.peek() == undefined || stream.peek() == ":" || j > 30) {
+                    if (stream.peek() === "(" || stream.peek() === undefined || stream.peek() === ":" || j > 30) {
                         x = false;
                     }
                     else {
@@ -301,7 +302,7 @@ var d;
             // Handle '.' connected identifiers
             if (current == ".") {
                 style = stream.match(identifiers, false) ? null : ERRORCLASS;
-                if (style == null && state.lastStyle == "meta") {
+                if (style === null && state.lastStyle == "meta") {
                     // Apply 'meta' style to '.' connected identifiers when
                     // appropriate.
                     style = "meta";
@@ -318,8 +319,7 @@ var d;
                 }
             }
 
-            if ((style == "variable" || style == "builtin")
-                && state.lastStyle == "meta")
+            if ((style == "variable" || style == "builtin") && state.lastStyle == "meta")
                 style = "meta";
 
             // Handle scope changes.
@@ -381,7 +381,7 @@ var d;
 
                 var scope = top(state);
                 var closing = textAfter && textAfter.charAt(0) == scope.type;
-                if (scope.align != null)
+                if (scope.align !== null)
                     return scope.align - (closing ? 1 : 0);
                 else if (closing && state.scopes.length > 1)
                     return state.scopes[state.scopes.length - 2].offset;
@@ -396,3 +396,4 @@ var d;
         return external;
     });
 });
+

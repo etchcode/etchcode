@@ -6,7 +6,7 @@
         </md-button>
 
         <h1>
-            <a class="md-button" href="/">
+            <a class="md-button" href="#/">
                 Etch Code
                 
                 <span ng-show="pageName">
@@ -17,8 +17,8 @@
         
         <div class="accountSection">
             <div class="loginButtons" ng-show="!user.loggedIn">
-                <md-button id="loginButton">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
-                <md-button id="signupButton">Signup</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
+                <md-button onclick="navigator.id.request()">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
+                <md-button ng-click="user.signup()" id="signupButton">Signup</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
             </div>
             
             <md-menu class="userMenu" ng-show="user.loggedIn">
@@ -26,15 +26,15 @@
                     <md-icon>account_circle</md-icon>
                 </md-button>
                 
-                <md-menu-content>
+                <md-menu-content ng-click="$mdMenu.hide()">
                     <md-menu-item>
-                        <md-button>
+                        <md-button href="#/account">
                             My Account
                         </md-button>
                     </md-menu-item>
-                    
+
                     <md-menu-item>
-                        <md-button id="signoutButton">Signout</md-button> <!-- navigator.id.logout must be done in the onclick handler of the element, not ng-click -->
+                        <md-button onclick="navigator.id.logout()">Signout</md-button> <!-- navigator.id.logout must be done in the onclick handler of the element, not ng-click -->
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>

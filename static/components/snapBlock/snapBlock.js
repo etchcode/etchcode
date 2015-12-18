@@ -42,8 +42,8 @@
 
                     elem.addEventListener("dragend", function(event){
                         elem.className = $elem[0].className.replace(/ md-accent/g, "");
-                    })
+                    });
                 }
-            }
-        })
+            };
+        });
 }());

@@ -14,7 +14,7 @@
                 var name = contentToGet[response.config.url];
             
                 _this[name] = $sce.trustAsHtml(marked(content));
-            });
+            }); // jshint ignore:line
         }
     }]);
 }());

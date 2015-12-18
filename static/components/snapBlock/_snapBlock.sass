@@ -1,0 +1,24 @@
+//.snapBlock-surrounder
+//    $block-top-height: 10px
+//    
+//    display: block
+//    height: $block-top-height
+//    
+//.pre-snapBlock
+//    @extend .snapBlock-surrounder
+//    margin-top: 5px // lets have some border between items
+//    
+//.snapBlock
+//    =block-background-image($type,$position)
+//        /* takes: type (function||block||reporter), position (top||bottom); sets image to that image
+//        content: url(/static/images/blocks/#{$type}_#{$position}.svg)
+//
+//    &.function::before
+//        @extend .pre-snapBlock
+//        +block-background-image("function", "top")
+//    &.block::before
+//        @extend .pre-snapBlock
+//        +block-background-image("block", "top")
+//    &.reporter::before
+//        @extend .pre-snapBlock
+//        +block-background-image("reporter", "top")

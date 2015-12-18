@@ -16,6 +16,6 @@
                         $scope.blocksListParent = newParent;
                     };
                 }]
-            }
-        })
+            };
+        });
 }());

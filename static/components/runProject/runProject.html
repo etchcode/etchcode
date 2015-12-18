@@ -5,11 +5,12 @@
 			<img class="minimize action" src="static/images/icons/minimize_white.svg" ng-click="show = false;" ng-show="large">
 		</div>
 
-        <iframe src="http://etchcodeusercontent.appspot.com/play/" class="player" id="player"></iframe>
+        <iframe ng-src="{{PLAYER_URL}}" class="player" id="player"></iframe>
 
         <md-button class="md-fab md-mini playPause" aria-label="Play/Pause project" ng-click="toggleStartStop()">
             <md-icon md-font-set="material-icons" ng-show="!running">flag</md-icon>
             <md-icon md-font-set="material-icons" ng-show="running">stop</md-icon>
         </md-button>
     </div>
+    
 </md-card>

@@ -25,7 +25,7 @@
             var PRODUCTION, DEVELOPMENT;
             
             (function(){
-                var type = "{{ server.type }}"; // grunt autofills this in with (production||development)
+                var type = "development"; // grunt autofills this in with (production||development)
                 if(type === "production"){
                     PRODUCTION = true;
                 }

@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, redirect
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, current_user
 
 from google.appengine.api import urlfetch
@@ -46,10 +46,8 @@ class User:
 		self.is_authenticated = True
 		self.is_anonymous = False
 
-		self.user_data = {
-			"profile": {
-				"username": user_object.username
-			}
+		self.profile = {
+			"username": user_object.username
 		}
 
 	def get_id(self):
@@ -174,7 +172,7 @@ def login():
 			if user:
 				login_user(user)
 
-				return json.dumps({"status": "success"}), 200
+				return redirect("/api/user")
 			else:
 				return json.dumps({"status": "failure", "message": "User does not exist"}), 401
 
@@ -186,4 +184,4 @@ def login():
 @login_required
 def user():
 	if request.method == "GET": # get request, so show the user data
-		return json.dumps(current_user.user_data)
+		return json.dumps(current_user.profile)

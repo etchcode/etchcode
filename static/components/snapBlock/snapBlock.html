@@ -1,4 +1,4 @@
-<div class="snapBlock" draggable="true">
+<div class="snapBlock {{ block.type }}" draggable="true">
 <!--
     <div ng-if="block.type == 'function'" ng-include="'images/function.svg'"></div>
     <div ng-if="block.type == 'reporter'" ng-include="'images/reporter.svg'"></div>
@@ -7,10 +7,5 @@
         {{ block.name }}
     </div>
 -->
-    
-    <img class="top" ng-src="'/images/block/' + block.type + '/top.svg'">
-    <img class="left" ng-src="'/images/block/' + block.type + '/left.svg'">
-    <span class="text">{{ block.name }}</span>
-    <img class="right" ng-src="'/images/block/' + block.type + '/right.svg'">
-    <img class="bottom" ng-src="'/images/block/' + block.type + '/bottom.svg'">
+    {{ block.name }}
 </div>
