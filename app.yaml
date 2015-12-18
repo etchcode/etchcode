@@ -5,6 +5,9 @@ api_version: 1
 threadsafe: yes
 
 handlers:
+- url: /.well-known
+  static_dir: .well-known/
+  
 - url: /static
   static_dir: static/
   
