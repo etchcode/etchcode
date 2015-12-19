@@ -1,5 +1,4 @@
-# Credits 
-====================
+# Credits
 
 ## This project is build on the heads of giants. We especially want to thank
 
@@ -11,18 +10,6 @@
 
 ## In addition, this project uses other open source libraries including
 1. AngularJS Toaster. Details and license at (https://github.com/jirikavi/AngularJS-Toaster).
-
-
-## In addition, this project uses graphic resources from
-
-1. Lee Dohm's white cursor graphic. License info and more at (https://github.com/lee-dohm/white-cursor).
-2. Sabine Wollender with the noun project for their edit icon. License info and more at (https://thenounproject.com/term/pencil/19250/). My copy is modified.
-3. P.J. Onori with the Noun Project for their close icon. License info and more at (https://thenounproject.com/term/delete/2910/). My copy is modified.
-4. Upload icon created by P.J. Onori from the Noun Project. License info and more at (https://thenounproject.com/icon/2904/file-options/). My copy is modified.
-5. Plus icon created by Kevin Kwok from the Noun Project. License info and more at (https://thenounproject.com/icon/8394/file-options/). My copy is modified.
-6. Remove icon created by John Chapman from the Noun Project. License info and more at (https://thenounproject.com/term/remove/8299/). My copy is modified.
-7. Minimize icon created by Sergey Krivoy from the Noun Project. License info and more at (https://thenounproject.com/search?q=minimize&i=66376). My copy is modified.
-8. Check icon by Austin Condiff from the Noun Project. License info and more at (https://thenounproject.com/search/?q=check&i=70958). My copy is modified.
 
 ## Etch default images include
 
