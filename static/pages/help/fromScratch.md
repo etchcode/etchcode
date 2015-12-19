@@ -4,7 +4,7 @@ We're glad you want to learn Etch Code. Etch Code was specifically designed to b
 
 In Etch, you write out your code instead of dragging blocks in. For instance, in Scratch a simple program to say "Hello World" would look like this:
 
-![Scratch Hello World](images/scratch_hello_world.png)
+![Scratch Hello World](static/images/scratch_hello_world.png)
 
 In Etch, the same program would be written
 
@@ -53,7 +53,7 @@ Blocks can be told numbers, strings, or the result of other blocks.
 
 In Scratch, you can have multiple parallel groups of blocks. For instance,
 
-![Scratch Hello World with Threading](images/scratch_hello_world_threading.png)
+![Scratch Hello World with Threading](static/images/scratch_hello_world_threading.png)
 
 In Etch, you can't write multiple groups side by side. Instead, you would write it like this:
 

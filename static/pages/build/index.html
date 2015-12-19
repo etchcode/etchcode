@@ -8,22 +8,22 @@
 
 		<title>Etch Code</title>
 
-        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
         <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css" />
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
         <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" />
+        <link rel="stylesheet" href="bower_components/google-material-icons/dist/material-icons-font.min.css" />
+        <link rel="stylesheet" href="bower_components/roboto-fontface/css/roboto-fontface.css" />
         <!-- endbower -->
-        
+
 		<link rel="stylesheet" href="/static/styles/vendor/github-markdown.css">
 		<link rel="stylesheet" href="/static/styles/vendor/cm-xq-light.css">
 
         <script>
             // make the globals PRODUCTION & DEVELOPMENT true where applicable
             var PRODUCTION, DEVELOPMENT;
-            
+
             (function(){
                 var type = "development"; // grunt autofills this in with (production||development)
                 if(type === "production"){
@@ -34,7 +34,7 @@
                 }
             }());
         </script>
-        
+
         <!-- bower:js -->
         <script src="bower_components/codemirror/lib/codemirror.js"></script>
         <script src="bower_components/angular/angular.js"></script>
@@ -49,15 +49,15 @@
         <script src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
         <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
         <!-- endbower -->
-        
+
         <script src="/static/scripts/other/etch.js"></script>
         <script src="https://login.persona.org/include.js"></script>
-        
+
         <script src="static/scripts/build/main.js"></script>
         <link rel="stylesheet" href="static/styles/build/main.css">
-		
+
 	</head>
-	
+
 	<body>
 		<toaster-container></toaster-container>
 

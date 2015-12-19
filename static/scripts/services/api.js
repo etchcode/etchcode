@@ -5,21 +5,23 @@
     .service("api", ["$http", function($http){
         var rootUrl = "/api/";
 
-        api_request = function(url){
+        api_request = function(url, base){
             // factory for creating requests
             if(!(this instanceof api_request)){ // if we weren't created with new keyword
                 return new api_request(url);
             }
-                        
+            base = base || rootUrl; // use rootUrl by default if none is provided
+            var raw_url = base + url;
+            
             this.get = function(data){
-                return $http.get(url, {data: data});
+                return $http.get(raw_url, {data: data});
             };
             this.post = function(data){
-                return $http.post(url, data);
+                return $http.post(raw_url, data);
             };
         };
         
-        login = api_request(rootUrl + "login", ["get"]);
-        this.login = login.post;
+        this.login = api_request("login").post;
+        this.logout = api_request("logout").post;
     }]);
 }());

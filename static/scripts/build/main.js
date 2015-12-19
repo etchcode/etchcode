@@ -1,3 +1,5 @@
+// this file isn't wrapped in a auto-executing function
+var debug = {}; // let scripts set this to break stuff out of their scopes
 (function(){/* globals nunjucks, heap */
 (function () {
 	"use strict";
@@ -316,6 +318,11 @@
                 $scope.$mdMenu = $mdMenu;
                 $scope.user = user.user;
                 
+                $scope.$watch("user.user", function(value){
+                    $scope.user = user.user;
+                    console.log(user.user);
+                });
+                                
                 $scope.sideNavOpen = false;
 
                 $scope.pageType = function(){
@@ -513,22 +520,24 @@
     .service("api", ["$http", function($http){
         var rootUrl = "/api/";
 
-        api_request = function(url){
+        api_request = function(url, base){
             // factory for creating requests
             if(!(this instanceof api_request)){ // if we weren't created with new keyword
                 return new api_request(url);
             }
-                        
+            base = base || rootUrl; // use rootUrl by default if none is provided
+            var raw_url = base + url;
+            
             this.get = function(data){
-                return $http.get(url, {data: data});
+                return $http.get(raw_url, {data: data});
             };
             this.post = function(data){
-                return $http.post(url, data);
+                return $http.post(raw_url, data);
             };
         };
         
-        login = api_request(rootUrl + "login", ["get"]);
-        this.login = login.post;
+        this.login = api_request("login").post;
+        this.logout = api_request("logout").post;
     }]);
 }());}());
 (function(){(function (){
@@ -923,41 +932,50 @@
 }());}());
 (function(){(function (){
     angular.module("etch")
-        
-    .service("user", ["$rootScope", "api", function($rootScope, api){
+
+    .service("user", ["$rootScope", "$window", "api", function($rootScope, $window, api){
         var _this = this;
-        
+
         // user code
         defaultUserObject = { // the default template user object
             loggedIn: false,
             profile: {}
         };
         _this.user = angular.copy(defaultUserObject); // use angular-copy to copy the properties and not a reference
-        
-        // logout/logout code: We can't just use ng-click because of popup blockers, so they are as onclick handlers. <https://developer.mozilla.org/en-US/Persona/Quick_Setup#Step_2_Add_login_and_logout_buttons>
-        
-        navigator.id.watch({
-            loggedInUser: null, // at some time we should have session management and remember people
-            onlogin: function(assertion){
-                $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
-                    api.login(assertion).then(function success(response){
-                        _this.user.loggedIn = true;
-                        _this.user.profile = response.data;
-                        
-                    },function error(response){
-                        navigator.id.logout(); 
-                    });
-                });
-            },
-            onlogout: function(){
-                $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
-                    _this.user = angular.copy(defaultUserObject); // use ng-copy to copy props and not a ref
-                    console.info("logout");
-                });
-            }
-        });
+
+        // logout/logout code: We can't just use ng-click because of popup blockers,
+		//so they are as onclick handlers. <https://developer.mozilla.org/en-US/Persona/Quick_Setup#Step_2_Add_login_and_logout_buttons>
+
+		if(navigator.id){
+	        navigator.id.watch({
+	            loggedInUser: null, // at some time we should have session management and remember people
+	            onlogin: function(assertion){
+	                $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
+	                    api.login(assertion).then(function success(response){
+	                        _this.user.loggedIn = true;
+	                        _this.user.profile = response.data;
+
+	                    },function error(response){
+	                        navigator.id.logout();
+	                    });
+	                });
+	            },
+	            onlogout: function(){
+	                $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
+	                    // refresh the page to clear any settings that we might have
+	                    api.logout().then(function success(response){
+	                        $window.location.reload();
+	                    });
+	                });
+	            }
+	        });
+		}
+		else{
+			console.error("navigator.id is undefined. Check to ensure that mozilla persona is loaded");
+		}
     }]);
-}());}());
+}());
+}());
 (function(){(function () {
     angular.module("etch")
 
