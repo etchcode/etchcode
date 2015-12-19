@@ -9,10 +9,12 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-replace");
     grunt.loadNpmTasks("grunt-copy-to");
     grunt.loadNpmTasks("grunt-gae");
-    
+
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
+    var ETCHCODEUSERCONTENT_PATH = "../etchcodeusercontent/";
     var JAVASCRIPT_DIRECTORIES = [ // we have to use a list so that it happens in the right order
+        BASE_PATH + "scripts/debug.js",
         BASE_PATH + "scripts/main.js", // ensure that this main.js concatenated first
         BASE_PATH + "pages/**/*.js", // then the pages
         BASE_PATH + "components/**/*.js", // the components
@@ -27,7 +29,7 @@ module.exports = function(grunt){
     var SASS_DIRECTORIES = [ // we could avoid this but it is faster to specify exact directories
         BASE_PATH + "**/*.sass"
     ];
-    
+
     grunt.initConfig({
         sass: {
             dev: {
@@ -72,9 +74,14 @@ module.exports = function(grunt){
         concat_sourcemap: {
             options: {
                 process: function(src, path){
-                    return "(function(){" + src + "}());";
+                    if(path !== BASE_PATH + "scripts/debug.js"){
+                        return "(function(){" + src + "}());";
+                    }
+                    else{
+                        return src;
+                    }
                 },
-                sourceRoot: "/"
+                sourcesContent: true
             },
             dev: {
                 files: {
@@ -120,7 +127,7 @@ module.exports = function(grunt){
                     dest: "build/",
                     expand: true
                 }],
-                
+
                 options: {
                     ignore: [
                         "build{,/**/*}", // let's not copy ourselves
@@ -144,12 +151,23 @@ module.exports = function(grunt){
                     path: "build/"
                 }
             },
-            run: {
+            primary: {
                 action: "run",
                 options: {
-                    args: {
-                        port: 9090
-                    }
+                    args: {port: 9090, admin_port: 9091}
+                }
+            },
+            usercontent: {
+                action: "run",
+                options: {
+                    args: {port: 9000, admin_port: 9001},
+                    path: ETCHCODEUSERCONTENT_PATH
+                }
+            },
+            kill_usercontent: {
+                action: "kill",
+                options: {
+                    path: ETCHCODEUSERCONTENT_PATH
                 }
             }
         },
@@ -162,12 +180,12 @@ module.exports = function(grunt){
         watch: {
             sass: {
                 files: SASS_DIRECTORIES,
-                tasks: ["sass", "postcss:dist"],
+                tasks: ["sass:dev", "postcss:dev"],
                 options: {spawn: false}
             },
             js: {
                 files: JAVASCRIPT_DIRECTORIES,
-                tasks: ["concurrent:js1"],
+                tasks: ["concurrent:js_only_1"],
                 options: {spawn: false}
             },
             html: {
@@ -177,20 +195,26 @@ module.exports = function(grunt){
             }
         },
         concurrent: {
+            options: {
+                logConcurrentOutput: true
+            },
+
             dev_1: ["sass:dev", "jshint:dev"],
             dev_2: ["postcss:dev", "concat_sourcemap:dev"],
-            
+
             production_1: ["sass:production", "jshint:production"],
             production_2: ["postcss:production", "concat_sourcemap:production"],
-            
-            js_only_1: ["jshint:all", "concat_sourcemap"],
+
+            js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
+
+            all_servers: ["gae:usercontent", "gae:primary"]
         }
     });
-    
+
     grunt.registerTask("development", ["concurrent:dev_1", "concurrent:dev_2", "replace:development"]);
     grunt.registerTask("production", ["copyto:dev_to_build", "concurrent:production_1", "concurrent:production_2", "replace:production", "gae:deploy"]);
-    
-    grunt.registerTask("dev:run", ["gae:run"]);
-    
+    grunt.registerTask("local_server", ["concurrent:all_servers"]);
+
     grunt.registerTask("default", ["development"]);
+    grunt.registerTask("k", ["gae:kill_usercontent"]);
 };
