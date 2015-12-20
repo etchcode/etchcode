@@ -22,6 +22,7 @@
     "grunt-gae": "^0.2.4",
     "grunt-postcss": "^0.7.1",
     "grunt-replace": "^0.11.0",
+    "grunt-scratchblock": "file:///Users/DanielFranklin/Desktop/etch/scratchblock",
     "grunt-string-replace": "^1.2.0",
     "jsdom": "^7.2.1"
   }

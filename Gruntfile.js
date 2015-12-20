@@ -9,6 +9,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-replace");
     grunt.loadNpmTasks("grunt-copy-to");
     grunt.loadNpmTasks("grunt-gae");
+	grunt.loadNpmTasks("grunt-scratchblock");
 
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
@@ -144,6 +145,13 @@ module.exports = function(grunt){
                 }
             },
         },
+		scratchblock: { // compiles stuff inside of <scratch></scratch> tags into html
+			all: {
+				files: [
+					{src: "static/pages/help/fromScratch.html", dest: "", ext: ".built.html"}
+				]
+			}
+		},
         gae: {
             deploy: {
                 action: "update",

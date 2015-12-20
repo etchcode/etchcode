@@ -58,3 +58,5 @@ node_modules/
 .sass-cache/
 bower_components/
 build/
+*/build/
+*.built.*
