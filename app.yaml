@@ -11,17 +11,17 @@ handlers:
   upload: letsencrypt_key.txt
   mime_type: text/plain
   secure: always
-  
+
 - url: /static
   static_dir: static/
   secure: always
-  
+
 - url: /bower_components
   static_dir: bower_components/
   secure: always
-  
+
 - url: /api/.+
-  script: api.app
+  script: backend.api.app
   secure: always
 
 - url: /
