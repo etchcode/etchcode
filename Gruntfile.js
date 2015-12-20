@@ -10,6 +10,8 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-copy-to");
     grunt.loadNpmTasks("grunt-gae");
 	grunt.loadNpmTasks("grunt-scratchblock");
+	grunt.loadNpmTasks("grunt-markdown");
+	// grunt.loadTasks("../scratchblock/tasks/");
 
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
@@ -145,10 +147,24 @@ module.exports = function(grunt){
                 }
             },
         },
+		markdown: {
+			all: {
+				files: [{
+					expand: true,
+					src: ["static/*.md"],
+					ext: ".html"
+				}],
+				options: {
+					markdownOptions: {
+						gfm: true
+					}
+				}
+			}
+		},
 		scratchblock: { // compiles stuff inside of <scratch></scratch> tags into html
 			all: {
 				files: [
-					{src: "static/pages/help/fromScratch.html", dest: "", ext: ".built.html"}
+					{src: ["static/pages/help/*.html"], dest: "", ext: ".built.html"}
 				]
 			}
 		},
@@ -169,12 +185,6 @@ module.exports = function(grunt){
                 action: "run",
                 options: {
                     args: {port: 9000, admin_port: 9001},
-                    path: ETCHCODEUSERCONTENT_PATH
-                }
-            },
-            kill_usercontent: {
-                action: "kill",
-                options: {
                     path: ETCHCODEUSERCONTENT_PATH
                 }
             }
@@ -200,18 +210,22 @@ module.exports = function(grunt){
                 files: "static/pages/index.html",
                 tasks: ["replace:development"],
                 options: {spawn: false}
-            }
+            },
+			markdown: {
+				files: "static/*.md",
+				tasks: ["markdown:all", "scratchblock:all"]
+			}
         },
         concurrent: {
             options: {
                 logConcurrentOutput: true
             },
 
-            dev_1: ["sass:dev", "jshint:dev"],
-            dev_2: ["postcss:dev", "concat_sourcemap:dev"],
+            dev_1: ["sass:dev", "jshint:dev", "markdown:all"],
+            dev_2: ["postcss:dev", "concat_sourcemap:dev", "scratchblock:all"],
 
-            production_1: ["sass:production", "jshint:production"],
-            production_2: ["postcss:production", "concat_sourcemap:production"],
+            production_1: ["sass:production", "jshint:production", "markdown:all"],
+            production_2: ["postcss:production", "concat_sourcemap:production", "scratchblock:all"],
 
             js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
 
@@ -224,5 +238,4 @@ module.exports = function(grunt){
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
 
     grunt.registerTask("default", ["development"]);
-    grunt.registerTask("k", ["gae:kill_usercontent"]);
 };
