@@ -221,11 +221,11 @@ module.exports = function(grunt){
                 logConcurrentOutput: true
             },
 
-            dev_1: ["sass:dev", "jshint:dev", "markdown:all"],
-            dev_2: ["postcss:dev", "concat_sourcemap:dev", "scratchblock:all"],
+            dev_1: ["sass:dev", "jshint:dev"],//, "markdown:all"],
+            dev_2: ["postcss:dev", "concat_sourcemap:dev"],//, "scratchblock:all"],
 
-            production_1: ["sass:production", "jshint:production", "markdown:all"],
-            production_2: ["postcss:production", "concat_sourcemap:production", "scratchblock:all"],
+            production_1: ["sass:production", "jshint:production"],//, "markdown:all"],
+            production_2: ["postcss:production", "concat_sourcemap:production"],//, "scratchblock:all"],
 
             js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
 
