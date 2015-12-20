@@ -5,6 +5,8 @@ I'm assuming that you're on a mac/linux computer. If not, you will need to look 
 First, install the Google App Engine [Python SDK](https://cloud.google.com/appengine/downloads). Then, install [Node.js](http://nodejs.org). After installing node, use node to globally install Grunt and Bower. (open a terminal, type `sudo npm install -g grunt` press enter, and repeat for `sudo npm install -g bower`). Grunt is a task runner that we use to automate combinations of actions such as building all the files
 and deploying to Google App Engine. Bower is a package manager for javascript, css, and other web stuff.
 
+Next, use npm and bower to install the packages required. The folders `node_modules/` and `bower_components/` aren't synced through git, so you will need to install them all yourself. The package names are all specified in `bower.json` and `package.json`. `bower install` will install all the packages in `bower.json`, and `npm install` will install all the packages in `package.json`.
+
 You will the `etchcode`, `etchcodeusercontent` and `scratchblock` repositories in the etchcode organization, and they all must have the same parent structure and keep their names the same as the repository names. My computer is set up like this:
 	- etch/
 		- etchcode/
