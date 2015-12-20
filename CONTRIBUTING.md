@@ -1,3 +1,21 @@
+# CONTRIBUTING
+## Setting up your computer
+I'm assuming that you're on a mac/linux computer. If not, you will need to look up how to do all these steps yourself. Sorry.
+
+First, install [Node.js](http://nodejs.org). Then, use node to globally install Grunt and Bower. (open a terminal, type `sudo npm install -g grunt` press enter, and repeat for `sudo npm install -g bower`). Grunt is a task runner that we use to automate combinations of actions such as building all the files
+and deploying to Google App Engine. Bower is a package manager for javascript, css, and other web stuff.
+
+You will the `etchcode`, `etchcodeusercontent` and `scratchblock` repositories in the etchcode organization, and they all must have the same parent structure and keep their names the same as the repository names. My computer is set up like this:
+	- etch/
+		- etchcode/
+		- etchcodeusercontent/
+		- scratchblock/
+
+## Important commands
+The command `grunt watch` in the etchcode repository will listen for changes to the project files and execute the commands that need to be executed when there are changes. If you made changes without starting `grunt watch`, you can enter `grunt development` to run all the commands on all of the files. `grunt production` will execute all the commands that need to be run to set up the production version of etchcode at etchcode.org in the `build/` directory and then upload the `build/` directory to google app engine.
+
+Use `bower install --save {insert package name}` to install a new package (such as angularjs or normalize.css). `bower search {keyword}` will search for packages. After installing new packages, run `grunt wiredep` to add the installed packages to the `index.html` file. Whenever possible use bower instead of just downloading the css/js, as it makes updating easier.
+
 ## SSL through letsencrypt.org
 Daniel has a digitalocean ubuntu server with letsencrypt set up (the mac version is very buggy).
 
@@ -7,7 +25,7 @@ and the challenge file name goes into app.yaml (replace the existing path).
 
 After answering a few more questions you will be given a few files.
 
-The public key file is just `fullchain.pem` and the private key file is privkey.pem and must be decrypted using `sudo openssl rsa -inform pem -in privkey.pem -outform pem | less` 
+The public key file is just `fullchain.pem` and the private key file is privkey.pem and must be decrypted using `sudo openssl rsa -inform pem -in privkey.pem -outform pem | less`
 (the last bit pipes it to less which will display it.)
 
 Copypaste the public and private key files into a new certificate at https://console.cloud.google.com/appengine/settings/certificates?project=etchcode&moduleId=default. Save, and
