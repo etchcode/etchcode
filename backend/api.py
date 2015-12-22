@@ -148,14 +148,13 @@ def parse():
 
         scripts = json.loads(json.loads(request.data.decode())["scripts"])
         variables = ["hi"]
-        sprites = json.loads(json.loads(request.data.decode())[
-                                 "sprites"])
+        sprites = json.loads(json.loads(request.data.decode())["sprites"])
         # don't use request.form because ng transmits data as json
 
         parsed = {}
         for name in scripts:
-            parsed[name] = translator.translate(scripts[name],
-                sprites, variables)  # translate it
+            parsed[name] = translator.translate(scripts[name], # translate it
+                                                sprites, variables)
 
         return Response(json.dumps(parsed), content_type="application/json")
 
