@@ -156,14 +156,14 @@ def parse():
 
         parsed = {}
         for name in scripts:
-            parsed[name] = translator.translate(scripts[name], # translate it
+            parsed[name] = translator.translate(scripts[name],  # translate it
                                                 sprites, variables)
 
         return Response(json.dumps(parsed), content_type="application/json")
 
     except Exception as error:
         return Response(json.dumps({"error": str(error)}),
-            content_type="application/json", status="500")
+                        content_type="application/json", status="500")
 
 
 @app.route("/api/login", methods=["POST"])
@@ -175,7 +175,8 @@ def login():
 
     response = urlfetch.fetch(url='https://verifier.login.persona.org/verify',
                               payload=urllib.urlencode({'assertion': assertion,
-                              'audience': URL}), method=urlfetch.POST)
+                                                       'audience': URL}),
+                              method=urlfetch.POST)
 
     # Did the verifier respond?
     if response.status_code == 200:
@@ -192,7 +193,8 @@ def login():
                 return redirect("/api/user.json")
             else:
                 return json.dumps({
-                    "status": "failure", "message": "User does not exist"}), 401
+                    "status": "failure",
+                    "message": "User does not exist"}), 401
 
     # Oops, something failed. Abort.
     return json.dumps({"status": "failure"}), 500

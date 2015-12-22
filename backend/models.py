@@ -1,9 +1,12 @@
+"""Models for the appengine database."""
 from google.appengine.ext import ndb
 
 
-class User(ndb.Model):  # a user of etch
-    email = ndb.StringProperty(required=True) # login indentifier
-    active = ndb.BooleanProperty(required=True,default=True) # are they allowed to log in?
+class User(ndb.Model):
+    """A user of etch stored in ndb."""
+    email = ndb.StringProperty(required=True)  # login indentifier
+    # active controlls whether can log in
+    active = ndb.BooleanProperty(required=True, default=True)
 
     # profile
     username = ndb.StringProperty(required=True)
