@@ -177,6 +177,11 @@ module.exports = function(grunt){
                 }
             }
         },
+		shell: {
+			python_lint: {
+				command: "flake8"
+			}
+		},
         wiredep: {
             target: {
                 src: "static/pages/index.html",
@@ -202,6 +207,10 @@ module.exports = function(grunt){
 			markdown: {
 				files: "static/*.md",
 				tasks: ["markdown:all", "scratchblock:all"]
+			},
+			python: {
+				files: "**/*.py",
+				tasks: ["shell:python_lint"]
 			}
         },
         concurrent: {
@@ -210,10 +219,10 @@ module.exports = function(grunt){
             },
 
             dev_1: ["sass:dev", "jshint:dev"],//, "markdown:all"],
-            dev_2: ["postcss:dev", "concat_sourcemap:dev"],//, "scratchblock:all"],
+            dev_2: ["postcss:dev", "concat_sourcemap:dev", "shell:python_lint"],//, "scratchblock:all"],
 
             production_1: ["sass:production", "jshint:production"],//, "markdown:all"],
-            production_2: ["postcss:production", "concat_sourcemap:production"],//, "scratchblock:all"],
+            production_2: ["postcss:production", "concat_sourcemap:production", "shell:python_lint"],//, "scratchblock:all"],
 
             js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
 
