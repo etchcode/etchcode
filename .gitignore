@@ -60,3 +60,4 @@ bower_components/
 build/
 */build/
 *.built.*
+*.map.*
