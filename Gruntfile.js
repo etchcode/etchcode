@@ -1,17 +1,5 @@
 module.exports = function(grunt){
-    grunt.loadNpmTasks("grunt-contrib-sass");
-    grunt.loadNpmTasks("grunt-postcss");
-    grunt.loadNpmTasks("grunt-wiredep");
-    grunt.loadNpmTasks("grunt-contrib-watch");
-    grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-concat-sourcemap");
-    grunt.loadNpmTasks("grunt-concurrent");
-    grunt.loadNpmTasks("grunt-replace");
-    grunt.loadNpmTasks("grunt-copy-to");
-    grunt.loadNpmTasks("grunt-gae");
-	grunt.loadNpmTasks("grunt-scratchblock");
-	grunt.loadNpmTasks("grunt-markdown");
-	// grunt.loadTasks("../scratchblock/tasks/");
+	require("load-grunt-tasks")(grunt);
 
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
