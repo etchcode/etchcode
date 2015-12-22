@@ -21,7 +21,14 @@
 	                $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
 	                    api.login(assertion).then(function success(response){
 	                        _this.user.loggedIn = true;
-	                        _this.user.profile = response.data;
+
+                            // make each prop of response a pop of user
+                            var data = response.data;
+	                        for(var prop in data){
+                                if (data.hasOwnProperty(prop)){
+                                    _this.user[prop] = data[prop];
+                                }
+                            }
 
 	                    },function error(response){
 	                        navigator.id.logout();

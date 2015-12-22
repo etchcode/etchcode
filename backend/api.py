@@ -40,18 +40,21 @@ login_manager.init_app(app)
 
 class User:
     """
-    Class used by Flask login. We inherit almost everything
+    Class used by Flask login. Most of this stuff is Flask defaults
     """
 
     def __init__(self, user_object):
         self.id = int(user_object.key.id())
         self.is_active = user_object.active
-        self.is_authenticated = True
-        self.is_anonymous = False
+        self.get_projects = user_object.get_projects
 
         self.profile = {
             "username": user_object.username
         }
+
+        # Defaults for all authenticated users
+        self.is_authenticated = True
+        self.is_anonymous = False
 
     def get_id(self):
         try:
@@ -186,7 +189,7 @@ def login():
             if user:
                 login_user(user)
 
-                return redirect("/api/user")
+                return redirect("/api/user.json")
             else:
                 return json.dumps({
                     "status": "failure", "message": "User does not exist"}), 401
@@ -204,8 +207,11 @@ def logout():
     return json.dumps({"status": "success"}), 200
 
 
-@app.route("/api/user", methods=["GET"])
+@app.route("/api/user.json", methods=["GET"])
 @login_required
 def user():
     if request.method == "GET":  # get request, so show the user data
-        return json.dumps(current_user.profile)
+        return json.dumps({
+            "profile": current_user.profile,
+            "projects": current_user.get_projects()
+        })
