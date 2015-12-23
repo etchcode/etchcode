@@ -21,6 +21,7 @@ module.exports = function(grunt){
 
     var JAVASCRIPT_DIRECTORIES = [ // we have to use a list so that it happens in the right order
         "scripts/debug.js",
+        "scripts/source_map_exception_handler.js", // this must come first as it is loaded as a module
         "scripts/main.js", // ensure that this main.js concatenated first
         "pages/**/*.js", // then the pages
         "components/**/*.js", // the components
