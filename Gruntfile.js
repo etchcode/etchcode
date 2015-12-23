@@ -4,22 +4,50 @@ module.exports = function(grunt){
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
     var ETCHCODEUSERCONTENT_PATH = "../etchcodeusercontent/";
+
+    function Prepender(base){
+        return function prepender(file){
+            return base + file;
+        };
+    }
+    function Appender(base){
+        return function appender(file){
+            return file + base;
+        };
+    }
+    var prepend_base = Prepender(BASE_PATH);
+    var prepend_build = Prepender(BUILD_PATH);
+
     var JAVASCRIPT_DIRECTORIES = [ // we have to use a list so that it happens in the right order
-        BASE_PATH + "scripts/debug.js",
-        BASE_PATH + "scripts/main.js", // ensure that this main.js concatenated first
-        BASE_PATH + "pages/**/*.js", // then the pages
-        BASE_PATH + "components/**/*.js", // the components
-        BASE_PATH + "scripts/filters/**/*.js", // filters
-        BASE_PATH + "scripts/services/**/*.js", // services
-        BASE_PATH + "scripts/constants/**/*.js", // constants
-        BASE_PATH + "scripts/other/**/*.js" // other
-    ];
-    var PRODUCTION_JAVASCRIPT_DIRECTORIES = JAVASCRIPT_DIRECTORIES.map(function(dir){
-        return BUILD_PATH + dir;
-    });
+        "scripts/debug.js",
+        "scripts/main.js", // ensure that this main.js concatenated first
+        "pages/**/*.js", // then the pages
+        "components/**/*.js", // the components
+        "scripts/filters/**/*.js", // filters
+        "scripts/services/**/*.js", // services
+        "scripts/constants/**/*.js", // constants
+        "scripts/other/**/*.js" // other
+    ].map(prepend_base);
+
     var SASS_DIRECTORIES = [ // we could avoid this but it is faster to specify exact directories
         BASE_PATH + "**/*.sass"
     ];
+
+    function concurrent_common_with_enviroment(enviroment, concurrent_number){
+        var concurrent_common = [
+            ["sass", "jshint"], //concurrent 1
+            ["postcss", "concat_sourcemap", "htmllint:all"] // concurrent 2
+        ]; // used in both dev and propduction concurrents
+
+        return concurrent_common[concurrent_number - 1].map(function(task_name){
+            if(task_name.indexOf(":") == -1){
+                return task_name + ":" + enviroment;
+            }
+            else{
+                return task_name;
+            }
+        });
+    }
 
     grunt.initConfig({
         sass: {
@@ -60,7 +88,19 @@ module.exports = function(grunt){
         },
         jshint: {
             dev: JAVASCRIPT_DIRECTORIES,
-            production: PRODUCTION_JAVASCRIPT_DIRECTORIES
+            production: JAVASCRIPT_DIRECTORIES.map(prepend_build)
+        },
+        htmllint: {
+            main_html: ["static/pages/index.html"],
+            all: ["static/**/*.html", "static/*.html"],
+            options: {
+                ignore: [
+                    "Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.",
+                    "Element “head” is missing a required instance of child element “title”.",
+                    // custom attrs/elems
+                    /(Attribute|Element) “[a-zA-Z0-9-]+?” not allowed (on|as (|a )child of) element “[a-zA-Z0-9-]+?” (at this point|in this context)\./
+                ]
+            }
         },
         concat_sourcemap: {
             options: {
@@ -81,7 +121,7 @@ module.exports = function(grunt){
             },
             production: {
                 files: {
-                    "build/static/scripts/build/main.js": PRODUCTION_JAVASCRIPT_DIRECTORIES
+                    "build/static/scripts/build/main.js": JAVASCRIPT_DIRECTORIES.map(prepend_build)
                 }
             }
         },
@@ -98,7 +138,7 @@ module.exports = function(grunt){
                     dest: "build/static/pages/build/index.html"
                 }]
             },
-            development: {
+            dev: {
                 options: {
                     patterns: [{
                         match: /{{ server.type }}/,
@@ -196,14 +236,18 @@ module.exports = function(grunt){
                 tasks: ["concurrent:js_only_1"],
                 options: {spawn: false}
             },
-            html: {
+            main_html: {
                 files: "static/pages/index.html",
-                tasks: ["replace:development"],
+                tasks: ["htmllint:main_html", "replace:development"],
                 options: {spawn: false}
+            },
+            all_html: {
+                files: "static/**/*.html",
+                tasks: ["htmllint:all"]
             },
             markdown: {
                 files: "static/*.md",
-                tasks: ["markdown:all", "scratchblock:all"]
+                tasks: ["markdown:all"]//, "scratchblock:all"]
             }
         },
         concurrent: {
@@ -211,11 +255,11 @@ module.exports = function(grunt){
                 logConcurrentOutput: true
             },
 
-            dev_1: ["sass:dev", "jshint:dev"],//, "markdown:all"],
-            dev_2: ["postcss:dev", "concat_sourcemap:dev"],//, "scratchblock:all"],
+            dev_1: concurrent_common_with_enviroment("dev", 1),
+            dev_2: concurrent_common_with_enviroment("dev", 2),
 
-            production_1: ["sass:production", "jshint:production"],//, "markdown:all"],
-            production_2: ["postcss:production", "concat_sourcemap:production"],//, "scratchblock:all"],
+            production_1: concurrent_common_with_enviroment("prod", 1),
+            production_2: concurrent_common_with_enviroment("prod", 2),
 
             js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
 
@@ -223,8 +267,11 @@ module.exports = function(grunt){
         }
     });
 
-    grunt.registerTask("development", ["concurrent:dev_1", "concurrent:dev_2", "replace:development"]);
-    grunt.registerTask("production", ["copyto:dev_to_build", "concurrent:production_1", "concurrent:production_2", "replace:production", "gae:deploy"]);
+    grunt.registerTask("development", ["concurrent:dev_1", "concurrent:dev_2",
+                       "replace:dev"]);
+    grunt.registerTask("production", ["copyto:dev_to_build",
+                       "concurrent:production_1", "concurrent:production_2",
+                       "replace:production", "gae:deploy"]);
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
 
     grunt.registerTask("default", ["development"]);
