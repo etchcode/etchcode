@@ -174,12 +174,12 @@ def blocks():
     # TODO: This should return docs on the blocks
     from etchParser import blocks
 
-    return Response(json.dumps({
+    return json.dumps({
         "closeSelf": blocks.closeSelf,
         "snapNames": blocks.snapNames,
         "startChunkBlocks": blocks.startChunkBlocks,
         "abbreviations": blocks.abriviations
-    }), content_type="application/json")
+    })
 
 
 @app.route("/api/parse", methods=["POST"])
@@ -202,7 +202,7 @@ def parse():
             parsed[name] = translator.translate(scripts[name],  # translate it
                                                 sprites, variables)
 
-        return Response(json.dumps(parsed), content_type="application/json")
+        return Response(json.dumps(parsed))
 
     except Exception as error:
         return Response(json.dumps({"error": str(error)}),
