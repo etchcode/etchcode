@@ -12,7 +12,7 @@
             }
             base = base || rootUrl; // use rootUrl by default if none is provided
             var raw_url = base + url;
-            
+
             this.get = function(data){
                 return $http.get(raw_url, {data: data});
             };
@@ -20,8 +20,12 @@
                 return $http.post(raw_url, data);
             };
         };
-        
+
         this.login = api_request("login").post;
         this.logout = api_request("logout").post;
+
+        var project_req = api_request("project");
+        this.fetch_project = project_req.get;
+        this.change_project = project_req.post;
     }]);
 }());

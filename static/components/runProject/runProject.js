@@ -16,12 +16,12 @@ var $e;
                     $scope.show = true;
                     $scope.large = false; // default view is inline but if this is true the editor will be fullscreen
                     $scope.running = false;
-                    
+
                     $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "https://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
 
                     $e = $element;
                     var player = $element[0].getElementsByClassName("player")[0];
-                    
+
                     player.addEventListener("load", function(){
                         //listen for when the player is loaded and update whether or not it is updated
                         $scope.$apply(function(){
@@ -37,7 +37,7 @@ var $e;
                                 "action": "loadString",
                                 "string": toRun
                             }, $scope.PLAYER_URL); // this postMessage must be done once the iframe is loaded
-                            
+
                         }
 
                         if($scope.loaded){ // if the iframe is loaded
@@ -46,7 +46,7 @@ var $e;
                         else{ // otherwise
                             player.onload = function(){ //with .onload we will only have one run waiting
                                 $scope.$apply(function(){
-                                    run(xml); // run it when loaded                                    
+                                    run(xml); // run it when loaded
                                 });
                             };
                         }
@@ -55,11 +55,11 @@ var $e;
                     $scope.stop = function(){
                         player.contentWindow.postMessage({
                             "action": "stop"
-                        }, "http://etchcodeusercontent.appspot.com/player"); // this postMessage must be done once the iframe is loaded
+                        }, $scope.PLAYER_URL); // this postMessage must be done once the iframe is loaded
                     };
 
                     // the run button itself
-                    $scope.toggleStartStop = function(){                        
+                    $scope.toggleStartStop = function(){
                         if($scope.running) {
                             $scope.stop();
                             $scope.running = false;

@@ -6,14 +6,14 @@
         </md-button>
     </h3>
 
-    <md-grid-list md-row-height="1:1" md-gutter="15px" 
+    <md-grid-list md-row-height="1:1" md-gutter="15px"
     md-cols="4"
     md-cols-sm="1"
     md-cols-md="2"
     md-cols-lg="3"
     md-cols-gt-lg="4"
     >
-    <md-grid-tile ng-repeat="sprite in sprites.all()"> <!-- sprites.all() includes sprites.list, sprites.general, and sprites.background -->
+    <md-grid-tile ng-repeat="sprite in sprites.all()"> <!-- all() includes sprites.list, sprites.general, and sprites.background -->
         <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
             <div class="footer">
                 <span class="label">{{ sprite.id }}</span>

@@ -1,15 +1,21 @@
 <div class="editor-page" ng-controller="editorController as editor" layout="row">
     <div layout="column" flex="40" class="columnLeft">
-        <md-input-container class="pageBlock">
-            <label>Project Name</label>
-            <input ng-model="sprites.general.name" type="text">
-        </md-input-container>
+        <div layout="row" class="topRow">
+            <md-input-container class="project-name">
+                <label>Project Name</label>
+                <input ng-model="sprites.general.name" type="text">
+            </md-input-container>
+
+            <div class="save-project">
+                <md-button class="save-button md-raised" ng-click="project.save()">Save</md-button>
+            </div>
+        </div>
 
         <run-project></run-project>
 
-        <sprites-list class="pageBlock"></sprites-list>
+        <sprites-list></sprites-list>
     </div>
 
-    <blocks-list flex="15" class="pageBlock"></blocks-list>
-    <editor flex="45" class="pageBlock"></editor>
+    <blocks-list flex="15"></blocks-list>
+    <editor flex="45"></editor>
 </div>

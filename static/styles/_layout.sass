@@ -54,7 +54,7 @@ hr
             width: calc(100% - 16px)
             padding-right: 0
 
-    nav 
+    nav
         height: 100%
 
         .upper, .lower
@@ -66,42 +66,6 @@ md-content
     max-width: 800px
     margin: 0 auto 0 auto
     padding-top: 0
-    
-//--------------------------- Editor Page -------------------------------
-.editor-page
-    .columnLeft
-        overlow: auto
-        height: 100%
-        
-    .spriteTile
-        width: 100%
-        height: 100%
-        display: flex
-        flex-direction: column-reverse // align footer to bottom
-
-        .footer
-            overflow: hidden
-            height: 15px
-            padding: 15px
-            padding-right: 0px
-
-            .label
-                width: calc(100% - 24px)
-            
-    .runProject
-        margin-right: 20px
-    
-    editor
-        position: fixed
-        height: calc(100% - #{$navigation-height})
-        width: 100% // with position:fixed it becomes 0 by default
-        
-        .editor
-            height: 100% // so that it will expand to fill it's parent which is sized using fill-remaining-height
-            position: relative
-
-            .CodeMirror
-                height: 100% // same reason parent has height:100%
 
 // ----------------------------- Docs ---------------------------------
 .docsPage

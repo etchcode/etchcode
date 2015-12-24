@@ -9,12 +9,7 @@
             controller: ["$scope", "$location", "$rootScope", "$mdMenu", "user", function($scope, $location, $rootScope, $mdMenu, user){
                 $scope.$mdMenu = $mdMenu;
                 $scope.user = user.user;
-                
-                $scope.$watch("user.user", function(value){
-                    $scope.user = user.user;
-                    console.log(user.user);
-                });
-                                
+
                 $scope.sideNavOpen = false;
 
                 $scope.pageType = function(){
