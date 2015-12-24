@@ -119,6 +119,49 @@ def error401(e):
         "message": "Access Forbidden"}), 401
 
 
+@app.route("/api/login", methods=["POST"])
+def login():
+    """Get: mozilla persona token
+    Sets: user session
+    """
+    assertion = request.data.decode()
+
+    response = urlfetch.fetch(url='https://verifier.login.persona.org/verify',
+                              payload=urllib.urlencode({'assertion': assertion,
+                                                       'audience': URL}),
+                              method=urlfetch.POST)
+
+    # Did the verifier respond?
+    if response.status_code == 200:
+        # Parse the response
+        verification_data = json.loads(response.content)
+
+        # Check if the assertion was valid
+        if verification_data['status'] == 'okay':
+            user = load_user_by_email(verification_data["email"])
+
+            if user:
+                login_user(user)
+
+                return redirect("/api/user")
+            else:
+                return json.dumps({
+                    "status": "failure",
+                    "message": "User does not exist"}), 401
+
+    # Oops, something failed. Abort.
+    return json.dumps({"status": "failure"}), 500
+
+
+@app.route("/api/logout", methods=["POST"])
+@login_required
+def logout():
+    logout_user()
+    print("logging out")
+
+    return json.dumps({"status": "success"}), 200
+
+
 # routes
 @app.route("/api/blocks.json")
 def blocks():
@@ -139,7 +182,7 @@ def blocks():
     }), content_type="application/json")
 
 
-@app.route("/api/parse.json", methods=["POST"])
+@app.route("/api/parse", methods=["POST"])
 def parse():
     """Get: request paramater scripts with list of script object as generated
     by services/render.js that is json encoded
@@ -166,50 +209,7 @@ def parse():
                         content_type="application/json", status="500")
 
 
-@app.route("/api/login", methods=["POST"])
-def login():
-    """Get: mozilla persona token
-    Sets: user session
-    """
-    assertion = request.data.decode()
-
-    response = urlfetch.fetch(url='https://verifier.login.persona.org/verify',
-                              payload=urllib.urlencode({'assertion': assertion,
-                                                       'audience': URL}),
-                              method=urlfetch.POST)
-
-    # Did the verifier respond?
-    if response.status_code == 200:
-        # Parse the response
-        verification_data = json.loads(response.content)
-
-        # Check if the assertion was valid
-        if verification_data['status'] == 'okay':
-            user = load_user_by_email(verification_data["email"])
-
-            if user:
-                login_user(user)
-
-                return redirect("/api/user.json")
-            else:
-                return json.dumps({
-                    "status": "failure",
-                    "message": "User does not exist"}), 401
-
-    # Oops, something failed. Abort.
-    return json.dumps({"status": "failure"}), 500
-
-
-@app.route("/api/logout", methods=["POST"])
-@login_required
-def logout():
-    logout_user()
-    print("logging out")
-
-    return json.dumps({"status": "success"}), 200
-
-
-@app.route("/api/user.json", methods=["GET"])
+@app.route("/api/user", methods=["GET"])
 @login_required
 def user():
     if request.method == "GET":  # get request, so show the user data

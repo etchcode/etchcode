@@ -22,7 +22,7 @@
                     scripts[sprite.id] = sprite.script;
                 }
 
-                $http.post("/api/parse.json", {
+                $http.post("/api/parse", {
                     scripts: JSON.stringify(scripts),
                     sprites: JSON.stringify(sprites)
                 }).success(function (data) {
