@@ -10,7 +10,7 @@ var $e;
                 replace: true,
 
                 templateUrl: "static/components/runProject/runProject.html",
-                controller: ["$scope", "$element", "spriteData", "renderService", "$sce", function($scope, $element, spriteData, render, $sce){
+                controller: ["$scope", "$element", "renderService", "$sce", function($scope, $element, render, $sce){
                     // running a project
                     $scope.loaded = false;
                     $scope.show = true;

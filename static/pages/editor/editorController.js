@@ -9,9 +9,9 @@
                 "project", function(spriteData, toaster, random, $mdDialog,
                                     $rootScope, $scope, user, $routeParams, project){
         $rootScope.pageName = "Editor";
+        debug.spriteData = spriteData;
 
         var _this = this; //cache _this for the children
-        $scope.project = project;
 
         $scope.sprites = {};
         $scope.sprites.list = []; // all sprites except background, general
@@ -21,10 +21,19 @@
 
         project.fetch($routeParams.projectId)
         .then(function(project){
-            $scope.project.id = $routeParams.projectId;
-            $scope.sprites = project;
+            $scope.project = project;
+            $scope.project.key = $routeParams.projectId;
+
+            // is this a brand new project that needs a sprite object
+            if(angular.equals(project.sprites, {})){
+                $scope.project.sprites = spriteData.sprites;
+            }
+            $scope.sprites = project.sprites;
         });
 
+        $scope.save_project = function(){
+            project.change($scope.project.key, $scope.project);
+        };
         $scope.all_sprites = function(){
             return $scope.sprites.list.concat($scope.sprites.background).concat($scope.sprites.general);
         };
@@ -41,7 +50,7 @@
             }
         };
 
-        var sprites = $scope.sprites;
+        var sprites = $scope;
         $scope.sprite_settings = function(sprite){ // open a settings dialog to change the settings of a sprite
             $mdDialog.show({
                 clickOutsideToClose: true,
@@ -62,7 +71,7 @@
                     };
 
                     $scope.delete = function(){
-                        delete_sprite($scope.sprite);
+                        sprites.delete_sprite($scope.sprite);
                         $mdDialog.hide();
                     };
 

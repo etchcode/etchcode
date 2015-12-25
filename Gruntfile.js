@@ -235,7 +235,7 @@ module.exports = function(grunt){
             },
             js: {
                 files: JAVASCRIPT_DIRECTORIES,
-                tasks: ["concurrent:js_only_1"],
+                tasks: ["jshint:dev", "concat_sourcemap:dev"],
                 options: {spawn: false}
             },
             main_html: {
@@ -262,8 +262,6 @@ module.exports = function(grunt){
 
             production_1: concurrent_common_with_enviroment("prod", 1),
             production_2: concurrent_common_with_enviroment("prod", 2),
-
-            js_only_1: ["jshint:dev", "concat_sourcemap:dev"],
 
             all_servers: ["gae:usercontent", "gae:primary"]
         }

@@ -3,11 +3,11 @@
         <div layout="row" class="topRow">
             <md-input-container class="project-name">
                 <label>Project Name</label>
-                <input ng-model="sprites.general.name" type="text">
+                <input ng-model="project.name" type="text">
             </md-input-container>
 
             <div class="save-project">
-                <md-button class="save-button md-raised" ng-click="project.change(project.id, sprites)" md-tooltip="Save Project">Save</md-button>
+                <md-button class="save-button md-raised" ng-click="save_project()" md-tooltip="Save Project">Save</md-button>
             </div>
         </div>
 

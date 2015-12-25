@@ -11,6 +11,9 @@
                 .when("/", {
                     templateUrl: "static/pages/home/index.html"
                 })
+                .when("/projects", {
+                    templateUrl: "static/pages/projects/index.html"
+                })
                 .when("/project/:projectId/:projectName?/edit", {
                     templateUrl: "static/pages/editor/index.html"
                 })

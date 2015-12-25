@@ -1,0 +1,8 @@
+<div class="projects-page" ng-controller="projectsController as projects">
+    <md-list>
+        <md-list-item ng-repeat="project in projects.list">
+            <md-button class="md-icon-button" ng-click="projects.delete(project.key)"><md-icon>delete</md-icon></md-button>
+            <a class="project-link" ng-href="#/project/{{ project.key }}/{{ project.name }}/edit">{{ project.name }}</a>
+        </md-list-item>
+    </md-list>
+</div>

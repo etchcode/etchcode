@@ -1,6 +1,6 @@
 <md-toolbar class="mainHeader md-whiteframe-4dp"> <!-- md-whiteframe sets the appropriate z-height <https://www.google.com/design/spec/what-is-material/elevation-shadows.html#elevation-shadows-elevation-android-> -->
     <div class="md-toolbar-tools">
-        
+
         <md-button class="md-icon-button" ng-click="toggleSideNav()">
             <md-icon md-font-set="material-icons">menu</md-icon>
         </md-button>
@@ -8,24 +8,24 @@
         <h1>
             <a class="md-button" href="#/">
                 Etch Code
-                
+
                 <span ng-show="pageName">
                      - {{ pageName }}
                 </span>
             </a>
         </h1>
-        
+
         <div class="accountSection">
             <div class="loginButtons" ng-show="!user.loggedIn">
                 <md-button onclick="navigator.id.request({siteName: 'Etch Code'})">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
                 <md-button ng-click="user.signup()" id="signupButton">Signup</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
             </div>
-            
+
             <md-menu class="userMenu" ng-show="user.loggedIn">
                 <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon>account_circle</md-icon>
                 </md-button>
-                
+
                 <md-menu-content ng-click="$mdMenu.hide()">
                     <md-menu-item>
                         <md-button href="#/account">
@@ -39,38 +39,44 @@
                 </md-menu-content>
             </md-menu>
         </div>
-        
+
     </div>
 </md-toolbar>
 
 <div class="mainHeaderSpacer"></div> <!-- fills up space = to mainHeader so that content doesn't get behind mainHeader -->
 
-<md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen" ng-click="toggleSideNav()">  
+<md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen" ng-click="toggleSideNav()">
     <nav layout="column" layout-align="space-between start">
         <div class="upper">
             <h2>
-                <a class="md-button" href="#/editor">
+                <md-button ng-click="create_project()">
                     <md-icon>create</md-icon>
                     Create Project
-                </a>        
+                </md-button>
+            </h2>
+            <h2>
+                <a class="md-button" href="#/projects">
+                    <md-icon>list</md-icon>
+                    Projects
+                </a>
             </h2>
         </div>
-        
+
         <div class="lower">
             <md-divider></md-divider>
-            
+
             <h2>
                 <a class="md-button" href="#/help">
                     <md-icon>help</md-icon>
                     Help &amp; Feedback
-                </a>            
+                </a>
             </h2>
-            
+
             <h2>
                 <a class="md-button" href="#/docs">
                     <md-icon>description</md-icon>
                     Documentation
-                </a>            
+                </a>
             </h2>
         </div>
     </nav>

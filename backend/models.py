@@ -13,11 +13,12 @@ class User(ndb.Model):
 
     # projects
     def create_project(self, name, json, xml):
-        project = Project(parent=self.key, name=name, json=json, xml=xml)
+        project = Project(parent=self.key, name=name, JSON=json, SnapXML=xml)
         return project.put()
 
     def get_projects(self):
-        return Project.query(ancestor=self.key).fetch()
+        return Project.query(ancestor=self.key).order(
+            -Project.last_modified).fetch()
 
 
 class Project(ndb.Model):
@@ -25,3 +26,6 @@ class Project(ndb.Model):
     JSON = ndb.TextProperty(required=True)
     # whenever JSON is changed, SnapXML must be changed as well
     SnapXML = ndb.TextProperty(required=True)
+
+    # auto_now sets this when created/modified
+    last_modified = ndb.DateTimeProperty(auto_now=True)

@@ -16,20 +16,34 @@
             var raw_url = base + url;
 
             this.get = function(data){
-                angular.merge(data, data_for_all);
+                if(data){
+                    angular.merge(data, data_for_all);
+                }
                 return $http.get(raw_url, {params: data});
             };
             this.post = function(data, params){
-                angular.merge(data, data_for_all);
+                if(data){
+                    angular.merge(data, data_for_all);
+                }
                 var config = params ? {params: params} : undefined;
                 return $http.post(raw_url, data, config);
+            };
+            this.delete = function(data){
+                if(data){
+                    angular.merge(data, data_for_all);
+                }
+                return $http.delete(raw_url, {params: data});
             };
         };
 
         this.login = api_request("login").post;
         this.logout = api_request("logout").post;
 
-        this.fetch_project = api_request("project", undefined, {format: "JSON"}).get;
+        this.fetch_projects = api_request("projects").get;
+
+        this.fetch_project = api_request("project").get;
         this.change_project = api_request("project").post;
+        this.create_project = api_request("project/create").post;
+        this.delete_project = api_request("project").delete;
     }]);
 }());

@@ -5,6 +5,7 @@ import jinja2
 import copy
 
 from google.appengine.api import urlfetch
+from google.appengine.ext import ndb
 
 import json
 import os
@@ -49,7 +50,9 @@ class User:
     def __init__(self, user_object):
         self.id = int(user_object.key.id())
         self.is_active = user_object.active
+
         self.get_projects = user_object.get_projects
+        self.create_project = user_object.create_project
 
         self.profile = {
             "username": user_object.username
@@ -121,49 +124,62 @@ def error401(e):
         "message": "Access Forbidden"}), 401
 
 
-@app.route("/api/login", methods=["POST"])
+@app.route("/api/login", methods=["GET", "POST"])
 def login():
     """Get: mozilla persona token
     Sets: user session
     """
-    assertion = request.data.decode()
+    # a cheat if we are on a dev server to quickly login
+    # could be a GET in development
+    if request.method == "POST":  # normal method must be post
+        assertion = request.data.decode()
 
-    response = urlfetch.fetch(url='https://verifier.login.persona.org/verify',
-                              payload=urllib.urlencode({'assertion': assertion,
-                                                       'audience': URL}),
-                              method=urlfetch.POST)
+        verification_url = "https://verifier.login.persona.org/verify"
+        response = urlfetch.fetch(url=verification_url,
+                                  payload=urllib.urlencode({'assertion':
+                                                            assertion,
+                                                           'audience': URL}),
+                                  method=urlfetch.POST)
 
-    # Did the verifier respond?
-    if response.status_code == 200:
-        # Parse the response
-        verification_data = json.loads(response.content)
+        # Did the verifier respond?
+        if response.status_code == 200:
+            # Parse the response
+            verification_data = json.loads(response.content)
 
-        # Check if the assertion was valid
-        if verification_data['status'] == 'okay':
-            user = load_user_by_email(verification_data["email"])
+            # Check if the assertion was valid
+            if verification_data['status'] == 'okay':
+                user = load_user_by_email(verification_data["email"])
 
-            if user:
-                login_user(user)
+                if user:
+                    login_user(user)
 
-                return redirect("/api/user")
-            else:
-                return json.dumps({
-                    "status": "failure",
-                    "message": "User does not exist"}), 401
+                    return redirect("/api/user")
+                else:
+                    return json.dumps({
+                        "status": "failure",
+                        "message": "User does not exist"}), 401
+
+    elif not PRODUCTION and request.args["fake-login"] == "true":
+        user = load_user_by_email(request.args["email"])
+        login_user(user)
+        return redirect("/api/user")
 
     # Oops, something failed. Abort.
     return json.dumps({"status": "failure"}), 500
 
 
-@app.route("/api/logout", methods=["POST"])
+@app.route("/api/logout", methods=["GET", "POST"])
 @login_required
 def logout():
-    logout_user()
+    if request.method == "POST":
+        logout_user()
+        return json.dumps({"status": "success"})
 
-    return json.dumps({"status": "success"}), 200
+    elif not PRODUCTION and request.args["fake-logout"] == "true":
+        logout_user()
+        return json.dumps({"status": "sucess"})
 
 
-# routes
 @app.route("/api/blocks.json")
 def blocks():
     """
@@ -182,6 +198,7 @@ def blocks():
 
 
 @app.route("/api/parse", methods=["POST"])
+@login_required
 def parse():
     """Get: request paramater scripts with list of script object as generated
     by services/render.js that is json encoded
@@ -211,43 +228,37 @@ def user():
     if request.method == "GET":  # get request, so show the user data
         return json.dumps({
             "profile": current_user.profile,
-            "projects": current_user.get_projects()
         })
 
 
-@app.route("/api/project", methods=["GET", "POST"])
+@app.route("/api/project", methods=["GET", "POST", "DELETE"])
 @login_required
 def project():
     # get the project id from the request and check that the project exists
-    project_id_str = request.args["id"]
-    if project_id_str:
-        project_id = int(project_id_str)
-    else:
-        return json.dumps({
-            "error": "project id invalid"
-        })
-    project = models.Project.get_by_id(project_id)
+    print(request.args)
+    project_key = ndb.Key(urlsafe=request.args["key"])
+    project = project_key.get()
     if not project:
         return json.dumps({
             "error": "project doesn't exist"
         })
 
     if request.method == "GET":
-        if request.args["format"] == "JSON":
-            return project.JSON
-
-        elif request.args["format"] == "SnapXML":
-            return project.SnapXML
+        return json.dumps({
+            "sprites": json.loads(project.JSON),
+            "name": project.name
+        })
 
     elif request.method == "POST":
-        sprites_json_raw = request.data.decode()
-        sprites_json = json.loads(sprites_json_raw)
+        print("POST")
+        project_json = json.loads(request.data.decode())
+        sprites_json = project_json["sprites"]
 
         # set the project name
-        project.name = sprites_json["general"]["name"]
+        project.name = project_json["name"]
 
         # set the project JSON
-        project.JSON = sprites_json_raw
+        project.JSON = json.dumps(project_json["sprites"])
 
         # parse JSON into SnapXML. this must be done server-side so that the
         # user cant't give us arbitrary xml
@@ -293,3 +304,37 @@ def project():
         return json.dumps({
             "success": True
         })
+
+    elif request.method == "DELETE":
+        project_key.delete()
+
+        return json.dumps({
+            "success": True
+        })
+
+
+@app.route("/api/project/create", methods=["POST"])
+@login_required
+def create_project():
+    key = current_user.create_project(request.args["name"], "{}", "")
+
+    return json.dumps({
+        "key": key.urlsafe()
+    })
+
+
+@app.route("/api/projects", methods=["GET"])
+@login_required
+def projects():
+    all_projects = current_user.get_projects()
+
+    id_list = []
+    for project in all_projects:
+        id_list.append({
+            "key": project.key.urlsafe(),
+            "name": project.name
+        })
+
+    return json.dumps({
+        "projects": id_list
+    })
