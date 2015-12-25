@@ -2,8 +2,6 @@
 (function () {
 	"use strict";
 
-	nunjucks.configure("/static/pages/editor", {autoescape: true});
-
 	angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror", "ngRoute", "toaster", "source-map-exception-handler"])
 
 		.config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
@@ -36,6 +34,8 @@
                     .accentPalette("orange", {
                         "default": "700"
                     });
+
+                nunjucks.configure("/templates/project", {autoescape: true});
 			}
 		])
 

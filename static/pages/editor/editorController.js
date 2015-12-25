@@ -7,30 +7,31 @@
 	.controller("editorController", ["spriteData", "toaster", "random",
                 "$mdDialog", "$rootScope", "$scope", "user", "$routeParams",
                 "project", function(spriteData, toaster, random, $mdDialog,
-                                    $rootScope, $scope, user, routeParams, project){
+                                    $rootScope, $scope, user, $routeParams, project){
         $rootScope.pageName = "Editor";
 
         var _this = this; //cache _this for the children
-        var projectId = routeParams.projectId;
-
-        project.fetch(projectId)
-        .then(function(project){
-            $scope.project = project;
-        });
+        $scope.project = project;
 
         $scope.sprites = {};
-        $scope.sprites.list = []; // all sprites
-        $scope.sprites.background = spriteData.sprites.background;
-        $scope.sprites.general = spriteData.sprites.general;
-        $scope.sprites.current = $scope.sprites.list[0]; // the sprite that we are editing now
+        $scope.sprites.list = []; // all sprites except background, general
+        $scope.sprites.background = {};
+        $scope.sprites.general = {};
+        $scope.sprites.current = undefined;
 
-        $scope.sprites.all = function(){
+        project.fetch($routeParams.projectId)
+        .then(function(project){
+            $scope.project.id = $routeParams.projectId;
+            $scope.sprites = project;
+        });
+
+        $scope.all_sprites = function(){
             return $scope.sprites.list.concat($scope.sprites.background).concat($scope.sprites.general);
         };
-        $scope.sprites.new = function(){
+        $scope.new_sprite = function(){
             $scope.sprites.list.push(new spriteData.Sprite());
         };
-        $scope.sprites.delete = function(sprite){
+        $scope.delete_sprite = function(sprite){
             var index = $scope.sprites.list.indexOf(sprite);
             if(index > -1){
                 $scope.sprites.list.splice(index, 1);
@@ -41,7 +42,7 @@
         };
 
         var sprites = $scope.sprites;
-        $scope.sprites.settings = function(sprite){ // open a settings dialog to change the settings of a sprite
+        $scope.sprite_settings = function(sprite){ // open a settings dialog to change the settings of a sprite
             $mdDialog.show({
                 clickOutsideToClose: true,
                 focusOnOpen: false,
@@ -61,7 +62,7 @@
                     };
 
                     $scope.delete = function(){
-                        sprites.delete($scope.sprite);
+                        delete_sprite($scope.sprite);
                         $mdDialog.hide();
                     };
 

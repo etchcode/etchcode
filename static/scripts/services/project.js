@@ -8,15 +8,19 @@ angular.module("etch").service("project", ["api", function(api){
     _project.fetch = function(id){
         // fetch the project w/ this id from the server
         return new Promise(function(resolve, reject){
-            api.fetch_project(id)
+            api.fetch_project({id: id})
             .then(function success(response){
-                resolve(response.data);
+                if(response.data.error){
+                    reject(response.data.error);
+                }
+                else{
+                    resolve(response.data);
+                }
             });
         });
     };
-    _project.change = function(json){
-        // modify the project w/ this id
-        console.info("pretend updating", _project.id, "with", json);
+    _project.change = function(id, JSON){
+        return api.change_project(JSON, {id: id});
     };
     _project.delete = function(){
         // delete the project w/ this id

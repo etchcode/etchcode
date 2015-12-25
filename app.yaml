@@ -20,6 +20,11 @@ handlers:
   static_dir: bower_components/
   secure: always
 
+- url: /templates
+  static_dir: templates/
+  application_readable: true
+  secure: always
+
 - url: /api/.+
   script: backend.api.app
   secure: always

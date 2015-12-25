@@ -1,7 +1,7 @@
 <div class="sprites">
     <h3>
         Sprites
-        <md-button class="md-icon-button" ng-click="sprites.new()">
+        <md-button class="md-icon-button" ng-click="new_sprite()">
             <md-icon md-font-set="material-icons">add_circle_outline</md-icon>
         </md-button>
     </h3>
@@ -13,12 +13,12 @@
     md-cols-lg="3"
     md-cols-gt-lg="4"
     >
-    <md-grid-tile ng-repeat="sprite in sprites.all()"> <!-- all() includes sprites.list, sprites.general, and sprites.background -->
+    <md-grid-tile ng-repeat="sprite in all_sprites()"> <!-- all() includes sprites.list, sprites.general, and sprites.background -->
         <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
             <div class="footer">
                 <span class="label">{{ sprite.id }}</span>
 
-                <md-button class="md-icon-button spriteSettings md-secondary" ng-click="sprites.settings(sprite)">
+                <md-button class="md-icon-button spriteSettings md-secondary" ng-click="sprite_settings(sprite)">
                     <md-icon md-font-set="material-icons" class="material-icons md-light">info_outline</md-icon>
                 </md-button>
             </div>

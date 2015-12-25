@@ -65,7 +65,7 @@ var $e;
                             $scope.running = false;
                         }
                         else {
-                            render.project(spriteData.sprites).then(function (response) {
+                            render.project($scope.sprites).then(function (response) {
                                 $scope.run(response); // referring to element in runProject directive in file directives/runProject.js
                             });
                             $scope.running = true;

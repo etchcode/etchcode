@@ -9,15 +9,14 @@
         that.project = function (project) {
             // function accepts string project and returns a Promise that resolves to a string of the built project
             return new Promise(function (resolve) {
-
                 var all = project.list.concat(project.background).concat(project.general);
-                
+
                 var scripts = {};
                 var sprites = [];
                 for (var i = 0; i < all.length; i++) {
                     // for every script in the project build a dictionary with scipts labled by their sprite name
                     var sprite = all[i];
-                        
+
                     sprites.push(sprite.id);
                     scripts[sprite.id] = sprite.script;
                 }
@@ -35,11 +34,11 @@
                             });
                         }
                     }
-                    var globals = project.general; 
+                    var globals = project.general;
                     var background = project.background;
                     var sprites = project.list;
 
-                    resolve(nunjucks.render("template.snap.xml", { //render jinja template
+                    resolve(nunjucks.render("snap_template.xml", { //render jinja template
                         project: {
                             globals: globals,
                             background: background,
