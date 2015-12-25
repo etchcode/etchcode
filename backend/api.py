@@ -47,15 +47,18 @@ class User:
     Class used by Flask login. Most of this stuff is Flask defaults
     """
 
-    def __init__(self, user_object):
-        self.id = int(user_object.key.id())
-        self.is_active = user_object.active
+    def __init__(self, user_model):
+        self.user_model = user_model
+        self.id = int(user_model.key.id())
+        self.is_active = user_model.active
 
-        self.get_projects = user_object.get_projects
-        self.create_project = user_object.create_project
+        self.get_projects = user_model.get_projects
+        self.create_project = user_model.create_project
 
         self.profile = {
-            "username": user_object.username
+            "username": user_model.username,
+            "email": user_model.email,
+            "name": user_model.name
         }
 
         # Defaults for all authenticated users
@@ -111,6 +114,42 @@ def load_user_by_email(email):
         return None
 
 
+def verify_assertion(assertion):
+    verification_url = "https://verifier.login.persona.org/verify"
+    response = urlfetch.fetch(url=verification_url,
+                              payload=urllib.urlencode({'assertion':
+                                                        assertion,
+                                                       'audience': URL}),
+                              method=urlfetch.POST)
+
+    # Did the verifier respond?
+    if response.status_code == 200:
+        # Parse the response
+        verification_data = json.loads(response.content)
+
+        # Check if the assertion was valid
+        if verification_data['status'] == 'okay':
+            return verification_data["email"]
+
+    return False  # something went wrong
+
+
+def username_unique(username):
+    matches = models.User.query(models.User.username == username).fetch()
+    if len(matches) == 0:
+        return True
+    else:
+        return False
+
+
+def email_unique(email):
+    matches = models.User.query(models.User.email == email).fetch()
+    if len(matches) == 0:
+        return True
+    else:
+        return False
+
+
 # error handlers
 @app.errorhandler(401)
 def error401(e):
@@ -133,39 +172,20 @@ def login():
     # could be a GET in development
     if request.method == "POST":  # normal method must be post
         assertion = request.data.decode()
+        verified = verify_assertion(assertion)
+        user = load_user_by_email(verified)
 
-        verification_url = "https://verifier.login.persona.org/verify"
-        response = urlfetch.fetch(url=verification_url,
-                                  payload=urllib.urlencode({'assertion':
-                                                            assertion,
-                                                           'audience': URL}),
-                                  method=urlfetch.POST)
-
-        # Did the verifier respond?
-        if response.status_code == 200:
-            # Parse the response
-            verification_data = json.loads(response.content)
-
-            # Check if the assertion was valid
-            if verification_data['status'] == 'okay':
-                user = load_user_by_email(verification_data["email"])
-
-                if user:
-                    login_user(user)
-
-                    return redirect("/api/user")
-                else:
-                    return json.dumps({
-                        "status": "failure",
-                        "message": "User does not exist"}), 401
+        if verified and user:
+            login_user(user)
+            return redirect("/api/user")
 
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])
         login_user(user)
         return redirect("/api/user")
 
-    # Oops, something failed. Abort.
-    return json.dumps({"status": "failure"}), 500
+    # something failed. Abort.
+    return json.dumps({"status": "failure"}), 401
 
 
 @app.route("/api/logout", methods=["GET", "POST"])
@@ -178,6 +198,67 @@ def logout():
     elif not PRODUCTION and request.args["fake-logout"] == "true":
         logout_user()
         return json.dumps({"status": "sucess"})
+
+
+@app.route("/api/user", methods=["GET", "POST"])
+# we check login for get but not post
+def user():
+    if request.method == "GET":
+        if current_user.is_authenticated:
+            return json.dumps({
+                "profile": current_user.profile,
+            })
+        else:
+            return json.dumps({
+                "error": "authentication_failure"
+            }), 401
+
+    elif request.method == "POST":
+        request_data = json.loads(request.data.decode())
+        email = verify_assertion(request_data["assertion"])
+        username = request_data["username"]
+        name = request_data["name"]
+
+        if email and email_unique(email) and username_unique(username):
+            new_user = models.User(email=email, active=True, username=username,
+                                   name=name)
+            new_user.put()
+            login_user(User(new_user))  # make it a User object for Flask
+            return redirect("/api/user")
+        else:
+            return json.dumps({
+                "error": "invalid email or username"
+            }), 401
+
+
+@app.route("/api/user/profile", methods=["GET", "PUT"])
+@login_required
+def user_profile():
+    if request.method == "GET":
+        return json.dumps(current_user.profile)
+
+    elif request.method == "PUT":
+        request_data = json.loads(request.data.decode())
+        user = current_user.user_model
+        invalid_value_error = json.dumps({
+            "message": "invalid_value"
+        })
+
+        if "username" in request_data:
+            new_username = request_data["username"]
+            if username_unique(new_username):
+                user.username = new_username
+            else:
+                return invalid_value_error, 400
+        if "name" in request_data:
+            new_name = request_data["name"]
+            user.name = new_name
+
+        user.put()
+
+        return json.dumps({
+            "message": "success"
+        })
 
 
 @app.route("/api/blocks.json")
@@ -220,15 +301,6 @@ def parse():
 
     except Exception as error:
         return Response(json.dumps({"error": str(error)}), status="500")
-
-
-@app.route("/api/user", methods=["GET"])
-@login_required
-def user():
-    if request.method == "GET":  # get request, so show the user data
-        return json.dumps({
-            "profile": current_user.profile,
-        })
 
 
 @app.route("/api/project", methods=["GET", "POST", "DELETE"])

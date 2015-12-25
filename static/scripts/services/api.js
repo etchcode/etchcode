@@ -21,6 +21,12 @@
                 }
                 return $http.get(raw_url, {params: data});
             };
+            this.delete = function(data){
+                if(data){
+                    angular.merge(data, data_for_all);
+                }
+                return $http.delete(raw_url, {params: data});
+            };
             this.post = function(data, params){
                 if(data){
                     angular.merge(data, data_for_all);
@@ -28,11 +34,12 @@
                 var config = params ? {params: params} : undefined;
                 return $http.post(raw_url, data, config);
             };
-            this.delete = function(data){
+            this.put = function(data, params){
                 if(data){
                     angular.merge(data, data_for_all);
                 }
-                return $http.delete(raw_url, {params: data});
+                var config = params ? {params: params} : undefined;
+                return $http.put(raw_url, data, config);
             };
         };
 
@@ -45,5 +52,8 @@
         this.change_project = api_request("project").post;
         this.create_project = api_request("project/create").post;
         this.delete_project = api_request("project").delete;
+
+        this.create_user = api_request("user").post;
+        this.change_profile = api_request("user/profile").put;
     }]);
 }());

@@ -3,7 +3,7 @@
 @function md-color($color, $number)
     $set: map_get($material-colors, $color)
     $color: map_get($set, $number)
-    
+
     @return $color
 
 $md-primary-name: "blue"
@@ -17,7 +17,7 @@ $md-error: md-color("red", "500")
     background-color: md-color($md-accent-name, 100) !important
 *::-moz-selection
     background-color: md-color($md-accent-name, 100) !important
-    
+
 .spriteTile
     .footer
         background-color: md-color("grey", 800)
@@ -32,14 +32,14 @@ $md-error: md-color("red", "500")
             color: $md-accent
         path, line
             stroke-width: 2px
-    
+
 .errorMessage
     color: $md-error
-    
+
 .CodeMirror
     &-gutters
         background-color: white
-        
-.loginButtons 
-    #signupButton, #signupButton:hover
+
+.loginButtons
+    .signupButton, .signupButton:hover
         background-color: md-color($md-accent-name, 800)

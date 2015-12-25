@@ -1,11 +1,21 @@
 <md-content class="account-page" ng-controller="accountController as account">
     <md-card>
         <md-card-content>
-            <form>
+            <form name="account_form">
+                <md-input-container>
+                    <label>Email</label>
+                    <input disabled required ng-model="user.profile.email" name="email">
+                </md-input-container>
                 <md-input-container>
                     <label>Username</label>
-                    <input ng-model="user.profile.username" required>
+                    <input required ng-model="user.profile.username" name="username">
                 </md-input-container>
+                <md-input-container>
+                    <label>Name</label>
+                    <input required ng-model="user.profile.name" name="name">
+                </md-input-container>
+
+                <md-button ng-click="save()" class="md-primary md-raised">Save</md-button>
             </form>
         </md-card-content>
     </md-card>

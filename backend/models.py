@@ -10,6 +10,7 @@ class User(ndb.Model):
 
     # profile
     username = ndb.StringProperty(required=True)
+    name = ndb.StringProperty()
 
     # projects
     def create_project(self, name, json, xml):
