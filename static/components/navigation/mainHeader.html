@@ -46,8 +46,8 @@
 <div class="mainHeaderSpacer"></div> <!-- fills up space = to mainHeader so that content doesn't get behind mainHeader -->
 
 <md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen" ng-click="toggleSideNav()">
-    <nav layout="column" layout-align="space-between start">
-        <div class="upper">
+    <nav>
+        <div class="user-section">
             <h2>
                 <md-button ng-click="create_project()">
                     <md-icon>create</md-icon>
@@ -55,14 +55,23 @@
                 </md-button>
             </h2>
             <h2>
-                <a class="md-button" href="#/projects">
+                <md-button href="#/projects">
                     <md-icon>list</md-icon>
-                    Projects
-                </a>
+                    My Projects
+                </md-button>
             </h2>
+
+            <md-divider></md-divider>
         </div>
 
-        <div class="lower">
+        <div class="general-section">
+            <h2><md-button>
+                <md-icon>explore</md-icon>
+                Explore Projects
+            </md-button></h2>
+        </div>
+
+        <div class="help-section">
             <md-divider></md-divider>
 
             <h2>

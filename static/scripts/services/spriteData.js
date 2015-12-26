@@ -1,11 +1,11 @@
 (function () {
-	"use strict";
+    "use strict";
 
-	angular.module("etch")
+    angular.module("etch")
 
-	.service("spriteData", ["random", "default", function(random, Default){
+    .service("spriteData", ["random", "default", function(random, Default){
         var myself = this; // cache this for use inside functions
-		this.default = Default.sprite;
+        this.default = Default.sprite;
         this.forbidden_variable_names = ["mouse-pointer", "edge", "pen trails"];
 
         // define the needed objects
@@ -64,7 +64,7 @@
 
             this.id = "general";
             this.notes = inputs.notes || "";
-            this.thumbnail = inputs.thumbnail || myself.default.backdrops[0].data;
+            this.thumbnail = inputs.thumbnail || myself.default.costumes[0].data;
             this.variables = inputs.variables || [];
         };
 
@@ -114,5 +114,5 @@
 
         // create the object where all the spriteData is stored
         this.sprites = new this.Sprites();
-	}]);
+    }]);
 }());

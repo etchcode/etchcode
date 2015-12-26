@@ -19,8 +19,7 @@
                 };
 
                 $scope.create_project = function(){
-                    var name = random.phrase();
-                    project.create(name).then(function(response){
+                    project.create().then(function(response){
                         var new_url = "/project/" + response.data.key + "/edit";
                         $location.path(new_url);
                     });

@@ -1,5 +1,6 @@
 """Models for the appengine database."""
 from google.appengine.ext import ndb
+import json
 
 
 class User(ndb.Model):
@@ -30,3 +31,12 @@ class Project(ndb.Model):
 
     # auto_now sets this when created/modified
     last_modified = ndb.DateTimeProperty(auto_now=True)
+
+    def parsed_json(self):
+        return json.loads(self.JSON)
+
+    def get_thumbnail(self):
+        if self.JSON == "{}":
+            return False
+        else:
+            return self.parsed_json()["general"]["thumbnail"]

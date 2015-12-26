@@ -404,7 +404,8 @@ def projects():
     for project in all_projects:
         id_list.append({
             "key": project.key.urlsafe(),
-            "name": project.name
+            "name": project.name,
+            "thumbnail": project.get_thumbnail()
         })
 
     return json.dumps({

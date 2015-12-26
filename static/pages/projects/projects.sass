@@ -1,2 +1,47 @@
 .projects-page
     @extend .pageBlock
+
+    .project-creating.project .new-project
+        // counteract default sticky styles
+        position: relative
+        top: auto
+        right: auto
+        transform: translate3d(0, 0%, 0)
+        // end counteracting
+
+        margin: 20px
+
+    .project-creating.project
+        flex-direction: row
+
+        md-input-container
+            flex-grow: 2 // second largest item on it's line
+
+    .project
+        border-bottom: 1px solid md-color("grey", 400)
+
+    .actions-container
+        display: flex
+        flex-direction: column
+        justify-content: flex-end
+        align-items: flex-start
+        align-self: flex-end // make sure that this is at the bottom
+
+    .md-button
+        margin: 0
+
+    .top-row
+        margin: 0 0 10px 24px
+
+    .bottom-row
+        display: flex
+        flex-direction: row // keeps them all at the same height
+
+    .image-container
+        width: 116px
+        height: 96.2px
+        margin: 10px
+
+        img
+            width: inherit
+            height: inherit
