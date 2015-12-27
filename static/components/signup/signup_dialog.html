@@ -10,14 +10,16 @@
             </div>
         </md-toolbar>
         <md-dialog-content class="content">
-                <md-input-container>
+            <md-content>
+                <md-input-container class="md-block">
                     <label>username</label>
                     <input required ng-model="user_data.username">
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block">
                     <label>name</label>
                     <input required ng-model="user_data.name">
                 </md-input-container>
+            </md-content>
         </md-dialog-content>
         <md-dialog-actions class="actions" layout="row">
             <md-button class="md-primary" ng-click="complete_signup()">Complete Signup</md-button>
