@@ -1,34 +1,38 @@
 <md-content class="projects-page" ng-controller="projectsController as projects">
-    <md-input-container>
-        <label>Search projects</label>
+    <md-input-container class="search-projects">
+        <label>Search my projects</label>
         <input ng-model="projects.search_text">
     </md-input-container>
 
-    <md-list class="projects-list">
-        <md-list-item class="project project-creating">
-            <md-input-container>
-                <label>New project name</label>
-                <input ng-model="projects.creating">
-            </md-input-container>
+    <div class="projects-list">
+        <md-card class="project project-creating">
+            <md-card-content>
+                <md-input-container class="project-creating-name">
+                    <label>New project name</label>
+                    <input ng-model="projects.creating">
+                </md-input-container>
 
-            <md-button class="md-raised md-secondary new-project"
-                       ng-click="projects.create(projects.creating)">Create Project</md-button>
-        </md-list-item>
+                <md-button class="new-project" ng-click="projects.create(projects.creating)">Create Project</md-button>
+            </md-card-content>
+        </md-card>
 
-        <md-list-item ng-repeat="project in projects.list()" class="project">
-            <div class="image-container">
-                <img ng-if="project.thumbnail" ng-src="{{ project.thumbnail }}" alt="project {{ project.name }} thumbnail">
-            </div>
-            <div class="actions-container">
-                <div class="top-row">
-                    <span class="project-name">{{ project.name }}</span>
-                </div>
-                <div class="bottom-row">
-                    <md-button ng-href="#/project/{{ project.key }}/{{ project.name }}/view">view</md-button>
-                    <md-button ng-href="#/project/{{ project.key}}/{{ project.name }}/edit">edit</md-button>
-                    <md-button ng-click="projects.delete(project.key)">delete</md-button>
-                </div>
-            </div>
-        </md-list-item>
-    </md-list>
+        <md-card ng-repeat="project in projects.list()" class="project">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{ project.name }}</span>
+                    <span class="md-subhead">{{ project.description.substr(50) }}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media">
+                        <img ng-if="project.thumbnail" ng-src="{{ project.thumbnail }}" alt="project {{ project.name }} thumbnail">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-href="#/project/{{ project.key }}/{{ project.name }}/view">view</md-button>
+                <md-button ng-href="#/project/{{ project.key}}/{{ project.name }}/edit">edit</md-button>
+                <md-button ng-click="projects.delete(project.key)">delete</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </md-content>
