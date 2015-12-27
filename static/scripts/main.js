@@ -27,11 +27,7 @@
                     templateUrl: "static/pages/account/index.html"
                 })
                 .otherwise({
-                    template: "<div></div>",
-                    controller: function(){
-                        // $location.href could give /#/404
-                        location.href = "/404";
-                    }
+                    templateUrl: "static/pages/404/index.html"
                 });
                 $locationProvider.html5Mode(true);
 

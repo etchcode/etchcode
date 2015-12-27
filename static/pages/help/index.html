@@ -2,33 +2,33 @@
     <md-card>
         <md-card-content>
             <md-subheader class="md-no-sticky">Help for people who ...</md-subheader>
-            
+
             <md-tabs md-dynamic-height md-border-bottom class="md-primary">
                 <md-tab>
                     <md-tab-label>
                         haven't programmed
                     </md-tab-label>
-                    
+
                     <md-tab-body>
                         <div ng-bind-html="help.fromNothing"></div>
                     </md-tab-body>
                 </md-tab>
-                
+
                 <md-tab md-active="true">
                     <md-tab-label>
                         make scratch programs
                     </md-tab-label>
-        
+
                     <md-tab-body>
                         <div ng-bind-html="help.fromScratch"></div>
                     </md-tab-body>
                 </md-tab>
-                
+
                 <md-tab label="written language programmer">
                     <md-tab-label>
                         make written programs
                     </md-tab-label>
-                    
+
                     <md-tab-body>
                         <div ng-bind-html="help.fromWritten"></div>
                     </md-tab-body>
@@ -36,10 +36,9 @@
             </md-tabs>
         </md-card-content>
     </md-card>
-    
     <br>
-    
-    <md-card>
+
+    <md-card id="feedback">
         <md-card-content>
             <md-subheader class="md-no-sticky">Feedback</md-subheader>
             <p>
