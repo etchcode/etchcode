@@ -29,7 +29,7 @@ handlers:
   script: backend.api.app
   secure: always
 
-- url: /
+- url: /.*
   static_files: static/pages/build/index.html
   upload: static/pages/build/index.html
   secure: always

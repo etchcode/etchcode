@@ -29,8 +29,8 @@
                 </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-href="#/project/{{ project.key }}/{{ project.name }}/view">view</md-button>
-                <md-button ng-href="#/project/{{ project.key}}/{{ project.name }}/edit">edit</md-button>
+                <md-button ng-href="/project/{{ project.key }}/{{ project.name }}/view">view</md-button>
+                <md-button ng-href="/project/{{ project.key}}/{{ project.name }}/edit">edit</md-button>
                 <md-button ng-click="projects.delete(project.key)">delete</md-button>
             </md-card-actions>
         </md-card>
