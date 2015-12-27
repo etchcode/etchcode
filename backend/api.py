@@ -1,4 +1,4 @@
-from flask import Flask, Response, request, redirect
+from flask import Flask, Response, request, redirect, abort
 from flask.ext.login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 import jinja2
@@ -13,7 +13,7 @@ import urllib
 
 # import of own files
 import models
-from etchParser import translator
+from etchParser import translator, blocks
 
 # handle setting globals based on if this is a dev or production environment
 if os.environ["SERVER_SOFTWARE"].startswith("Development"):
@@ -36,6 +36,21 @@ class JsonResponse(Response):
 
 
 app.response_class = JsonResponse
+
+# custom errors
+
+
+class ApiError(Exception):
+    def __init__(self, message=None, status_code=400):
+        self.message = message
+        self.status_code = status_code
+
+    def __str__(self):
+        return json.dumps({
+            "status": "failure",
+            "error_code": self.status_code,
+            "message": self.message
+        })
 
 # login code
 login_manager = LoginManager()
@@ -163,6 +178,11 @@ def error401(e):
         "message": "Access Forbidden"}), 401
 
 
+@app.errorhandler(ApiError)
+def api_error(error):
+    return str(error), error.status_code
+
+
 @app.route("/api/login", methods=["GET", "POST"])
 def login():
     """Get: mozilla persona token
@@ -185,7 +205,7 @@ def login():
         return redirect("/api/user")
 
     # something failed. Abort.
-    return json.dumps({"status": "failure"}), 401
+    abort(401)
 
 
 @app.route("/api/logout", methods=["GET", "POST"])
@@ -209,9 +229,7 @@ def user():
                 "profile": current_user.profile,
             })
         else:
-            return json.dumps({
-                "error": "authentication_failure"
-            }), 401
+            abort(401)
 
     elif request.method == "POST":
         request_data = json.loads(request.data.decode())
@@ -226,9 +244,7 @@ def user():
             login_user(User(new_user))  # make it a User object for Flask
             return redirect("/api/user")
         else:
-            return json.dumps({
-                "error": "invalid email or username"
-            }), 401
+            raise ApiError(message="invalid email or username")
 
 
 @app.route("/api/user/profile", methods=["GET", "PUT"])
@@ -240,16 +256,13 @@ def user_profile():
     elif request.method == "PUT":
         request_data = json.loads(request.data.decode())
         user = current_user.user_model
-        invalid_value_error = json.dumps({
-            "message": "invalid_value"
-        })
 
         if "username" in request_data:
             new_username = request_data["username"]
             if username_unique(new_username):
                 user.username = new_username
             else:
-                return invalid_value_error, 400
+                raise ApiError(message="Username already exists")
         if "name" in request_data:
             new_name = request_data["name"]
             user.name = new_name
@@ -262,13 +275,11 @@ def user_profile():
 
 
 @app.route("/api/blocks.json")
-def blocks():
+def blocks_response():
     """
     Take nothing
     :return: data on all the blocks.
     """
-    # TODO: This should return docs on the blocks
-    from etchParser import blocks
 
     return json.dumps({
         "closeSelf": blocks.closeSelf,
@@ -286,21 +297,17 @@ def parse():
     Return: Parsed scripts
     """
 
-    try:
-        scripts = json.loads(json.loads(request.data.decode())["scripts"])
-        variables = ["hi"]
-        sprites = json.loads(json.loads(request.data.decode())["sprites"])
-        # don't use request.form because ng transmits data as json
+    scripts = json.loads(json.loads(request.data.decode())["scripts"])
+    variables = ["hi"]
+    sprites = json.loads(json.loads(request.data.decode())["sprites"])
+    # don't use request.form because ng transmits data as json
 
-        parsed = {}
-        for name in scripts:
-            parsed[name] = translator.translate(scripts[name],  # translate it
-                                                sprites, variables)
+    parsed = {}
+    for name in scripts:
+        parsed[name] = translator.translate(scripts[name],  # translate it
+                                            sprites, variables)
 
-        return Response(json.dumps(parsed))
-
-    except Exception as error:
-        return Response(json.dumps({"error": str(error)}), status="500")
+    return Response(json.dumps(parsed))
 
 
 @app.route("/api/project", methods=["GET", "POST", "DELETE"])
@@ -311,9 +318,7 @@ def project():
     project_key = ndb.Key(urlsafe=request.args["key"])
     project = project_key.get()
     if not project:
-        return json.dumps({
-            "error": "project doesn't exist"
-        })
+        raise ApiError(message="Project doesn't exist")
 
     if request.method == "GET":
         return json.dumps({

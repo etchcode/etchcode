@@ -23,6 +23,7 @@ module.exports = function(grunt){
         "scripts/debug.js",
         "scripts/source_map_exception_handler.js", // this must come first as it is loaded as a module
         "scripts/main.js", // ensure that this main.js concatenated first
+        "scripts/*.js", // then anything else in the root script directory
         "pages/**/*.js", // then the pages
         "components/**/*.js", // the components
         "scripts/filters/**/*.js", // filters
