@@ -64,7 +64,8 @@ class User:
 
     def __init__(self, user_model):
         self.user_model = user_model
-        self.id = int(user_model.key.id())
+        self.key = self.user_model.key
+        self.id = int(self.key.id())
         self.is_active = user_model.active
 
         self.get_projects = user_model.get_projects
@@ -79,6 +80,12 @@ class User:
         # Defaults for all authenticated users
         self.is_authenticated = True
         self.is_anonymous = False
+
+    def owns_project(self, project_key):
+        if project_key.parent() == self.key:
+            return True
+        else:
+            return False
 
     def get_id(self):
         try:
@@ -314,11 +321,15 @@ def parse():
 @login_required
 def project():
     # get the project id from the request and check that the project exists
-    print(request.args)
     project_key = ndb.Key(urlsafe=request.args["key"])
     project = project_key.get()
     if not project:
         raise ApiError(message="Project doesn't exist")
+    # modifying request and  current user doesn't own
+    elif request.method != "GET" and not \
+            current_user.owns_project(project_key):
+        raise ApiError(message="Current user may not access specified project",
+                       status_code=401)
 
     if request.method == "GET":
         return json.dumps({
@@ -327,7 +338,6 @@ def project():
         })
 
     elif request.method == "POST":
-        print("POST")
         project_json = json.loads(request.data.decode())
         sprites_json = project_json["sprites"]
 
