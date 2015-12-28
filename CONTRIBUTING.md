@@ -8,10 +8,13 @@ and deploying to Google App Engine. Bower is a package manager for javascript, c
 Next, use npm and bower to install the packages required. The folders `node_modules/` and `bower_components/` aren't synced through git, so you will need to install them all yourself. The package names are all specified in `bower.json` and `package.json`. `bower install` will install all the packages in `bower.json`, and `npm install` will install all the packages in `package.json`.
 
 You will the `etchcode`, `etchcodeusercontent` and `scratchblock` repositories in the etchcode organization, and they all must have the same parent structure and keep their names the same as the repository names. My computer is set up like this:
-	- etch/
-		- etchcode/
-		- etchcodeusercontent/
-		- scratchblock/
+    - etch/
+        - etchcode/
+        - etchcodeusercontent/
+        - scratchblock/
+
+In your `etchcode` folder, you must then create the file `config.py`. This file has some sensitive content, so
+email Danile for it.
 
 ## Important commands
 The command `grunt watch` in the etchcode repository will listen for changes to the project files and execute the commands that need to be executed when there are changes. If you made changes without starting `grunt watch`, you can enter `grunt development` to run all the commands on all of the files. `grunt production` will execute all the commands that need to be run to set up the production version of etchcode at etchcode.org in the `build/` directory and then upload the `build/` directory to google app engine.
