@@ -1,3 +1,4 @@
+# flake8: noqa # Sam: This line is for Daniel's editor
 __author__ = 'samschickler'
 from xml_creator import xmlcreator
 def translate(string, variables, sprites):

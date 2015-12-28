@@ -1,3 +1,4 @@
+# flake8: noqa # Sam: This line is for something in my editor
 from pyparsing import *
 
 # class printx:
@@ -12,6 +13,7 @@ class transformList:
 
     def transform(self):
         print "in transform"
+        indentationStack = [1]
         functions = Forward()
         period = Suppress(Literal("."))
         #These are different types of inputs

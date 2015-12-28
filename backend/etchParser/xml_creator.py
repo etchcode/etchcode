@@ -1,3 +1,4 @@
+# flake8: noqa # Sam: This line is for something in my editor
 from transformer import transformList
 from blocks import *
 from errors import *

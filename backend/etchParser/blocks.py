@@ -1,3 +1,4 @@
+# flake8:noqa # Sam, this is for Daniel's editor
 startChunkBlocks = [  # blocks that start a chunk of connected blocks
                       "receiveGo",
 ]
@@ -127,7 +128,7 @@ snapNames = {
         "timer": {"snap": "getTimer", "inputs": []},
         "resettimer": {"snap": "doResetTimer", "inputs": []},
         # "current": {"snap": "reportDate", "inputs": [["integer", False]]}
-    }, 
+    },
 
     "operators": {
         "+": "reportSum",
