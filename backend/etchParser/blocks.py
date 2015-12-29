@@ -1,7 +1,6 @@
 # flake8:noqa # Sam, this is for Daniel's editor
-startChunkBlocks = [  # blocks that start a chunk of connected blocks
-                      "receiveGo",
-]
+hatBlocks = ["flag clicked"] # Etch names
+startChunkBlocks = ["if"] # Etch Naming
 abriviations = {  # these reference other blocks form abriviation:block name that it is referenceing
                   "m": "motion",
                   "s": "sensing",

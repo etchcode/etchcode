@@ -51,5 +51,6 @@ flag clicked:
     say("hi")
 flag clicked:
     if 'fo':
-        say("second parallel hat block!")"""
+        if 'fa':
+            say("second parallel hat block!")"""
     print(toList(string).transform())
