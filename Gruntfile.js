@@ -192,13 +192,13 @@ module.exports = function(grunt){
                 }
             }
         },
-        scratchblock: { // compiles stuff inside of <scratch></scratch> tags into html
-            all: {
-                files: [
-                    {src: ["static/pages/help/*.html"], dest: "", ext: ".built.html"}
-                ]
-            }
-        },
+        // scratchblock: { // compiles stuff inside of <scratch></scratch> tags into html
+        //     all: {
+        //         files: [
+        //             {src: ["static/pages/help/*.html"], dest: "", ext: ".built.html"}
+        //         ]
+        //     }
+        // },
         gae: {
             deploy: {
                 action: "update",
