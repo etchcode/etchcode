@@ -1,6 +1,6 @@
 from pyparsing import Word, OneOrMore, alphanums, nums, QuotedString,\
     Suppress, Forward, oneOf, Group, Optional, indentedBlock, ZeroOrMore,\
-    stringEnd
+    stringEnd, pythonStyleComment
 import blocks
 
 
@@ -23,7 +23,8 @@ class toList:
         function_input = integer ^ variable ^ string ^ Group(function_call)
         function_call << keyword + Suppress("(") + ZeroOrMore(
             function_input + Suppress(Optional(","))) + Suppress(")")
-        function_calls = indentedBlock(function_call, indentationStack)
+        function_calls = indentedBlock(function_call,
+                                       indentationStack)
 
         chunk = Forward()
         chunk_starter = oneOf(blocks.startChunkBlocks) +\
@@ -38,8 +39,11 @@ class toList:
         # largest blocks
         script = OneOrMore(Group(hat_chunk)) + stringEnd
 
+        # just for ease-of-reading rename what we will parse against parser
+        parser = script
+        parser.ignore(pythonStyleComment)
         # make the string parsing function available throughout the class
-        self.parse = script.parseString
+        self.parse = parser.parseString
 
     def transform(self):
         return self.parse(self.etch_code_string)
@@ -47,10 +51,12 @@ class toList:
 
 if __name__ == "__main__":
     string = """
+flag clicked: # a comment
+    say("hi") # another comment
+    # full line comment
 flag clicked:
-    say("hi")
-flag clicked:
-    if 'fo':
+    if 'fo': # yet another comment
+        # full line
         if 'fa':
             say("second parallel hat block!")"""
     print(toList(string).transform())
