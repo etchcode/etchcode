@@ -1,5 +1,5 @@
 # flake8: noqa # Sam: This line is for something in my editor
-from transformer import transformList
+
 from blocks import *
 from errors import *
 from pyparsing import ParseException
@@ -106,6 +106,61 @@ class xmlcreator:
 
             result += "</block>"
             return result
+        def inputWriter(function, result, functionname):
+            num = 0
+
+            for input in function[1]: #this creates xml for all the inputs
+
+
+                lineNumber = input[1]
+
+                input = input[0]
+
+                try:
+                    """This checks if a input is the correct type for the function"""
+                    if (input.integer and "integer" == functionname["inputs"][num][0]):
+                        result += inputdecider(input)
+                    elif (input.string and "string" == functionname["inputs"][num][0]):
+                        result += inputdecider(input)
+                    elif (input.expression and "integer" == functionname["inputs"][num][0]):
+                        result += inputdecider(input)
+                    elif (input.func and "integer" == functionname["inputs"][num][0]):
+                        result += inputdecider(input)
+                    elif input.variable:
+                        if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
+                            result += inputdecider(input, option = True)
+                        elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
+                            result += inputdecider(input)
+                        elif variableChecker(input[0], sprites) and functionname["inputs"][num][1]:
+                            result += inputdecider(input)
+                        elif not variableChecker(input[0], variables) and not functionname["inputs"][num][1] and not variableChecker(input[0], sprites):
+                            error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" unreconized variable or sprite" + input[0])
+                            return  {"message": error, "error": True, "lineNumber": lineNumber}
+                        else:
+                            error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+                            return  {"message": error, "error": True, "lineNumber": lineNumber}
+
+
+                    else:
+                        error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
+                        return  {"message": error, "error": True, "lineNumber": lineNumber}
+                    num += 1
+                except IndexError:
+                    error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" too many inputs " + str(len(functionname["inputs"]))+ " required")
+                    return  {"message": error, "error": True, "lineNumber": lineNumber}
+
+        def blockWriter(result):
+
+            functionname =createChild(combine(function[0]).lower(), True)
+            result +='''<block s="''' +functionname["snap"] + '''">''' #this creates the function block
+            inputWriter(function, result, functionname)
+            result += "</block>"
+
+
+
+
+
+
         try:
             main = transformList(string) # parses string into a list that we can creat xml from
             lists = main.transform()
@@ -142,52 +197,13 @@ class xmlcreator:
             for function in script: # this creates xml for all the functions
 
                 print function
-                functionname =createChild(combine(function[0]).lower(), True)
-                result+= '''<block s="''' +functionname["snap"] + '''">''' #this creates the function block
+                if combine(function[0]).lower() == "if":
+                    test =9
 
 
-                num = 0
-
-                for input in function[1]: #this creates xml for all the inputs
 
 
-                    lineNumber = input[1]
 
-                    input = input[0]
-
-                    try:
-                        """This checks if a input is the correct type for the function"""
-                        if (input.integer and "integer" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.string and "string" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.expression and "integer" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif (input.func and "integer" == functionname["inputs"][num][0]):
-                            result += inputdecider(input)
-                        elif input.variable:
-                            if (not variableChecker(input[0], variables)) and (functionname["inputs"][num][1]) and variableChecker(input[0], sprites): #if it needs the option syntax isn't sprite or variable
-                                result += inputdecider(input, option = True)
-                            elif variableChecker(input[0], variables) and not functionname["inputs"][num][1]: #if it is a variable
-                                result += inputdecider(input)
-                            elif variableChecker(input[0], sprites) and functionname["inputs"][num][1]:
-                                result += inputdecider(input)
-                            elif not variableChecker(input[0], variables) and not functionname["inputs"][num][1] and not variableChecker(input[0], sprites):
-                                error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" unreconized variable or sprite" + input[0])
-                                return  {"message": error, "error": True, "lineNumber": lineNumber}
-                            else:
-                                error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
-                                return  {"message": error, "error": True, "lineNumber": lineNumber}
-
-
-                        else:
-                            error =("On function " + str(function[0]) +"."+str(combine(function[1]))+" with input " + str(input[0]) + " needs to be a "+ str(functionname["inputs"][num][0]))
-                            return  {"message": error, "error": True, "lineNumber": lineNumber}
-                        num += 1
-                    except IndexError:
-                        error = ("On function " + str(function[0]) +"."+str(combine(function[1]))+" too many inputs " + str(len(functionname["inputs"]))+ " required")
-                        return  {"message": error, "error": True, "lineNumber": lineNumber}
-                result += "</block>"
             result += "</script>"
         result += "</scripts>"
 

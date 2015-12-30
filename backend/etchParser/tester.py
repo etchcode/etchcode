@@ -15,7 +15,7 @@ sprites = ["foos213"]
 print snapNames["motion"]["move"]["snap"]
 main = xmlcreator()
 print snapNames["motion"]["move"]["snap"]
-print main.translates(string, variables, sprites)
+print main.translates("", variables, sprites)
 print snapNames["motion"]["move"]["snap"]
 
 """
