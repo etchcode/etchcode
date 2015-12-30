@@ -12,7 +12,7 @@
 					lineNumbers: true,
 					indentWithTabs: true,
 					theme: "xq-light",
-					mode: "etch"
+					mode: "etchcode"
 				};
 
 			}],
