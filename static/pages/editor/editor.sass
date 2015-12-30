@@ -1,3 +1,7 @@
+.content .editor-page[class] > * // all the direct children in the layout
+    max-height: calc(100vh - #{$navigation-height})
+    overflow: auto
+
 .editor-page
     .columnLeft
         overlow: auto
@@ -21,17 +25,13 @@
     .runProject
         margin-right: 20px
 
-    editor
-        position: fixed
-        height: calc(100% - #{$navigation-height})
-        width: 100% // with position:fixed it becomes 0 by default
+    .editor
+        @extend .pageBlock
+        width: 100%
+        height: calc(100vh - #{$navigation-height})
 
-        .editor
-            height: 100% // so that it will expand to fill its parent which is sized using fill-remaining-height
-            position: relative
-
-            .CodeMirror
-                height: 100% // same reason parent has height:100%
+        .CodeMirror
+            height: 100%
 
     sprites-list, blocks-list, .columnLeft .topRow
         @extend .pageBlock

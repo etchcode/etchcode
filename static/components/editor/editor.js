@@ -6,6 +6,7 @@
 	.directive("editor", function(){ // a directive for inserting editor elements
 		return {
 			restrict: "E",
+            replace: true,
 			templateUrl: "static/components/editor/editor.html",
 			controller: ["$scope", "$element", function($scope) {
 				$scope.codemirrorConfig = {
