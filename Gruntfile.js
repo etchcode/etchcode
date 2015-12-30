@@ -1,6 +1,5 @@
 module.exports = function(grunt){
     require("load-grunt-tasks")(grunt);
-    var mime = require("mime");
 
     var BASE_PATH = "static/";
     var BUILD_PATH = "build/";
@@ -192,13 +191,6 @@ module.exports = function(grunt){
                 }
             }
         },
-        // scratchblock: { // compiles stuff inside of <scratch></scratch> tags into html
-        //     all: {
-        //         files: [
-        //             {src: ["static/pages/help/*.html"], dest: "", ext: ".built.html"}
-        //         ]
-        //     }
-        // },
         gae: {
             deploy: {
                 action: "update",
@@ -221,6 +213,9 @@ module.exports = function(grunt){
             }
         },
         shell: {
+            check_manifest: {
+                command: "python3 backend/tests/check_manifest_file.py"
+            }
         },
         wiredep: {
             target: {
@@ -267,37 +262,16 @@ module.exports = function(grunt){
             all_servers: ["gae:usercontent", "gae:primary"]
         }
     });
-    // grunt.registerTask("inline_default_images", function(){
-    //     var OUTPUT_FILE = "static/scripts/services/defaults.js";
-    //
-    //     var replacements = {};
-    //     grunt.file.recurse("static/defaults", function(abspath, rootdir, subdir,
-    //                                                    filename){
-    //         var contents = grunt.file.read(abspath, {encoding: null});
-    //         var base64_contents = contents.toString("base64");
-    //         var mime_type = mime.lookup(filename);
-    //
-    //         replacements[filename] = "data:" + mime_type + ";base64," /
-    //         + base64_contents;
-    //     });
-    //
-    //     var new_file_contents = grunt.file.read(OUTPUT_FILE);
-    //     for(var filename in replacements){
-    //         var replacement = replacements[filename];
-    //         var match_to_replace = new RegExp("{{[ ]*" + filename + "[ ]*}}");
-    //
-    //         new_file_contents.replace(match_to_replace, replacement);
-    //     }
-    //     grunt.file.write(OUTPUT_FILE, new_file_contents);
-    // });
 
 
-    grunt.registerTask("development", ["concurrent:dev_1", "concurrent:dev_2",
-                       "replace:dev"]);
-    grunt.registerTask("production", ["copyto:dev_to_build",
-                       "concurrent:production_1", "concurrent:production_2",
-                       "replace:production", "gae:deploy"]);
+    grunt.registerTask("development", ["shell:check_manifest",
+                       "concurrent:dev_1", "concurrent:dev_2", "replace:dev"]);
+    grunt.registerTask("production", ["shell:check_manifest",
+                       "copyto:dev_to_build", "concurrent:production_1",
+                       "concurrent:production_2", "replace:production",
+                       "gae:deploy"]);
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
+    grunt.registerTask("wiredep", ["wiredep"]);
 
     grunt.registerTask("default", ["development"]);
 };
