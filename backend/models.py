@@ -2,7 +2,7 @@
 from google.appengine.ext import ndb
 import json
 
-import defaults  # the equivilant of our defaults.js file
+# import defaults  # the equivilant of our defaults.js file
 
 
 class User(ndb.Model):
