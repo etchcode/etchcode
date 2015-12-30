@@ -15,21 +15,44 @@ class toList:
 
         def parse_variable(string, pos, tokens):
             return self.VARIABLE % (tokens[0])
+        def expr_parse(tokens):
 
-        # def parse_operator(string, pos, tokens, so_far=""):
-        #     if len(token) == 1:
-        #         return so_far % token
-        #     else:
-        #         return OPERATORparse_operator(string, pos, tokens[0], so_far=so_far) +\
+            print("ets",tokens)
+            expression = tokens[1]
+            result = '''<block s="''' + expression+'''">''' # this adds the operator block
+
+            if len(tokens[0]) != 1 and type(tokens[0]) == list:
+                result += expr_parse(tokens[0])
+            else:
+                result += tokens[0]
+            if len(tokens[2]) != 1 and type(tokens[2]) == list:
+                print("token",tokens)
+                result += expr_parse(tokens[2])
+            else:
+                print("token",tokens)
+                result += tokens[2]
+
+            # passes it to the exprParser again to parse the next equation
+
+            result += "</block>"
+            print("result:",result)
+            return result
+        def parse_operator(string, pos, tokens):
+            if len(tokens[0]) > 3:
+
+                return tokens[0]
+            else:
+
+                return expr_parse(tokens.asList()[0])
 
         indentationStack = [1]  # this is used in all the indentedBlock's
         # basic building blocks
-        keyword = Word(alphanums)("keyword")
+        keyword = Word(alphanums)
         integer = Word(nums).setParseAction(parse_input)
-        variable = Word(alphanums + "_" + "-")("variable").\
+        variable = Word(alphanums + "_" + "-").\
             setParseAction(parse_variable)
         string = (QuotedString("\"", escChar="\\") ^
-                  QuotedString("\'", escChar="\\")("string")).\
+                  QuotedString("\'", escChar="\\")).\
             setParseAction(parse_input)
 
         # larger blocks
@@ -46,7 +69,7 @@ class toList:
             ("%", 2, opAssoc.LEFT),
 
             (multop, 2, opAssoc.LEFT),
-            (plusop, 2, opAssoc.LEFT)
+            (plusop, 2, opAssoc.LEFT),
             ("and", 2, opAssoc.LEFT)
         ]).setParseAction(parse_operator)
 
