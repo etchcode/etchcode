@@ -7,7 +7,8 @@
 	.controller("editorController", ["spriteData", "toaster", "random",
                 "$mdDialog", "$rootScope", "$scope", "user", "$routeParams",
                 "project", function(spriteData, toaster, random, $mdDialog,
-                                    $rootScope, $scope, user, $routeParams, project){
+                                    $rootScope, $scope, user, $routeParams,
+                                    project){
         $rootScope.pageName = "Editor";
         debug.spriteData = spriteData;
 
@@ -17,7 +18,7 @@
         $scope.sprites.list = []; // all sprites except background, general
         $scope.sprites.background = {};
         $scope.sprites.general = {};
-        $scope.sprites.current = undefined;
+        $scope.sprites.current = {};
 
         project.fetch($routeParams.projectId)
         .then(function(project){
@@ -29,6 +30,8 @@
                 $scope.project.sprites = spriteData.sprites;
             }
             $scope.sprites = project.sprites;
+
+            $scope.sprites.current = $scope.sprites.list[0];
         });
 
         $scope.save_project = function(){

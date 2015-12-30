@@ -19,7 +19,9 @@
         <md-card ng-repeat="project in projects.list()" class="project">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{ project.name }}</span>
+                    <span class="md-headline" md-highlight-text="'ob'" md-highlist-flags="g">
+                        {{ project.name }}
+                    </span>
                     <span class="md-subhead">{{ project.description.substr(50) }}</span>
                 </md-card-title-text>
                 <md-card-title-media>
@@ -29,8 +31,8 @@
                 </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button ng-href="/project/{{ project.key }}/{{ project.name }}/view">view</md-button>
-                <md-button ng-href="/project/{{ project.key}}/{{ project.name }}/edit">edit</md-button>
+                <md-button ng-href="/project/{{ project.key }}/{{ projects.url_friendly_name(project.name) }}/view">view</md-button>
+                <md-button ng-href="/project/{{ project.key}}/{{ projects.url_friendly_name(project.name) }}/edit">edit</md-button>
                 <md-button ng-click="projects.delete(project.key)">delete</md-button>
             </md-card-actions>
         </md-card>
