@@ -303,16 +303,20 @@ def parse():
     by services/render.js that is json encoded
     Return: Parsed scripts
     """
+    request_data = json.loads(request.data.decode())
 
-    scripts = json.loads(json.loads(request.data.decode())["scripts"])
-    variables = ["hi"]
-    sprites = json.loads(json.loads(request.data.decode())["sprites"])
-    # don't use request.form because ng transmits data as json
+    scripts = request_data["scripts"]
+    global_variables = request_data["global_variables"]
+    sprites = request_data["sprites"]
 
     parsed = {}
-    for name in scripts:
-        parsed[name] = translator.translate(scripts[name],  # translate it
-                                            sprites, variables)
+    for name, item in scripts.items():
+        script = item["script"]
+        local_variables = item["variables"]
+        all_variables = local_variables + global_variables
+
+        parsed[name] = translator.translate(script,  # translate it
+                                            sprites, all_variables)
 
     return Response(json.dumps(parsed))
 

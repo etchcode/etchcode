@@ -9,7 +9,7 @@
         that.project = function (project) {
             // function accepts string project and returns a Promise that resolves to a string of the built project
             return new Promise(function (resolve) {
-                var all = project.list.concat(project.background).concat(project.general);
+                var all = project.list.concat(project.background);
 
                 var scripts = {};
                 var sprites = [];
@@ -18,12 +18,16 @@
                     var sprite = all[i];
 
                     sprites.push(sprite.id);
-                    scripts[sprite.id] = sprite.script;
+                    scripts[sprite.id] = {
+                        script: sprite.script,
+                        variables: sprite.variables
+                    };
                 }
 
                 $http.post("/api/parse", {
-                    scripts: JSON.stringify(scripts),
-                    sprites: JSON.stringify(sprites)
+                    scripts: scripts,
+                    sprites: sprites,
+                    global_variables: project.general.variables
                 }).success(function (data) {
                     for (var sprite in data) {
                         if (data[sprite].message) {
