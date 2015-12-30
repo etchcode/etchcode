@@ -11,18 +11,40 @@
     md-cols-sm="1"
     md-cols-md="2"
     md-cols-lg="3"
-    md-cols-gt-lg="4"
-    >
-    <md-grid-tile ng-repeat="sprite in all_sprites()"> <!-- all() includes sprites.list, sprites.general, and sprites.background -->
-        <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
-            <div class="footer">
+    md-cols-gt-lg="4">
+        <md-grid-tile ng-repeat="sprite in sprites.list" class="sprite-tile"
+                      ng-click="sprites.current = sprite"
+                      style="background-image: url('{{ sprite.costumes[0].data }}')">
+            <md-grid-tile-footer class="sprite-tile-footer">
                 <span class="label">{{ sprite.id }}</span>
 
-                <md-button class="md-icon-button spriteSettings md-secondary" ng-click="sprite_settings(sprite)">
+                <md-button class="md-icon-button md-secondary" ng-click="sprite_settings(sprite)">
                     <md-icon md-font-set="material-icons" class="material-icons md-light">info_outline</md-icon>
                 </md-button>
-            </div>
-        </div>
-    </md-grid-tile>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile class="sprite-tile background"
+                      ng-click="sprites.current = sprites.background"
+                      style="background-image: url('{{ sprites.background.costumes[0].data }}')">
+            <md-grid-tile-footer class="sprite-tile-footer">
+                <span class="label">background</span>
+
+                <md-button class="md-icon-button md-secondary" ng-click="sprite_settings(sprites.background)">
+                    <md-icon md-font-set="material-icons" class="material-icons md-light">info_outline</md-icon>
+                </md-button>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile class="sprite-tile general">
+            <md-icon class="general-icon">settings</md-icon>
+
+            <md-grid-tile-footer class="sprite-tile-footer">
+                <span class="label">general</span>
+                <md-button class="md-icon-button md-secondary" ng-click="sprite_settings(sprites.general)">
+                    <md-icon md-font-set="material-icons" class="material-icons md-light">info_outline</md-icon>
+                </md-button>
+            </md-grid-tile-footer>
+        </md-grid-tile>
     </md-grid-list>
 </div>

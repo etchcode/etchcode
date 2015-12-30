@@ -2,6 +2,8 @@
 from google.appengine.ext import ndb
 import json
 
+import defaults  # the equivilant of our defaults.js file
+
 
 class User(ndb.Model):
     """A user of etch stored in ndb."""
@@ -25,6 +27,7 @@ class User(ndb.Model):
 
 class Project(ndb.Model):
     name = ndb.StringProperty(required=True)
+    # thumbnail = ndb.BlobProperty(required=True)
     JSON = ndb.TextProperty(required=True)
     # whenever JSON is changed, SnapXML must be changed as well
     SnapXML = ndb.TextProperty(required=True)
@@ -40,3 +43,9 @@ class Project(ndb.Model):
             return False
         else:
             return self.parsed_json()["general"]["thumbnail"]
+
+    # def create(name):
+    #     """Creates project with default settings
+    #     Takes: name
+    #     Returns ndb Key"""
+    #     return Project(name=name, JSON=)

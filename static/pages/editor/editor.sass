@@ -1,3 +1,4 @@
+// the funky selector is to have more specificity than the material defaults
 .content .editor-page[class] > * // all the direct children in the layout
     max-height: calc(100vh - #{$navigation-height})
     overflow: auto
@@ -7,20 +8,20 @@
         overlow: auto
         height: 100%
 
-    .spriteTile
-        width: 100%
-        height: 100%
+    .sprite-tile-footer
         display: flex
-        flex-direction: column-reverse // align footer to bottom
+        flex-direction: row
+        justify-content: flex-end
 
-        .footer
-            overflow: hidden
-            height: 15px
-            padding: 15px
-            padding-right: 0px
+        background-color: rgba(md-color("blue grey", 900), .7)
+        padding: 0 5px 0 5px
+        height: 40px
 
-            .label
-                width: calc(100% - 24px)
+        .label
+            font-size: 14px
+
+    .general-icon
+        font-size: 120px
 
     .runProject
         margin-right: 20px

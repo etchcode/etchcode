@@ -1,7 +1,7 @@
 <md-dialog flex="40" class="spriteSettingsDialog">
     <md-dialog-content>
         <form>
-            <md-input-container>
+            <md-input-container class="md-block">
                 <label>Sprite Name</label>
                 <input required ng-model="sprite.id" id="settingsSpriteTitle">
             </md-input-container>
@@ -19,7 +19,10 @@
             </div>
 
             <div>
-                <md-chips ng-model="sprite.variables" placeholder="+Variable" secondary-placeholder="+Variable"></md-chips>
+                <md-chips ng-model="sprite.variables"
+                          placeholder="+Variable"
+                          secondary-placeholder="{{variables_type(sprite.id)}}">
+                </md-chips>
             </div>
 
             <div ng-if="sprite.costumes" class="costumes">
@@ -31,7 +34,7 @@
                         <img alt="sprite costume image" class="md-avatar" ng-src="{{ costume.data }}">
                         <p>
                             <md-input-container>
-                                <input ng-model="costume.name">
+                                <input ng-model="costume.name" aria-label="costume name">
                             </md-input-container>
                         </p>
                         <md-button class="md-icon-button" ng-click="sprite.deleteCostume(costume)">
@@ -58,12 +61,12 @@
             </div>
         </form>
     </md-dialog-content>
-    <div class="md-actions">
+    <md-dialog-actions>
         <md-button ng-click="delete()" class="md-warn" ng-if="sprite.id != 'background' && sprite.id !='general'">
             Delete
         </md-button>
         <md-button ng-click="close()" class="md-primary">
             Close
         </md-button>
-    </div>
+    </md-dialog-actions>
 </md-dialog>

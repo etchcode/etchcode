@@ -106,6 +106,17 @@
                             $scope.newCostume.addFailed = true;
                         }
                     };
+
+                    $scope.variables_type = function(id){
+                        // Takes: Id of Sprite
+                        // Returns: "+Variable for all sprites" || "+Variable"
+                        switch (id) {
+                            case 'general':
+                                return '+Variable for all sprites';
+                            default:
+                                return '+Variable';
+                        }
+                    };
                 }]
             });
         };
