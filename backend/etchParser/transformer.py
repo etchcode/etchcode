@@ -1,3 +1,5 @@
+# import pdb
+
 from pyparsing import *  # NOQA
 import blocks
 
@@ -20,8 +22,13 @@ class toList:
         def parse_variable(string, pos, tokens):
             return self.VARIABLE % (tokens[0])
 
-        def parse_function_call(string, poss, tokens):
-            return self.BLOCK_TAGS % (tokens[0], tokens[1])
+        def parse_function_call(string, pos, tokens):
+            block_name = tokens.pop(0)
+            block_content = ""
+            for token in tokens:
+                block_content += token
+
+            return self.BLOCK_TAGS % (block_name, block_content)
 
         def expr_parse(tokens):
             expression = tokens[1]
@@ -41,7 +48,7 @@ class toList:
             return result
 
         def parse_operator(string, pos, tokens):
-            print(tokens)
+            print("parse_op", tokens)
             if len(tokens[0]) > 3:
                 return tokens[0]
             else:
@@ -78,14 +85,14 @@ class toList:
         function_input = integer ^ variable ^ string ^ Group(function_call)
         multop = oneOf('* /')
         plusop = oneOf('+ -')
-        an_input = OneOrMore(infixNotation(function_input, [
+        an_input = infixNotation(function_input, [
             (multop, 2, opAssoc.LEFT),
             (plusop, 2, opAssoc.LEFT),
             ("!", 1, opAssoc.LEFT),
             ("^", 2, opAssoc.RIGHT),
             ("%", 2, opAssoc.LEFT),
             ("and", 2, opAssoc.LEFT)
-        ]).setParseAction(parse_operator))
+        ]).setParseAction(parse_operator)
 
         # no we define funcion call, this had to be done after input
         # because we use input in the deffinition
@@ -117,6 +124,8 @@ class toList:
         parser.ignore(pythonStyleComment)  # support comments
         # make the string parsing function available throughout the class
         self.parse = parser.parseString
+
+        # pdb.set_trace()
 
     def transform(self):
         # call the parse method defined in __init__
