@@ -90,7 +90,7 @@ snapNames = {
 
     "events": {
         #we can't support backdropswichesto, and greaterthan because Snap! doesn't
-        "flagclicked": {"snap": "receiveGo", "inputs": []},
+        "flag clicked": {"snap": "receiveGo", "inputs": []},
         "keypressed": {"snap": "receiveKey", "inputs": [["key", True]]},
         "thisspriteclicked": {"snap": "receiveInteraction", "inputs": [["sprite", True]]},
         # "ireceivemessage": {"snap": "receiveMessage", "inputs": [["sprite", True]]},
@@ -103,7 +103,7 @@ snapNames = {
         "wait":{"snap": "doWait", "inputs": [["integer", False]]} ,
         # "repeat": {"snap": "doRepeat", "inputs": [["integer", False]]},
         # "forever":{"snap": "doForever", "inputs": [["integer", False]]} ,
-        # "if": {"snap": "doIf", "inputs": [["integer", False]]},
+        "if": {"snap": "doIf", "inputs": [["integer", False]]},
         # "waituntil": {"snap": "doWaitUntil", "inputs": [["integer", False]]},
         # "repeatuntil": {"snap": "doUntil", "inputs": [["integer", False]]},
         "stopThis": {"snap": "doStopThis", "inputs": [["snap value", True]]},
@@ -154,8 +154,13 @@ snapNames = {
 
 closeSelf = ["receiveGo", "xPosition", "yPosition", "direction"]  # tags that should self-close
 
-behave_as_function = [] # a list of etch names that are or act as functions
+that_behave_as_functions = [] # a list of etch names that are or act as functions
 for type_name, section in snapNames.items():
     for item_name, item in section.items():
         if "notation" not in item:
-            behave_as_function.append(item_name)
+            that_behave_as_functions.append(item_name)
+
+snap_names_lookup = {}
+for category_name, category in snapNames.items():
+    for item_name, item in category.items():
+        snap_names_lookup[item_name] = item["snap"] # = just the snapName
