@@ -1,6 +1,6 @@
 import pdb
 
-from pyparsing import *  # NOQA
+from pyparsing import *
 import blocks
 
 global_tokens = []
@@ -46,10 +46,18 @@ class Transformer:
             return result
 
         def parse_operator(string, pos, tokens):
-            if len(tokens[0]) > 3:
-                return tokens[0]
+            if type(tokens) != list:
+                tokens = tokens.asList()[0]
+
+            if type(tokens) == str:
+                return tokens
+            if len(tokens) <= 3:
+                return expr_parse(tokens)
             else:
-                return expr_parse(tokens.asList()[0])
+                parsed_expression = expr_parse(tokens[:3])
+                recursing = parse_operator(string, pos, [parsed_expression] +
+                                           tokens[3:])
+                return recursing
 
         def parse_chunk_starter(string, pos, tokens):
             name = blocks.snapNames["control"][tokens[0]]["snap"]
@@ -150,8 +158,10 @@ class Transformer:
 
 if __name__ == "__main__":
     string = """
+flag clicked:
+    say(1 + 2 + 3 + 5 + 4 / 1)
 flag clicked: # a comment
-    say(122 + 2 / 3) # another comment
+    say(var_1 + 2 / 3) # another comment
     say(var_1)
     # full line comment
 flag clicked:
@@ -159,5 +169,6 @@ flag clicked:
         # full line
         if 'fa':
             say(3 * 2 + 1)"""
+
     t = Transformer()
     print(t.parse_and_transform(string, ["var_1"]))
