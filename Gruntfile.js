@@ -236,7 +236,7 @@ module.exports = function(grunt){
             },
             main_html: {
                 files: "static/pages/index.html",
-                tasks: ["htmllint:main_html", "replace:development"],
+                tasks: ["replace:dev"],
                 options: {spawn: false}
             },
             all_html: {
