@@ -256,8 +256,8 @@ module.exports = function(grunt){
             dev_1: concurrent_common_with_enviroment("dev", 1),
             dev_2: concurrent_common_with_enviroment("dev", 2),
 
-            production_1: concurrent_common_with_enviroment("prod", 1),
-            production_2: concurrent_common_with_enviroment("prod", 2),
+            production_1: concurrent_common_with_enviroment("production", 1),
+            production_2: concurrent_common_with_enviroment("production", 2),
 
             all_servers: ["gae:usercontent", "gae:primary"]
         }
