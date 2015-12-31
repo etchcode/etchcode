@@ -12,6 +12,7 @@ abriviations = {  # these reference other blocks form abriviation:block name tha
                   "o": "operators",
 
 }
+keywords = ["true", "false"]
 snapNames = {
 
     "motion": {
@@ -130,25 +131,31 @@ snapNames = {
     },
 
     "operators": {
-        "+": "reportSum",
-        "-": "reportDifference",
-        "*": "reportProduct",
-        "/": "reportQuotient",
-        # "pickrandombetween": {"snap": "reportRandom", "inputs": [["integer", False]]},
-        # "<": "reportLessThan",
-        # "=": "reportEquals",
-        # ">": "reportGreaterThan",
-        # "and": "reportAnd",
-        # "or": "reportOr",
-        # "not": "reportNot",
-        # "join": "reportJoinWords",
-        # "letternumber": {"snap": "reportLetter", "inputs": [["integer", False]]},
-        # "lengthof": {"snap": "reportStringSize", "inputs": [["integer", False]]},
-        "%": "reportModulus",
-        # "round": {"snap": "reportRound", "inputs": [["integer", False]]},
-        # "operationofnumber": {"snap": "reportMonadic", "inputs": [["integer", False]]}
+        "+": {"snap": "reportSum", "notation": "standard"},
+        '/': {'snap': 'reportQuotient', "notation": "standard"},
+        '-': {'snap': 'reportDifference', "notation": "standard"},
+        '*': {'snap': 'reportProduct', "notation": "standard"},
+        "pickrandombetween": {"snap": "reportRandom", "inputs": [["integer", False]]},
+        "<": {'snap': "reportLessThan", "notation": "standard"},
+        "=": {'snap': "reportEquals", "notation": "standard"},
+        ">": {'snap': "reportGreaterThan", "notation": "standard"},
+        "and": {'snap': "reportAnd", "notation": "standard"},
+        "or": {'snap': "reportOr", "notation": "standard"},
+        "not": {'snap': "reportNot", "notation": "polish"},
+        "join": {'snap': "reportJoinWords"},
+        "letternumber": {"snap": "reportLetter", "inputs": [["integer", False]]},
+        "lengthof": {"snap": "reportStringSize", "inputs": [["integer", False]]},
+        "%": {'snap': "reportModulus", "notation": "standard"},
+        "round": {"snap": "reportRound", "inputs": [["integer", False]]},
+        "operationofnumber": {"snap": "reportMonadic", "inputs": [["integer", False]]}
     },
 
 }
 
 closeSelf = ["receiveGo", "xPosition", "yPosition", "direction"]  # tags that should self-close
+
+behave_as_function = [] # a list of etch names that are or act as functions
+for type_name, section in snapNames.items():
+    for item_name, item in section.items():
+        if "notation" not in item:
+            behave_as_function.append(item_name)
