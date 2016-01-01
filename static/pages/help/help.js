@@ -4,7 +4,7 @@
     .controller("helpController", ["$scope", "$rootScope", "$http", "$sce", function($scope, $rootScope, $http, $sce){
         var _this = this;
         
-        $rootScope.pageName = "Help & Feedback";
+        $rootScope.page_name = "Help & Feedback";
         
         var contentToGet = {"static/pages/help/fromScratch.md": "fromScratch", "static/pages/help/fromNothing.md": "fromNothing", "static/pages/help/fromWritten.md": "fromWritten"};
         

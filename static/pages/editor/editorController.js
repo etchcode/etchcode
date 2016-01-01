@@ -9,7 +9,7 @@
                 "project", function(spriteData, toaster, random, $mdDialog,
                                     $rootScope, $scope, user, $routeParams,
                                     project){
-        $rootScope.pageName = "Editor";
+        $rootScope.page_name = "Editor";
         debug.spriteData = spriteData;
 
         var _this = this; //cache _this for the children

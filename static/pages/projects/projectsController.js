@@ -1,5 +1,5 @@
 angular.module("etch").controller("projectsController", ["$rootScope", "$scope", "project", function ($rootScope, $scope, project){
-    $rootScope.pageName = "Projects";
+    $rootScope.page_name = "Projects";
     _projects = this;
     _projects.search_text = "";
 

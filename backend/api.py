@@ -359,6 +359,7 @@ def project():
     if request.method == "GET":
         return json.dumps({
             "sprites": json.loads(project.JSON),
+            "snap_xml": project.SnapXML,
             "name": project.name
         })
 

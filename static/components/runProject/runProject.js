@@ -10,7 +10,8 @@ var $e;
                 replace: true,
                 scope: {
                     snapXml: "=",
-                    etchSprites: "="
+                    etchSprites: "=",
+                    enabled: "="
                 },
 
                 templateUrl: "static/components/runProject/runProject.html",
@@ -72,13 +73,12 @@ var $e;
                             $scope.running = true;
 
                             if($scope.etchSprites){
-                                console.log($scope.etchSprites);
                                 render.project($scope.etchSprites).then(function (response) {
                                     $scope.run(response);
                                 });
                             }
-                            else if($scope.snapXML){
-                                $scope.run($scope.snapXML);
+                            else if($scope.snapXml){
+                                $scope.run($scope.snapXml);
                             }
                             else{
                                 $scope.running = false;

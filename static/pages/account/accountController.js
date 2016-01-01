@@ -1,6 +1,6 @@
 angular.module("etch")
 .controller("accountController", ["$rootScope", "$scope", "user", "api", function($rootScope, $scope, user, api){
-    $rootScope.pageName = "Account"; // set page name for use in title, etc
+    $rootScope.page_name = "Account"; // set page name for use in title, etc
     $scope.user = user.user; // lets copy the user object so if we don't save it won't be modified
 
     $scope.save = function(){

@@ -8,7 +8,7 @@
         <iframe ng-src="{{PLAYER_URL}}" class="player" id="player"
         sandbox="allow-scripts allow-same-origin"></iframe>
 
-        <md-button class="md-fab md-mini playPause" aria-label="Play/Pause project" ng-click="toggleStartStop()">
+        <md-button class="md-fab md-mini playPause" aria-label="Play/Pause project" ng-click="toggleStartStop()" ng-disabled="!enabled">
             <md-icon md-font-set="material-icons" ng-show="!running">flag</md-icon>
             <md-icon md-font-set="material-icons" ng-show="running">stop</md-icon>
         </md-button>
