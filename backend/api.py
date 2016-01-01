@@ -14,20 +14,23 @@ import urllib
 # import of own files
 import models
 from etchParser import translator, blocks
+import heap  # server-side tracking through heap analytics
+
+# init code
+app = Flask("api")
+app.config.from_pyfile("config.py")
 
 # handle setting globals based on if this is a dev or production environment
 if os.environ["SERVER_SOFTWARE"].startswith("Development"):
     PRODUCTION = False
     URL = "http://localhost:9090"
+    HEAP_APP_ID = app.config["HEAP_APP_DEV_ID"]
 elif os.environ["SERVER_SOFTWARE"].startswith("Google"):
     PRODUCTION = True
     URL = "http://etchcode.org:80"
+    HEAP_APP_ID = app.config["HEAP_APP_ID"]
 else:
     print "unknown environment " + os.environ["SERVER_SOFTWARE"]
-
-# init code
-app = Flask("api")
-app.config.from_pyfile("config.py")
 
 
 # use a custom response class
@@ -70,6 +73,8 @@ class User:
 
         self.get_projects = user_model.get_projects
         self.create_project = user_model.create_project
+
+        self.Tracker = heap.Tracker(HEAP_APP_ID, user_model.email)
 
         self.profile = {
             "username": user_model.username,
@@ -204,6 +209,8 @@ def login():
 
         if verified and user:
             login_user(user)
+            current_user.Tracker.event("login_success")
+
             return redirect("/api/user")
         if verified and not user:
             raise ApiError(
@@ -222,6 +229,7 @@ def login():
 @login_required
 def logout():
     if request.method == "POST":
+        current_user.Tracker.event("logout_success")
         logout_user()
         return json.dumps({"status": "success"})
 
@@ -252,6 +260,12 @@ def user():
                                    username=username, name=name)
             new_user.put()
             login_user(User(new_user))  # make it a User object for Flask
+            current_user.Tracker.event("create account")
+            current_user.Tracker.identify({
+                "email": email,
+                "username": username,
+                "name": name})
+
             return redirect("/api/user")
         else:
             raise ApiError("invalid email or username")
@@ -278,6 +292,10 @@ def user_profile():
             user.name = new_name
 
         user.put()
+        current_user.Tracker.event("update profile")
+        current_user.Tracker.identify({
+            "username": user.username,
+            "name": user.name})
 
         return json.dumps({
             "message": "success"

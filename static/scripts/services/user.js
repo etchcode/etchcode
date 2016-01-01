@@ -28,7 +28,7 @@
                 }
             }
 
-            console.log(_user.user);
+            heap.identify({handle: _user.user.profile.email});
         }
 
         if(navigator.id){
