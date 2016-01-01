@@ -41,4 +41,8 @@ angular.module("etch").controller("projectsController", ["$rootScope", "$scope",
             fetch_all();
         });
     };
+
+    _projects.url_friendly_name = function(name){
+        return name.replace(/ /g, "-");
+    };
 }]);
