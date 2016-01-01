@@ -20,10 +20,10 @@
         $scope.sprites.general = {};
         $scope.sprites.current = {};
 
-        project.fetch($routeParams.projectId)
+        project.fetch($routeParams.project_id)
         .then(function(project){
             $scope.project = project;
-            $scope.project.key = $routeParams.projectId;
+            $scope.project.key = $routeParams.project_id;
 
             // is this a brand new project that needs a sprite object
             if(angular.equals(project.sprites, {})){

@@ -14,8 +14,11 @@
                 .when("/projects", {
                     templateUrl: "static/pages/projects/index.html"
                 })
-                .when("/project/:projectId/:projectName?/edit", {
+                .when("/project/:project_id/:project_name?/edit", {
                     templateUrl: "static/pages/editor/index.html"
+                })
+                .when("/project/:project_id/:project_name?/view", {
+                    templateUrl: "static/pages/viewer/index.html"
                 })
                 .when("/docs", {
                     templateUrl: "static/pages/docs/index.html"

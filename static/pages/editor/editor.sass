@@ -1,7 +1,7 @@
 // the funky selector is to have more specificity than the material defaults
 .content .editor-page[class] > * // all the direct children in the layout
-    max-height: calc(100vh - #{$navigation-height})
     overflow: auto
+    max-height: calc(100vh - #{$navigation-height})
 
 .editor-page
     .columnLeft
@@ -9,13 +9,13 @@
         height: 100%
 
     .sprite-tile-footer
-        display: flex
         flex-direction: row
+        display: flex
         justify-content: flex-end
 
-        background-color: rgba(md-color("blue grey", 900), .7)
-        padding: 0 5px 0 5px
         height: 40px
+        padding: 0 5px 0 5px
+        background-color: rgba(md-color("blue grey", 900), .7)
 
         .label
             font-size: 14px
@@ -27,7 +27,7 @@
         margin-right: 20px
 
     .editor
-        @extend .pageBlock
+        @extend .page_block
         width: 100%
         height: calc(100vh - #{$navigation-height})
 
@@ -35,7 +35,7 @@
             height: 100%
 
     sprites-list, blocks-list, .columnLeft .topRow
-        @extend .pageBlock
+        @extend .page_block
 
     .project-name
         width: 100%

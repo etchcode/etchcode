@@ -8,9 +8,15 @@ var $e;
             return {
                 restrict: "E",
                 replace: true,
+                scope: {
+                    snapXml: "=",
+                    etchSprites: "="
+                },
 
                 templateUrl: "static/components/runProject/runProject.html",
-                controller: ["$scope", "$element", "renderService", "$sce", function($scope, $element, render, $sce){
+                controller: ["$scope", "$element", "renderService", "$sce",
+                             "$q", function($scope, $element, render,
+                             $sce, $q){
                     // running a project
                     $scope.loaded = false;
                     $scope.show = true;
@@ -19,9 +25,7 @@ var $e;
 
                     $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "https://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
 
-                    $e = $element;
                     var player = $element[0].getElementsByClassName("player")[0];
-
                     player.addEventListener("load", function(){
                         //listen for when the player is loaded and update whether or not it is updated
                         $scope.$apply(function(){
@@ -65,10 +69,21 @@ var $e;
                             $scope.running = false;
                         }
                         else {
-                            render.project($scope.sprites).then(function (response) {
-                                $scope.run(response); // referring to element in runProject directive in file directives/runProject.js
-                            });
                             $scope.running = true;
+
+                            if($scope.etchSprites){
+                                console.log($scope.etchSprites);
+                                render.project($scope.etchSprites).then(function (response) {
+                                    $scope.run(response);
+                                });
+                            }
+                            else if($scope.snapXML){
+                                $scope.run($scope.snapXML);
+                            }
+                            else{
+                                $scope.running = false;
+                                throw new Error("either snapXml or etchSprites must be provided");
+                            }
                         }
                     };
                 }],
