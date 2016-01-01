@@ -12,6 +12,7 @@
                                                        user, project, random){
                 $scope.$mdMenu = $mdMenu;
                 $scope.user = user.user;
+                $scope.login = user.login;
                 $scope.sideNavOpen = false;
 
                 $scope.toggleSideNav = function(){

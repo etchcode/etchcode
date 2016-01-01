@@ -12,9 +12,11 @@
         };
         _user.user = angular.copy(defaultUserObject); // use angular-copy to copy the properties and not a reference
 
-        // logout/logout code
-        //We can't just use ng-click to login/logout because of popup blockers,
-        //so they are as onclick handlers. <https://developer.mozilla.org/en-US/Persona/Quick_Setup#Step_2_Add_login_and_logout_buttons>
+        _user.login = function(){
+            user_currently_signing_up = false;
+            navigator.id.request({siteName: 'Etch Code'});
+        };
+
         function login_user_with_server_response(response){
             _user.user.loggedIn = true;
 
