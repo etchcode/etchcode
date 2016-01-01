@@ -37,8 +37,8 @@ module.exports = function(grunt){
 
     function concurrent_common_with_enviroment(enviroment, concurrent_number){
         var concurrent_common = [
-            ["sass", "jshint"], //concurrent 1
-            ["postcss", "concat_sourcemap", "htmllint:all"] // concurrent 2
+            ["sass", "concat_sourcemap"], //concurrent 1
+            ["postcss", "jshint", "htmllint:all"] // concurrent 2
         ]; // used in both dev and propduction concurrents
 
         return concurrent_common[concurrent_number - 1].map(function(task_name){
@@ -106,12 +106,15 @@ module.exports = function(grunt){
         },
         concat_sourcemap: {
             options: {
-                process: function(src, path){
-                    if(path !== BASE_PATH + "scripts/debug.js"){
-                        return "(function(){" + src + "}());";
+                process: function(contents, path){
+                    if(path == BASE_PATH + "scripts/debug.js" ||
+                        path == BUILD_PATH + BASE_PATH + "scripts/debug.js"){
+                        // don't wrap the debug code so it can set globals
+                        return contents;
                     }
                     else{
-                        return src;
+                        // wrap it in a closure to encapsulate it's scope
+                        return "(function(){" + contents + "}());";
                     }
                 },
                 sourcesContent: true
