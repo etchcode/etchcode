@@ -55,6 +55,20 @@
             // jshint ignore:end
             var HEAP_ID = PRODUCTION ? "2529494419" : "67792227";
             heap.load(HEAP_ID);
+
+            $rootScope.$on("$routeChangeStart", function(event, next, current){
+                if($location.path() == "/"){
+                    $rootScope.page_name = undefined;
+                }
+                else{
+                    $rootScope.page_name = $location.path().split("/")
+                    .map(function(word){
+                        return word === "" ? "" :
+                        word[0].toUpperCase() + word.substr(1);
+                    })
+                    .join(" ");
+                }
+            });
         });
 
 }());
