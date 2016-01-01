@@ -50,9 +50,9 @@ class Translator:
             if type(tokens) != list:
                 tokens = tokens.asList()[0]
 
-            if type(tokens) == str:
+            if type(tokens) == str or type(tokens) == unicode:
                 return tokens
-            if len(tokens) <= 3:
+            elif len(tokens) <= 3:
                 return expr_parse(tokens)
             else:
                 parsed_expression = expr_parse(tokens[:3])

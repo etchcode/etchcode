@@ -1,4 +1,5 @@
 import pdb
+import traceback
 
 from flask import Flask, Response, request, redirect, abort
 from flask.ext.login import LoginManager, UserMixin, login_required, \
@@ -315,6 +316,18 @@ def parse():
 
     parsed = {}
     Translator = translator.Translator()
+
+    for sprite in sprites:
+        script = scripts[sprite]
+        variables_in_scope = variables[sprite] + global_variables
+        try:
+            parsed[sprite] = {
+                "code": Translator.translate(script, variables_in_scope)
+            }
+        except ParseException as e:
+            parsed[sprite] = {
+                "message": str(e)
+            }
 
     return json.dumps(parsed)
 
