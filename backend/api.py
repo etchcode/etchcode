@@ -209,6 +209,9 @@ def login():
         if verified and user:
             login_user(user)
             return redirect("/api/user")
+        if verified and not user:
+            raise ApiError(
+                message="Please register an account before logging in")
 
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])

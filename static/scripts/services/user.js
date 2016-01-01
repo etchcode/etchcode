@@ -7,7 +7,7 @@
 
         // user code
         defaultUserObject = { // the default template user object
-            loggedIn: false,
+            logged_in: false,
             profile: {}
         };
         _user.user = angular.copy(defaultUserObject); // use angular-copy to copy the properties and not a reference
@@ -18,7 +18,7 @@
         };
 
         function login_user_with_server_response(response){
-            _user.user.loggedIn = true;
+            _user.user.logged_in = true;
 
             // make each prop of response a prop of user
             var data = response.data;
@@ -33,7 +33,7 @@
 
         if(navigator.id){
             navigator.id.watch({
-                loggedInUser: null, // at some time we should have session management and remember people
+                loggedInUser: null, // at some time we should have fill this from the cookie
                 onlogin: function(assertion){
                     $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
                         if(user_currently_signing_up){

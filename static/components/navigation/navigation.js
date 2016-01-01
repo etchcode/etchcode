@@ -5,7 +5,7 @@
         return {
             restrict: "E",
 
-            templateUrl: "static/components/navigation/mainHeader.html",
+            templateUrl: "static/components/navigation/navigation.html",
             controller: ["$scope", "$location", "$rootScope", "$mdMenu", "user",
                          "project", "random", function($scope, $location,
                                                        $rootScope, $mdMenu,
