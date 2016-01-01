@@ -22,7 +22,7 @@
             </md-content>
         </md-dialog-content>
         <md-dialog-actions class="actions" layout="row">
-            <md-button class="md-primary" ng-click="complete_signup()">Complete Signup</md-button>
+            <md-button class="md-primary" ng-click="complete_signup()" ng-disabled="signup_form.$invalid">Complete Signup</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>

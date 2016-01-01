@@ -16,12 +16,12 @@
         </h1>
 
         <div class="accountSection">
-            <div class="loginButtons" ng-show="!user.loggedIn">
-                <md-button onclick="navigator.id.request({siteName: 'Etch Code'})">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
+            <div class="loginButtons" ng-show="!user.logged_in">
+                <md-button ng-click="login()">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
                 <signup></signup>
             </div>
 
-            <md-menu class="userMenu" ng-show="user.loggedIn">
+            <md-menu class="userMenu" ng-show="user.logged_in">
                 <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon>account_circle</md-icon>
                 </md-button>
@@ -47,7 +47,7 @@
 
 <md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen" ng-click="toggleSideNav()">
     <nav>
-        <div class="user-section">
+        <div class="user-section" ng-if="user.logged_in">
             <h2>
                 <md-button ng-click="create_project()">
                     <md-icon>create</md-icon>

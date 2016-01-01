@@ -41,7 +41,7 @@ app.response_class = JsonResponse
 
 
 class ApiError(Exception):
-    def __init__(self, message=None, status_code=400):
+    def __init__(self, message, status_code=400):
         self.message = message
         self.status_code = status_code
 
@@ -205,6 +205,9 @@ def login():
         if verified and user:
             login_user(user)
             return redirect("/api/user")
+        if verified and not user:
+            raise ApiError(
+                message="Please register an account before logging in")
 
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])
@@ -245,13 +248,13 @@ def user():
         name = request_data["name"]
 
         if email and email_unique(email) and username_unique(username):
-            new_user = models.User(email=email, active=True, username=username,
-                                   name=name)
+            new_user = models.User(email=email, active=True,
+                                   username=username, name=name)
             new_user.put()
             login_user(User(new_user))  # make it a User object for Flask
             return redirect("/api/user")
         else:
-            raise ApiError(message="invalid email or username")
+            raise ApiError("invalid email or username")
 
 
 @app.route("/api/user/profile", methods=["GET", "PUT"])
@@ -269,7 +272,7 @@ def user_profile():
             if username_unique(new_username):
                 user.username = new_username
             else:
-                raise ApiError(message="Username already exists")
+                raise ApiError("Username already exists")
         if "name" in request_data:
             new_name = request_data["name"]
             user.name = new_name
@@ -328,11 +331,11 @@ def project():
     project_key = ndb.Key(urlsafe=request.args["key"])
     project = project_key.get()
     if not project:
-        raise ApiError(message="Project doesn't exist")
+        raise ApiError("Project doesn't exist")
     # modifying request and  current user doesn't own
     elif request.method != "GET" and not \
             current_user.owns_project(project_key):
-        raise ApiError(message="Current user may not access specified project",
+        raise ApiError("Current user may not access specified project",
                        status_code=401)
 
     if request.method == "GET":
