@@ -51,9 +51,11 @@
                 onlogout: function(){
                     $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
                         // refresh the page to clear any settings that we might have
-                        api.logout().then(function success(response){
-                            $window.location.reload();
-                        });
+                        if(_user.user.logged_in){
+                            api.logout().then(function success(response){
+                                $window.location.reload();
+                            });
+                        }
                     });
                 }
             });
