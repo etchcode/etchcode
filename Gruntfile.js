@@ -201,7 +201,10 @@ module.exports = function(grunt){
             primary: {
                 action: "run",
                 options: {
-                    args: {port: 9090, admin_port: 9091}
+                    args: {
+                        port: 9090,
+                        admin_port: 9091
+                    }
                 }
             },
             usercontent: {

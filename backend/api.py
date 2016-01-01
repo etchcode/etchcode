@@ -1,3 +1,5 @@
+import pdb
+
 from flask import Flask, Response, request, redirect, abort
 from flask.ext.login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
@@ -14,6 +16,7 @@ import urllib
 # import of own files
 import models
 from etchParser import translator, blocks
+from etchParser.translator import ParseException
 
 # handle setting globals based on if this is a dev or production environment
 if os.environ["SERVER_SOFTWARE"].startswith("Development"):
@@ -303,18 +306,17 @@ def parse():
     by services/render.js that is json encoded
     Return: Parsed scripts
     """
+    request_data = json.loads(request.data.decode())
 
-    scripts = json.loads(json.loads(request.data.decode())["scripts"])
-    variables = ["hi"]
-    sprites = json.loads(json.loads(request.data.decode())["sprites"])
-    # don't use request.form because ng transmits data as json
+    scripts = request_data["scripts"]
+    variables = request_data["variables"]
+    global_variables = request_data["global_variables"]
+    sprites = request_data["sprites"]
 
     parsed = {}
-    for name in scripts:
-        parsed[name] = translator.translate(scripts[name],  # translate it
-                                            sprites, variables)
+    Translator = translator.Translator()
 
-    return Response(json.dumps(parsed))
+    return json.dumps(parsed)
 
 
 @app.route("/api/project", methods=["GET", "POST", "DELETE"])
@@ -349,11 +351,13 @@ def project():
 
         # parse JSON into SnapXML. this must be done server-side so that the
         # user cant't give us arbitrary xml
+
         project_template_enviroment = jinja2.Environment(
             loader=jinja2.FileSystemLoader(os.path.join(
                 os.path.split(__file__)[0],
                 "../templates/project"
             )))
+
         project_template = project_template_enviroment.get_template(
             "snap_template.xml")
 
@@ -366,13 +370,13 @@ def project():
             sprite_ids.append(sprite["id"])
 
         scripts = {}
+        Translator = translator.Translator()
         for sprite in all_sprites:
             if "script" in sprite:  # skip globals which has no script
                 global_variables = sprites_json["general"]["variables"]
                 variables = sprite["variables"]
                 variables.append(global_variables)
-                scripts[sprite["id"]] = translator.translate(sprite["script"],
-                                                             sprite_ids,
+                scripts[sprite["id"]] = Translator.translate(sprite["script"],
                                                              variables)
 
         rendered_template = project_template.render(project={
