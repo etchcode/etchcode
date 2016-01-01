@@ -114,7 +114,7 @@ module.exports = function(grunt){
                     }
                     else{
                         // wrap it in a closure to encapsulate it's scope
-                        return "(function(){" + contents + "}());";
+                        return "(function(){\"use string\";\n" + src + "}());";
                     }
                 },
                 sourcesContent: true
