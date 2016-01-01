@@ -175,7 +175,10 @@ module.exports = function(grunt){
                         ".gitattributes",
                         ".brackets.json",
                         "bower.json",
-                        "package.json"
+                        "package.json",
+                        "*.sass",
+                        "*.scss",
+                        "node_modules{,*,/**/*}"
                     ]
                 }
             },

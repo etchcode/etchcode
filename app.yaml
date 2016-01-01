@@ -4,6 +4,17 @@ runtime: python27
 api_version: 1
 threadsafe: yes
 
+skip_files:
+# defaults as defining skip_files overriedes default values
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+# end defaults
+- ^node_modules/.*$ # node modules dir
+- ^.*\.(sass|scss) # sass/scss as it is compiled
+
 # every handler must have secure:always
 handlers:
 - url: /.well-known/acme-challenge/rNd4bawGtFjt-vOsJEjXePBqg7YrvwOG7nMXiqkIxoE
