@@ -62,7 +62,7 @@ module.exports = function(grunt){
                     ext: ".css",
                 }]
             },
-            production: {
+            prod: {
                 files: [{
                     expand: true,
                     cwd: BUILD_PATH + BASE_PATH + "styles/",
@@ -84,13 +84,13 @@ module.exports = function(grunt){
             dev: {
                 src: "static/styles/build/*.css"
             },
-            production: {
+            prod: {
                 src: BUILD_PATH + "static/styles/build/*.css"
             }
         },
         jshint: {
             dev: JAVASCRIPT_DIRECTORIES,
-            production: JAVASCRIPT_DIRECTORIES.map(prepend_build)
+            prod: JAVASCRIPT_DIRECTORIES.map(prepend_build)
         },
         htmllint: {
             main_html: ["static/pages/index.html"],
@@ -121,18 +121,18 @@ module.exports = function(grunt){
                     "static/scripts/build/main.js": JAVASCRIPT_DIRECTORIES
                 }
             },
-            production: {
+            prod: {
                 files: {
                     "build/static/scripts/build/main.js": JAVASCRIPT_DIRECTORIES.map(prepend_build)
                 }
             }
         },
         replace: {
-            production: {
+            prod: {
                 options: {
                     patterns: [{
                         match: /{{ server.type }}/,
-                        replacement: "production"
+                        replacement: "prod"
                     }]
                 },
                 files: [{
@@ -172,7 +172,9 @@ module.exports = function(grunt){
                         ".gitattributes",
                         ".brackets.json",
                         "bower.json",
-                        "package.json"
+                        "package.json",
+                        "node_modules{,/**/*}",
+                        "*.sass"
                     ]
                 }
             },
@@ -259,22 +261,22 @@ module.exports = function(grunt){
             dev_1: concurrent_common_with_enviroment("dev", 1),
             dev_2: concurrent_common_with_enviroment("dev", 2),
 
-            production_1: concurrent_common_with_enviroment("prod", 1),
-            production_2: concurrent_common_with_enviroment("prod", 2),
+            prod_1: concurrent_common_with_enviroment("prod", 1),
+            prod_2: concurrent_common_with_enviroment("prod", 2),
 
             all_servers: ["gae:usercontent", "gae:primary"]
         }
     });
 
 
-    grunt.registerTask("development", ["shell:check_manifest",
+    grunt.registerTask("dev", ["shell:check_manifest",
                        "concurrent:dev_1", "concurrent:dev_2", "replace:dev"]);
-    grunt.registerTask("production", ["shell:check_manifest",
-                       "copyto:dev_to_build", "concurrent:production_1",
-                       "concurrent:production_2", "replace:production",
+    grunt.registerTask("prod", ["shell:check_manifest",
+                       "copyto:dev_to_build", "concurrent:prod_1",
+                       "concurrent:prod_2", "replace:prod",
                        "gae:deploy"]);
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
-    grunt.registerTask("wiredep", ["wiredep"]);
+    grunt.registerTask("wiredep", ["wiredep"]); // adds bower modules to index.html
 
-    grunt.registerTask("default", ["development"]);
+    grunt.registerTask("default", ["dev"]);
 };
