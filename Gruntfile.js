@@ -38,7 +38,7 @@ module.exports = function(grunt){
     function concurrent_common_with_enviroment(enviroment, concurrent_number){
         var concurrent_common = [
             ["sass", "jshint"], //concurrent 1
-            ["postcss", "concat_sourcemap", "htmllint:all"] // concurrent 2
+            ["postcss", "concat_sourcemap", "htmllint:all", "jshint:prod_final"] // concurrent 2
         ]; // used in both dev and propduction concurrents
 
         return concurrent_common[concurrent_number - 1].map(function(task_name){
@@ -90,7 +90,8 @@ module.exports = function(grunt){
         },
         jshint: {
             dev: JAVASCRIPT_DIRECTORIES,
-            prod: JAVASCRIPT_DIRECTORIES.map(prepend_build)
+            prod: JAVASCRIPT_DIRECTORIES.map(prepend_build),
+            prod_final: "build/static/scripts/build/main.js"
         },
         htmllint: {
             main_html: ["static/pages/index.html"],
@@ -107,7 +108,7 @@ module.exports = function(grunt){
         concat_sourcemap: {
             options: {
                 process: function(src, path){
-                    if(path !== BASE_PATH + "scripts/debug.js"){
+                    if(path.indexOf("debug.js") == -1){
                         return "(function(){" + src + "}());";
                     }
                     else{
@@ -215,6 +216,13 @@ module.exports = function(grunt){
                     args: {port: 9000, admin_port: 9001},
                     path: ETCHCODEUSERCONTENT_PATH
                 }
+            },
+            fake_prod: {
+                action: "run",
+                options: {
+                    args: {port: 9080, admin_port: 9081},
+                    path: "build/"
+               }
             }
         },
         shell: {
@@ -276,6 +284,7 @@ module.exports = function(grunt){
                        "concurrent:prod_2", "replace:prod",
                        "gae:deploy"]);
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
+    grunt.registerTask("fake_prod", ["gae:fake_prod"]);
     grunt.registerTask("wiredep", ["wiredep"]); // adds bower modules to index.html
 
     grunt.registerTask("default", ["dev"]);
