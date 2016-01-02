@@ -12,18 +12,23 @@ class Transformer:
     BLOCK_OPEN = "<block s=\"%s\">"
     BLOCK_CLOSE = "</block>"
     BLOCK_TAGS = BLOCK_OPEN + "%s" + BLOCK_CLOSE
-    SCRIPT_TAGS = "<script x=\"0\" y=\"0\">%s</script>"
+    SCRIPT_TAGS = "\n<script x=\"0\" y=\"0\">%s</script>"
 
     def parse_and_transform(self, code_to_parse, variables):
         # functions that transform with setParseAction
+        def prints(string, pos, tokens):
+            print(tokens)
+            return tokens
         def parse_input(string, pos, tokens):
             return self.INPUT % (tokens[0])
 
         def parse_variable(string, pos, tokens):
-            return self.VARIABLE % (tokens[0])
-
+            if(variables.tokens[0]):
+                return self.VARIABLE % (tokens[0])
+            else:
+                print("error")
         def parse_function_call(string, pos, tokens):
-            block_name = blocks.snap_names_lookup[tokens.pop(0)]
+            block_name = blocks.snap_names_lookup[tokens.pop(0).lower()]
             block_content = "".join(tokens)
 
             return self.BLOCK_TAGS % (block_name, block_content)
@@ -72,16 +77,20 @@ class Transformer:
                 "</block>"
 
         def parse_hat_block(string, pos, tokens):
+            print(tokens)
             return self.BLOCK_TAGS % (blocks.snapNames["events"][tokens[0]]
                                       ["snap"], "")
 
         def parse_hatted_chunk(string, pos, tokens):
             d = tokens.asDict()
             hat = d["hat_block"]
+            print(hat)
             body_list = d["hat_content"].asList()
             body_string = ""
+            print("list",body_list)
 
             for l in body_list:
+                print(body_string)
                 body_string += "".join(l)
 
             return self.SCRIPT_TAGS % (hat + body_string)
@@ -98,7 +107,7 @@ class Transformer:
 
         indentationStack = [1]  # this is used in all the indentedBlock's
         # basic building blocks
-        builtin = oneOf(blocks.that_behave_as_functions)
+        builtin = Combine(OneOrMore(Word(alphas)+Suppress(Optional(" ")))).setParseAction(prints)
         integer = Word(nums).setParseAction(parse_input)
         variable = oneOf(variables).setParseAction(parse_variable)
         string = (QuotedString("\"", escChar="\\") ^
@@ -129,17 +138,20 @@ class Transformer:
 
         # chunk is a bunch of indented text with with a starter like an if
         # statement. we define it later so a chunk is able to contain a chunk
-        chunk = Forward().setParseAction(parse_chunk)  # Forward is placeholder
+        chunk = Forward().setParseAction(parse_chunk)# Forward is placeholder
         # a line like `if foo:`
-        chunk_starter = (oneOf(blocks.startChunkBlocks) + Optional(an_input) +
+        ifChunck =  Forward()
+        chunk_starter = (builtin + Optional(an_input) +
                          Suppress(":")).setParseAction(parse_chunk_starter)
         # indented_chunk is what comes after `if foo:`
         indented_chunk = indentedBlock(function_call ^ chunk, indentationStack)
         # here we define chunk that we initialized with Forward above
         chunk << chunk_starter + indented_chunk
+        # ifChunck<<Group(an_input+indented_chunk?
+
 
         # a line like `flag clicked:` or `key pressed 'a':```
-        hat_block = (oneOf(blocks.hatBlocks) + Optional(an_input) +
+        hat_block = (builtin + Optional(an_input) +
                      Suppress(":")).setParseAction(parse_hat_block)
         # `flag clicked:` and the indented text after it. function calls is for
         # if there is no additional indent in the text indented after it
@@ -151,7 +163,8 @@ class Transformer:
 
         # just for ease-of-reading rename what we will parse against parser
         parser = script
-        parser.ignore(pythonStyleComment)  # support comments
+        parser.ignore(pythonStyleComment)
+    # support comments
         # make the string parsing function available throughout the class
         return parser.parseString(code_to_parse)[0]
 
@@ -159,16 +172,16 @@ class Transformer:
 if __name__ == "__main__":
     string = """
 flag clicked:
-    say(1 + 2 + 3 + 5 + 4 / 1)
-flag clicked: # a comment
-    say(var_1 + 2 / 3) # another comment
-    say(var_1)
-    # full line comment
+    S ay(1 + 2 + 3 + 5 + 4 / 1)
+
 flag clicked:
     if 'fo' and 1: # yet another comment
         # full line
         if 'fa':
-            say(3 * 2 + 1)"""
+            say(3 * 2 + 1)
+
+
+        """
 
     t = Transformer()
     print(t.parse_and_transform(string, ["var_1"]))
