@@ -231,7 +231,7 @@ module.exports = function(grunt){
             }
         },
         wiredep: {
-            target: {
+            all: {
                 src: "static/pages/index.html",
                 ignorePath: "../../"
             }
@@ -285,7 +285,6 @@ module.exports = function(grunt){
                        "gae:deploy"]);
     grunt.registerTask("local_server", ["concurrent:all_servers"]);
     grunt.registerTask("fake_prod", ["gae:fake_prod"]);
-    grunt.registerTask("wiredep", ["wiredep"]); // adds bower modules to index.html
 
     grunt.registerTask("default", ["dev"]);
 };

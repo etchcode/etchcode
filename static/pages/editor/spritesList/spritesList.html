@@ -14,7 +14,7 @@
     md-cols-gt-lg="4"
     >
     <md-grid-tile ng-repeat="sprite in all_sprites()"> <!-- all() includes sprites.list, sprites.general, and sprites.background -->
-        <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || sprite.thumbnail }})" ng-click="sprites.current = sprite">
+        <div class="spriteTile" style="background-image: url({{ sprite.costumes[0].data || project.thumbnail }})" ng-click="sprites.current = sprite">
             <div class="footer">
                 <span class="label">{{ sprite.id }}</span>
 

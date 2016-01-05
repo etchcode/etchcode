@@ -1,11 +1,8 @@
-import pdb
-import traceback
-
-from flask import Flask, Response, request, redirect, abort
+from flask import Flask, Response, request, redirect, abort, make_response
 from flask.ext.login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
+from werkzeug import DebuggedApplication
 import jinja2
-import copy
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
@@ -13,11 +10,19 @@ from google.appengine.ext import ndb
 import json
 import os
 import urllib
+import copy
+import traceback
 
 # import of own files
 import models
 from etchParser import translator, blocks
 from etchParser.translator import ParseException
+
+# init code
+
+# init Flask
+app = Flask("api")
+app.config.from_pyfile("config.py")
 
 # handle setting globals based on if this is a dev or production environment
 if os.environ["SERVER_SOFTWARE"].startswith("Development"):
@@ -28,10 +33,9 @@ elif os.environ["SERVER_SOFTWARE"].startswith("Google"):
     URL = "http://etchcode.org:80"
 else:
     print "unknown environment " + os.environ["SERVER_SOFTWARE"]
-
-# init code
-app = Flask("api")
-app.config.from_pyfile("config.py")
+app.debug = not PRODUCTION
+if app.debug:
+    app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
 
 
 # use a custom response class
@@ -208,7 +212,9 @@ def login():
 
         if verified and user:
             login_user(user)
-            return redirect("/api/user")
+            response = make_response(redirect("/api/user"))
+            response.set_cookie("logged_in", "true")
+            return response
         if verified and not user:
             raise ApiError(
                 message="Please register an account before logging in")
@@ -216,7 +222,8 @@ def login():
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])
         login_user(user)
-        return redirect("/api/user")
+        response = make_response(redirect("/api/user"))
+        response.set_cookie("logged_in", "true")
 
     # something failed. Abort.
     abort(401)
@@ -227,11 +234,15 @@ def login():
 def logout():
     if request.method == "POST":
         logout_user()
-        return json.dumps({"status": "success"})
+        response = make_response(json.dumps({"status": "success"}))
+        response.set_cookie("logged_in", "false")
+        return response
 
     elif not PRODUCTION and request.args["fake-logout"] == "true":
         logout_user()
-        return json.dumps({"status": "sucess"})
+        response = make_response(json.dumps({"status": "success"}))
+        response.set_cookie("logged_in", "false")
+        return response
 
 
 @app.route("/api/user", methods=["GET", "POST"])
@@ -379,7 +390,7 @@ def project():
 
         all_sprites = copy.copy(sprites_json["list"])
         all_sprites.append(sprites_json["background"])
-        all_sprites.append(sprites_json["general"])
+        global_variables = sprites_json["general"]["variables"]
 
         sprite_ids = []
         for sprite in all_sprites:
@@ -388,12 +399,9 @@ def project():
         scripts = {}
         Translator = translator.Translator()
         for sprite in all_sprites:
-            if "script" in sprite:  # skip globals which has no script
-                global_variables = sprites_json["general"]["variables"]
-                variables = sprite["variables"]
-                variables.append(global_variables)
-                scripts[sprite["id"]] = Translator.translate(sprite["script"],
-                                                             variables)
+            variables_in_scope = sprite["variables"] + global_variables
+            scripts[sprite["id"]] = Translator.translate(sprite["script"],
+                                                         variables_in_scope)
 
         rendered_template = project_template.render(project={
             "scripts": scripts,
@@ -423,7 +431,7 @@ def project():
 @app.route("/api/project/create", methods=["POST"])
 @login_required
 def create_project():
-    key = current_user.create_project(request.args["name"], "{}", "")
+    key = current_user.create_project(request.args["name"])
 
     return json.dumps({
         "key": key.urlsafe()
@@ -440,9 +448,12 @@ def projects():
         id_list.append({
             "key": project.key.urlsafe(),
             "name": project.name,
-            "thumbnail": project.get_thumbnail()
+            "thumbnail": project.thumbnail
         })
 
     return json.dumps({
         "projects": id_list
     })
+
+
+# @app.route("/api/thumbnail")

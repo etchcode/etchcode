@@ -17,7 +17,7 @@
 
         <div class="accountSection">
             <div class="loginButtons" ng-show="!user.logged_in">
-                <md-button onclick="login()">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
+                <md-button ng-click="login()">Login</md-button> <!-- navigator.id.register must be done in the onclick handler of the element, not ng-click -->
                 <signup></signup>
             </div>
 
@@ -34,7 +34,7 @@
                     </md-menu-item>
 
                     <md-menu-item>
-                        <md-button onclick="navigator.id.logout()">Signout</md-button> <!-- navigator.id.logout must be done in the onclick handler of the element, not ng-click -->
+                        <md-button ng-click="logout()">Signout</md-button> <!-- navigator.id.logout must be done in the onclick handler of the element, not ng-click -->
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>

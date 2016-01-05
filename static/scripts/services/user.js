@@ -1,7 +1,8 @@
 (function (){
     angular.module("etch")
 
-    .service("user", ["$rootScope", "$window", "api", function($rootScope, $window, api){
+    .service("user", ["$rootScope", "$window", "api", "$mdToast", "$cookies",
+                      function($rootScope, $window, api, $mdToast, $cookies){
         var _user = this;
         var user_currently_signing_up, signup_onlogin;
 
@@ -11,10 +12,33 @@
             profile: {}
         };
         _user.user = angular.copy(defaultUserObject); // use angular-copy to copy the properties and not a reference
+        _user.user.logged_in = $cookies.get("logged_in") == "true" ? true : false;
 
         _user.login = function(){
-            user_currently_signing_up = false;
-            navigator.id.request({siteName: 'Etch Code'});
+            if(navigator.id){
+                user_currently_signing_up = false;
+                navigator.id.request({siteName: 'Etch Code'});
+            }
+            else{
+                $mdToast.show(
+                    $mdToast.simple()
+                        .hideDelay(false)
+                        .textContent("You must be online to login")
+                );
+            }
+        };
+
+        _user.logout = function(){
+            if(navigator.id){
+                navigator.id.logout();
+            }
+            else{
+                $mdToast.show(
+                    $mdToast.simple()
+                        .hideDelay(false)
+                        .textContent("You must be online to logout")
+                );
+            }
         };
 
         function login_user_with_server_response(response){

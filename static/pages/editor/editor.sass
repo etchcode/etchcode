@@ -13,13 +13,17 @@
         height: 100%
 
         .footer
-            overflow: hidden
+            flex-direction: row
+            display: flex
+
             height: 15px
             padding: 15px
             padding-right: 0px
 
             .label
-                width: calc(100% - 24px)
+                flex-grow: 1
+                overflow: hidden
+                text-overflow: ellipses
 
     .runProject
         margin-right: 20px
