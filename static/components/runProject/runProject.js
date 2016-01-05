@@ -11,6 +11,7 @@ var $e;
 
                 templateUrl: "static/components/runProject/runProject.html",
                 controller: ["$scope", "$element", "renderService", "$sce", function($scope, $element, render, $sce){
+                    var elem = $element[0];
                     // running a project
                     $scope.loaded = false;
                     $scope.show = true;
@@ -19,8 +20,7 @@ var $e;
 
                     $scope.PLAYER_URL = $sce.trustAsResourceUrl(PRODUCTION ? "https://etchcodeusercontent.appspot.com/play/" : "http://localhost:9000/play/");
 
-                    $e = $element;
-                    var player = $element[0].getElementsByClassName("player")[0];
+                    var player = elem.getElementsByClassName("player")[0];
 
                     player.addEventListener("load", function(){
                         //listen for when the player is loaded and update whether or not it is updated
