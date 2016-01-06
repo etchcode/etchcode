@@ -14,6 +14,7 @@
                 $scope.user = user.user;
                 $scope.logout = user.logout;
                 $scope.login = user.login;
+                $scope.register = user.register;
                 $scope.sideNavOpen = false;
 
                 $scope.toggleSideNav = function(){

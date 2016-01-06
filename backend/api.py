@@ -2,6 +2,7 @@ from flask import Flask, Response, request, redirect, abort, make_response
 from flask.ext.login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
 from werkzeug import DebuggedApplication
+from werkzeug.contrib.securecookie import SecureCookie
 import jinja2
 
 from google.appengine.api import urlfetch
@@ -41,6 +42,10 @@ if app.debug:
 # use a custom response class
 class JsonResponse(Response):
     default_mimetype = "application/json"
+
+
+class JSONSecureCookie(SecureCookie):
+    serialization_method = json
 
 
 app.response_class = JsonResponse
@@ -257,19 +262,64 @@ def user():
             abort(401)
 
     elif request.method == "POST":
-        request_data = json.loads(request.data.decode())
-        email = verify_assertion(request_data["assertion"])
-        username = request_data["username"]
-        name = request_data["name"]
+        request_data = request.data.decode()
+        verified_email = verify_assertion(request_data)
 
-        if email and email_unique(email) and username_unique(username):
-            new_user = models.User(email=email, active=True, username=username,
-                                   name=name)
-            new_user.put()
-            login_user(User(new_user))  # make it a User object for Flask
-            return redirect("/api/user")
+        if verified_email and email_unique(verified_email):
+            account_creating = JSONSecureCookie({"email": verified_email},
+                                                app.config["SECRET_KEY"])
+            response = make_response(json.dumps({
+                "status": "success",
+                "email": verified_email
+            }))
+            response.set_cookie("account_creating",
+                                account_creating.serialize())
+            return response
+
+        elif not email_unique(verified_email):
+            raise ApiError(message="invalid email")
+
         else:
-            raise ApiError(message="invalid email or username")
+            raise ApiError()
+
+
+@app.route("/api/user/complete_registration", methods=["POST"])
+def complete_registration():
+    account_creating_cookie = JSONSecureCookie\
+        .load_cookie(request, key="account_creating",
+                     secret_key=app.config["SECRET_KEY"])
+    # we previously verfied the email this user is registering a valid email
+    # SecureCookie verifies that the cookie is set without SECRET_KEY
+    # we must verify if the email is still unique as an email could have been
+    # created since then
+    if "email" in account_creating_cookie:
+        request_data = json.loads(request.data.decode())
+
+        wanted_username = request_data["username"]
+        wanted_name = request_data["name"]
+        wanted_email = account_creating_cookie["email"]
+        if username_unique(wanted_username) and email_unique(wanted_email):
+            response = make_response(redirect("/api/user"))
+            # clean up
+            response.set_cookie("account_creating", expires=0)
+            # add the new user to the database
+            new_user = models.User(email=account_creating_cookie["email"],
+                                   username=wanted_username,
+                                   name=wanted_name)
+            new_user.put()
+            # create a session server-side for the user
+            login_user(User(new_user))
+            # let the client-side know they can request protected data
+            response.set_cookie("logged_in", "true")
+            # have the client do the redirect we set up earlier
+            return response
+        elif not username_unique(wanted_username):
+            raise ApiError(message="Username already exists")
+        elif not email_unique(wanted_email):
+            raise ApiError(message="Email already exists")
+
+    raise ApiError(message="There is a serious issue with your authentication\
+     cookie. Clear your cookies and retry")
 
 
 @app.route("/api/user/profile", methods=["GET", "PUT"])
@@ -297,6 +347,17 @@ def user_profile():
         return json.dumps({
             "message": "success"
         })
+
+
+@app.route("/api/user/check_username")
+def check_username_handler():
+    status = username_unique(request.args["username"])
+    if status:
+        return json.dumps({
+            "valid": username_unique(request.args["username"])
+        })
+    else:
+        raise ApiError(message="Username already exists", status_code=403)
 
 
 @app.route("/api/blocks.json")

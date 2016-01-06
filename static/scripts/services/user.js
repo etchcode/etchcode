@@ -2,9 +2,12 @@
     angular.module("etch")
 
     .service("user", ["$rootScope", "$window", "api", "$mdToast", "$cookies",
-                      function($rootScope, $window, api, $mdToast, $cookies){
+                      "$location", function($rootScope, $window, api, $mdToast,
+                                            $cookies, $location){
         var _user = this;
-        var user_currently_signing_up, signup_onlogin;
+        var user_currently_signing_up; // this is a global var that is true if a register action is going on becase we can't differentiate otherwise in the persona callback
+        var login_config = {siteName: 'Etch Code'}; // config obj to pass to navigator.id.request
+        _user.registering = {}; // on partial signup this is set
 
         // user code
         defaultUserObject = { // the default template user object
@@ -15,9 +18,9 @@
         _user.user.logged_in = $cookies.get("logged_in") == "true" ? true : false;
 
         _user.login = function(){
+            user_currently_signing_up = false;
             if(navigator.id){
-                user_currently_signing_up = false;
-                navigator.id.request({siteName: 'Etch Code'});
+                navigator.id.request(login_config);
             }
             else{
                 $mdToast.show(
@@ -41,6 +44,11 @@
             }
         };
 
+        _user.register = function(){
+            user_currently_signing_up = true;
+            navigator.id.request(login_config);
+        };
+
         function login_user_with_server_response(response){
             _user.user.logged_in = true;
 
@@ -51,8 +59,14 @@
                     _user.user[prop] = data[prop];
                 }
             }
+        }
 
-            console.log(_user.user);
+        function complete_registration(email_registering){
+            _user.user.registering = {
+                email: email_registering
+            };
+
+            $location.path("/account/complete_registration");
         }
 
         if(navigator.id){
@@ -61,12 +75,18 @@
                 onlogin: function(assertion){
                     $rootScope.$apply(function(){ // this is async so we need to get back into angular-land
                         if(user_currently_signing_up){
-                            signup_onlogin(assertion);
+                            api.create_user(assertion).then(function success(response){
+                                user_currently_signing_up = false;
+                                complete_registration(response.data.email);
+                            }, function error(response){
+                                user_currently_signing_up = false;
+                                navigator.id.logout();
+                            });
                         }
                         else{
                             api.login(assertion).then(function success(response){
                                 login_user_with_server_response(response);
-                            },function error(response){
+                            }, function error(response){
                                 navigator.id.logout();
                             });
                         }
@@ -87,25 +107,5 @@
         else{
             console.error("navigator.id is undefined. Check to ensure that mozilla persona is loaded");
         }
-
-        _user.complete_signup = function(username, name){
-            user_currently_signing_up = true;
-            navigator.id.request({siteName: 'Etch Code'});
-
-            signup_onlogin = function(assertion){
-                _user.close_signup_popup(); // signup.js gives us this function
-                api.create_user({
-                    username: username,
-                    name: name,
-                    assertion: assertion
-                }).then(function success(response){
-                    login_user_with_server_response(response);
-                    user_currently_signing_up = false;
-                }, function error(response){
-                    navigator.id.logout();
-                    $window.location.reload();
-                });
-            };
-        };
     }]);
 }());

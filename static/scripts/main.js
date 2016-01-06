@@ -28,6 +28,9 @@
                 .when("/account", {
                     templateUrl: "static/pages/account/index.html"
                 })
+                .when("/account/complete_registration", {
+                    templateUrl: "static/pages/account/complete_registration/index.html"
+                })
                 .otherwise({
                     templateUrl: "static/pages/404/index.html"
                 });
