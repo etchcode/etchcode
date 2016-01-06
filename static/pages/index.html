@@ -32,6 +32,9 @@
                 else if(type === "development"){
                     DEVELOPMENT = true;
                 }
+                else{
+                    throw new Error("Type " + type + "is not recognized");
+                }
             }());
         </script>
 

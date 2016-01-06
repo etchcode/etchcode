@@ -133,7 +133,7 @@ module.exports = function(grunt){
                 options: {
                     patterns: [{
                         match: /{{ server.type }}/,
-                        replacement: "prod"
+                        replacement: "production"
                     }]
                 },
                 files: [{
