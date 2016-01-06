@@ -31,7 +31,7 @@ if os.environ["SERVER_SOFTWARE"].startswith("Development"):
     URL = "http://localhost:9090"
 elif os.environ["SERVER_SOFTWARE"].startswith("Google"):
     PRODUCTION = True
-    URL = "http://etchcode.org:80"
+    URL = "https://etchcode.org:443"
 else:
     print "unknown environment " + os.environ["SERVER_SOFTWARE"]
 app.debug = not PRODUCTION
@@ -54,15 +54,17 @@ app.response_class = JsonResponse
 
 
 class ApiError(Exception):
-    def __init__(self, message=None, status_code=400):
+    def __init__(self, message=None, status_code=400, more=""):
         self.message = message
         self.status_code = status_code
+        self.more = more
 
     def __str__(self):
         return json.dumps({
             "status": "failure",
             "error_code": self.status_code,
-            "message": self.message
+            "message": self.message,
+            "more": self.more
         })
 
 # login code
@@ -166,7 +168,9 @@ def verify_assertion(assertion):
         if verification_data['status'] == 'okay':
             return verification_data["email"]
 
-    return False  # something went wrong
+    raise ApiError(message="Something went very wrong when we tried to verify\
+your email with Mozilla Persona. Clear your cookies and try again",
+                   more=response.content)
 
 
 def username_unique(username):
@@ -178,9 +182,12 @@ def username_unique(username):
 
 
 def email_unique(email):
-    matches = models.User.query(models.User.email == email).fetch()
-    if len(matches) == 0:
-        return True
+    if type(email) == str or type(email) == unicode:
+        matches = models.User.query(models.User.email == email).fetch()
+        if len(matches) == 0:
+            return True
+        else:
+            return False
     else:
         return False
 
@@ -277,7 +284,7 @@ def user():
             return response
 
         elif not email_unique(verified_email):
-            raise ApiError(message="invalid email")
+            raise ApiError(message="Email already exists")
 
         else:
             raise ApiError()
