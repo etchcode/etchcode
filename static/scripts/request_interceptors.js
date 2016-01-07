@@ -23,7 +23,7 @@ angular.module("etch").config(["$httpProvider", function($httpProvider){
                             deferred.resolve($http(response.config));
                         }
                         else{
-                            deffered.resolve($q.reject(response));
+                            deferred.resolve($q.reject(response));
                         }
                     });
 
