@@ -1,13 +1,15 @@
 /* globals nunjucks, heap */
 (function () {
-	"use strict";
+    "use strict";
 
-	angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror", "ngRoute", "toaster", "source-map-exception-handler"])
+    angular.module("etch", ["ngSanitize", "ngMaterial", "ui.codemirror",
+                            "ngRoute", "toaster", "source-map-exception-handler",
+                            "ngCookies"])
 
-		.config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
-			function ($routeProvider, $locationProvider, $mdThemingProvider) {
+        .config(["$routeProvider", "$locationProvider", "$mdThemingProvider",
+            function ($routeProvider, $locationProvider, $mdThemingProvider) {
 
-				$routeProvider
+                $routeProvider
                 .when("/", {
                     templateUrl: "static/pages/home/index.html"
                 })
@@ -26,6 +28,9 @@
                 .when("/account", {
                     templateUrl: "static/pages/account/index.html"
                 })
+                .when("/account/complete_registration", {
+                    templateUrl: "static/pages/account/complete_registration/index.html"
+                })
                 .otherwise({
                     templateUrl: "static/pages/404/index.html"
                 });
@@ -40,8 +45,8 @@
                     });
 
                 nunjucks.configure("/templates/project", {autoescape: true});
-			}
-		])
+            }
+        ])
 
         .run(function($rootScope, $location){
             // heap analytics tracking code

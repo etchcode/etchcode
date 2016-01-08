@@ -63,8 +63,6 @@
             }
 
             this.id = "general";
-            this.notes = inputs.notes || "";
-            this.thumbnail = inputs.thumbnail || myself.default.costumes[0].data;
             this.variables = inputs.variables || [];
         };
 

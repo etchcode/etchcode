@@ -9,22 +9,28 @@
         that.project = function (project) {
             // function accepts string project and returns a Promise that resolves to a string of the built project
             return new Promise(function (resolve) {
-                var all = project.list.concat(project.background).concat(project.general);
+                var all_sprites = project.list.concat(project.background);
 
+                var global_variables = project.general.variables;
                 var scripts = {};
+                var variables = {};
                 var sprites = [];
-                for (var i = 0; i < all.length; i++) {
-                    // for every script in the project build a dictionary with scipts labled by their sprite name
-                    var sprite = all[i];
 
-                    sprites.push(sprite.id);
-                    scripts[sprite.id] = sprite.script;
-                }
+                all_sprites.forEach(function(sprite){
+                    var id = sprite.id;
+
+                    sprites.push(id);
+                    scripts[id] = sprite.script;
+                    variables[id] = sprite.variables;
+                });
 
                 $http.post("/api/parse", {
-                    scripts: JSON.stringify(scripts),
-                    sprites: JSON.stringify(sprites)
+                    scripts: scripts,
+                    sprites: sprites,
+                    variables: variables,
+                    global_variables: global_variables
                 }).success(function (data) {
+                    console.log(data);
                     for (var sprite in data) {
                         if (data[sprite].message) {
                             toaster.pop({

@@ -55,5 +55,7 @@
 
         this.create_user = api_request("user").post;
         this.change_profile = api_request("user/profile").put;
+        this.check_username = api_request("user/check_username").get;
+        this.complete_registration = api_request("user/complete_registration").post;
     }]);
 }());

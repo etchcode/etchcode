@@ -1,4 +1,4 @@
-<div class="editor-page" ng-controller="editorController as editor" layout="row">
+<div class="editor-page" ng-controller="editorController as editor">
     <div layout="column" flex="40" class="columnLeft">
         <div layout="row" class="topRow">
             <md-input-container class="project-name">
@@ -7,7 +7,10 @@
             </md-input-container>
 
             <div class="save-project">
-                <md-button class="save-button md-raised" ng-click="save_project()" md-tooltip="Save Project">Save</md-button>
+                <md-button class="save-button md-raised"
+                        ng-click="save_project()" md-tooltip="Save Project">
+                    Save
+                </md-button>
             </div>
         </div>
 

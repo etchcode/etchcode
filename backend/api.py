@@ -1,8 +1,9 @@
-from flask import Flask, Response, request, redirect, abort
+from flask import Flask, Response, request, redirect, abort, make_response
 from flask.ext.login import LoginManager, UserMixin, login_required, \
     login_user, logout_user, current_user
+from werkzeug import DebuggedApplication
+from werkzeug.contrib.securecookie import SecureCookie
 import jinja2
-import copy
 
 from google.appengine.api import urlfetch
 from google.appengine.ext import ndb
@@ -10,10 +11,19 @@ from google.appengine.ext import ndb
 import json
 import os
 import urllib
+import copy
+import traceback
 
 # import of own files
 import models
 from etchParser import translator, blocks
+from etchParser.translator import ParseException
+
+# init code
+
+# init Flask
+app = Flask("api")
+app.config.from_pyfile("config.py")
 
 # handle setting globals based on if this is a dev or production environment
 if os.environ["SERVER_SOFTWARE"].startswith("Development"):
@@ -21,18 +31,21 @@ if os.environ["SERVER_SOFTWARE"].startswith("Development"):
     URL = "http://localhost:9090"
 elif os.environ["SERVER_SOFTWARE"].startswith("Google"):
     PRODUCTION = True
-    URL = "http://etchcode.org:80"
+    URL = "https://etchcode.org:443"
 else:
     print "unknown environment " + os.environ["SERVER_SOFTWARE"]
-
-# init code
-app = Flask("api")
-app.config.from_pyfile("config.py")
+app.debug = not PRODUCTION
+if app.debug:
+    app.wsgi_app = DebuggedApplication(app.wsgi_app, True)
 
 
 # use a custom response class
 class JsonResponse(Response):
     default_mimetype = "application/json"
+
+
+class JSONSecureCookie(SecureCookie):
+    serialization_method = json
 
 
 app.response_class = JsonResponse
@@ -41,15 +54,17 @@ app.response_class = JsonResponse
 
 
 class ApiError(Exception):
-    def __init__(self, message=None, status_code=400):
+    def __init__(self, message=None, status_code=400, more=""):
         self.message = message
         self.status_code = status_code
+        self.more = more
 
     def __str__(self):
         return json.dumps({
             "status": "failure",
             "error_code": self.status_code,
-            "message": self.message
+            "message": self.message,
+            "more": self.more
         })
 
 # login code
@@ -153,7 +168,9 @@ def verify_assertion(assertion):
         if verification_data['status'] == 'okay':
             return verification_data["email"]
 
-    return False  # something went wrong
+    raise ApiError(message="Something went very wrong when we tried to verify\
+your email with Mozilla Persona. Clear your cookies and try again",
+                   more=response.content)
 
 
 def username_unique(username):
@@ -165,9 +182,12 @@ def username_unique(username):
 
 
 def email_unique(email):
-    matches = models.User.query(models.User.email == email).fetch()
-    if len(matches) == 0:
-        return True
+    if type(email) == str or type(email) == unicode:
+        matches = models.User.query(models.User.email == email).fetch()
+        if len(matches) == 0:
+            return True
+        else:
+            return False
     else:
         return False
 
@@ -204,12 +224,18 @@ def login():
 
         if verified and user:
             login_user(user)
-            return redirect("/api/user")
+            response = make_response(redirect("/api/user"))
+            response.set_cookie("logged_in", "true")
+            return response
+        if verified and not user:
+            raise ApiError(
+                message="Please register an account before logging in")
 
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])
         login_user(user)
-        return redirect("/api/user")
+        response = make_response(redirect("/api/user"))
+        response.set_cookie("logged_in", "true")
 
     # something failed. Abort.
     abort(401)
@@ -220,11 +246,15 @@ def login():
 def logout():
     if request.method == "POST":
         logout_user()
-        return json.dumps({"status": "success"})
+        response = make_response(json.dumps({"status": "success"}))
+        response.set_cookie("logged_in", "false")
+        return response
 
     elif not PRODUCTION and request.args["fake-logout"] == "true":
         logout_user()
-        return json.dumps({"status": "sucess"})
+        response = make_response(json.dumps({"status": "success"}))
+        response.set_cookie("logged_in", "false")
+        return response
 
 
 @app.route("/api/user", methods=["GET", "POST"])
@@ -239,19 +269,64 @@ def user():
             abort(401)
 
     elif request.method == "POST":
-        request_data = json.loads(request.data.decode())
-        email = verify_assertion(request_data["assertion"])
-        username = request_data["username"]
-        name = request_data["name"]
+        request_data = request.data.decode()
+        verified_email = verify_assertion(request_data)
 
-        if email and email_unique(email) and username_unique(username):
-            new_user = models.User(email=email, active=True, username=username,
-                                   name=name)
-            new_user.put()
-            login_user(User(new_user))  # make it a User object for Flask
-            return redirect("/api/user")
+        if verified_email and email_unique(verified_email):
+            account_creating = JSONSecureCookie({"email": verified_email},
+                                                app.config["SECRET_KEY"])
+            response = make_response(json.dumps({
+                "status": "success",
+                "email": verified_email
+            }))
+            response.set_cookie("account_creating",
+                                account_creating.serialize())
+            return response
+
+        elif not email_unique(verified_email):
+            raise ApiError(message="Email already exists")
+
         else:
-            raise ApiError(message="invalid email or username")
+            raise ApiError()
+
+
+@app.route("/api/user/complete_registration", methods=["POST"])
+def complete_registration():
+    account_creating_cookie = JSONSecureCookie\
+        .load_cookie(request, key="account_creating",
+                     secret_key=app.config["SECRET_KEY"])
+    # we previously verfied the email this user is registering a valid email
+    # SecureCookie verifies that the cookie is set without SECRET_KEY
+    # we must verify if the email is still unique as an email could have been
+    # created since then
+    if "email" in account_creating_cookie:
+        request_data = json.loads(request.data.decode())
+
+        wanted_username = request_data["username"]
+        wanted_name = request_data["name"]
+        wanted_email = account_creating_cookie["email"]
+        if username_unique(wanted_username) and email_unique(wanted_email):
+            response = make_response(redirect("/api/user"))
+            # clean up
+            response.set_cookie("account_creating", expires=0)
+            # add the new user to the database
+            new_user = models.User(email=account_creating_cookie["email"],
+                                   username=wanted_username,
+                                   name=wanted_name)
+            new_user.put()
+            # create a session server-side for the user
+            login_user(User(new_user))
+            # let the client-side know they can request protected data
+            response.set_cookie("logged_in", "true")
+            # have the client do the redirect we set up earlier
+            return response
+        elif not username_unique(wanted_username):
+            raise ApiError(message="Username already exists")
+        elif not email_unique(wanted_email):
+            raise ApiError(message="Email already exists")
+
+    raise ApiError(message="There is a serious issue with your authentication\
+     cookie. Clear your cookies and retry")
 
 
 @app.route("/api/user/profile", methods=["GET", "PUT"])
@@ -281,6 +356,17 @@ def user_profile():
         })
 
 
+@app.route("/api/user/check_username")
+def check_username_handler():
+    status = username_unique(request.args["username"])
+    if status:
+        return json.dumps({
+            "valid": username_unique(request.args["username"])
+        })
+    else:
+        raise ApiError(message="Username already exists", status_code=403)
+
+
 @app.route("/api/blocks.json")
 def blocks_response():
     """
@@ -303,18 +389,29 @@ def parse():
     by services/render.js that is json encoded
     Return: Parsed scripts
     """
+    request_data = json.loads(request.data.decode())
 
-    scripts = json.loads(json.loads(request.data.decode())["scripts"])
-    variables = ["hi"]
-    sprites = json.loads(json.loads(request.data.decode())["sprites"])
-    # don't use request.form because ng transmits data as json
+    scripts = request_data["scripts"]
+    variables = request_data["variables"]
+    global_variables = request_data["global_variables"]
+    sprites = request_data["sprites"]
 
     parsed = {}
-    for name in scripts:
-        parsed[name] = translator.translate(scripts[name],  # translate it
-                                            sprites, variables)
+    Translator = translator.Translator()
 
-    return Response(json.dumps(parsed))
+    for sprite in sprites:
+        script = scripts[sprite]
+        variables_in_scope = variables[sprite] + global_variables
+        try:
+            parsed[sprite] = {
+                "code": Translator.translate(script, variables_in_scope)
+            }
+        except ParseException as e:
+            parsed[sprite] = {
+                "message": str(e)
+            }
+
+    return json.dumps(parsed)
 
 
 @app.route("/api/project", methods=["GET", "POST", "DELETE"])
@@ -349,31 +446,30 @@ def project():
 
         # parse JSON into SnapXML. this must be done server-side so that the
         # user cant't give us arbitrary xml
+
         project_template_enviroment = jinja2.Environment(
             loader=jinja2.FileSystemLoader(os.path.join(
                 os.path.split(__file__)[0],
                 "../templates/project"
             )))
+
         project_template = project_template_enviroment.get_template(
             "snap_template.xml")
 
         all_sprites = copy.copy(sprites_json["list"])
         all_sprites.append(sprites_json["background"])
-        all_sprites.append(sprites_json["general"])
+        global_variables = sprites_json["general"]["variables"]
 
         sprite_ids = []
         for sprite in all_sprites:
             sprite_ids.append(sprite["id"])
 
         scripts = {}
+        Translator = translator.Translator()
         for sprite in all_sprites:
-            if "script" in sprite:  # skip globals which has no script
-                global_variables = sprites_json["general"]["variables"]
-                variables = sprite["variables"]
-                variables.append(global_variables)
-                scripts[sprite["id"]] = translator.translate(sprite["script"],
-                                                             sprite_ids,
-                                                             variables)
+            variables_in_scope = sprite["variables"] + global_variables
+            scripts[sprite["id"]] = Translator.translate(sprite["script"],
+                                                         variables_in_scope)
 
         rendered_template = project_template.render(project={
             "scripts": scripts,
@@ -403,7 +499,7 @@ def project():
 @app.route("/api/project/create", methods=["POST"])
 @login_required
 def create_project():
-    key = current_user.create_project(request.args["name"], "{}", "")
+    key = current_user.create_project(request.args["name"])
 
     return json.dumps({
         "key": key.urlsafe()
@@ -420,9 +516,12 @@ def projects():
         id_list.append({
             "key": project.key.urlsafe(),
             "name": project.name,
-            "thumbnail": project.get_thumbnail()
+            "thumbnail": project.thumbnail
         })
 
     return json.dumps({
         "projects": id_list
     })
+
+
+# @app.route("/api/thumbnail")

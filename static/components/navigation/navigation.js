@@ -5,13 +5,16 @@
         return {
             restrict: "E",
 
-            templateUrl: "static/components/navigation/mainHeader.html",
+            templateUrl: "static/components/navigation/navigation.html",
             controller: ["$scope", "$location", "$rootScope", "$mdMenu", "user",
                          "project", "random", function($scope, $location,
                                                        $rootScope, $mdMenu,
                                                        user, project, random){
                 $scope.$mdMenu = $mdMenu;
                 $scope.user = user.user;
+                $scope.logout = user.logout;
+                $scope.login = user.login;
+                $scope.register = user.register;
                 $scope.sideNavOpen = false;
 
                 $scope.toggleSideNav = function(){

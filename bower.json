@@ -31,6 +31,7 @@
     "angular-ui-codemirror": "~0.3.0",
     "AngularJS-Toaster": "toaster#~0.4.16",
     "google-material-icons": "~2.1.0",
-    "roboto-fontface": "~0.4.3"
+    "roboto-fontface": "~0.4.3",
+    "angular-cookies": "~1.4.8"
   }
 }

@@ -1,19 +1,23 @@
-$COMPONENTS: "../components/"
-$PAGES: "../pages/"
+// needed by all files
+@import "mixins"
 
+// base files
 @import colors
 @import general
 @import input
 @import layout
 @import tooltip
 @import typography
+@import forms
 
+// page styles
 @import "../pages/editor/spriteSettingsDialog/spriteSettingsDialog"
 @import "../pages/editor/editor"
 @import "../pages/projects/projects"
+@import "../pages/account/complete_registration/complete_registration"
 
+// component styles
 @import "../components/navigation/navigation"
 @import "../components/runProject/runProject"
 @import "../components/snapBlock/snapBlock"
 @import "../components/editor/editor"
-@import "../components/signup/signup"

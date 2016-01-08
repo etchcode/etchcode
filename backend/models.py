@@ -2,6 +2,9 @@
 from google.appengine.ext import ndb
 import json
 
+# Import programs in project
+import defaults
+
 
 class User(ndb.Model):
     """A user of etch stored in ndb."""
@@ -14,8 +17,11 @@ class User(ndb.Model):
     name = ndb.StringProperty()
 
     # projects
-    def create_project(self, name, json, xml):
-        project = Project(parent=self.key, name=name, JSON=json, SnapXML=xml)
+    def create_project(self, name_, JSON_=defaults.project["JSON"],
+                       SnapXML_=defaults.project["SnapXML"],
+                       thumbnail_=defaults.project["thumbnail"]):
+        project = Project(parent=self.key, name=name_, JSON=JSON_,
+                          SnapXML=SnapXML_, thumbnail=thumbnail_)
         return project.put()
 
     def get_projects(self):
@@ -28,15 +34,10 @@ class Project(ndb.Model):
     JSON = ndb.TextProperty(required=True)
     # whenever JSON is changed, SnapXML must be changed as well
     SnapXML = ndb.TextProperty(required=True)
+    thumbnail = ndb.BlobProperty(required=True)
 
     # auto_now sets this when created/modified
     last_modified = ndb.DateTimeProperty(auto_now=True)
 
     def parsed_json(self):
         return json.loads(self.JSON)
-
-    def get_thumbnail(self):
-        if self.JSON == "{}":
-            return False
-        else:
-            return self.parsed_json()["general"]["thumbnail"]

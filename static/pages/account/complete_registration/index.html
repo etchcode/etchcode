@@ -1,0 +1,25 @@
+<md-content ng-controller="completeRegistrationController as register">
+    <h2 class="md-display-2">Almost done</h2>
+    <p>If you are under 13 leave the name field empty and choose a username that
+    doesn't say anything about your real self.</p>
+    <form class="complete-registration" name="complete_registration_form">
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="register.registering.email" name="email" type="email" disabled>
+        </md-input-container>
+        <md-input-container ng-blur="register.check_username()">
+            <label>Username</label>
+            <input ng-model="register.registering.username" name="username" type="text" required>
+        </md-input-container>
+        <md-input-container>
+            <label>Name</label>
+            <input ng-model="register.registering.name" name="name" type="text">
+        </md-input-container>
+
+        <div class="actions">
+            <md-button class="md-primary" ng-click="register.finish()" ng-disabled="complete_registration_form.$invalid">
+                Finish registration
+            </md-button>
+        </div>
+    </form>
+</md-content>
