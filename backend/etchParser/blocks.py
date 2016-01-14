@@ -1,5 +1,5 @@
 # flake8:noqa # Sam, this is for Daniel's editor
-hatBlocks = ["flagclicked"] # Etch names
+hatBlocks = ["flagclicked", "flag clicked"] # Etch names
 startChunkBlocks = ["if","repeat"] # Etch Naming
 abriviations = {  # these reference other blocks form abriviation:block name that it is referenceing
                   "m": "motion",
@@ -101,8 +101,8 @@ snapNames = {
     "control": {
         # ifThenElse is unsupported due to difficulty in implementation
         "wait":{"snap": "doWait", "inputs": [["integer", False]]} ,
-        # "repeat": {"snap": "doRepeat", "inputs": [["integer", False]]},
-        # "forever":{"snap": "doForever", "inputs": [["integer", False]]} ,
+        "repeat": {"snap": "doRepeat", "inputs": [["integer", False]]},
+        "forever":{"snap": "doForever", "inputs": [["integer", False]]} ,
         "if": {"snap": "doIf", "inputs": [["integer", False]]},
         # "waituntil": {"snap": "doWaitUntil", "inputs": [["integer", False]]},
         # "repeatuntil": {"snap": "doUntil", "inputs": [["integer", False]]},

@@ -10,9 +10,11 @@ class Transformer:
     INPUT = "<l>%s</l>"
     VARIABLE = "<block var=\"%s\"/>"
     BLOCK_OPEN = "<block s=\"%s\">"
+    BLOCK_OPEN2 = "<block s=\"%s\"><script>"
     BLOCK_CLOSE = "</block>"
     BLOCK_TAGS = BLOCK_OPEN + "%s" + BLOCK_CLOSE
     SCRIPT_TAGS = "\n<script x=\"0\" y=\"0\">%s</script>"
+    SCRIPT_TAGS2 = "\n<script>%s</script>"
 
     def parse_and_transform(self, code_to_parse, variables):
         # functions that transform with setParseAction
@@ -23,10 +25,9 @@ class Transformer:
             return self.INPUT % (tokens[0])
 
         def parse_variable(string, pos, tokens):
-            if(variables.tokens[0]):
-                return self.VARIABLE % (tokens[0])
-            else:
-                print("error")
+
+            return self.VARIABLE % (tokens[0])
+
         def parse_function_call(string, pos, tokens):
             block_name = blocks.snap_names_lookup[tokens.pop(0).lower()]
             block_content = "".join(tokens)
@@ -65,20 +66,22 @@ class Transformer:
                 return recursing
 
         def parse_chunk_starter(string, pos, tokens):
-            name = blocks.snapNames["control"][tokens[0]]["snap"]
-            return self.BLOCK_OPEN % (name) + tokens[1]
+
+            name = blocks.snapNames["control"][tokens[0].lower().replace(" ", "")]["snap"]
+            return self.BLOCK_OPEN2 % (name) + tokens[1]
 
         def parse_chunk(string, pos, tokens):
+            print("tokens", tokens[1][0])
             if len(tokens) == 1:  # must be 2 so this is [[1, 2]] format:
                 tokens = tokens[0]
-
+            print("tokens", tokens[1][0])
             # + </block> because parse_chunk_starter only gives opening tag
-            return tokens[0] + self.SCRIPT_TAGS % ("".join(tokens[1][0])) +\
-                "</block>"
+            return tokens[0] + ("".join(tokens[1][0])) +\
+                "</script></block>"
 
         def parse_hat_block(string, pos, tokens):
-            print(tokens)
-            return self.BLOCK_TAGS % (blocks.snapNames["events"][tokens[0]]
+            print(tokens[0].replace(" ", ""))
+            return self.BLOCK_TAGS % (blocks.snapNames["events"][tokens[0].lower().replace(" ", "")]
                                       ["snap"], "")
 
         def parse_hatted_chunk(string, pos, tokens):
@@ -141,7 +144,7 @@ class Transformer:
         chunk = Forward().setParseAction(parse_chunk)# Forward is placeholder
         # a line like `if foo:`
         ifChunck =  Forward()
-        chunk_starter = (builtin + Optional(an_input) +
+        chunk_starter = (oneOf(blocks.startChunkBlocks, True) + Optional(an_input) +
                          Suppress(":")).setParseAction(parse_chunk_starter)
         # indented_chunk is what comes after `if foo:`
         indented_chunk = indentedBlock(function_call ^ chunk, indentationStack)
@@ -151,7 +154,7 @@ class Transformer:
 
 
         # a line like `flag clicked:` or `key pressed 'a':```
-        hat_block = (builtin + Optional(an_input) +
+        hat_block = (Combine(oneOf(blocks.hatBlocks, True)) + Optional(an_input) +
                      Suppress(":")).setParseAction(parse_hat_block)
         # `flag clicked:` and the indented text after it. function calls is for
         # if there is no additional indent in the text indented after it
@@ -171,13 +174,13 @@ class Transformer:
 
 if __name__ == "__main__":
     string = """
-flag clicked:
+flag Clicked 123:
     S ay(1 + 2 + 3 + 5 + 4 / 1)
 
 flag clicked:
     if 'fo' and 1: # yet another comment
         # full line
-        if 'fa':
+        repeat var_1:
             say(3 * 2 + 1)
 
 
