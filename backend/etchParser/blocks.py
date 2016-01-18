@@ -1,6 +1,6 @@
 # flake8:noqa # Sam, this is for Daniel's editor
-hatBlocks = ["flag clicked"] # Etch names
-startChunkBlocks = ["if"] # Etch Naming
+hatBlocks = ["flagclicked", "flag clicked"] # Etch names
+startChunkBlocks = ["if","repeat"] # Etch Naming
 abriviations = {  # these reference other blocks form abriviation:block name that it is referenceing
                   "m": "motion",
                   "s": "sensing",
@@ -90,7 +90,7 @@ snapNames = {
 
     "events": {
         #we can't support backdropswichesto, and greaterthan because Snap! doesn't
-        "flag clicked": {"snap": "receiveGo", "inputs": []},
+        "flagclicked": {"snap": "receiveGo", "inputs": []},
         "keypressed": {"snap": "receiveKey", "inputs": [["key", True]]},
         "thisspriteclicked": {"snap": "receiveInteraction", "inputs": [["sprite", True]]},
         # "ireceivemessage": {"snap": "receiveMessage", "inputs": [["sprite", True]]},
@@ -101,8 +101,8 @@ snapNames = {
     "control": {
         # ifThenElse is unsupported due to difficulty in implementation
         "wait":{"snap": "doWait", "inputs": [["integer", False]]} ,
-        # "repeat": {"snap": "doRepeat", "inputs": [["integer", False]]},
-        # "forever":{"snap": "doForever", "inputs": [["integer", False]]} ,
+        "repeat": {"snap": "doRepeat", "inputs": [["integer", False]]},
+        "forever":{"snap": "doForever", "inputs": [["integer", False]]} ,
         "if": {"snap": "doIf", "inputs": [["integer", False]]},
         # "waituntil": {"snap": "doWaitUntil", "inputs": [["integer", False]]},
         # "repeatuntil": {"snap": "doUntil", "inputs": [["integer", False]]},
@@ -159,6 +159,7 @@ for type_name, section in snapNames.items():
     for item_name, item in section.items():
         if "notation" not in item:
             that_behave_as_functions.append(item_name)
+print(that_behave_as_functions)
 
 snap_names_lookup = {}
 for category_name, category in snapNames.items():
