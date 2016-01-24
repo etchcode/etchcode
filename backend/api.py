@@ -236,6 +236,7 @@ contact us.")
         login_user(user)
         response = make_response(redirect("/api/user"))
         response.set_cookie("logged_in", "true")
+        return response
 
     # something failed. Abort.
     abort(401)
