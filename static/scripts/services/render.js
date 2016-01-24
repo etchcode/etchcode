@@ -30,7 +30,6 @@
                     variables: variables,
                     global_variables: global_variables
                 }).success(function (data) {
-                    console.log(data);
                     for (var sprite in data) {
                         if (data[sprite].message) {
                             toaster.pop({

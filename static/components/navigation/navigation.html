@@ -15,13 +15,14 @@
             </a>
         </h1>
 
-        <div class="accountSection">
-            <div class="loginButtons" ng-show="!user.logged_in">
-                <md-button ng-click="login()">Login</md-button>
-                <md-button ng-click="register()" class="signup_button">Register</md-button>
+        <div class="account-section">
+            <div class="login-buttons" ng-show="!current_user.logged_in">
+                <!-- give them id's so that in navigation.js we can bind handlers
+                to them using google's login library-->
+                <div id="login-button"></div>
             </div>
 
-            <md-menu class="userMenu" ng-show="user.logged_in">
+            <md-menu class="userMenu" ng-show="current_user.logged_in">
                 <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
                     <md-icon>account_circle</md-icon>
                 </md-button>
@@ -47,7 +48,7 @@
 
 <md-sidenav class="md-sidenav-left navigation" md-is-open="sideNavOpen" ng-click="toggleSideNav()">
     <nav>
-        <div class="user-section" ng-if="user.logged_in">
+        <div class="current_user-section" ng-if="current_user.logged_in">
             <h2>
                 <md-button ng-click="create_project()">
                     <md-icon>create</md-icon>

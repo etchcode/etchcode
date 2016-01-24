@@ -4,15 +4,11 @@
             <form name="account_form">
                 <md-input-container class="md-block">
                     <label>Email</label>
-                    <input disabled required ng-model="user.profile.email" name="email">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>Username</label>
-                    <input required ng-model="user.profile.username" name="username">
+                    <input disabled required ng-model="current_user.profile.email" name="email">
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>Name</label>
-                    <input required ng-model="user.profile.name" name="name">
+                    <input required ng-model="current_user.profile.name" name="name">
                 </md-input-container>
 
                 <md-button ng-click="save()" class="md-primary md-raised">Save</md-button>

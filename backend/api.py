@@ -4,15 +4,15 @@ from flask.ext.login import LoginManager, UserMixin, login_required, \
 from werkzeug import DebuggedApplication
 from werkzeug.contrib.securecookie import SecureCookie
 import jinja2
-
 from google.appengine.api import urlfetch
+import urllib
+
 from google.appengine.ext import ndb
 
 import json
 import os
-import urllib
 import copy
-import traceback
+import collections
 
 # import of own files
 import models
@@ -55,6 +55,7 @@ app.response_class = JsonResponse
 
 class ApiError(Exception):
     def __init__(self, message=None, status_code=400, more=""):
+        Exception.__init__(self)
         self.message = message
         self.status_code = status_code
         self.more = more
@@ -87,7 +88,6 @@ class User:
         self.create_project = user_model.create_project
 
         self.profile = {
-            "username": user_model.username,
             "email": user_model.email,
             "name": user_model.name
         }
@@ -151,34 +151,22 @@ def load_user_by_email(email):
         return None
 
 
-def verify_assertion(assertion):
-    verification_url = "https://verifier.login.persona.org/verify"
-    response = urlfetch.fetch(url=verification_url,
-                              payload=urllib.urlencode({'assertion':
-                                                        assertion,
-                                                       'audience': URL}),
-                              method=urlfetch.POST)
+def verify_google_id_token(token):
+    """
+    Checks a login with google token and if valid gets the corresponding email.
+    I can't get oauth2client to work so I am using the web service.
+    Takes: str token
+    Returns: email if token valid else raises ApiError"""
+    url = "https://www.googleapis.com/oauth2/v3/tokeninfo?%s"
+    response = urlfetch.fetch(url % urllib.urlencode({"id_token": token}))
+    response_data = json.loads(response.content)
 
-    # Did the verifier respond?
     if response.status_code == 200:
-        # Parse the response
-        verification_data = json.loads(response.content)
-
-        # Check if the assertion was valid
-        if verification_data['status'] == 'okay':
-            return verification_data["email"]
-
-    raise ApiError(message="Something went very wrong when we tried to verify\
-your email with Mozilla Persona. Clear your cookies and try again",
-                   more=response.content)
-
-
-def username_unique(username):
-    matches = models.User.query(models.User.username == username).fetch()
-    if len(matches) == 0:
-        return True
+        google_user = collections.namedtuple("GoogleUser", ["email", "name"])
+        return google_user(response_data["email"], response_data["name"])
     else:
-        return False
+        raise ApiError(message="Something went very wrong when we tried to verify\
+your login with Google. Clear your cookies and try again.")
 
 
 def email_unique(email):
@@ -206,30 +194,42 @@ def error401(e):
 
 
 @app.errorhandler(ApiError)
-def api_error(error):
+def handle_api_error(error):
+    print "handling error"
     return str(error), error.status_code
 
 
 @app.route("/api/login", methods=["GET", "POST"])
 def login():
-    """Get: mozilla persona token
+    """Post: google user token
     Sets: user session
     """
-    # a cheat if we are on a dev server to quickly login
-    # could be a GET in development
-    if request.method == "POST":  # normal method must be post
-        assertion = request.data.decode()
-        verified = verify_assertion(assertion)
-        user = load_user_by_email(verified)
+    def finish_login():
+        """Once you verified everything, this will make a success message and
+        send it with the right cookies"""
+        response = make_response(redirect("/api/user"))
+        response.set_cookie("logged_in", "true")
+        return response
 
-        if verified and user:
+    if request.method == "POST":  # normal method must be post
+        request_data = json.loads(request.data.decode())
+        # verify_google_id_token will throw error if invalid
+        email, name = verify_google_id_token(
+            request_data["google_id_token"])
+        user = load_user_by_email(email)
+
+        if user:
             login_user(user)
-            response = make_response(redirect("/api/user"))
-            response.set_cookie("logged_in", "true")
-            return response
-        if verified and not user:
-            raise ApiError(
-                message="Please register an account before logging in")
+            return finish_login()
+        elif not user:
+            new_user = models.User(email=email, name=name)
+            new_user.put()
+
+            login_user(new_user)
+            return finish_login()
+        else:
+            raise ApiError(message="Something odd happened. Please retry or\
+contact us.")
 
     elif not PRODUCTION and request.args["fake-login"] == "true":
         user = load_user_by_email(request.args["email"])
@@ -268,66 +268,6 @@ def user():
         else:
             abort(401)
 
-    elif request.method == "POST":
-        request_data = request.data.decode()
-        verified_email = verify_assertion(request_data)
-
-        if verified_email and email_unique(verified_email):
-            account_creating = JSONSecureCookie({"email": verified_email},
-                                                app.config["SECRET_KEY"])
-            response = make_response(json.dumps({
-                "status": "success",
-                "email": verified_email
-            }))
-            response.set_cookie("account_creating",
-                                account_creating.serialize())
-            return response
-
-        elif not email_unique(verified_email):
-            raise ApiError(message="Email already exists")
-
-        else:
-            raise ApiError()
-
-
-@app.route("/api/user/complete_registration", methods=["POST"])
-def complete_registration():
-    account_creating_cookie = JSONSecureCookie\
-        .load_cookie(request, key="account_creating",
-                     secret_key=app.config["SECRET_KEY"])
-    # we previously verfied the email this user is registering a valid email
-    # SecureCookie verifies that the cookie is set without SECRET_KEY
-    # we must verify if the email is still unique as an email could have been
-    # created since then
-    if "email" in account_creating_cookie:
-        request_data = json.loads(request.data.decode())
-
-        wanted_username = request_data["username"]
-        wanted_name = request_data["name"]
-        wanted_email = account_creating_cookie["email"]
-        if username_unique(wanted_username) and email_unique(wanted_email):
-            response = make_response(redirect("/api/user"))
-            # clean up
-            response.set_cookie("account_creating", expires=0)
-            # add the new user to the database
-            new_user = models.User(email=account_creating_cookie["email"],
-                                   username=wanted_username,
-                                   name=wanted_name)
-            new_user.put()
-            # create a session server-side for the user
-            login_user(User(new_user))
-            # let the client-side know they can request protected data
-            response.set_cookie("logged_in", "true")
-            # have the client do the redirect we set up earlier
-            return response
-        elif not username_unique(wanted_username):
-            raise ApiError(message="Username already exists")
-        elif not email_unique(wanted_email):
-            raise ApiError(message="Email already exists")
-
-    raise ApiError(message="There is a serious issue with your authentication\
-     cookie. Clear your cookies and retry")
-
 
 @app.route("/api/user/profile", methods=["GET", "PUT"])
 @login_required
@@ -339,12 +279,6 @@ def user_profile():
         request_data = json.loads(request.data.decode())
         user = current_user.user_model
 
-        if "username" in request_data:
-            new_username = request_data["username"]
-            if username_unique(new_username):
-                user.username = new_username
-            else:
-                raise ApiError(message="Username already exists")
         if "name" in request_data:
             new_name = request_data["name"]
             user.name = new_name
@@ -354,17 +288,6 @@ def user_profile():
         return json.dumps({
             "message": "success"
         })
-
-
-@app.route("/api/user/check_username")
-def check_username_handler():
-    status = username_unique(request.args["username"])
-    if status:
-        return json.dumps({
-            "valid": username_unique(request.args["username"])
-        })
-    else:
-        raise ApiError(message="Username already exists", status_code=403)
 
 
 @app.route("/api/blocks.json")

@@ -66,12 +66,12 @@ This block takes a color as input. In Etch, colors are represented in a format c
 					<p ng-show="item.type == 'block'" class="explanation" markdown>
 This block starts a section that has other blocks in it. For example,
     
-	Control.if(username = "Jill"):
+	Control.if(current_username = "Jill"):
 		Looks.say("Hello Jill")
 						
 As you can see, a section start block ends with a colon (":") and anything else that is a part of that block is indented. Once the text is no longer indented, it is no longer part of that section. For example,
 						
-	Control.if(username = "Jill":
+	Control.if(current_username = "Jill":
 		Looks.say("Hello Jill")
 						
 	Looks.say("This will always be said, because it is outside of the Control.if section")

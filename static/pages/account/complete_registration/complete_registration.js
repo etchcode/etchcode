@@ -3,7 +3,7 @@ angular.module("etch").controller("completeRegistrationController",
                                  "$location", function($scope, user, api,
                                                        $mdToast, $location){
     _account = this;
-    _account.registering = user.user.registering;
+    _account.registering = user.current_user.registering;
 
     _account.finish = function(){
         api.check_username({"username": _account.registering.username}).then(function(response){
@@ -12,7 +12,7 @@ angular.module("etch").controller("completeRegistrationController",
                 username: _account.registering.username,
                 name: _account.registering.username
             }).then(function(){
-                user.user.logged_in = true;
+                user.current_user.logged_in = true;
                 $location.path("/");
             });
         });

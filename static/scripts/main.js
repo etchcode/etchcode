@@ -47,7 +47,10 @@
                 nunjucks.configure("/templates/project", {autoescape: true});
             }
         ])
-
+        .run(["$rootScope", "user", function($rootScope, user){
+            // set up stuff that should be in rootScope
+            $rootScope.current_user = user.current_user;
+        }])
         .run(function($rootScope, $location){
             // heap analytics tracking code
             // jshint ignore:start

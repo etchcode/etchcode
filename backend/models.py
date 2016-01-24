@@ -13,7 +13,6 @@ class User(ndb.Model):
     active = ndb.BooleanProperty(required=True, default=True)
 
     # profile
-    username = ndb.StringProperty(required=True)
     name = ndb.StringProperty()
 
     # projects
