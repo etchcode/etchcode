@@ -437,10 +437,11 @@ def projects():
 
     id_list = []
     for project in all_projects:
+        key = project.key.urlsafe()
         id_list.append({
-            "key": project.key.urlsafe(),
+            "key": key,
             "name": project.name,
-            "thumbnail": project.thumbnail
+            "thumbnail": "/api/project/thumbnail.png?key=" + key
         })
 
     return json.dumps({
@@ -448,4 +449,19 @@ def projects():
     })
 
 
-# @app.route("/api/thumbnail")
+@app.route("/api/project/thumbnail.png")
+@login_required
+def project_thumbnail():
+    try:
+        project_key = ndb.Key(urlsafe=request.args["key"])
+        project = project_key.get()
+        if (project_key.parent() == current_user.key  # the user owns this
+                and project.__class__ == models.Project):  # it is a project
+            return Response(project.thumbnail, mimetype="image/png")
+        elif project_key.parent() != current_user.key:
+            abort(401)
+        else:
+            abort(404)
+    except Exception as e:
+        import traceback
+        return str(traceback.format_exc(e))

@@ -25,8 +25,8 @@
                     <span class="md-subhead">{{ project.description.substr(50) }}</span>
                 </md-card-title-text>
                 <md-card-title-media>
-                    <div class="md-media-sm card-media">
-                        <img ng-if="project.thumbnail" ng-src="data:image/png,{{ project.thumbnail }}" alt="project {{ project.name }} thumbnail">
+                    <div class="md-media-md card-media">
+                        <img ng-if="project.thumbnail" ng-src="{{ project.thumbnail }}" alt="project {{ project.name }} thumbnail">
                     </div>
                 </md-card-title-media>
             </md-card-title>

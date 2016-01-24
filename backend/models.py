@@ -2,6 +2,8 @@
 from google.appengine.ext import ndb
 import json
 
+from base64 import b64decode
+
 # Import programs in project
 import defaults
 
@@ -18,7 +20,7 @@ class User(ndb.Model):
     # projects
     def create_project(self, name_, JSON_=defaults.project["JSON"],
                        SnapXML_=defaults.project["SnapXML"],
-                       thumbnail_=defaults.project["thumbnail"]):
+                       thumbnail_=b64decode(defaults.project["thumbnail"])):
         project = Project(parent=self.key, name=name_, JSON=JSON_,
                           SnapXML=SnapXML_, thumbnail=thumbnail_)
         return project.put()
