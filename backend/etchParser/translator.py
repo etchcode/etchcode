@@ -17,6 +17,17 @@ class Translator:
 
     def _parse_and_transform(self, code_to_parse, variables):
         # functions that transform with setParseAction
+        def parse_keyword(string, pos, tokens):
+            """Stripping whitespaces, dashes and underscores
+            to return what it will be indexed by in our dictionary of builtins
+            """
+            print(tokens)
+            # len(tokens) will be 1
+            return tokens[0]\
+                .replace(" ", "")\
+                .replace("_", "")\
+                .replace("-", "")
+
         def parse_input(string, pos, tokens):
             return self.INPUT % (tokens[0])
 
@@ -104,7 +115,8 @@ class Translator:
 
         indentationStack = [1]  # this is used in all the indentedBlock's
         # basic building blocks
-        builtin = oneOf(blocks.that_behave_as_functions)
+        builtin = oneOf(blocks.that_behave_as_functions)\
+            .setParseAction(parse_keyword)
         integer = Word(nums).setParseAction(parse_input)
         variable = oneOf(variables).setParseAction(parse_variable)
         string = (QuotedString("\"", escChar="\\") ^
@@ -137,16 +149,18 @@ class Translator:
         # statement. we define it later so a chunk is able to contain a chunk
         chunk = Forward().setParseAction(parse_chunk)  # Forward is placeholder
         # a line like `if foo:`
-        chunk_starter = (oneOf(blocks.startChunkBlocks) + Optional(an_input) +
-                         Suppress(":")).setParseAction(parse_chunk_starter)
+        chunk_starter = (oneOf(blocks.startChunkBlocks)
+                         .setParseAction(parse_keyword) + Optional(an_input)
+                         + Suppress(":")).setParseAction(parse_chunk_starter)
         # indented_chunk is what comes after `if foo:`
         indented_chunk = indentedBlock(function_call ^ chunk, indentationStack)
         # here we define chunk that we initialized with Forward above
         chunk << chunk_starter + indented_chunk
 
         # a line like `flag clicked:` or `key pressed 'a':```
-        hat_block = (oneOf(blocks.hatBlocks) + Optional(an_input) +
-                     Suppress(":")).setParseAction(parse_hat_block)
+        hat_block = (oneOf(blocks.hatBlocks).setParseAction(parse_keyword)
+                     + Optional(an_input) + Suppress(":"))\
+            .setParseAction(parse_hat_block)
         # `flag clicked:` and the indented text after it. function calls is for
         # if there is no additional indent in the text indented after it
         hat_chunk = hat_block("hat_block") + indented_chunk("hat_content")
