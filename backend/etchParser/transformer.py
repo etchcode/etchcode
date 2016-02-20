@@ -71,33 +71,71 @@ class Transformer:
             return self.BLOCK_OPEN2 % (name) + tokens[1]
 
         def parse_chunk(string, pos, tokens):
-            print("tokens", tokens[1][0])
+            print "test"
+            print tokens
+            # print("tokens", tokens[1][0])
             if len(tokens) == 1:  # must be 2 so this is [[1, 2]] format:
                 tokens = tokens[0]
-            print("tokens", tokens[1][0])
-            # + </block> because parse_chunk_starter only gives opening tag
+            # print("tokens", tokens[1][0])
+            # # + </block> because parse_chunk_starter only gives opening tag
             return tokens[0] + ("".join(tokens[1][0])) +\
                 "</script></block>"
-
+            return "test"
         def parse_hat_block(string, pos, tokens):
+            print tokens
+            if(len(tokens) == 1):
+                return self.BLOCK_TAGS % (blocks.snapNames["events"][tokens[0].lower().replace(" ", "")]
+                                      ["snap"], "")
             print(tokens[0].replace(" ", ""))
             return self.BLOCK_TAGS % (blocks.snapNames["events"][tokens[0].lower().replace(" ", "")]
-                                      ["snap"], "")
+                                      ["snap"], tokens[1])
 
         def parse_hatted_chunk(string, pos, tokens):
-            d = tokens.asDict()
+            token = tokens[0]
+
+            # print tokens
+            d = token.asDict()
+            # print d
             hat = d["hat_block"]
-            print(hat)
+
+            # print(hat)
             body_list = d["hat_content"].asList()
+            # print body_list
             body_string = ""
+
             print("list",body_list)
 
-            for l in body_list:
-                print(body_string)
-                body_string += "".join(l)
+            for k in body_list[0]:
 
+                # print(body_string)
+                # print k[0]
+                body_string += str(k[0])
+                # return "Test"
+            # print body_string
             return self.SCRIPT_TAGS % (hat + body_string)
+        def parse_if_chunk(string, pos, tokens):
+            token = tokens[0]
+            body_string = """<block s="doIfElse">"""
 
+            print tokens
+            body_list = token.asList()
+            print body_list
+            body_string += body_list[0]+"<script>"
+            for k in body_list[1]:
+
+                # print(body_string)
+                # print k[0]
+                body_string += str(k[0])
+            body_string += "</script><script>"
+            for k in body_list[2]:
+
+                # print(body_string)
+                # print k[0]
+                body_string += str(k[0])
+
+            body_string += "</script></block>"
+            print body_string
+            return body_string
         def parse_script(string, pos, tokens):
             """Parse a full script tag. At this point we just need to turn
             the list of one-deep lists into a string"""
@@ -151,18 +189,18 @@ class Transformer:
         indented_chunk = Forward()
         # here we define chunk that we initialized with Forward above
 
-        ifChunck << CaselessLiteral("if")+ Optional(an_input) + Suppress(":")+indented_chunk + Suppress(CaselessLiteral("else:"))+indented_chunk
-        chuncks =  (chunk_starter + indented_chunk)
+        ifChunck << Group(Suppress(CaselessLiteral("if"))+ Optional(an_input) + Suppress(":")+indented_chunk + Suppress(CaselessLiteral("else:"))+indented_chunk).setParseAction(parse_if_chunk)
+        chuncks = Group(chunk_starter + indented_chunk)
         chunk = ifChunck ^chuncks
-        chunk.setParseAction(parse_chunk)
-        indented_chunk <<indentedBlock(function_call ^ chunk, indentationStack)
+        # chunk.setParseAction(parse_chunk)
+        indented_chunk << indentedBlock(function_call ^ chunk, indentationStack)
         # a line like `flag clicked :` or `key pressed 'a':```
         hat_block = (Combine(oneOf(blocks.hatBlocks, True)) + Optional(an_input) +
                      Suppress(":")).setParseAction(parse_hat_block)
         # `flag clicked:` and the indented text after it. function calls is for
         # if there is no additional indent in the text indented after it
-        hat_chunk = hat_block("hat_block") + indented_chunk("hat_content")
-        hat_chunk.setParseAction(parse_hatted_chunk)
+        hat_chunk = Group(hat_block("hat_block") + indented_chunk("hat_content")).setParseAction(parse_hatted_chunk)
+
 
         script = OneOrMore(Group(hat_chunk))("script") + stringEnd
         script.setParseAction(parse_script)
@@ -178,16 +216,19 @@ class Transformer:
 if __name__ == "__main__":
     string = """
 flag Clicked 123:
-    S ay(1 + 2 + 3 + 5 + 4 / 1)
+    S ay(1)
 
 flag clicked:
     if 'fo' and 1: # yet another comment
         # full line
+        Say(3)
     else:
         Say(123)
+    Say(123)
+
+
 
 
         """
-
     t = Transformer()
     print(t.parse_and_transform(string, ["var_1"]))
