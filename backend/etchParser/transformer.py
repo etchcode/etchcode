@@ -141,19 +141,22 @@ class Transformer:
 
         # chunk is a bunch of indented text with with a starter like an if
         # statement. we define it later so a chunk is able to contain a chunk
-        chunk = Forward().setParseAction(parse_chunk)# Forward is placeholder
+        # chunk = Forward().setParseAction(parse_chunk)# Forward is placeholder
         # a line like `if foo:`
         ifChunck =  Forward()
         chunk_starter = (oneOf(blocks.startChunkBlocks, True) + Optional(an_input) +
                          Suppress(":")).setParseAction(parse_chunk_starter)
         # indented_chunk is what comes after `if foo:`
-        indented_chunk = indentedBlock(function_call ^ chunk, indentationStack)
+
+        indented_chunk = Forward()
         # here we define chunk that we initialized with Forward above
-        chunk << chunk_starter + indented_chunk
-        # ifChunck<<Group(an_input+indented_chunk?
 
-
-        # a line like `flag clicked:` or `key pressed 'a':```
+        ifChunck << CaselessLiteral("if")+ Optional(an_input) + Suppress(":")+indented_chunk + Suppress(CaselessLiteral("else:"))+indented_chunk
+        chuncks =  (chunk_starter + indented_chunk)
+        chunk = ifChunck ^chuncks
+        chunk.setParseAction(parse_chunk)
+        indented_chunk <<indentedBlock(function_call ^ chunk, indentationStack)
+        # a line like `flag clicked :` or `key pressed 'a':```
         hat_block = (Combine(oneOf(blocks.hatBlocks, True)) + Optional(an_input) +
                      Suppress(":")).setParseAction(parse_hat_block)
         # `flag clicked:` and the indented text after it. function calls is for
@@ -180,8 +183,8 @@ flag Clicked 123:
 flag clicked:
     if 'fo' and 1: # yet another comment
         # full line
-        repeat var_1:
-            say(3 * 2 + 1)
+    else:
+        Say(123)
 
 
         """
