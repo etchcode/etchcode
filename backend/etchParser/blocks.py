@@ -115,10 +115,10 @@ snapNames = {
 
     "sensing": {
         # we can't support loudness, turnvideo, setvideotransparencyto, xpositionof, dayssince2000, username, and videon because Snap! doesn't support them
-        # "touching": {"snap": "reportTouchingObject", "inputs": [["integer", False]]},
-        # "touchingcolor": {"snap": "reportTouchingColor", "inputs": [["integer", False]]},
-        # "colorstouching": {"snap": "reportColorIsTouchingColor", "inputs": [["integer", False]]},
-        # "distanceto": {"snap": "reportDistanceTo", "inputs": [["integer", False]]},
+        "touching": {"snap": "reportTouchingObject", "inputs": [["integer", False]]},
+        "touchingcolor": {"snap": "reportTouchingColor", "inputs": [["integer", False]]},
+        "colorstouching": {"snap": "reportColorIsTouchingColor", "inputs": [["integer", False]]},
+        "distanceto": {"snap": "reportDistanceTo", "inputs": [["integer", False]]},
         "askandwait": {"snap": "doAsk", "inputs": [["string", False]]},
         "answer": {"snap": "getLastAnswer", "inputs": []},
         # "iskeypressed": {"snap": "reportKeyPressed", "inputs": [["integer", False]]},

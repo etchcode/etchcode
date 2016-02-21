@@ -215,13 +215,15 @@ class Transformer:
 
 if __name__ == "__main__":
     string = """
-flag Clicked 123:
+flag Clicked:
     S ay(1)
 
 flag clicked:
-    if 'fo' and 1: # yet another comment
+    if touching(12): # yet another comment
         # full line
         Say(3)
+        if 213 :
+
     else:
         Say(123)
     Say(123)
