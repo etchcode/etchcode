@@ -19,7 +19,7 @@ class Transformer:
     def parse_and_transform(self, code_to_parse, variables):
         # functions that transform with setParseAction
         def prints(string, pos, tokens):
-            print(tokens)
+            # print(tokens)
             return tokens
         def parse_input(string, pos, tokens):
             return self.INPUT % (tokens[0])
