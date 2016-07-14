@@ -51,8 +51,6 @@ class JSONSecureCookie(SecureCookie):
 app.response_class = JsonResponse
 
 # custom errors
-
-
 class ApiError(Exception):
     def __init__(self, message=None, status_code=400, more=""):
         Exception.__init__(self)

@@ -189,11 +189,11 @@ class Transformer:
         indented_chunk = Forward()
         # here we define chunk that we initialized with Forward above
 
-        ifChunck << Group(Suppress(CaselessLiteral("if"))+ Optional(an_input) + Suppress(":")+indented_chunk + Suppress(CaselessLiteral("else:"))+indented_chunk).setParseAction(parse_if_chunk)
+        ifChunck << Group(Suppress(CaselessLiteral("if"))+ Optional(an_input) + Suppress(":") + indented_chunk + Suppress(CaselessLiteral("else:"))+indented_chunk).setParseAction(parse_if_chunk)
         chuncks = Group(chunk_starter + indented_chunk)
-        chunk = ifChunck ^chuncks
+        chunk = ifChunck ^ chuncks
         # chunk.setParseAction(parse_chunk)
-        indented_chunk << indentedBlock(function_call ^ chunk, indentationStack)
+        indented_chunk << OneOrMore(indentedBlock(function_call ^  ifChunck ^ chuncks, indentationStack))
         # a line like `flag clicked :` or `key pressed 'a':```
         hat_block = (Combine(oneOf(blocks.hatBlocks, True)) + Optional(an_input) +
                      Suppress(":")).setParseAction(parse_hat_block)
@@ -215,18 +215,26 @@ class Transformer:
 
 if __name__ == "__main__":
     string = """
-flag Clicked:
+flag Clicked 123:
+    S ay(1 + 2 + 3 + 5 + 4 / 1)
     S ay(1)
 
 flag clicked:
-    if touching(12): # yet another comment
+    if 'fo' and 1: # yet another comment
         # full line
         Say(3)
-        if 213 :
+        if 1:
+            Say(3)
+            if 1:
+                Say(3)
+            else:
+                Say(4)
 
-    else:
-        Say(123)
-    Say(123)
+        Say(3)
+
+
+
+
 
 
 
